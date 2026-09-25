@@ -9,6 +9,259 @@ body {
     background-color: #000;
     color: #fff;
     overflow-x: hidden;
+}* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.split-screen-section {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.center-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    font-size: 4.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+}
+
+.split-pane {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 12%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.bg-image {
+    position: absolute;
+    top: -5%; 
+    left: -5%;
+    width: 110%; 
+    height: 110%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    transition: background 0.5s ease;
+}
+
+.content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.content h2 {
+    font-size: 2.0rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Linkovi so linija odozdola */
+.link-btn {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.0rem;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.link-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+/* Hover Animacii */
+.split-pane:hover .bg-overlay {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.split-pane:hover .link-btn::after {
+    transform: scaleX(1);
+}
+
+/* Osnoven CSS hover scale (JavaScript kje go nadgradi ova) */
+.split-pane:hover .bg-image {
+    transform: scale(1.05);
+}
+
+.luxury-footer {
+    background-color: #fff;
+    color: black;
+    padding: 150px 50px 30px;
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid #1a1a1a;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.footer-brand {
+    max-width: 320px;
+}
+
+.footer-logo {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    margin-bottom: 5px;
+}
+
+.footer-est {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.footer-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #999;
+    font-weight: 300;
+}
+
+.footer-title {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: #888;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.4s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-links a::after {
+    content: ''; 
+    position: absolute; 
+    bottom: -3px; 
+    left: 0;
+    width: 100%; 
+    height: 1px; 
+    background-color: #ffffff; 
+    transform: scaleX(0); 
+    transform-origin: left; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-links a:hover::after {
+    transform: scaleX(1);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid #1a1a1a;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-legal a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.4s ease;
+}
+
+.footer-legal a:hover {
+    color: #ccc;
+}
+
+/* Burger Menu (Dior Style) */
+.burger-menu {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 24px;
+    height: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.burger-menu .line {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background-color: #fff;
 }
 
 
