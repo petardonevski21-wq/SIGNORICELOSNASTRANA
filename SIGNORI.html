@@ -1,392 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIGNORI</title>
-    
-    <!-- Tipografiq: Cormorant Garamond (logo) i Montserrat (navigaciq) -->
+    <title>Signori - Bespoke Tailoring</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./sliki/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-
-    <style>
-        /* Osnovno resetirane */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #111;
-            font-family: 'Montserrat', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Glaven konteyner */
-        .hero-section {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 30px 55px; 
-        }
-
-        /* Video v pozadina */
-        .bg-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            filter: brightness(0.85); 
-        }
-
-        /* Goren red - Navigaciq */
-        header {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            width: 88%; 
-            margin: 0 auto; 
-        }
-
-        /* Stil za linkove i kopcheta */
-        .hover-target {
-            color: #ffffff;
-            text-decoration: none;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .hover-target:hover {
-            color: #8c8c8c; 
-        }
-
-        /* Leva strana - Menu */
-        .nav-left {
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-container {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .menu-container:hover .hover-target, 
-        .menu-container:hover .hamburger span {
-            color: #8c8c8c;
-            background-color: #8c8c8c;
-        }
-
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 16px; 
-            height: 1px;
-            background-color: #ffffff;
-            transition: background-color 0.3s ease;
-        }
-
-        .menu-text {
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
-        }
-
-        /* Sredina - Logo */
-        .nav-center {
-            text-align: center;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #ffffff; 
-            cursor: default; 
-            text-decoration: none;
-        }
-
-        /* Dqsna strana - Kontakt i Tarsene */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 35px;
-        }
-
-        .contact-text {
-            font-size: 13px;
-            font-weight: 300;
-            letter-spacing: 0.05em;
-        }
-
-        .search-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .search-btn svg {
-            width: 17px;
-            height: 17px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        /* Dolen red (Footer) */
-        footer {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: flex-end; 
-            width: 100%;
-        }
-
-        .footer-left {
-            display: flex;
-            justify-content: flex-start;
-        }
-
-        /* Centralen tekst smesten nay-dolu */
-        .footer-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .collection-title {
-            font-family: 'Century Gothic', sans-serif;
-            font-size: 30px;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-            color: #ffffff;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .discover-btn {
-            position: relative;
-            font-family: 'Century Gothic', sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: #ffffff;
-            text-decoration: none;
-            padding-bottom: 4px;
-            transition: color 0.4s ease;
-        }
-
-        /* Liniq pod Discover kopcheto */
-        .discover-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: #ffffff;
-            transform-origin: right; 
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease;
-        }
-
-        .discover-btn:hover {
-            color: #8c8c8c;
-        }
-
-        .discover-btn:hover::after {
-            transform: scaleX(0); 
-            background-color: #8c8c8c;
-        }
-
-        .footer-right {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        /* Kopcheta za media kontroli */
-        .icon-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        /* =========================================
-           MOBILNA VERZIQ (Media Queries)
-        ========================================= */
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 25px 20px; /* Namalyavane na otstapite na malki ekrani */
-            }
-
-            header {
-                width: 100%; 
-            }
-
-            /* Skrivane na teksta za menuto i kontakta */
-            .menu-text, 
-            .contact-text {
-                display: none;
-            }
-
-            /* Premahvane na golqmata dupka ot dqsno, kogato nqma tekst */
-            .nav-right {
-                gap: 0;
-            }
-
-            /* Po-malko logo za mobilni */
-            .logo {
-                font-size: 24px;
-            }
-
-            /* Prigojdavane na footer-a za po-malki ekrani */
-            footer {
-                grid-template-columns: auto 1fr auto; 
-                align-items: flex-end;
-            }
-
-            .collection-title {
-                font-size: 20px; /* Po-malko zaglavie */
-                letter-spacing: 0.1em;
-            }
-            
-            .footer-center {
-                padding: 0 15px; /* Predpazvane ot dopir s butonite otstrani */
-            }
-
-            .icon-btn svg {
-                width: 20px;
-                height: 20px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-    <div class="hero-section">
-        <!-- Video pozadina -->
-        <video id="bgVideo" class="bg-video" autoplay loop muted playsinline>
-            <source src="./videa/The Arrival.mp4" type="video/mp4">
-        </video>
+    <section class="split-screen-section">
+        <!-- Централно лого -->
+        <h1 class="center-brand">SIGNORI</h1>
 
-        <!-- Navigaciq (Header) -->
-        <header>
-            <div class="nav-left">
-                <div class="menu-container hover-target" role="button">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <span class="menu-text">Menu</span>
+        <!-- Лева страна -->
+        <div class="split-pane left-pane">
+            <div class="bg-image" style="background-image: url('./assets/sliki/HERO/besp.webp');"></div>
+            <div class="bg-overlay"></div>
+            <div class="content">
+                <h2>BESPOKE TAILORING</h2>
+                <a href="#" class="link-btn">Begin your journey</a>
+            </div>
+        </div>
+
+        <!-- Десна страна -->
+        <div class="split-pane right-pane">
+            <div class="bg-image" style="background-image: url('./assets/sliki/HERO/online.webp');"></div>
+            <div class="bg-overlay"></div>
+            <div class="content">
+                <h2>ONLINE SHOP</h2>
+                <a href="#" class="link-btn">Discover</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="luxury-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                
+                <!-- Column 1: Brand House -->
+                <div class="footer-brand">
+                    <h2 class="footer-logo">SIGNORI</h2>
+                    <p class="footer-est">EST 2014</p>
+                    <p class="footer-desc">Experience true bespoke elegance, crafted exclusively for your silhouette.</p>
+                </div>
+
+                <!-- Column 2: Client Care -->
+                <div class="footer-links">
+                    <h4 class="footer-title">Client Care</h4>
+                    <ul>
+                        <li><a href="#">Private Appointments</a></li>
+                        <li><a href="#">Made to Measure</a></li>
+                        <li><a href="#">Bespoke Tailoring</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                    
+                <!-- Column 3: The Collection -->
+                <div class="footer-links">
+                    <h4 class="footer-title">The House</h4>
+                    <ul>
+                        <li><a href="#">Our Heritage</a></li>
+                        <li><a href="#">The Journal</a></li>
+                        <li><a href="#">Wedding Collection</a></li>
+                        <li><a href="#">Boutiques</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Connect -->
+                <div class="footer-links">
+                    <h4 class="footer-title">Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LinkedIn</a></li>   
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="nav-center">
-                <a href="#" class="logo">SIGNORI</a>
+            <!-- Footer Bottom: Copyright & Legal -->
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 SIGNORI. All rights reserved.</div>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
             </div>
+        </div>
+    </footer>
 
-            <div class="nav-right">
-                <a href="#" class="contact-text hover-target">+ Contact us</a>
-                <button class="search-btn hover-target" aria-label="Search">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
-            </div>
-        </header>
-
-        <!-- Dolen del (Footer) -->
-        <footer>
-            <!-- Kopche za Zvuk (Levo) -->
-            <div class="footer-left">
-                <button class="icon-btn hover-target" id="soundToggle" aria-label="Toggle Sound">
-                    <svg id="soundIcon" viewBox="0 0 24 24">
-                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Tekst vo Sredina -->
-            <div class="footer-center">
-                <h1 class="collection-title">Wedding Collection</h1>
-                <a href="#" class="discover-btn">Discover</a>
-            </div>
-
-            <!-- Kopche za Pauza/Pley (Dqsno) -->
-            <div class="footer-right">
-                <button class="icon-btn hover-target" id="playPauseToggle" aria-label="Play/Pause Video">
-                    <svg id="playPauseIcon" viewBox="0 0 24 24">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                    </svg>
-                </button>
-            </div>
-        </footer>
-    </div>
-
-    <!-- JavaScript za kontrola na zvukot i videoto -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const video = document.getElementById('bgVideo');
-            
-            // Zvuk
-            const soundToggle = document.getElementById('soundToggle');
-            const soundIcon = document.getElementById('soundIcon');
-            const mutedPath = `M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z`;
-            const unmutedPath = `M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z`;
-
-            soundToggle.addEventListener('click', () => {
-                video.muted = !video.muted;
-                soundIcon.innerHTML = `<path d="${video.muted ? mutedPath : unmutedPath}"/>`;
-            });
-
-            // Pauza / Pley
-            const playPauseToggle = document.getElementById('playPauseToggle');
-            const playPauseIcon = document.getElementById('playPauseIcon');
-            const pausePath = `M6 19h4V5H6v14zm8-14v14h4V5h-4z`; 
-            const playPath = `M8 5v14l11-7z`; 
-
-            playPauseToggle.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    playPauseIcon.innerHTML = `<path d="${pausePath}"/>`;
-                } else {
-                    video.pause();
-                    playPauseIcon.innerHTML = `<path d="${playPath}"/>`;
-                }
-            });
-        });
-    </script>
+    <script src="./js/script.js" defer></script>
 </body>
 </html>
