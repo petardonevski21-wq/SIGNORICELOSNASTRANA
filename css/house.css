@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #222222;
+    overflow-x: hidden;
+}
+
+/* --- 1. Hero Sektsiya (Full Screen Image) --- */
+.house-hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 35px;
+    overflow: hidden;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: -1;
+}
+
+.house-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav-icon {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.logo-text {
+    color: #ffffff;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    text-align: center;
+    display: block;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.logo-text small {
+    display: block;
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    margin-top: 2px;
+    opacity: 0.8;
+}
+
+.hero-bottom-text {
+    z-index: 10;
+    margin-bottom: 15px;
+}
+
+.hero-bottom-text h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+/* --- 2. Intro Section --- */
+.house-intro {
+    padding: 90px 10% 70px 10%;
+    background-color: #ffffff;
+}
+
+.intro-content {
+    max-width: 750px;
+}
+
+.intro-heading {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 35px;
+    position: relative;
+    display: inline-block;
+}
+
+.intro-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 1.5px;
+    background-color: #000000;
+}
+
+.intro-paragraph {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444444;
+    font-weight: 300;
+}
+
+/* --- 3. Video Section --- */
+.house-video-section {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    background-color: #585858;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.video-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 30px;
+    right: 35px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #222222;
+}
+
+/* --- 4. Gallery Section (2x2 Grid) --- */
+.house-gallery {
+    padding: 50px 5% 80px 5%;
+    background-color: #ffffff;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.house-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

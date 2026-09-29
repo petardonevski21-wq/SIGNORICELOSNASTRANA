@@ -1,0 +1,284 @@
+/* Osnovna podešavanja i font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 1. Hero sekcija (Vrakena so tekst na dnoto) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 60px;
+    overflow: hidden;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-content h1 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/* Intro sekcija (središnji tekst) */
+.intro-section {
+    padding: 120px 20px;
+    text-align: center;
+}
+
+.intro-section .container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.intro-section h2 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.intro-section p {
+    font-size: 18px;
+    color: #444444;
+    line-height: 1.5;
+}
+
+/* 2. Feature sekcija (Slika 2 - 50% lijevo od ruba, tekst desno) */
+.feature-section {
+    display: flex;
+    width: 100%;
+    min-height: 600px;
+    align-items: center;
+}
+
+.feature-image {
+    width: 50%;
+    height: 100%;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.feature-text {
+    width: 50%;
+    padding: 60px 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-text p {
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.8;
+    max-width: 480px;
+}
+
+/* 3. Donje dvije slike (Slika 3 i Slika 4 - 50% / 50% od ruba do ruba) */
+.split-images-section {
+    display: flex;
+    width: 100%;
+}
+
+.split-image {
+    width: 50%;
+}
+
+.split-image img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    display: block;
+}
+
+/* FIKS ZA TRETATA SLIKA (LEVATA DOLE) ZA DA NE SE SECE GLAVATA */
+.split-images-section .split-image:first-child img {
+    object-position: top center;
+}
+
+/* ==========================================
+   НОВИ СЕКЦИИ Додадени според сликата
+   ========================================== */
+
+/* 4. Секција со "10 years" текст */
+.decade-section {
+    padding: 120px 20px;
+    background-color: #ffffff;
+}
+
+.decade-container {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.decade-text {
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.decade-number-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 15px;
+}
+
+.decade-number {
+    font-size: 110px;
+    font-weight: 300;
+    line-height: 0.9;
+    color: #8f9296;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.decade-label {
+    font-size: 38px;
+    font-weight: 300;
+    color: #8f9296;
+    letter-spacing: 1px;
+}
+
+/* 5. Наградна целосна слика */
+.banner-image-section {
+    width: 100%;
+}
+
+.banner-image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 6. Завршна секција со торта и текст доле десно */
+.closing-section {
+    position: relative;
+    width: 100%;
+}
+
+.closing-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.closing-text-overlay {
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+    max-width: 420px;
+    color: #ffffff;
+    text-align: right;
+    z-index: 2;
+}
+
+.closing-text-overlay p {
+    font-size: 18px;
+    line-height: 1.1;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* Респонзивност за мобилен */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 24px;
+    }
+
+    .intro-section {
+        padding: 60px 20px;
+    }
+
+    .feature-section {
+        flex-direction: column;
+    }
+
+    .feature-image,
+    .feature-text {
+        width: 100%;
+    }
+
+    .feature-text {
+        padding: 40px 20px;
+    }
+
+    .split-images-section {
+        flex-direction: column;
+    }
+
+    .split-image {
+        width: 100%;
+    }
+
+    .split-image img {
+        height: 400px;
+    }
+
+    .decade-section {
+        padding: 60px 20px;
+    }
+
+    .decade-number {
+        font-size: 80px;
+    }
+
+    .decade-label {
+        font-size: 28px;
+    }
+
+    .closing-text-overlay {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        padding: 30px 20px;
+        background: #000000;
+        text-align: center;
+        max-width: 100%;
+    }
+}

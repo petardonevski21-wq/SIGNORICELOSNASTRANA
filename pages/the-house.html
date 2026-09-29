@@ -1,11 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The House of Signori</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/house.css">
 </head>
 <body>
-    
+
+    <!-- 1/5 SLIKA: Hero Sektsiya (Na cel ekran) -->
+    <section class="house-hero">
+        <img src="../assets/sliki/House/hero.png" alt="Hero Cufflinks" class="hero-bg-img">
+        <div class="hero-overlay"></div>
+        
+        <!-- Navigation Header -->
+        <nav class="house-nav">
+
+
+        </nav>
+
+        <!-- Dolu levo tekst -->
+        <div class="hero-bottom-text">
+            <h1 class="heading-inter text-white">The House of Signori</h1>
+        </div>
+    </section>
+
+    <!-- Intro Tekst Sektsiya -->
+    <section class="house-intro">
+        <div class="intro-content">
+            <h2 class="intro-heading heading-inter">The House</h2>
+            <p class="intro-paragraph text-jost">
+                A new chapter in the SIGNORI story begins.<br>
+                A space created for private consultations, refined craftsmanship<br>
+                and the experience of bespoke tailoring — where every detail is<br>
+                considered, from the first conversation to the final fitting.
+            </p>
+        </div>
+    </section>
+
+    <!-- Video Sektsiya -->
+    <section class="house-video-section">
+        <video class="house-video" autoplay loop muted playsinline>
+            <source src="../assets/videa/HOUSE-OF-SIGNORI/House-Of-Signori.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="video-controls">
+            <button class="control-btn volume-btn" aria-label="Toggle Volume">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            </button>
+            <button class="control-btn play-pause-btn" aria-label="Play/Pause Video">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- OSTANATI 4 SLIKI (2x2 Grid) -->
+    <section class="house-gallery">
+        <div class="gallery-grid">
+            <!-- 2/5 Slika -->
+            <div class="gallery-item">
+                <img src="../assets/sliki/House/1.png" alt="Lounge Area" loading="lazy">
+            </div>
+            <!-- 3/5 Slika -->
+            <div class="gallery-item">
+                <img src="../assets/sliki/House/2.png" alt="Clothing Rack" loading="lazy">
+            </div>
+            <!-- 4/5 Slika -->
+            <div class="gallery-item">
+                <img src="../assets/sliki/House/3.png" alt="Painting Decor" loading="lazy">
+            </div>
+            <!-- 5/5 Slika -->
+            <div class="gallery-item">
+                <img src="../assets/sliki/House/4.png" alt="Sewing Machine" loading="lazy">
+            </div>
+                        <div class="gallery-item">
+                <img src="../assets/sliki/House/5.png" alt="Sewing Machine" loading="lazy">
+            </div>
+                        <div class="gallery-item">
+                <img src="../assets/sliki/House/6.png" alt="Sewing Machine" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/house.js" defer></script>
 </body>
 </html>
