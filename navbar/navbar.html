@@ -3,34 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/navbar.css">
+
+    <title>SIGNORI Navigation</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../navbar/navbar.css">
 </head>
-<body>
-            <header>
-            <div class="nav-left">
-                <div class="menu-container hover-target" role="button">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <span class="menu-text">Menu</span>
+
+<body style="background:#111;">
+
+    <!-- =========================
+         SIGNORI NAVIGATION
+    ========================== -->
+    <header>
+        <!-- LEFT - MENU -->
+        <div class="nav-left">
+            <div
+                class="menu-container"
+                id="menuButton"
+                role="button"
+                tabindex="0"
+                aria-label="Open menu"
+            >
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
                 </div>
+                <span class="menu-text">
+                    Menu
+                </span>
             </div>
+        </div>
 
-            <div class="nav-center">
-                <a href="#" class="logo">SIGNORI</a>
-            </div>
+        <!-- CENTER - LOGO -->
+        <div class="nav-center">
+            <a href="" class="logo">
+                SIGNORI
+            </a>
+        </div>
 
-            <div class="nav-right">
-                <a href="#" class="contact-text hover-target">+ Contact us</a>
-                <button class="search-btn hover-target" aria-label="Search">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
+        <!-- RIGHT - CONTACT + SEARCH -->
+        <div class="nav-right">
+            <!-- CONTACT US -->
+            <a href="#contact" class="contact-text hover-target">
+                + Contact us
+            </a>
+
+            <!-- SEARCH -->
+            <button class="search-btn" id="searchButton" aria-label="Search">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- =========================
+         NEW DRAWER MENU
+    ========================== -->
+    <!-- DRAWER OVERLAY -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- SIDE DRAWER -->
+    <div class="side-drawer" id="sideDrawer">
+        
+        <!-- Drawer Header -->
+        <div class="drawer-header">
+            <div class="drawer-logo">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M256,0C256,0,213.6,56.7,213.6,113.1c0,35.9,16.5,57.1,30.4,72.6c-17.6-5.8-39-11.4-61.9-11.4c-59.5,0-99.7,39.3-99.7,85.1c0,37.3,27,65,55.8,77.7c-21.7,3.1-43,14-43,41.4c0,28.8,32.7,42.5,53.8,42.5c24.6,0,44.9-15.3,55.9-38.3c10.3,22.2,27.9,35.6,51.1,35.6c23.2,0,40.8-13.4,51.1-35.6c11.1,23.1,31.3,38.3,55.9,38.3c21.1,0,53.8-13.7,53.8-42.5c0-27.4-21.3-38.3-43-41.4c28.9-12.7,55.8-40.4,55.8-77.7c0-45.8-40.2-85.1-99.7-85.1c-22.9,0-44.3,5.6-61.9,11.4c13.9-15.5,30.4-36.7,30.4-72.6C300.4,56.7,256,0,256,0z M256,386.4c-12.5,0-25.1-13.7-25.1-35.4c0-22.6,11.9-46.7,25.1-66.2c13.2,19.5,25.1,43.6,25.1,66.2C281.1,372.7,268.5,386.4,256,386.4z"/>
+                </svg>
             </div>
-        </header>
+            <div class="drawer-icons">
+                <!-- Map Pin -->
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <!-- User -->
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <!-- Bag -->
+                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+            </div>
+        </div>
+        
+        <hr class="drawer-divider">
+        
+        <!-- Main Links -->
+        <ul class="drawer-main-links">
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Accessories <span class="arrow">&gt;</span></a></li>
+            <li><a href="#">Men's Wear <span class="arrow">&gt;</span></a></li>
+            <li><a href="#">Outerwear <span class="arrow">&gt;</span></a></li>
+            <li><a href="#">Formalwear <span class="arrow">&gt;</span></a></li>
+        </ul>
+        
+        <hr class="drawer-divider">
+        
+        <!-- Sub Links -->
+        <ul class="drawer-sub-links">
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+        
+        <!-- Footer Buttons -->
+        <div class="drawer-footer">
+            <a href="#" class="drawer-btn btn-light">Bespoke Tailoring</a>
+            <a href="#" class="drawer-btn btn-dark">Online Shop</a>
+        </div>
+
+    </div>
+
 </body>
 </html>

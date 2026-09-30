@@ -3,120 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signori - Bespoke Tailoring</title>
-    <!-- Uvoz fontova: Inter i Jost -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Bespoke Tailoring</title>
+    <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="../css/bespoke-tailoring.css">
 </head>
 <body>
-
-    <!-- 1. Hero Sekcija (Cijeli ekran) -->
-    <section class="hero-section">
-        <!-- Pozadinska slika -->
-        <div class="hero-bg" style="background-image: url('../assets/sliki/BESPOKE-TAILORING-PROCESS/HERO-SLIKA.png');"></div>
-        <div class="hero-content fade-in">
-            <h1 class="heading-inter hero-title">Bespoke Tailoring Process</h1>
+    <div id="site-menu"></div>
+    <!-- Hero Sekcija (Sada preko cijelog ekrana) -->
+    <section class="hero">
+        <div class="hero-image-container">
+            <!-- Ovdje ostaje vaša slika -->
+            <img src="../assets/sliki/BESPOKE-TAILORING/HERO.png" alt="Bespoke Tailoring Hero" class="hero-image">
         </div>
     </section>
 
-    <!-- 2. Uvodna Sekcija (Mali logo + centrirani tekst so animirani izrecheniya) -->
-    <section class="intro-section fade-up-stagger">
-        <div class="intro-container">
-            <!-- Ikonica / Logo -->
-            <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/LOGO.png" alt="Signori Logo" class="signori-icon stagger-item">
-            <p class="text-jost intro-text">
-                <span class="stagger-item">A SIGNORI garment is created through a process shaped entirely around the individual.</span>
-                <span class="stagger-item">From the first conversation to the final fitting, every stage is considered with intention and precision.</span>
-                <span class="stagger-item">Measurements, materials, construction and finishing come together to create a garment that feels distinctly yours.</span>
-                <span class="stagger-item">This is where craftsmanship becomes personal.</span>
-            </p>
+    <!-- Sekcija sa karticama -->
+    <section class="cards-section">
+        <div class="cards-container">
+            
+            <!-- Kartica 1: Fabrics -->
+            <div class="card" id="card-fabrics">
+                <div class="card-bg"></div>
+                <h2 class="vertical-text">FABRICS</h2>
+                <!-- Tekst i dugme koji iskaču na hover -->
+                <div class="card-content-center">
+                    <h2>FABRICS</h2>
+                    <a href="#" class="discover-btn">Discover</a>
+                </div>
+            </div>
+
+            <!-- Kartica 2: Bespoke (Početno Aktivna) -->
+            <div class="card active" id="card-bespoke">
+                <div class="card-bg"></div>
+                <h2 class="vertical-text">BESPOKE TAILORING</h2>
+                <!-- Tekst i dugme -->
+                <div class="card-content-center">
+                    <h2>BESPOKE TAILORING</h2>
+                    <a href="#" class="discover-btn">Discover More</a>
+                </div>
+            </div>
+
+            <!-- Kartica 3: Gallery -->
+            <div class="card" id="card-gallery">
+                <div class="card-bg"></div>
+                <h2 class="vertical-text">GALLERY</h2>
+                <!-- Tekst i dugme koji iskaču na hover -->
+                <div class="card-content-center">
+                    <h2>GALLERY</h2>
+                    <a href="#" class="discover-btn">Discover</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- 3. Process Sekcii 1-4 -->
-    <div class="process-wrapper">
+    <!-- NOVA SEKCIJA: Bespoke Intro (Dodadeno najdole spored bespoke2.jpg) -->
+    <section class="bespoke-intro-section">
+        <div class="intro-content">
+            <p>Welcome to SIGNORI Bespoke, a private tailoring experience shaped entirely around you. From the first consultation to the final fitting, every detail is carefully considered to create a garment that reflects your individuality, proportions and personal style. Through refined craftsmanship, exceptional fabrics and meticulous attention to detail, each SIGNORI piece is made exclusively for you &mdash; with precision, character and lasting elegance.</p>
+            <a href="#" class="appointment-btn">Request an Appointment</a>
+        </div>
+    </section>
 
-        <!-- Step 1: The Consultation (Slika levo, Tekst desno) -->
-        <section class="process-section fade-up">
-            <div class="process-container">
-                <div class="image-column">
-                    <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="The Consultation Process" class="process-img">
-                </div>
-                <div class="text-column" data-number="1">
-                    <h2 class="heading-inter">The Consultation</h2>
-                    <p class="text-jost">
-                        The bespoke journey begins with a personal consultation. We take the time to 
-                        understand your style, lifestyle, preferences and the occasion for which the 
-                        garment is being created. This conversation allows our tailor to understand 
-                        what you want to express through your clothing. Together, we establish the 
-                        direction for your SIGNORI piece.
-                    </p>
-                </div>
+    <!-- NOVA SEKCIJA: Bespoke Details -->
+    <section class="bespoke-details-section">
+        <!-- Red 1: Tekst levo, Slika desno -->
+        <div class="detail-row">
+            <div class="detail-text">
+                <img src="../assets/sliki/BESPOKE-TAILORING/LOGO.png" alt="Signori Icon" class="detail-icon">
+                <h3>Every Detail, Yours</h3>
+                <p>No two clients are alike. At SIGNORI, every bespoke creation begins with your individuality &mdash; your style, your proportions, your preferences and the way you live.</p>
+                <p>From the finest fabric and silhouette to the cut, lapel, buttons and lining, every element is selected with purpose. Guided by our tailoring expertise, you become part of the process, shaping a garment defined by precision, character and timeless elegance.<br><br>The result is more than a suit. It is a piece created exclusively for you.</p>
             </div>
-        </section>
-
-        <!-- Step 2: Measurement (Tekst levo, Slika desno) -->
-        <section class="process-section reverse fade-up">
-            <div class="process-container">
-                <div class="text-column" data-number="2">
-                    <h2 class="heading-inter">Measurement</h2>
-                    <p class="text-jost">
-                        Precision begins with understanding your proportions. Every measurement is carefully taken and considered. Your pattern is created specifically for you.
-                    </p>
-                </div>
-                <div class="image-column">
-                    <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/2.png" alt="Measurement Process" class="process-img">
-                </div>
+            <div class="detail-image">
+                <img src="../assets/sliki/BESPOKE-TAILORING/signori-brick-wall.jpg" alt="SIGNORI Logo on Brick Wall">
             </div>
-        </section>
+        </div>
 
-        <!-- Step 3: Design (Slika levo, Tekst desno) -->
-        <section class="process-section fade-up">
-            <div class="process-container">
-                <div class="image-column">
-                    <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/3.png" alt="Design Process" class="process-img">
-                </div>
-                <div class="text-column" data-number="3">
-                    <h2 class="heading-inter">Design</h2>
-                    <p class="text-jost">
-                        Your vision takes shape through fabric, cut and detail. Every element is carefully selected, from the silhouette to the smallest finishing touch. Nothing is left to chance.
-                    </p>
-                </div>
+        <!-- Red 2: Slika levo, Tekst desno -->
+        <div class="detail-row reverse">
+            <div class="detail-image">
+                <img src="../assets/sliki/BESPOKE-TAILORING/suit-lining.jpg" alt="Signori Blue Suit Lining">
             </div>
-        </section>
-
-        <!-- Step 4: Craft (Tekst levo, Slika desno) -->
-        <section class="process-section reverse fade-up">
-            <div class="process-container">
-                <div class="text-column" data-number="4">
-                    <h2 class="heading-inter">Craft</h2>
-                    <p class="text-jost">
-                        The garment is brought to life by skilled hands. Each piece is carefully cut, constructed and finished with precision. Craftsmanship defines every stage.
-                    </p>
-                </div>
-                <div class="image-column">
-                    <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/4.png" alt="Craft Process" class="process-img">
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Step 5: Fitting & Finishing (Na cel ekran so tekst desno) -->
-    <section class="full-screen-process fade-up">
-        <div class="full-screen-bg" style="background-image: url('../assets/sliki/BESPOKE-TAILORING-PROCESS/5.png');"></div>
-        <div class="full-screen-content">
-            <div class="text-overlay-right" data-number="5">
-                <h2 class="heading-inter text-white">Fitting & Finishing</h2>
-                <p class="text-jost text-white">
-                    The final fitting brings everything into balance. Subtle adjustments refine the fit, comfort and silhouette. Every detail is perfected before completion.
-                </p>
+            <div class="detail-text padding-left">
+                <h3>The Final Experience</h3>
+                <p>A SIGNORI bespoke garment is not selected from a collection. It is developed around the individual &mdash; precisely, patiently and without compromise.</p>
             </div>
         </div>
     </section>
 
     <script src="../js/bespoke-tailoring.js"></script>
+    <script src="../navbar/navbar.js"></script>
 </body>
 </html>

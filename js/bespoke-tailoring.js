@@ -1,31 +1,40 @@
-// Postavljanje Intersection Observer API-ja za luksuzne, "smooth" animacije pri skrolanju
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // Animiraj hero sadržaj čim se stranica učita
-    setTimeout(() => {
-        const heroContent = document.querySelector('.hero-content');
-        if(heroContent) heroContent.classList.add('is-visible');
-    }, 300);
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
 
-    // Animacije elemenata pri skrolanju ka dolje
+    cards.forEach(card => {
+        // Koga mausot kje pomine preku kartickata, taa stanuva aktivna
+        card.addEventListener('mouseenter', () => {
+            // Prvo ja vadime 'active' klasata od site drugi karticki
+            cards.forEach(c => c.classList.remove('active'));
+            // Ja dodavame 'active' klasata na kartickata nad koja e mausot
+            card.classList.add('active');
+        });
+    });
+
+    // Otstranet e 'mouseleave' event-ot za da ostane otvorena poslednata karticka na koja si bil
+
+    // --- DODADEN KOD: Profesionalna scroll animatsiya za novite sektsii ---
+    const fadeElements = document.querySelectorAll('.intro-content, .detail-row');
+    
     const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 // Pokreće se kad se prikaže 15% elementa
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Dodajemo klasu za animaciju
-                entry.target.classList.add('is-visible');
-                // Prekidamo praćenje kako bi se animacija desila samo jednom
-                observer.unobserve(entry.target); 
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Prati sve elemente sa klasom .fade-up
-    const fadeElements = document.querySelectorAll('.fade-up');
-    fadeElements.forEach(el => observer.observe(el));
+    fadeElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(40px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+    });
 });
