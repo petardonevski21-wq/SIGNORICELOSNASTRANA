@@ -48,7 +48,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
-
+/* --- Cards Sekcija --- */
 .cards-section {
     padding: 120px 20px;
     display: flex;
@@ -65,7 +65,6 @@ body {
     gap: 20px;
 }
 
-/* Glavni stilovi za kartice */
 .card {
     position: relative;
     border-radius: 20px;
@@ -76,12 +75,10 @@ body {
     background-color: #222;
 }
 
-/* Aktivna (proširena) kartica */
 .card.active {
     flex: 3; 
 }
 
-/* Pozadinske slike kartica */
 .card-bg {
     position: absolute;
     top: 0;
@@ -94,13 +91,11 @@ body {
     opacity: 0.6;
 }
 
-/* Hover efekat zumiranja slike unutar aktivne kartice */
 .card.active .card-bg,
 .card:hover .card-bg {
     transform: scale(1.00);
     opacity: 0.85;
 }   
-
 
 #card-fabrics .card-bg {
     background-image: url(../assets/sliki/BESPOKE-TAILORING/FABRICS-KARTICKA.png);
@@ -114,7 +109,6 @@ body {
     background-image: url(../assets/sliki/BESPOKE-TAILORING/gallery.jpg);
 }
 
-/* Vertikalni tekst (vidljiv kada kartica NIJE aktivna) */
 .vertical-text {
     position: absolute;
     top: 50%;
@@ -129,13 +123,11 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Skrivanje vertikalnog teksta kada je kartica aktivna */
 .card.active .vertical-text {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Centralni tekst na aktivnoj kartici (spušten niže) */
 .card-content-center {
     position: absolute;
     bottom: 20%;
@@ -154,7 +146,6 @@ body {
     pointer-events: none;
 }
 
-/* Prikazivanje teksta i dugmeta na proširenoj kartici */
 .card.active .card-content-center {
     opacity: 1;
     transform: translateY(0);
@@ -181,8 +172,7 @@ body {
     opacity: 0.6;
 }
 
-/* --- DODADENI NOVI STILOVI ZA PROFESIONALEN DIZAYN --- */
-
+/* --- Bespoke Intro Sekcija --- */
 .bespoke-intro-section {
     background-color: #ffffff;
     padding: 80px 20px 100px;
@@ -221,6 +211,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* --- Bespoke Details Sekcija --- */
 .bespoke-details-section {
     background-color: #ffffff;
     padding: 0 20px 120px;
@@ -255,7 +246,6 @@ body {
     width: 35px;
     margin-bottom: 20px;
     opacity: 0.9;
-    
 }
 
 .detail-text h3 {
@@ -283,3 +273,92 @@ body {
     display: block;
 }
 
+/* --- BESPOKE SHOWCASE SEKCIJA (2 SLIKI GORE 100VH + 1 SLIKA DOLU 100VH x 100%) --- */
+
+.bespoke-showcase-section {
+    width: 100%;
+    background-color: #000000;
+}
+
+/* Gorna sekcija: Dve sliki, sekoja 50% sirina, celosna visina na sekcijata (100vh) */
+.showcase-top-section {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.showcase-top-img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Dolna sekcija: Edna slika preku cel ekran (100% sirina, 100vh visina) */
+.showcase-bottom-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.showcase-full-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Tekst i kopce vrz tretata slika во долен десен агол */
+.showcase-overlay-content {
+    position: absolute;
+    bottom: 60px;
+    right: 80px;
+    text-align: right;
+    color: #ffffff;
+    z-index: 2;
+}
+
+.showcase-overlay-content h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.showcase-discover-btn {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 3px;
+    transition: opacity 0.3s ease;
+}
+
+.showcase-discover-btn:hover {
+    opacity: 0.6;
+}
+
+/* Responsive za mobilni */
+@media (max-width: 768px) {
+    .showcase-top-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .showcase-top-img {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .showcase-bottom-section {
+        height: 70vh;
+    }
+
+    .showcase-overlay-content {
+        bottom: 30px;
+        right: 30px;
+    }
+}
