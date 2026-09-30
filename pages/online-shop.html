@@ -8,48 +8,25 @@
     <!-- Tipografiq: Cormorant Garamond (logo) i Montserrat (navigaciq) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Navbar CSS (мора да се вчита тука за менито да има стил) -->
+    <link rel="stylesheet" href="../navbar/navbar.css">
+    
+    <!-- CSS за самата страна -->
     <link rel="stylesheet" href="../css/online-shop.css">
-    <style>
-
-    </style>
 </head>
 <body>
-
+    <!-- Менито се вметнува тука преку JS и автоматски ќе стои најгоре -->
+    <div id="site-menu"></div>
+    
     <div class="hero-section">
         <!-- Video pozadina -->
         <video id="bgVideo" class="bg-video" autoplay loop muted playsinline>
             <source src="../assets/videa/The Arrival.mp4" type="video/mp4">
         </video>
 
-        <!-- Navigaciq (Header) -->
-        <header>
-            <div class="nav-left">
-                <div class="menu-container hover-target" role="button">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <span class="menu-text">Menu</span>
-                </div>
-            </div>
-
-            <div class="nav-center">
-                <a href="#" class="logo">SIGNORI</a>
-            </div>
-
-            <div class="nav-right">
-                <a href="#" class="contact-text hover-target">+ Contact us</a>
-                <button class="search-btn hover-target" aria-label="Search">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
-            </div>
-        </header>
-
-        <!-- Dolen del (Footer) -->
+        <!-- Dolen del (Footer) со командите -->
         <footer>
             <!-- Kopche za Zvuk (Levo) -->
             <div class="footer-left">
@@ -78,5 +55,6 @@
     </div>
 
     <script src="../js/online.js"></script>
+    <script src="../navbar/navbar.js"></script>
 </body>
 </html>
