@@ -12,9 +12,7 @@ html,
 body {
     width: 100%;
     min-height: 100%;
-
     font-family: 'Montserrat', sans-serif;
-
     -webkit-font-smoothing: antialiased;
 }
 
@@ -23,22 +21,47 @@ body {
 ========================= */
 
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-
-    z-index: 100;
+    width: 100%;
+    z-index: 1000;
 
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-
     align-items: center;
 
-    width: 88%;
-    margin: 0 auto;
+    padding: 26px 6%;
+    min-height: 0; /* CHANGED: added so min-height can animate to the compact height */
+    background-color: transparent;
+    will-change: transform, background-color, padding;
 
-    padding-top: 30px;
+    /* CHANGED: premium slide animation (0.6s, soft ease-out, no bounce) */
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.4s ease,
+                color 0.4s ease,
+                padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                min-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease;
+}
+
+/* Hidden state while scrolling down (smooth slide up, never display:none) */
+header.nav-hidden {
+    transform: translateY(-100%);
+    box-shadow: none; /* CHANGED: stops the shadow from peeking in at the top edge */
+}
+
+/* ADDED: keyboard users tabbing into the hidden navbar bring it back into view */
+header.nav-hidden:has(:focus-visible) {
+    transform: translateY(0);
+}
+
+/* Scrolled state (white background, black text, compact size) */
+header.nav-scrolled {
+    background-color: #ffffff; /* CHANGED: solid #FFFFFF (was rgba 0.98 + blur) */
+    padding: 12px 6%;
+    min-height: 70px; /* CHANGED: compact desktop height (about 70px) */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* =========================
@@ -47,14 +70,10 @@ header {
 
 .hover-target {
     color: #ffffff;
-
     text-decoration: none;
-
     background: transparent;
     border: none;
-
     cursor: pointer;
-
     transition: color 0.3s ease;
 }
 
@@ -75,19 +94,15 @@ header {
 .menu-container {
     display: flex;
     align-items: center;
-
     gap: 16px;
-
     cursor: pointer;
-
     background: transparent;
     border: none;
     color: #ffffff;
-
     padding: 0;
-
     appearance: none;
     -webkit-appearance: none;
+    transition: color 0.3s ease;
 }
 
 /* Hamburger icon */
@@ -95,34 +110,24 @@ header {
 .hamburger {
     display: flex;
     flex-direction: column;
-
     gap: 6px;
 }
 
 .hamburger span {
     display: block;
-
     width: 16px;
     height: 1px;
-
     background-color: #ffffff;
-
-    transition:
-        background-color 0.3s ease,
-        transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* MENU text */
 
 .menu-text {
     font-size: 13px;
-
     font-weight: 300;
-
     letter-spacing: 0.05em;
-
     color: #ffffff;
-
     transition: color 0.3s ease;
 }
 
@@ -146,72 +151,47 @@ header {
 
 .logo {
     font-family: 'Cormorant Garamond', serif;
-
-    font-size: 36px;
-
+    font-size: 32px;
     font-weight: 400;
-
     letter-spacing: 0.08em;
-
     text-transform: uppercase;
-
     color: #ffffff;
-
     text-decoration: none;
-
     line-height: 1;
+    transition: color 0.3s ease, font-size 0.4s ease;
 }
 
 /* =========================
-   RIGHT SIDE
-   CONTACT + SEARCH
+   RIGHT SIDE - CONTACT + SEARCH
 ========================= */
 
 .nav-right {
     display: flex;
-
     align-items: center;
-
     justify-content: flex-end;
-
     gap: 35px;
 }
 
-/* CONTACT US */
-
 .contact-text {
     font-size: 13px;
-
     font-weight: 300;
-
     letter-spacing: 0.05em;
-
     white-space: nowrap;
+    transition: color 0.3s ease;
 }
 
-/* =========================
-   SEARCH BUTTON
-========================= */
+/* SEARCH BUTTON */
 
 .search-btn {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 0;
-
     background: transparent;
-
     border: none;
-
     color: #ffffff;
-
     cursor: pointer;
-
     transition: color 0.3s ease;
-
     appearance: none;
     -webkit-appearance: none;
 }
@@ -223,19 +203,45 @@ header {
 .search-btn svg {
     width: 17px;
     height: 17px;
-
     stroke: currentColor;
-
     fill: none;
-
     stroke-width: 1.5;
 }
 
+/* =========================
+   SCROLLED STATE STYLES (CHERNI BUKVI I BELA POZADINA)
+========================= */
 
+header.nav-scrolled .logo,
+header.nav-scrolled .menu-text,
+header.nav-scrolled .contact-text,
+header.nav-scrolled .menu-container {
+    color: #000000;
+}
 
+header.nav-scrolled .hamburger span {
+    background-color: #000000;
+}
+
+header.nav-scrolled .search-btn {
+    color: #000000;
+}
+
+header.nav-scrolled .logo {
+    font-size: 25px; /* Po-malko logo pri skrolirane za kompakten vid */
+}
+
+header.nav-scrolled .hover-target:hover,
+header.nav-scrolled .menu-container:hover .menu-text {
+    color: #666666;
+}
+
+header.nav-scrolled .menu-container:hover .hamburger span {
+    background-color: #666666;
+}
 
 /* =========================
-   SIDE DRAWER (NEW LUXURY MENU)
+   SIDE DRAWER (LUXURY MENU)
 ========================= */
 
 .drawer-overlay {
@@ -250,7 +256,7 @@ header {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
-    z-index: 998;
+    z-index: 1001;
 }
 
 .drawer-overlay.active {
@@ -264,14 +270,13 @@ header {
     left: 12px;
     width: 360px;
     height: calc(100vh - 24px);
-    background-color: #f4f4f4; /* 100% sashto kato na snimkata */
+    background-color: #f4f4f4;
     border-radius: 8px;
-    z-index: 999;
+    z-index: 1002;
     display: flex;
     flex-direction: column;
     padding: 35px 30px;
     box-shadow: 10px 15px 40px rgba(0,0,0,0.15);
-    /* Bavna i luksozna animaciya otlyavo: */
     transform: translateX(-110%);
     transition: transform 0.8s cubic-bezier(0.65, 0, 0.05, 1); 
     font-family: 'Montserrat', sans-serif;
@@ -281,7 +286,6 @@ header {
     transform: translateX(0);
 }
 
-/* Drawer Header (Logo i ikoni) */
 .drawer-header {
     display: flex;
     justify-content: space-between;
@@ -314,14 +318,12 @@ header {
     stroke: #8c8c8c;
 }
 
-/* Razdelitelni linii */
 .drawer-divider {
     border: none;
     border-top: 1px solid #e0e0e0;
     margin: 20px 0;
 }
 
-/* Glavni linkove */
 .drawer-main-links {
     list-style: none;
     display: flex;
@@ -352,7 +354,6 @@ header {
     font-weight: 300;
 }
 
-/* Pod-linkove */
 .drawer-sub-links {
     list-style: none;
     display: flex;
@@ -373,7 +374,6 @@ header {
     color: #666;
 }
 
-/* Butoni nay-otdolu */
 .drawer-footer {
     margin-top: auto;
     display: flex;
@@ -398,11 +398,10 @@ header {
 }
 
 .btn-dark {
-    background-color: #4a4141; /* Tamniyat cvyat ot snimkata */
+    background-color: #4a4141;
     color: #fff;
 }
 
-/* Tova pridava sivkaviya cvyat na dvata butona pri klikvane / hover */
 .drawer-btn:active,
 .drawer-btn:hover {
     background-color: #8c8c8c !important; 
@@ -412,5 +411,17 @@ header {
 @media (max-width: 768px) {
     .side-drawer {
         width: calc(100vw - 24px);
+    }
+
+    /* ADDED: slightly shorter compact navbar on tablet/mobile */
+    header.nav-scrolled {
+        min-height: 60px;
+    }
+}
+
+/* ADDED: respect "reduce motion" system setting */
+@media (prefers-reduced-motion: reduce) {
+    header {
+        transition-duration: 0.01s;
     }
 }

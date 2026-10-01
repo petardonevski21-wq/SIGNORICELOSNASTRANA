@@ -5,30 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGNORI</title>
     
-    <!-- Tipografiq: Cormorant Garamond (logo) i Montserrat (navigaciq) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- Navbar CSS (мора да се вчита тука за менито да има стил) -->
     <link rel="stylesheet" href="../navbar/navbar.css">
-    
-    <!-- CSS за самата страна -->
     <link rel="stylesheet" href="../css/online-shop.css">
 </head>
 <body>
-    <!-- Менито се вметнува тука преку JS и автоматски ќе стои најгоре -->
     <div id="site-menu"></div>
     
     <div class="hero-section">
-        <!-- Video pozadina -->
         <video id="bgVideo" class="bg-video" autoplay loop muted playsinline>
             <source src="../assets/videa/The Arrival.mp4" type="video/mp4">
         </video>
 
-        <!-- Dolen del (Footer) со командите -->
         <footer>
-            <!-- Kopche za Zvuk (Levo) -->
             <div class="footer-left">
                 <button class="icon-btn hover-target" id="soundToggle" aria-label="Toggle Sound">
                     <svg id="soundIcon" viewBox="0 0 24 24">
@@ -37,13 +29,11 @@
                 </button>
             </div>
 
-            <!-- Tekst vo Sredina -->
             <div class="footer-center">
                 <h1 class="collection-title">Wedding Collection</h1>
                 <a href="#" class="discover-btn">Discover</a>
             </div>
 
-            <!-- Kopche za Pauza/Pley (Dqsno) -->
             <div class="footer-right">
                 <button class="icon-btn hover-target" id="playPauseToggle" aria-label="Play/Pause Video">
                     <svg id="playPauseIcon" viewBox="0 0 24 24">
@@ -53,6 +43,112 @@
             </div>
         </footer>
     </div>
+
+    <!-- ACCESSORIES -->
+    <section class="accessories-section">
+
+
+        <div class="accessories-grid">
+            <div class="grid-item item-cufflinks">
+                <img src="../assets/sliki/ONLINE/accessories/cufflinks.png" alt="Cufflinks">
+                <div class="item-overlay"></div>
+                <span class="item-title">Cufflinks</span>
+            </div>
+            <div class="grid-item item-blazers">
+                <img src="../assets/sliki/ONLINE/accessories/blazers.png" alt="Blazers & Jackets">
+                <div class="item-overlay"></div>
+                <span class="item-title">Blazers & Jackets</span>
+            </div>
+            <div class="grid-item item-ties">
+                <img src="../assets/sliki/ONLINE/accessories/ties.png" alt="Ties">
+                <div class="item-overlay"></div>
+                <span class="item-title">Ties</span>
+            </div>
+            <div class="grid-item item-wallets">
+                <img src="../assets/sliki/ONLINE/accessories/wallets.png" alt="Wallets">
+                <div class="item-overlay"></div>
+                <span class="item-title">Wallets</span>
+            </div>
+            <div class="grid-item item-bow-ties">
+                <img src="../assets/sliki/ONLINE/accessories/bow-ties.png" alt="Bow Ties">
+                <div class="item-overlay"></div>
+                <span class="item-title">Bow Ties</span>
+            </div>
+            <div class="grid-item item-shoes">
+                <img src="../assets/sliki/ONLINE/accessories/shoes.png" alt="Shoes">
+                <div class="item-overlay"></div>
+                <span class="item-title">Shoes</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW ARRIVALS -->
+    <section class="new-arrivals-section">
+        <div class="new-arrivals-header">
+            <h2 class="new-arrivals-title">New Arrivals</h2>
+            <p class="new-arrivals-desc">
+                Discover a refined selection of SIGNORI's latest pieces, thoughtfully crafted with exceptional materials and timeless attention to detail. Each edition is introduced for a limited time, bringing together distinctive designs made to stand apart. Explore the collection and find the piece that deserves a place in your wardrobe.
+            </p>
+        </div>
+
+        <div class="new-arrivals-grid">
+            <div class="arrival-item">
+                <img src="../assets/sliki/ONLINE/new-arrivals/1.png" alt="New Arrival">
+                <p>NEW COLLECTION</p>
+            </div>
+            <div class="arrival-item">
+                <img src="../assets/sliki/ONLINE/new-arrivals/2.png" alt="New Arrival">
+                <p>NEW COLLECTION</p>
+            </div>
+            <div class="arrival-item">
+                <img src="../assets/sliki/ONLINE/new-arrivals/3.png" alt="New Arrival">
+                <p>NEW COLLECTION</p>
+            </div>
+            <div class="arrival-item">
+                <img src="../assets/sliki/ONLINE/new-arrivals/4.jpg" alt="New Arrival">
+                <p>NEW COLLECTION</p>
+            </div>
+        </div>
+
+        <div class="new-arrivals-footer">
+            <a href="#" class="discover-link">Discover</a>
+        </div>
+    </section>
+
+    <!-- SIGNORI SETS SLIDER -->
+    <section class="sets-slider-section">
+        <div class="sets-slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+                <div class="slide"><img src="../assets/sliki/ONLINE/sets/1.png" alt="Set 1"></div>
+                <div class="slide"><img src="../assets/sliki/set2.jpg" alt="Set 2"></div>
+                <div class="slide"><img src="../assets/sliki/set3.jpg" alt="Set 3"></div>
+                <div class="slide"><img src="../assets/sliki/set4.jpg" alt="Set 4"></div>
+                <div class="slide"><img src="../assets/sliki/set5.jpg" alt="Set 5"></div>
+            </div>
+
+            <!-- Text Overlay (SIGNORI SETS) -->
+            <div class="slider-text-overlay">
+                <h2>SIGNORI SETS</h2>
+                <a href="#" class="discover-link-white">Discover</a>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="slider-controls">
+                <button id="prevSlide" class="slider-arrow">&lt;</button>
+                <span id="slideCounter">1/5</span>
+                <button id="nextSlide" class="slider-arrow">&gt;</button>
+            </div>
+
+            <!-- Progress Bars -->
+            <div class="slider-progress-container">
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+            </div>
+        </div>
+    </section>
 
     <script src="../js/online.js"></script>
     <script src="../navbar/navbar.js"></script>

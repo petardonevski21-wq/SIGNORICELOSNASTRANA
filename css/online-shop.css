@@ -1,4 +1,3 @@
-/* Osnovno resetirane */
 * {
     margin: 0;
     padding: 0;
@@ -11,21 +10,20 @@ html, body {
     background-color: #111;
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden; /* Забранува скролање бидејќи видеото е на цел екран */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-/* Glaven konteyner */
 .hero-section {
     position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Ова ги турка командите во футерот скроз долу */
+    justify-content: flex-end;
     padding: 30px 55px; 
 }
 
-/* Video v pozadina */
 .bg-video {
     position: absolute;
     top: 0;
@@ -37,9 +35,6 @@ html, body {
     filter: brightness(0.85); 
 }
 
-/* =========================================
-   DOLEN DEL (FOOTER) - KOMANDI
-========================================= */
 footer {
     position: relative;
     z-index: 2;
@@ -54,7 +49,6 @@ footer {
     justify-content: flex-start;
 }
 
-/* Centralen tekst smesten nay-dolu */
 .footer-center {
     position: relative;
     z-index: 20;
@@ -91,7 +85,6 @@ footer {
     visibility: visible;
 }
 
-/* Liniq pod Discover kopcheto */
 .discover-btn::after {
     content: '';
     position: absolute;
@@ -118,7 +111,6 @@ footer {
     justify-content: flex-end;
 }
 
-/* Kopcheta za media kontroli */
 .icon-btn {
     display: flex;
     align-items: center;
@@ -140,30 +132,358 @@ footer {
     fill: currentColor;
 }
 
-/* =========================================
-   MOBILNA VERZIQ (Media Queries)
-========================================= */
+/* ACCESSORIES */
+.accessories-section {
+    background-color: #ffffff;
+    padding: 80px 55px;
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accessories-header {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 50px;
+}
+
+.accessories-logo {
+    width: 45px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.accessories-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #000;
+}
+
+.accessories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr; 
+    grid-template-rows: 350px 350px auto; 
+    gap: 15px; 
+    width: 100%;
+    max-width: 1200px;
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+    background-color: #eaeaea; 
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 25px; 
+}
+
+.grid-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    z-index: 2;
+}
+
+.item-title {
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.item-cufflinks {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.item-ties {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+
+.item-blazers {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3; 
+}
+
+.item-wallets {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.item-bow-ties {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.item-shoes {
+    grid-column: 1 / 4; 
+    grid-row: 3 / 4;
+    height: 250px;
+}
+
+/* NEW ARRIVALS */
+.new-arrivals-section {
+    background-color: #ffffff;
+    padding: 0 55px 80px 55px; 
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new-arrivals-header {
+    text-align: center;
+    max-width: 700px;
+    margin-bottom: 50px;
+}
+
+.new-arrivals-title {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: #000;
+    letter-spacing: 0.02em;
+}
+
+.new-arrivals-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #000;
+}
+
+.new-arrivals-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px; 
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 60px;
+}
+
+.arrival-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arrival-item img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.arrival-item p {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.new-arrivals-footer {
+    text-align: center;
+}
+
+.discover-link {
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #000;
+    transition: opacity 0.3s ease;
+}
+
+.discover-link:hover {
+    opacity: 0.6;
+}
+
+/* SIGNORI SETS SLIDER */
+.sets-slider-section {
+    background-color: #ffffff;
+    padding: 0 15px 80px 15px; /* Smanjen bočni prostor sa 30px na 15px za širi prikaz */
+    display: flex;
+    justify-content: center;
+}
+
+.sets-slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1800px; /* Povećano sa 1600px na 1800px */
+    height: 90vh; /* Povećano sa 80vh na 90vh za veću visinu */
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+}
+.slider-wrapper {
+    display: flex;
+    width: 500%; /* 5 slik = 500% */
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide {
+    width: 20%; /* Vsaka slika zavzame 1/5 celotne dolžine (100% vidnega dela) */
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85); /* Rahlo zatemnjeno za boljšo čitljivost teksta */
+}
+
+.slider-text-overlay {
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    text-align: right;
+    color: #ffffff;
+    font-family: 'Jost', sans-serif;
+    z-index: 10;
+}
+
+.slider-text-overlay h2 {
+    font-size: 28px;
+    letter-spacing: 0.12em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.discover-link-white {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 3px;
+    transition: opacity 0.3s ease;
+}
+
+.discover-link-white:hover {
+    opacity: 0.7;
+}
+
+/* Kontrole za drsnik */
+.slider-controls {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: #ffffff;
+    z-index: 10;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+}
+
+.slider-arrow {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.slider-arrow:hover {
+    opacity: 0.6;
+}
+
+/* Indikatorji (Hugo Boss stil) */
+.slider-progress-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    width: 400px; /* Širina vrstice z indikatorji */
+    z-index: 10;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: #ffffff;
+}
+
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 25px 20px; 
-    }
-
-    footer {
-        grid-template-columns: auto 1fr auto; 
-        align-items: flex-end;
-    }
-
-    .collection-title {
-        font-size: 20px; 
-        letter-spacing: 0.1em;
+    .hero-section { padding: 25px 20px; }
+    footer { grid-template-columns: auto 1fr auto; }
+    .collection-title { font-size: 20px; letter-spacing: 0.1em; }
+    
+    .accessories-section, .new-arrivals-section, .sets-slider-section {
+        padding: 50px 20px;
     }
     
-    .footer-center {
-        padding: 0 15px; 
+    .accessories-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .item-cufflinks, .item-ties, .item-blazers, .item-wallets, .item-bow-ties, .item-shoes {
+        grid-column: 1 / -1;
+        height: 300px; 
     }
 
-    .icon-btn svg {
-        width: 20px;
-        height: 20px;
+    .new-arrivals-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
+
+    .sets-slider-container {
+        height: 60vh;
+        border-radius: 20px;
+    }
+    .slider-text-overlay {
+        top: 25%;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 100%;
+    }
+    .slider-progress-container {
+        width: 90%;
+        gap: 8px;
+    }
+}
+@media (max-width: 480px) {
+    .new-arrivals-grid { grid-template-columns: 1fr; }
 }
