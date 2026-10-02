@@ -32,36 +32,80 @@ header {
     align-items: center;
 
     padding: 26px 6%;
-    min-height: 0; /* CHANGED: added so min-height can animate to the compact height */
+    min-height: 0;
     background-color: transparent;
-    will-change: transform, background-color, padding;
+    will-change: transform, padding;
 
-    /* CHANGED: premium slide animation (0.6s, soft ease-out, no bounce) */
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
                 background-color 0.4s ease,
                 color 0.4s ease,
                 padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                min-height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.4s ease;
+                min-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Hidden state while scrolling down (smooth slide up, never display:none) */
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.86);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header > * {
+    opacity: 1;
+    transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 header.nav-hidden {
-    transform: translateY(-100%);
-    box-shadow: none; /* CHANGED: stops the shadow from peeking in at the top edge */
+    transform: translateY(-3px);
+    pointer-events: none;
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.4s ease,
+                color 0.4s ease,
+                padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                min-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ADDED: keyboard users tabbing into the hidden navbar bring it back into view */
+header.nav-hidden > * {
+    opacity: 0;
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 header.nav-hidden:has(:focus-visible) {
     transform: translateY(0);
+    pointer-events: auto;
 }
 
-/* Scrolled state (white background, black text, compact size) */
+header.nav-hidden:has(:focus-visible) > * {
+    opacity: 1;
+    transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 header.nav-scrolled {
-    background-color: #ffffff; /* CHANGED: solid #FFFFFF (was rgba 0.98 + blur) */
     padding: 12px 6%;
-    min-height: 70px; /* CHANGED: compact desktop height (about 70px) */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    min-height: 70px;
+}
+
+header.nav-scrolled::before {
+    opacity: 1;
+    transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+header.nav-hidden::before {
+    opacity: 0;
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.nav-hidden:has(:focus-visible)::before {
+    opacity: 1;
+    transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================
@@ -105,8 +149,6 @@ header.nav-scrolled {
     transition: color 0.3s ease;
 }
 
-/* Hamburger icon */
-
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -121,8 +163,6 @@ header.nav-scrolled {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* MENU text */
-
 .menu-text {
     font-size: 13px;
     font-weight: 300;
@@ -130,8 +170,6 @@ header.nav-scrolled {
     color: #ffffff;
     transition: color 0.3s ease;
 }
-
-/* Menu hover */
 
 .menu-container:hover .menu-text {
     color: #8c8c8c;
@@ -180,8 +218,6 @@ header.nav-scrolled {
     transition: color 0.3s ease;
 }
 
-/* SEARCH BUTTON */
-
 .search-btn {
     display: flex;
     align-items: center;
@@ -209,7 +245,7 @@ header.nav-scrolled {
 }
 
 /* =========================
-   SCROLLED STATE STYLES (CHERNI BUKVI I BELA POZADINA)
+   SCROLLED STATE STYLES
 ========================= */
 
 header.nav-scrolled .logo,
@@ -228,7 +264,7 @@ header.nav-scrolled .search-btn {
 }
 
 header.nav-scrolled .logo {
-    font-size: 25px; /* Po-malko logo pri skrolirane za kompakten vid */
+    font-size: 25px;
 }
 
 header.nav-scrolled .hover-target:hover,
@@ -293,11 +329,30 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     margin-bottom: 30px;
 }
 
-.drawer-logo svg {
-    width: 35px;
-    height: 35px;
-    fill: #111;
+/* Luxury Close Button (X) */
+.drawer-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #111111;
+    transition: color 0.3s ease, transform 0.4s ease;
+    appearance: none;
+    -webkit-appearance: none;
 }
+
+.drawer-close svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.2;
+}
+
+
 
 .drawer-icons {
     display: flex;
@@ -339,7 +394,7 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     align-items: center;
     text-decoration: none;
     color: #555;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -406,22 +461,4 @@ header.nav-scrolled .menu-container:hover .hamburger span {
 .drawer-btn:hover {
     background-color: #8c8c8c !important; 
     color: #fff !important;
-}
-
-@media (max-width: 768px) {
-    .side-drawer {
-        width: calc(100vw - 24px);
-    }
-
-    /* ADDED: slightly shorter compact navbar on tablet/mobile */
-    header.nav-scrolled {
-        min-height: 60px;
-    }
-}
-
-/* ADDED: respect "reduce motion" system setting */
-@media (prefers-reduced-motion: reduce) {
-    header {
-        transition-duration: 0.01s;
-    }
 }

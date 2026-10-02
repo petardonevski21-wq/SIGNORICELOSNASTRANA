@@ -13,17 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const menuButton = document.getElementById("menuButton");
             const sideDrawer = document.getElementById("sideDrawer");
             const drawerOverlay = document.getElementById("drawerOverlay");
+            const drawerClose = document.getElementById("drawerClose");
 
             // ---------------------------------------------
             // Settings
             // ---------------------------------------------
-            const SCROLLED_AT = 40;       // px from top: white/compact style starts
             const ALWAYS_SHOW_BELOW = 80; // px from top: navbar is always visible
-            const DELTA_THRESHOLD = 8;    // px: ignore tiny scroll movements (no flicker)
+            const DELTA_THRESHOLD = 8;    // px: ignore tiny scroll movements
 
             let isDrawerOpen = false;
             let lastScrollY = 0;
             let ticking = false;
+
+            // Dinamichno izchislyavane na visochinata na xiro (purvata) sektsiya
+            const getHeroThreshold = () => {
+                const heroSection = document.querySelector(".hero, section, .hero-section");
+                return heroSection ? heroSection.offsetHeight : window.innerHeight;
+            };
 
             // Works whether the window or <body> is the element that scrolls
             const getScrollY = () => Math.max(
@@ -71,6 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 drawerOverlay.addEventListener("click", closeDrawer);
 
+                if (drawerClose) {
+                    drawerClose.addEventListener("click", closeDrawer);
+                }
+
                 document.addEventListener("keydown", (event) => {
                     if (event.key === "Escape") closeDrawer();
                 });
@@ -86,22 +96,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     ticking = false;
 
                     const currentScrollY = getScrollY();
+                    const heroThreshold = getHeroThreshold();
 
-                    // 1. White background + black text once scrolled away from the top
-                    header.classList.toggle("nav-scrolled", currentScrollY > SCROLLED_AT);
+                    // Beloto menyu se aktivira EDVA SLED kato se previtash xiro sektsiyata (purvata sektsiya)
+                    header.classList.toggle("nav-scrolled", currentScrollY >= heroThreshold);
 
-                    // 2. Never hide while the menu is open or near the top of the page
+                    // Never hide while the menu is open or near the top of the page
                     if (isDrawerOpen || currentScrollY <= ALWAYS_SHOW_BELOW) {
                         showHeader();
                         lastScrollY = currentScrollY;
                         return;
                     }
 
-                    // 3. Ignore very small movements (lastScrollY is kept so they add up)
+                    // Ignore very small movements
                     const delta = currentScrollY - lastScrollY;
                     if (Math.abs(delta) < DELTA_THRESHOLD) return;
 
-                    // 4. Down = hide, up = show
+                    // Down = hide, up = show
                     if (delta > 0) {
                         hideHeader();
                     } else {
@@ -112,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 const onScroll = (event) => {
-                    // Only react to page scrolling, not inner scrollers (sliders, etc.)
+                    // Only react to page scrolling, not inner scrollers
                     const target = event.target;
                     if (
                         target !== document &&
@@ -131,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Capture phase so it also works if <body> is the scrolling element
                 document.addEventListener("scroll", onScroll, { passive: true, capture: true });
 
-                // Set the correct state on load (e.g. page refreshed mid-scroll)
+                // Set the correct state on load
                 updateHeader();
             }
         })

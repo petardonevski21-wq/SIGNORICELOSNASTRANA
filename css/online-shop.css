@@ -443,47 +443,504 @@ footer {
     background: #ffffff;
 }
 
-/* MEDIA QUERIES */
-@media (max-width: 768px) {
-    .hero-section { padding: 25px 20px; }
-    footer { grid-template-columns: auto 1fr auto; }
-    .collection-title { font-size: 20px; letter-spacing: 0.1em; }
-    
-    .accessories-section, .new-arrivals-section, .sets-slider-section {
-        padding: 50px 20px;
-    }
-    
-    .accessories-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
-    .item-cufflinks, .item-ties, .item-blazers, .item-wallets, .item-bow-ties, .item-shoes {
-        grid-column: 1 / -1;
-        height: 300px; 
-    }
-
-    .new-arrivals-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-    }
-
-    .sets-slider-container {
-        height: 60vh;
-        border-radius: 20px;
-    }
-    .slider-text-overlay {
-        top: 25%;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        width: 100%;
-    }
-    .slider-progress-container {
-        width: 90%;
-        gap: 8px;
-    }
+/* HERE TODAY SECTION */
+.here-today-section {
+    display: flex;
+    background-color: #ffffff;
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+    min-height: 95vh;
+    overflow: hidden;
 }
-@media (max-width: 480px) {
-    .new-arrivals-grid { grid-template-columns: 1fr; }
+
+.ht-left {
+    flex: 1.1; /* Slika na lijevoj strani zauzima malo više prostora */
+    position: relative;
+}
+
+.ht-main-img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Oznaka za novu kolekciju koja prelazi na bijeli dio */
+.ht-label {
+    position: absolute;
+    bottom: 25%;
+    right: -100px; 
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 1s ease 0.5s;
+}
+
+.ht-label.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ht-line {
+    width: 70px;
+    height: 1px;
+    background-color: #000;
+    margin-right: 15px;
+}
+
+.ht-text {
+    font-size: 11px;
+    font-weight: 300;
+    color: #000;
+    letter-spacing: 0.05em;
+}
+
+.ht-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    background-color: #ffffff;
+}
+
+.ht-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease 0.2s;
+}
+
+.ht-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ht-logo {
+    margin-bottom: 15px;
+}
+
+.ht-subtitle {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.ht-title {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: #000;
+    margin-bottom: 45px;
+}
+
+.ht-products {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 190px;
+}
+
+.ht-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.ht-product img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    background-color: #eaeaea;
+}
+
+.ht-product p {
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    letter-spacing: 0.05em;
+}
+
+
+/* --- NOVA SEKCIJA ZA PROIZVODE NA DNU --- */
+
+.bottom-products-section {
+    background-color: #ffffff;
+    padding: 0px 15px 100px 15px;
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+}
+
+.bottom-products-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.bottom-product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.bottom-img-wrapper {
+    background-color: #e3e3e3; 
+    width: 100%;
+    aspect-ratio: 0.85; /* Proporcije slične onima na slici nakraj.jpg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.bottom-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bottom-product-name {
+    font-size: 11px;
+    color: #000;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+.bottom-product-price {
+    font-size: 11px;
+    color: #000;
+    font-weight: 600;
+}
+
+/* --- KRAJ SECTION --- */
+.kraj-section {
+    width: 100%;
+    background-color: #ffffff;
+    font-family: 'Jost', sans-serif;
+}
+
+.kraj-container {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.kraj-left {
+    flex: 1;
+    padding: 40px 20px 60px 40px;
+}
+
+.kraj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:55px;
+    width: 100%;
+}
+
+.kraj-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.kraj-img-wrapper {
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.kraj-img-wrapper img {
+    width: 100%;       /* Promeneto ot 90% za da go napalni celoto sivo */
+    height: 100%;      /* Promeneto ot 90% za da go napalni celoto sivo */
+    object-fit: cover; /* Promeneto ot contain na cover za celosno pokrivanje */
+}
+
+.kraj-name {
+    font-size: 12px;
+    color: #000000;
+    font-weight: 400;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+}
+
+.kraj-price {
+    font-size: 12px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.kraj-right {
+    flex: 1.1;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    /* padding-top: 40px; Dobaveno 40px padding-top za da pocnuva tochno na isto nivo so levite 4 sliki */
+}
+
+.kraj-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- DEFINED BY DETAIL SECTION --- */
+.detail-endure-section {
+    background-color: #ffffff;
+    padding: 80px 15px 100px 15px; /* Smanjen padding sa strana kako bi slike zauzele cijeli ekran */
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.detail-header h2 {
+    font-size: 22px;
+    font-weight: 300;
+    color: #333;
+    letter-spacing: 0.02em;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Podešeno na 5 kolona */
+    gap: 15px;
+    width: 100%;
+    /* max-width je uklonjen kako bi kontejner ispunio širinu cijelog ekrana */
+}
+
+.detail-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.detail-img-wrapper {
+    background-color: #f2f2f2;
+    width: 100%;
+    aspect-ratio: 0.85; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.detail-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+
+.detail-name {
+    font-size: 11px;
+    color: #555;
+    font-weight: 400;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+}
+
+.detail-price {
+    font-size: 11px;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* --- SIGNORI EDIT SECTION STYLES --- */
+.signori-edit-section {
+  position: relative;
+  width: 100%;
+  padding: 140px 0; /* was 100px: more room for the background branding */
+  background-color: #ffffff;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Fini pozadinski uzorak (prilagodite URL sa vašom ikonicom) */
+.signori-pattern-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/sliki/ONLINE/edits/pozadina/1.png'); /* Ubacite vaš fleur-de-lis pattern ovdje */
+  background-size: 1000px; /* was 150px */
+  opacity: 0.50; /* was 0.1 */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.signori-container {
+  display: flex;
+  align-items: center;
+  max-width: 95%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.signori-text-content {
+  flex: 0 0 30%;
+  padding-right: 50px;
+}
+
+.signori-text-content h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.signori-text-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  font-weight: 300;
+}
+
+.signori-slider-wrapper {
+  flex: 0 0 70%;
+  min-width: 0;
+  /* overflow is visible so the track can glide over the title column;
+     clip-path still clips it exactly like the old overflow:hidden
+     (right/top/bottom = wrapper edge, left = container edge via --sig-left set in JS) */
+  overflow: visible;
+  clip-path: inset(0 0 0 calc(-1 * var(--sig-left, 0px)));
+  cursor: grab;
+  touch-action: pan-y; /* vertical page scroll still works, horizontal is handled by the carousel */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.signori-slider-wrapper:focus-visible {
+  outline: 1px solid #111;
+  outline-offset: -4px; /* inside, because clip-path would cut an outer outline */
+}
+
+.signori-slider-wrapper:active {
+  cursor: grabbing;
+}
+
+.signori-slider-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Placeholder look for slides 4 & 5 until real images are supplied */
+.signori-slide--placeholder {
+  background-color: #c9c4bb;
+}
+
+.signori-slide {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.signori-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* Sprečava bagove pri povlačenju */
+}
+
+.slide-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.pause-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Kontrole za navigaciju */
+.signori-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 5%;
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.pagination-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+  margin-right: 25px;
+}
+
+.nav-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
