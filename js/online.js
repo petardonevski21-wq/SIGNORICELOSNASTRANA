@@ -282,3 +282,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
   goTo(0, false);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // === KRAJ SECTION SLIDER LOGIKA ===
+    const krajSlides = document.querySelectorAll('.kraj-slide');
+    const krajPrevBtn = document.getElementById('krajPrev');
+    const krajNextBtn = document.getElementById('krajNext');
+    const krajProgressFills = document.querySelectorAll('.kraj-progress-fill');
+
+    if (krajSlides.length > 0) {
+        let currentKrajSlide = 0;
+        let lastKrajSlide = -1;
+        const totalKrajSlides = krajSlides.length;
+        const krajSlideDuration = 5000; // 5 sekundi po slika
+        let krajSlideInterval;
+
+        function updateKrajSlider() {
+            krajSlides.forEach((slide, index) => {
+                slide.classList.remove('active', 'outgoing');
+                if (index === currentKrajSlide) {
+                    slide.classList.add('active');
+                } else if (index === lastKrajSlide) {
+                    slide.classList.add('outgoing');
+                }
+            });
+
+            krajProgressFills.forEach((fill, index) => {
+                fill.style.transition = 'none';
+                if (index < currentKrajSlide) {
+                    fill.style.width = '100%';
+                } else {
+                    fill.style.width = '0%';
+                }
+            });
+
+            void document.body.offsetWidth; // Force reflow
+
+            const activeFill = krajProgressFills[currentKrajSlide];
+            if (activeFill) {
+                activeFill.style.transition = `width ${krajSlideDuration}ms linear`;
+                activeFill.style.width = '100%';
+            }
+        }
+
+        function nextKrajSlide() {
+            lastKrajSlide = currentKrajSlide;
+            currentKrajSlide = (currentKrajSlide + 1) % totalKrajSlides;
+            updateKrajSlider();
+            resetKrajInterval();
+        }
+
+        function prevKrajSlide() {
+            lastKrajSlide = currentKrajSlide;
+            currentKrajSlide = (currentKrajSlide - 1 + totalKrajSlides) % totalKrajSlides;
+            updateKrajSlider();
+            resetKrajInterval();
+        }
+
+        function resetKrajInterval() {
+            clearInterval(krajSlideInterval);
+            krajSlideInterval = setInterval(nextKrajSlide, krajSlideDuration);
+        }
+
+        if (krajNextBtn) krajNextBtn.addEventListener('click', nextKrajSlide);
+        if (krajPrevBtn) krajPrevBtn.addEventListener('click', prevKrajSlide);
+
+        updateKrajSlider();
+        resetKrajInterval();
+    }
+});

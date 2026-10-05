@@ -234,9 +234,9 @@
     </section>
 
     <!-- KRAJ SECTION -->
-    <section class="kraj-section">
+    <section class="kraj-section" id="krajSection">
         <div class="kraj-container">
-            <div class="kraj-left">
+            <div class="kraj-left" id="krajLeft">
                 <div class="kraj-grid">
                     <div class="kraj-product">
                         <div class="kraj-img-wrapper">
@@ -269,8 +269,39 @@
                 </div>
             </div>
             
-            <div class="kraj-right">
-                <img src="../assets/sliki/ONLINE/4-golema/desna-golema.png" alt="Signori Yacht" class="kraj-main-img">
+            <div class="kraj-right" id="krajRight">
+                <div class="kraj-slider-container">
+                    <div class="kraj-slider-wrapper" id="krajSliderWrapper">
+                        <div class="kraj-slide active">
+                            <img src="../assets/sliki/ONLINE/4-golema/desna-golema.png" alt="Signori Yacht 1">
+                        </div>
+                        <div class="kraj-slide">
+                            <img src="../assets/sliki/ONLINE/4-golema/vtora-golema.jpg" alt="Signori Yacht 2">
+                        </div>
+                        <div class="kraj-slide">
+                            <img src="../assets/sliki/ONLINE/4-golema/treta-golema.png" alt="Signori Yacht 3">
+                        </div>
+                        <div class="kraj-slide">
+                            <img src="../assets/sliki/ONLINE/4-golema/cetv-golema.jpg" alt="Signori Yacht 4">
+                        </div>
+                    </div>
+
+                    <!-- Progress linija gore (4 sliki) -->
+                    <div class="kraj-progress-container">
+                        <div class="kraj-progress-bar"><div class="kraj-progress-fill"></div></div>
+                        <div class="kraj-progress-bar"><div class="kraj-progress-fill"></div></div>
+                        <div class="kraj-progress-bar"><div class="kraj-progress-fill"></div></div>
+                        <div class="kraj-progress-bar"><div class="kraj-progress-fill"></div></div>
+                    </div>
+
+                    <!-- Strelki levo i desno -->
+                    <button class="kraj-arrow kraj-prev" id="krajPrev" aria-label="Previous Slide">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                    </button>
+                    <button class="kraj-arrow kraj-next" id="krajNext" aria-label="Next Slide">
+                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -370,7 +401,7 @@
     <section class="iconic-signatures-section">
         <div class="iconic-overlay"></div>
         <div class="iconic-content">
-            <span class="iconic-subtitle">The Originals</span>
+            <span class="iconic-subtitle">The Signori</span>
             <h2 class="iconic-title">13 iconic signatures</h2>
             <a href="#" class="iconic-discover-link">Discover</a>
         </div>
@@ -390,7 +421,7 @@
           <div class="signori-slider-track" id="signori-track">
             
             <div class="signori-slide">
-              <img src="../assets/sliki/ONLINE/edits/1.png" alt="The Art of Tailoring">
+              <img src="../assets/sliki/ONLINE/edits/art-of-tailoring.png" alt="The Art of Tailoring">
               <div class="slide-caption">The Art of Tailoring</div>
             </div>
 
@@ -405,13 +436,13 @@
             </div>
 
             <div class="signori-slide signori-slide--placeholder">
-              <img src="../assets/sliki/ONLINE/edits/4.png" alt="Edit 4" onerror="this.style.visibility='hidden'">
-              <div class="slide-caption">Edit 4</div>
+              <img src="../assets/sliki/ONLINE/edits/process.png" alt="Edit 4" onerror="this.style.visibility='hidden'">
+              <div class="slide-caption">The Process</div>
             </div>
 
             <div class="signori-slide signori-slide--placeholder">
-              <img src="../assets/sliki/ONLINE/edits/5.png" alt="Edit 5" onerror="this.style.visibility='hidden'">
-              <div class="slide-caption">Edit 5</div>
+              <img src="../assets/sliki/ONLINE/edits/1.png" alt="Edit 5" onerror="this.style.visibility='hidden'">
+              <div class="slide-caption">Gallery</div>
             </div>
             
           </div>
