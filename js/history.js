@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- 1. Видео секција (Автоматска промена на видеа) ---
+    // --- 1. Video sektsiya ---
     const videos = document.querySelectorAll(".bg-video");
     let currentVideoIndex = 0;
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. Слајдер секција ---
+    // --- 2. Slajder sektsiya ---
     const track = document.querySelector(".slider-track");
     const originalSlides = document.querySelectorAll(".slide");
     const indicators = document.querySelectorAll(".indicator");
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 3. Вчитување на футер ---
+    // --- 3. Vchituvane na futer ---
     const footerPlaceholder = document.getElementById("footer-placeholder");
     if (footerPlaceholder) {
         fetch("../footer/footer.html")
@@ -104,11 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 footerPlaceholder.innerHTML = data;
             })
-            .catch(error => console.error("Грешка при вчитување на футерот:", error));
+            .catch(error => console.error("Greshka pri vchituvane na futera:", error));
     }
 });
 
-// --- 4. Скрол логика: Сликата стои во место (sticky), се заматува/затемнува додека текстот се скрола ---
+// --- 4. Skrol logika: Zamatuvanie i fiksirane na slikata dokato tekstat se skrola ---
 window.addEventListener("scroll", () => {
     const sections = document.querySelectorAll(".second-section");
     
@@ -121,23 +121,23 @@ window.addEventListener("scroll", () => {
         const rect = section.getBoundingClientRect();
         const sectionScrollHeight = section.offsetHeight - window.innerHeight;
 
-        // Кога секцијата е активна на екранот
         if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
             let scrolled = Math.abs(rect.top);
-            let progress = Math.min(Math.max(scrolled / sectionScrollHeight, 0), 1);
-
-            if (image.id === "scrollImage") {
-                // Втора слика: Без заматување, само благо затемнување
-                let opacityAmount = progress * 0.4;
-                image.style.filter = "blur(0px)";
-                if (overlay) overlay.style.backgroundColor = `rgba(0, 0, 0, ${opacityAmount})`;
-            } else {
-                // Трета/Останати слики: Сликата стои во место, само се заматува (макс 10px) и затемнува
-                let blurAmount = progress * 10; 
-                let opacityAmount = progress * 0.6;
-                image.style.filter = `blur(${blurAmount.toFixed(1)}px)`;
-                if (overlay) overlay.style.backgroundColor = `rgba(0, 0, 0, ${opacityAmount})`;
+            
+            // Zamatyvaneto zapochva pri navlizaneto na teksta
+            let startThreshold = window.innerHeight * 0.4;
+            let scrollRange = sectionScrollHeight - startThreshold;
+            
+            let progress = 0;
+            if (scrolled > startThreshold && scrollRange > 0) {
+                progress = Math.min(Math.max((scrolled - startThreshold) / scrollRange, 0), 1);
             }
+
+            let blurAmount = progress * 10; 
+            let opacityAmount = progress * 0.6;
+
+            image.style.filter = `blur(${blurAmount.toFixed(1)}px)`;
+            if (overlay) overlay.style.backgroundColor = `rgba(0, 0, 0, ${opacityAmount})`;
         } else if (rect.top > 0) {
             image.style.filter = "blur(0px)";
             if (overlay) overlay.style.backgroundColor = "rgba(0, 0, 0, 0)";

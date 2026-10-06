@@ -329,7 +329,6 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     margin-bottom: 30px;
 }
 
-/* Luxury Close Button (X) */
 .drawer-close {
     background: transparent;
     border: none;
@@ -351,8 +350,6 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     fill: none;
     stroke-width: 1.2;
 }
-
-
 
 .drawer-icons {
     display: flex;
@@ -377,6 +374,33 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     border: none;
     border-top: 1px solid #e0e0e0;
     margin: 20px 0;
+}
+
+/* =========================
+   TAB PANELS (ONLINE vs BESPOKE)
+========================= */
+.menu-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    /* Tuka maxnaxme flex: 1 za da ne se butat Contact us i FAQ nadolu */
+}
+
+.menu-panel {
+    grid-column: 1;
+    grid-row: 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s;
+}
+
+.menu-panel.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .drawer-main-links {
@@ -429,36 +453,90 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     color: #666;
 }
 
-.drawer-footer {
-    margin-top: auto;
+/* =========================
+   SLIDING TOGGLE FOOTER
+========================= */
+.drawer-footer-toggle {
+    margin-top: auto; /* Tova zalepya SAMO tozi kontejner za dunoto */
+    position: relative;
     display: flex;
-    gap: 12px;
+    background-color: #e8e8e8;
+    border-radius: 8px;
+    padding: 4px;
 }
 
-.drawer-btn {
+.toggle-bg {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background-color: #4a4141; /* Tumno luksozno fonche */
+    border-radius: 6px;
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1;
+}
+
+.drawer-footer-toggle.right-active .toggle-bg {
+    left: 50%;
+}
+
+.toggle-btn {
     flex: 1;
+    position: relative;
+    z-index: 2; /* nad fona */
     padding: 14px 0;
     text-align: center;
     text-decoration: none;
     font-size: 11px;
     font-weight: 500;
-    border-radius: 6px;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    color: #555;
+    transition: color 0.4s ease;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.btn-light {
-    background-color: #fff;
-    color: #333;
-}
-
-.btn-dark {
-    background-color: #4a4141;
+.toggle-btn.active {
     color: #fff;
 }
 
-.drawer-btn:active,
-.drawer-btn:hover {
-    background-color: #8c8c8c !important; 
-    color: #fff !important;
+/* =========================
+   MEDIA QUERIES (MOBILE)
+========================= */
+
+@media (max-width: 768px) {
+    header {
+        padding: 20px 5%;
+        grid-template-columns: auto 1fr auto;
+    }
+    
+    header.nav-scrolled {
+        padding: 10px 5%;
+    }
+
+    .nav-left {
+        justify-content: flex-start;
+    }
+    .nav-center {
+        text-align: center;
+    }
+    .nav-right {
+        gap: 20px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+    
+    header.nav-scrolled .logo {
+        font-size: 20px;
+    }
+
+    .contact-text, .menu-text {
+        display: none;
+    }
+
+    .side-drawer {
+        width: calc(100% - 24px); 
+    }
 }

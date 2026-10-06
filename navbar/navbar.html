@@ -92,27 +92,47 @@
         
         <hr class="drawer-divider">
         
-        <!-- Main Links -->
-        <ul class="drawer-main-links">
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Accessories <span class="arrow">&gt;</span></a></li>
-            <li><a href="#">Men's Wear <span class="arrow">&gt;</span></a></li>
-            <li><a href="#">Outerwear <span class="arrow">&gt;</span></a></li>
-            <li><a href="#">Formalwear <span class="arrow">&gt;</span></a></li>
-        </ul>
+        <!-- Menu Content Wrapper -->
+        <div class="menu-content-wrapper">
+            
+            <!-- Online Shop Panel -->
+            <div class="menu-panel active" id="panel-online">
+                <ul class="drawer-main-links">
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Accessories <span class="arrow">&gt;</span></a></li>
+                    <li><a href="#">Men's Wear <span class="arrow">&gt;</span></a></li>
+                    <li><a href="#">Outerwear <span class="arrow">&gt;</span></a></li>
+                    <li><a href="#">Formalwear <span class="arrow">&gt;</span></a></li>
+                </ul>
+            </div>
+
+            <!-- Bespoke Tailoring Panel -->
+            <div class="menu-panel" id="panel-bespoke">
+                <ul class="drawer-main-links">
+                    <li><a href="../pages/the-house.html">The House of Signori</a></li>
+                    <li><a href="../pages/history.html">The History</a></li>
+                    <li><a href="../pages/process-bespoke.html">Bespoke Tailoring Process</a></li>
+                    <li><a href="#">Fabrics</a></li>
+                    <li><a href="../pages/gallery.html">Gallery</a></li>
+                    <li><a href="#">Journal</a></li>
+                </ul>
+            </div>
+
+        </div>
         
         <hr class="drawer-divider">
         
-        <!-- Sub Links -->
+        <!-- Sub Links (Vechte fiksirani otgore pod menyuto, ne slizat na dolu) -->
         <ul class="drawer-sub-links">
             <li><a href="#">Contact us</a></li>
             <li><a href="#">FAQ</a></li>
         </ul>
         
-        <!-- Footer Buttons -->
-        <div class="drawer-footer">
-            <a href="#" class="drawer-btn btn-light">Bespoke Tailoring</a>
-            <a href="#" class="drawer-btn btn-dark">Online Shop</a>
+        <!-- New Sliding Toggle Footer Buttons (Zalepeni ot dolu) -->
+        <div class="drawer-footer-toggle right-active" id="drawer-toggle-container">
+            <div class="toggle-bg"></div>
+            <a href="#" class="toggle-btn" id="btn-bespoke">Bespoke Tailoring</a>
+            <a href="#" class="toggle-btn active" id="btn-online">Online Shop</a>
         </div>
 
     </div>
