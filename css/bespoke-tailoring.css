@@ -1,9 +1,9 @@
-/* Osnovne postavke */
+/* Osnovne postavke za cijelu stranicu */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Jost', sans-serif;
 }
 
 body {
@@ -223,48 +223,48 @@ body {
 
 .detail-row {
     display: flex;
-    max-width: 1100px;
+    max-width: 1200px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    gap: 60px;
+    gap: 50px;
 }
 
 .detail-row.reverse {
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .detail-text {
-    flex: 1;
+    flex: 0.8;
 }
 
 .detail-text.padding-left {
-    padding-left: 5%;
+    padding-left: 3%;
 }
 
 .detail-icon {
-    width: 35px;
-    margin-bottom: 20px;
+    width: 30px;
+    margin-bottom: 15px;
     opacity: 0.9;
 }
 
 .detail-text h3 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 400;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     color: #111;
     letter-spacing: 0.5px;
 }
 
 .detail-text p {
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.85rem;
+    line-height: 1.6;
     color: #444;
     font-weight: 300;
 }
 
 .detail-image {
-    flex: 1.2;
+    flex: 1.8;
 }
 
 .detail-image img {
@@ -273,14 +273,12 @@ body {
     display: block;
 }
 
-/* --- BESPOKE SHOWCASE SEKCIJA (2 SLIKI GORE 100VH + 1 SLIKA DOLU 100VH x 100%) --- */
-
+/* --- BESPOKE SHOWCASE SEKCIJA --- */
 .bespoke-showcase-section {
     width: 100%;
     background-color: #000000;
 }
 
-/* Gorna sekcija: Dve sliki, sekoja 50% sirina, celosna visina na sekcijata (100vh) */
 .showcase-top-section {
     display: flex;
     width: 100%;
@@ -295,7 +293,6 @@ body {
     display: block;
 }
 
-/* Dolna sekcija: Edna slika preku cel ekran (100% sirina, 100vh visina) */
 .showcase-bottom-section {
     position: relative;
     width: 100%;
@@ -310,7 +307,6 @@ body {
     display: block;
 }
 
-/* Tekst i kopce vrz tretata slika во долен десен агол */
 .showcase-overlay-content {
     position: absolute;
     bottom: 60px;
@@ -341,24 +337,315 @@ body {
     opacity: 0.6;
 }
 
-/* Responsive za mobilni */
-@media (max-width: 768px) {
-    .showcase-top-section {
+/* --- HOW BESPOKE WORKS SEKCIJA (NOVI RASPORED) --- */
+.how-bespoke-section {
+    background-color: #ffffff;
+    padding: 100px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.how-bespoke-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #111;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.how-bespoke-grid {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 40px;
+}
+
+.step-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 360px;
+}
+
+.step-image {
+    width: 100%;
+    height: 240px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.step-number {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.step-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.step-text {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #666;
+    font-weight: 300;
+    max-width: 310px;
+}
+
+.how-bespoke-footer {
+    margin-top: 70px;
+    text-align: center;
+}
+
+.discover-more-btn {
+    color: #111;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 300;
+    border-bottom: 1px solid #111;
+    padding-bottom: 3px;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.discover-more-btn:hover {
+    opacity: 0.5;
+}
+
+/* --- LATEST CREATIONS SEKCIJA --- */
+.latest-creations-section {
+    background-color: #ffffff;
+    padding: 100px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.latest-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #111;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1500px; /* Зголемено од 1200px на 1500px */
+    width: 100%;
+}
+
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 15px;
+}
+
+.slider-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide {
+    flex: 0 0 calc((100% - 40px) / 3);
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-btn {
+    background: transparent;
+    border: none;
+    font-size: 4rem; /* Многу поголеми стрелки */
+    font-weight: 200; /* Тенки линии за елеганција */
+    color: #111;
+    cursor: pointer;
+    padding: 10px 30px;
+    user-select: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Чист фонт за симболите */
+}
+
+.slider-btn:hover {
+    opacity: 0.4;
+    transform: scale(1.1);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: #111;
+    transform: scale(1.3);
+}
+
+/* --- CONTACT FORM SEKCIJA --- */
+.contact-section {
+    position: relative;
+    padding: 100px 20px 120px;
+    background-color: #ffffff;
+    /* Zameni s petya do tvoyata slika za pozadina */
+    background-image: url('../assets/sliki/BESPOKE-TAILORING/pozadina-signori-logo/1.png')     ;opacity: 5.50; 
+    background-repeat: repeat;
+    background-size: 1200px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.contact-container {
+    max-width: 720px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-brand {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.contact-title {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: #333333;
+    margin-bottom: 45px;
+    text-transform: uppercase;
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row {
+    display: flex;
+    gap: 22px;
+    width: 100%;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #222222;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background-color: #e3e3e3;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    font-family: 'Jost', sans-serif;
+    color: #111111;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background-color: #d6d6d6;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.contact-submit-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 36px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-submit-btn:hover {
+    background-color: #222222;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .form-row {
         flex-direction: column;
-        height: auto;
-    }
-
-    .showcase-top-img {
-        width: 100%;
-        height: 50vh;
-    }
-
-    .showcase-bottom-section {
-        height: 70vh;
-    }
-
-    .showcase-overlay-content {
-        bottom: 30px;
-        right: 30px;
+        gap: 22px;
     }
 }

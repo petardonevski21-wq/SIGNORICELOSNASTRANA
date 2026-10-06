@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bespoke Tailoring</title>
+    <!-- Google Font: Jost -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="../css/bespoke-tailoring.css">
 </head>
@@ -64,7 +68,7 @@
 
     <!-- Bespoke Details -->
     <section class="bespoke-details-section">
-        <!-- Red 1: Tekst levo, Slika desno -->
+        <!-- Red 1: Tekst lijevo, Slika desno -->
         <div class="detail-row">
             <div class="detail-text">
                 <img src="../assets/sliki/BESPOKE-TAILORING/LOGO.png" alt="Signori Icon" class="detail-icon">
@@ -73,14 +77,14 @@
                 <p>From the finest fabric and silhouette to the cut, lapel, buttons and lining, every element is selected with purpose. Guided by our tailoring expertise, you become part of the process, shaping a garment defined by precision, character and timeless elegance.<br><br>The result is more than a suit. It is a piece created exclusively for you.</p>
             </div>
             <div class="detail-image">
-                <img src="../assets/sliki/BESPOKE-TAILORING/signori-brick-wall.jpg" alt="SIGNORI Logo on Brick Wall">
+                <img src="../assets/sliki/BESPOKE-TAILORING/signori.png" alt="SIGNORI Logo on Brick Wall">
             </div>
         </div>
 
-        <!-- Red 2: Slika levo, Tekst desno -->
+        <!-- Red 2: Slika lijevo, Tekst desno -->
         <div class="detail-row reverse">
             <div class="detail-image">
-                <img src="../assets/sliki/BESPOKE-TAILORING/suit-lining.jpg" alt="Signori Blue Suit Lining">
+                <img src="../assets/sliki/BESPOKE-TAILORING/signori-dva.png" alt="Signori Blue Suit Lining">
             </div>
             <div class="detail-text padding-left">
                 <h3>The Final Experience</h3>
@@ -91,19 +95,133 @@
 
     <!-- Bespoke Showcase Sekcija -->
     <section class="bespoke-showcase-section">
-        <!-- Gorna sekcija: 2 sliki do pola po sirina, cela visina (100vh) -->
+        <!-- Gornja sekcija: 2 slike po 50% širine, punih 100vh visine -->
         <div class="showcase-top-section">
             <img src="../assets/sliki/BESPOKE-TAILORING/leva-bespoke.png" alt="Signori Atelier Interior" class="showcase-top-img">
             <img src="../assets/sliki/BESPOKE-TAILORING/desna-bespoke.png" alt="Fabric Swatches" class="showcase-top-img">
         </div>
         
-        <!-- Dolna sekcija: 1 slika od eden kraj do drug (100% sirina, 100vh visina) -->
+        <!-- Donja sekcija: 1 slika od ivice do ivice (100% širina, 100vh visina) -->
         <div class="showcase-bottom-section">
             <img src="../assets/sliki/BESPOKE-TAILORING/bespoke-sredina.png" alt="Signori Bespoke Suit" class="showcase-full-img">
             <div class="showcase-overlay-content">
                 <h2>Signori Bespoke</h2>
                 <a href="#" class="showcase-discover-btn">Discover</a>
             </div>
+        </div>
+    </section>
+
+    <!-- Nova "How Bespoke Works" Sekcija (3 horizontalne kolone) -->
+    <section class="how-bespoke-section">
+        <h2 class="how-bespoke-title">HOW BESPOKE WORKS</h2>
+        
+        <div class="how-bespoke-grid">
+            <!-- Korak 1 -->
+            <div class="step-card">
+                <div class="step-image">
+                    <img src="../assets/sliki/BESPOKE-TAILORING/3d/1.png" alt="Begin Your Bespoke Consultation">
+                </div>
+                <span class="step-number">1</span>
+                <h3 class="step-title">Begin Your Bespoke Consultation</h3>
+                <p class="step-text">
+                    Begin your SIGNORI journey with a private consultation, exploring exceptional fabrics, refined details and your personal style. Together, we shape the vision for a garment created entirely around you.
+                </p>
+            </div>
+
+            <!-- Korak 2 -->
+            <div class="step-card">
+                <div class="step-image">
+                    <img src="../assets/sliki/BESPOKE-TAILORING/3d/2.png" alt="Perfect Your Fit">
+                </div>
+                <span class="step-number">2</span>
+                <h3 class="step-title">Perfect Your Fit</h3>
+                <p class="step-text">
+                    With precision at every step, we take your measurements to create a fit that follows your natural proportions. Every detail is carefully considered to ensure your garment feels as exceptional as it looks.
+                </p>
+            </div>
+
+            <!-- Korak 3 -->
+            <div class="step-card">
+                <div class="step-image">
+                    <img src="../assets/sliki/BESPOKE-TAILORING/3d/3.png" alt="The Finished Garment">
+                </div>
+                <span class="step-number">3</span>
+                <h3 class="step-title">The Finished Garment</h3>
+                <p class="step-text">
+                    Your bespoke garment is now complete, carefully crafted to reflect your proportions, personal style and every detail chosen throughout your journey.
+                </p>
+            </div>
+        </div>
+
+        <div class="how-bespoke-footer">
+            <a href="#" class="discover-more-btn">Discover More</a>
+        </div>
+    </section>
+
+<!-- Latest Creations Sekcija -->
+    <section class="latest-creations-section">
+        <h2 class="latest-title">Latest creations</h2>
+        
+        <div class="slider-wrapper">
+          <button class="slider-btn prev-btn" id="latest-prev" aria-label="Previous">&#10092;</button>
+            
+            <div class="slider-container">
+                <div class="slider-track" id="latest-track">
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/1.jpg"alt="Latest Creation 1"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/2.jpg" alt="Latest Creation 2"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/3.jpg" alt="Latest Creation 3"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/4.jpg" alt="Latest Creation 4"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/5.jpg" alt="Latest Creation 5"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/6.jpg" alt="Latest Creation 6"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/7.jpg" alt="Latest Creation 7"></div>
+                    <div class="slide"><img src="../assets/sliki/BESPOKE-TAILORING/latest-creations/8.jpg" alt="Latest Creation 8"></div>
+                </div>
+            </div>
+
+            <button class="slider-btn next-btn" id="latest-next" aria-label="Next">&#10093;</button>
+        </div>
+
+        <div class="slider-dots" id="latest-dots"></div>
+    </section>
+
+    <!-- Contact Form Sektsiya -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h1 class="contact-brand">SIGNORI</h1>
+            <h2 class="contact-title">CONTACT US</h2>
+
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">Your First Name</label>
+                        <input type="text" id="first-name" name="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Your Last Name</label>
+                        <input type="text" id="last-name" name="last-name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="contact-submit-btn">Request Appointment</button>
+                </div>
+            </form>
         </div>
     </section>
 
