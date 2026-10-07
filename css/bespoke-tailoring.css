@@ -305,13 +305,19 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    filter: brightness(0.85);
 }
 
 .showcase-overlay-content {
     position: absolute;
-    bottom: 60px;
-    right: 80px;
-    text-align: right;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
     color: #ffffff;
     z-index: 2;
 }
@@ -320,8 +326,9 @@ body {
     font-size: 1.8rem;
     font-weight: 300;
     letter-spacing: 1.5px;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
 }
+
 
 .showcase-discover-btn {
     color: #ffffff;
@@ -330,6 +337,7 @@ body {
     font-weight: 300;
     border-bottom: 1px solid #ffffff;
     padding-bottom: 3px;
+    margin-top: 20px;
     transition: opacity 0.3s ease;
 }
 
