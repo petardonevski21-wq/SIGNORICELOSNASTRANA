@@ -144,3 +144,36 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+// --- 5. Stacked sticky scroll: 4 slici (GSAP + ScrollTrigger) ---
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const stackSection = document.getElementById("stackSection");
+    if (!stackSection) return;
+
+    const stackImgs = gsap.utils.toArray("#stackSection .stack-img");
+    if (stackImgs.length < 4) return;
+
+    gsap.set(stackImgs[0], { yPercent: 0 });
+    gsap.set([stackImgs[1], stackImgs[2], stackImgs[3]], { yPercent: 100 });
+
+    const stackTl = gsap.timeline({
+        defaults: { ease: "none", duration: 1 },
+        scrollTrigger: {
+            trigger: stackSection,
+            start: "top top",
+            end: () => "+=" + window.innerHeight * 3,
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+        }
+    });
+
+    stackTl
+        .to(stackImgs[1], { yPercent: 0 })
+        .to(stackImgs[2], { yPercent: 0 })
+        .to(stackImgs[3], { yPercent: 0 });
+});

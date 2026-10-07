@@ -243,3 +243,36 @@ body {
     line-height: 1.6;
     letter-spacing: 0.3px;
 }
+
+
+/* --- Sektsiya: Stacked Sticky Scroll (4 slici) --- */
+.stack-section {
+    position: relative;
+    width: 100%;
+    background-color: #000;
+}
+
+.stack-viewport {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.stack-viewport .stack-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    will-change: transform;
+}
+
+.stack-viewport .stack-img:nth-child(1) { z-index: 1; }
+.stack-viewport .stack-img:nth-child(2) { z-index: 2; }
+.stack-viewport .stack-img:nth-child(3) { z-index: 3; }
+.stack-viewport .stack-img:nth-child(4) { z-index: 4; }
