@@ -156,8 +156,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const stackImgs = gsap.utils.toArray("#stackSection .stack-img");
     if (stackImgs.length < 4) return;
 
-    gsap.set(stackImgs[0], { yPercent: 0 });
-    gsap.set([stackImgs[1], stackImgs[2], stackImgs[3]], { yPercent: 100 });
+    gsap.set(stackImgs[0], { yPercent: 0, force3D: true });
+    gsap.set([stackImgs[1], stackImgs[2], stackImgs[3]], { yPercent: 100, force3D: true });
+
+    // Smooth entrance only for the first image (1-animac.png)
+    gsap.fromTo(stackImgs[0],
+        { scale: 1 },
+        {
+            scale: 1.05,
+            ease: "none",
+            scrollTrigger: {
+                trigger: stackSection,
+                start: "top bottom",
+                end: "top top",
+                scrub: true,
+                invalidateOnRefresh: true
+            }
+        }
+    );
 
     const stackTl = gsap.timeline({
         defaults: { ease: "none", duration: 1 },
@@ -167,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
             end: () => "+=" + window.innerHeight * 3,
             pin: true,
             scrub: 0.6,
-            anticipatePin: 1,
             invalidateOnRefresh: true
         }
     });
@@ -176,4 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .to(stackImgs[1], { yPercent: 0 })
         .to(stackImgs[2], { yPercent: 0 })
         .to(stackImgs[3], { yPercent: 0 });
+
+    // Subtle zoom for images 2-4, layered on top of their slide-in (same scroll segment)
+    stackTl
+        .to(stackImgs[1], { scale: 1.05 }, 0)
+        .to(stackImgs[2], { scale: 1.05 }, 1)
+        .to(stackImgs[3], { scale: 1.05 }, 2);
 });

@@ -915,7 +915,7 @@ footer {
 .iconic-signatures-section {
     position: relative;
     width: 100vw;
-    height: 100vh; /* Celosna visina na ekranot */
+    height: 130vh; /* Celosna visina na ekranot */
     min-height: 100vh;
     left: 50%;
     right: 50%;
