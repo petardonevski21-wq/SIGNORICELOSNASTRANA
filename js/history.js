@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- 7. The First Years, Three Suits & Anniversary reveal ---
+// --- 7. The First Years, Three Suits, Anniversary & Next Chapter reveal ---
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
@@ -290,4 +290,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    gsap.from(".next-chapter-section", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".next-chapter-section",
+            start: "top 80%",
+            once: true
+        }
+    });
 });
