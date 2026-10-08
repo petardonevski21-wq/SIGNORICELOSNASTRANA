@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- 7. The First Years & Expanding The Idea reveal ---
+// --- 7. The First Years, Three Suits & Anniversary reveal ---
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
@@ -277,4 +277,17 @@ document.addEventListener("DOMContentLoaded", () => {
             once: true
         }
     });
+
+    gsap.from(".three-suits-section", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".three-suits-section",
+            start: "top 80%",
+            once: true
+        }
+    });
+
 });
