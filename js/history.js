@@ -249,3 +249,32 @@ document.addEventListener("DOMContentLoaded", () => {
           .to(img, { scale: 1, duration: 2.2, ease: "power2.out" }, "<");
     });
 });
+
+// --- 7. The First Years & Expanding The Idea reveal ---
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+    gsap.from(".first-years-grid", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".first-years-grid",
+            start: "top 80%",
+            once: true
+        }
+    });
+
+    gsap.from(".expanding-idea-box", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".expanding-idea-box",
+            start: "top 80%",
+            once: true
+        }
+    });
+});

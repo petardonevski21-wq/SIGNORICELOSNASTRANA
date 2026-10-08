@@ -14,10 +14,23 @@ document.addEventListener("DOMContentLoaded", () => {
         // ---------------------------------------------
         const ALWAYS_SHOW_BELOW = 80; // px ot gora: menyuto vinagi e vidimo
         const DELTA_THRESHOLD = 8;    // px: ignorira malki dvizheniya
+        const HOVER_PROXIMITY = 40;   // px: nevidima zona nad/pod hero menyuto
+        const FADE_OUT_MS = 400;      // = prodalzhitelnostta na nav-hidden fade-a v CSS
 
         let isDrawerOpen = false;
         let lastScrollY = 0;
         let ticking = false;
+
+        // Systoyanie na hedera: "hero" | "scrolled" | "leaving"
+        let mode = "hero";
+        let leaveTimer = null;
+        let heroNavHeight = 0;
+        let mouseY = null;
+
+        // Hover vo hero: dali e prikazano belo meni (heroShown)
+        let heroShown = false;
+
+        const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
 
         const getHeroThreshold = () => {
             const heroSection = document.querySelector(".hero, section, .hero-section");
@@ -113,12 +126,124 @@ document.addEventListener("DOMContentLoaded", () => {
         if (header) {
             lastScrollY = getScrollY();
 
+            // Izpylnyava promyana na klasove bez nikakva animatsiya (za edin kadar)
+            const withoutTransitions = (fn) => {
+                header.classList.add("nav-instant");
+                fn();
+                void header.offsetHeight; // forsira reflow, za da se "zapechata" novoto systoyanie
+                header.classList.remove("nav-instant");
+            };
+
+            // Hero: menito se dvizhi nagore tochno kolku skrolot -> ostanuva zalepeno za vrvot na stranata
+            const applyHeroShift = () => {
+                const shift = Math.min(getScrollY(), heroNavHeight + 60);
+                header.style.setProperty("--hero-shift", `${-shift}px`);
+            };
+
+            // Izmervane na visochinata na hero menyuto (bez nav-scrolled)
+            const measureHeroNavHeight = () => {
+                const hadScrolled = header.classList.contains("nav-scrolled");
+                if (hadScrolled) header.classList.remove("nav-scrolled");
+                heroNavHeight = header.offsetHeight;
+                if (hadScrolled) header.classList.add("nav-scrolled");
+            };
+
+            // Stabilna nevidima zona vyrhu originalnata visochina na hero menyuto
+            const computeHeroHover = () => {
+                if (mouseY === null || !canHover.matches) return false;
+                const headerTop = header.getBoundingClientRect().top;
+                return mouseY <= headerTop + heroNavHeight + HOVER_PROXIMITY;
+            };
+
+            // Direkten toggle na noviya klas `nav-hovered` za cvetove bez otskachane
+            const setHeroHover = (value) => {
+                if (mode !== "hero") return;
+                if (value === heroShown) return;
+                heroShown = value;
+                header.classList.toggle("nav-hovered", heroShown);
+            };
+
+            // Hero -> byalo menyu (sled kato minem hero sekciyata nadolu)
+            const enterScrolledMode = (currentScrollY) => {
+                clearTimeout(leaveTimer);
+                leaveTimer = null;
+                const wasHero = mode === "hero";
+                mode = "scrolled";
+                heroShown = false;
+
+                withoutTransitions(() => {
+                    header.classList.remove("nav-hero", "nav-hovered");
+                    header.classList.add("nav-scrolled");
+                    // Idvame ot skrolirane nadolu -> skrito, kakto i dosega
+                    if (wasHero && document.readyState === "complete") {
+                        header.classList.add("nav-hidden");
+                    }
+                });
+
+                lastScrollY = currentScrollY;
+            };
+
+            // Byalo menyu -> hero: purvo fade-out s sashtiya nav-hidden efekt
+            const startLeavingHero = () => {
+                mode = "leaving";
+                heroShown = false;
+                header.classList.remove("nav-hovered");
+                hideHeader();
+                clearTimeout(leaveTimer);
+                leaveTimer = setTimeout(finishLeavingHero, FADE_OUT_MS);
+            };
+
+            const finishLeavingHero = () => {
+                leaveTimer = null;
+                if (mode !== "leaving") return;
+                mode = "hero";
+
+                withoutTransitions(() => {
+                    header.classList.add("nav-hero");
+                    header.classList.remove("nav-scrolled", "nav-hovered");
+                    measureHeroNavHeight();
+                    applyHeroShift();
+                    heroShown = computeHeroHover();
+                    header.classList.toggle("nav-hovered", heroShown);
+                });
+
+                showHeader(); // fade-in na hero menyuto s sashtata animatsiya
+                lastScrollY = getScrollY();
+            };
+
+            // Nachalno systoyanie (vklyuchitelno pri refresh na skrolnata poziciya)
+            if (lastScrollY >= getHeroThreshold()) {
+                mode = "scrolled";
+                header.classList.add("nav-scrolled");
+            } else {
+                mode = "hero";
+                header.classList.add("nav-hero");
+                measureHeroNavHeight();
+                applyHeroShift();
+            }
+
             const updateHeader = () => {
                 ticking = false;
                 const currentScrollY = getScrollY();
                 const heroThreshold = getHeroThreshold();
 
-                header.classList.toggle("nav-scrolled", currentScrollY >= heroThreshold);
+                if (currentScrollY >= heroThreshold) {
+                    if (mode !== "scrolled") enterScrolledMode(currentScrollY);
+                } else if (mode === "scrolled") {
+                    startLeavingHero();
+                }
+
+                if (mode === "hero") {
+                    applyHeroShift();
+                    setHeroHover(computeHeroHover());
+                    lastScrollY = currentScrollY;
+                    return;
+                }
+
+                if (mode === "leaving") {
+                    lastScrollY = currentScrollY;
+                    return;
+                }
 
                 if (isDrawerOpen || currentScrollY <= ALWAYS_SHOW_BELOW) {
                     showHeader();
@@ -148,6 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
+                // Vo hero sekciyata pomestuvame menito vednash (bez cekanje na rAF), za da nema zakasnuvanje
+                if (mode === "hero") applyHeroShift();
+
                 if (!ticking) {
                     ticking = true;
                     window.requestAnimationFrame(updateHeader);
@@ -155,6 +283,26 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+
+            // Hover / proximity - samo v hero sekciyata
+            document.addEventListener("mousemove", (event) => {
+                mouseY = event.clientY;
+                if (mode === "hero") setHeroHover(computeHeroHover());
+            }, { passive: true });
+
+            document.documentElement.addEventListener("mouseleave", () => {
+                mouseY = null;
+                if (mode === "hero") setHeroHover(false);
+            });
+
+            window.addEventListener("resize", () => {
+                if (mode !== "hero") return;
+                withoutTransitions(() => {
+                    measureHeroNavHeight();
+                    applyHeroShift();
+                });
+            });
+
             updateHeader();
         }
     };

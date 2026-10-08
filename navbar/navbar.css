@@ -108,6 +108,28 @@ header.nav-hidden:has(:focus-visible)::before {
     transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Hero state: header se dvizhi nagore tochno za iznosot na skrol (--hero-shift se setira od JS),
+   taka che ostanuva "zalepen" za vrvot na stranata i ne ide po korisnikot */
+header.nav-hero {
+    transform: translateY(var(--hero-shift, 0px));
+    transition: background-color 0.4s ease,
+                color 0.4s ease,
+                padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                min-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+header.nav-hero.nav-hidden:has(:focus-visible) {
+    transform: translateY(var(--hero-shift, 0px));
+}
+
+/* Used for one frame by JS when swapping states, so the swap never animates */
+header.nav-instant,
+header.nav-instant *,
+header.nav-instant::before,
+header.nav-instant::after {
+    transition: none !important;
+}
+
 /* =========================
    COMMON BUTTON / LINK STYLE
 ========================= */
@@ -245,35 +267,51 @@ header.nav-hidden:has(:focus-visible)::before {
 }
 
 /* =========================
-   SCROLLED STATE STYLES
+   SCROLLED & HOVERED STATE STYLES
 ========================= */
 
 header.nav-scrolled .logo,
 header.nav-scrolled .menu-text,
 header.nav-scrolled .contact-text,
-header.nav-scrolled .menu-container {
+header.nav-scrolled .menu-container,
+header.nav-hovered .logo,
+header.nav-hovered .menu-text,
+header.nav-hovered .contact-text,
+header.nav-hovered .menu-container {
     color: #000000;
 }
 
-header.nav-scrolled .hamburger span {
+header.nav-scrolled .hamburger span,
+header.nav-hovered .hamburger span {
     background-color: #000000;
 }
 
-header.nav-scrolled .search-btn {
+header.nav-scrolled .search-btn,
+header.nav-hovered .search-btn {
     color: #000000;
 }
 
+/* Goleminata na logoto se namalyava samo pri skrolirane, ne pri hover v hero */
 header.nav-scrolled .logo {
     font-size: 25px;
 }
 
 header.nav-scrolled .hover-target:hover,
-header.nav-scrolled .menu-container:hover .menu-text {
+header.nav-scrolled .menu-container:hover .menu-text,
+header.nav-hovered .hover-target:hover,
+header.nav-hovered .menu-container:hover .menu-text {
     color: #666666;
 }
 
-header.nav-scrolled .menu-container:hover .hamburger span {
+header.nav-scrolled .menu-container:hover .hamburger span,
+header.nav-hovered .menu-container:hover .hamburger span {
     background-color: #666666;
+}
+
+/* Plavno poyavyavane na byalata pozadina chrez opacity pri hover */
+header.nav-hovered::before {
+    opacity: 1;
+    transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================
@@ -383,7 +421,6 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    /* Tuka maxnaxme flex: 1 za da ne se butat Contact us i FAQ nadolu */
 }
 
 .menu-panel {
@@ -457,7 +494,7 @@ header.nav-scrolled .menu-container:hover .hamburger span {
    SLIDING TOGGLE FOOTER
 ========================= */
 .drawer-footer-toggle {
-    margin-top: auto; /* Tova zalepya SAMO tozi kontejner za dunoto */
+    margin-top: auto;
     position: relative;
     display: flex;
     background-color: #e8e8e8;
@@ -471,7 +508,7 @@ header.nav-scrolled .menu-container:hover .hamburger span {
     bottom: 4px;
     left: 4px;
     width: calc(50% - 4px);
-    background-color: #4a4141; /* Tumno luksozno fonche */
+    background-color: #4a4141;
     border-radius: 6px;
     transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 1;
@@ -484,7 +521,7 @@ header.nav-scrolled .menu-container:hover .hamburger span {
 .toggle-btn {
     flex: 1;
     position: relative;
-    z-index: 2; /* nad fona */
+    z-index: 2;
     padding: 14px 0;
     text-align: center;
     text-decoration: none;
