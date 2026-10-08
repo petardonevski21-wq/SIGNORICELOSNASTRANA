@@ -141,7 +141,6 @@ body {
     padding-top: 100vh; /* Parvo se vizhda samo slikata */
     padding-bottom: 25vh; /* Sled kato tekstat mine, sektsiyata priklyuchva i slikata skrola nagore */
 }
-
 /* Tekstat e umestestven polevo */
 .second-section .text-box-left {
     max-width: 520px;
@@ -276,3 +275,4 @@ body {
 .stack-viewport .stack-img:nth-child(2) { z-index: 2; }
 .stack-viewport .stack-img:nth-child(3) { z-index: 3; }
 .stack-viewport .stack-img:nth-child(4) { z-index: 4; }
+.stack-viewport .stack-img:nth-child(1) { object-position: center 20%; }

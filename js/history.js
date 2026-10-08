@@ -198,3 +198,29 @@ document.addEventListener("DOMContentLoaded", () => {
         .to(stackImgs[2], { scale: 1.05 }, 1)
         .to(stackImgs[3], { scale: 1.05 }, 2);
 });
+
+// --- 6. First Creations: luxury reveal for the two pictures (GSAP + ScrollTrigger) ---
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray(".creation-card").forEach((card, i) => {
+        const img = card.querySelector("img");
+        if (!img) return;
+
+        gsap.set(card, { opacity: 0, y: 50, force3D: true });
+        gsap.set(img, { scale: 1.15, force3D: true });
+
+        const tl = gsap.timeline({
+            delay: i * 0.2,
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                once: true
+            }
+        });
+
+        tl.to(card, { opacity: 1, y: 0, duration: 1.4, ease: "power3.out" })
+          .to(img, { scale: 1, duration: 2.2, ease: "power2.out" }, "<");
+    });
+});
