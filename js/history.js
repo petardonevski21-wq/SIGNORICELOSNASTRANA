@@ -153,13 +153,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const stackSection = document.getElementById("stackSection");
     if (!stackSection) return;
 
-    const stackImgs = gsap.utils.toArray("#stackSection .stack-img");
-    if (stackImgs.length < 4) return;
+    const stackItems = gsap.utils.toArray("#stackSection .stack-item");
+    if (stackItems.length < 4) return;
 
-    gsap.set(stackImgs[0], { yPercent: 0, force3D: true });
-    gsap.set([stackImgs[1], stackImgs[2], stackImgs[3]], { yPercent: 100, force3D: true });
+    const stackImgs = stackItems.map(item => item.querySelector(".stack-img"));
+    const stackContents = stackItems.map(item => item.querySelector(".stack-content"));
 
-    // Smooth entrance only for the first image (1-animac.png)
+    gsap.set(stackItems[0], { yPercent: 0, force3D: true });
+    gsap.set([stackItems[1], stackItems[2], stackItems[3]], { yPercent: 100, force3D: true });
+
+    // Smooth entrance for first image and text
     gsap.fromTo(stackImgs[0],
         { scale: 1 },
         {
@@ -170,6 +173,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 start: "top bottom",
                 end: "top top",
                 scrub: true,
+                invalidateOnRefresh: true
+            }
+        }
+    );
+
+    gsap.fromTo(stackContents[0],
+        { opacity: 0, y: 40 },
+        {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: stackSection,
+                start: "top 70%",
+                end: "top top",
+                scrub: 0.5,
                 invalidateOnRefresh: true
             }
         }
@@ -188,15 +207,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     stackTl
-        .to(stackImgs[1], { yPercent: 0 })
-        .to(stackImgs[2], { yPercent: 0 })
-        .to(stackImgs[3], { yPercent: 0 });
+        .to(stackItems[1], { yPercent: 0 }, 0)
+        .to(stackItems[2], { yPercent: 0 }, 1)
+        .to(stackItems[3], { yPercent: 0 }, 2);
 
-    // Subtle zoom for images 2-4, layered on top of their slide-in (same scroll segment)
+    // Subtle zoom for images 2-4
     stackTl
         .to(stackImgs[1], { scale: 1.05 }, 0)
         .to(stackImgs[2], { scale: 1.05 }, 1)
         .to(stackImgs[3], { scale: 1.05 }, 2);
+
+    // Smooth luxury text reveals for slides 2, 3, 4
+    stackTl
+        .fromTo(stackContents[1], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 0.2)
+        .fromTo(stackContents[2], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 1.2)
+        .fromTo(stackContents[3], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 2.2);
 });
 
 // --- 6. First Creations: luxury reveal for the two pictures (GSAP + ScrollTrigger) ---
