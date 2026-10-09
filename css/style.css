@@ -332,7 +332,7 @@ body {
 }
 
 .split-pane.is-flashing::after {
-    animation: heroFlash 0.9s cubic-bezier(0.2, 0.61, 0.36, 1);
+    animation: heroFlash 0.6s cubic-bezier(0.2, 0.61, 0.36, 1);
 }
 
 @keyframes heroFlash {
