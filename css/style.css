@@ -332,11 +332,58 @@ body {
 }
 
 .split-pane.is-flashing::after {
-    animation: heroFlash 0.26s cubic-bezier(0.22, 0.61, 0.36, 1);
+    animation: heroFlash 0.9s cubic-bezier(0.2, 0.61, 0.36, 1);
 }
 
 @keyframes heroFlash {
     0%   { opacity: 0; }
-    25%  { opacity: 0.95; }
+    8%   { opacity: 1; }
+    30%  { opacity: 1; }
     100% { opacity: 0; }
+}
+
+/* No white hover tint over a video that has been activated */
+.split-pane:hover .hero-video.is-activated ~ .bg-overlay {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Paused video on the side that is not hovered gets a little darker */
+.split-screen-section:has(.split-pane:hover) .split-pane:not(:hover) .hero-video.is-activated ~ .bg-overlay {
+    background: rgba(0, 0, 0, 0.685);
+}
+/* Pause / play button, bottom left of each video */
+.hero-video-toggle {
+    position: absolute;
+    left: 32px;
+    bottom: 32px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 4;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, background 0.4s ease, color 0.4s ease;
+}
+
+.hero-video-toggle.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hero-video-toggle:hover {
+    background: #fff;
+    color: #000;
+}
+
+.hero-video-toggle:focus-visible {
+    outline: 1px solid #fff;
+    outline-offset: 4px;
 }
