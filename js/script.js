@@ -26,3 +26,58 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+/* Hero hover video: flash -> video plays; videos freeze on their last frame and resume */
+document.addEventListener("DOMContentLoaded", () => {
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
+    const heroPanes = document.querySelectorAll('.split-pane');
+    let activePane = null;
+
+    // Preload after the page has loaded so the first hover is seamless
+    window.addEventListener('load', () => {
+        heroPanes.forEach(pane => {
+            const video = pane.querySelector('.hero-video');
+            if (video) { video.preload = 'auto'; video.load(); }
+        });
+    });
+
+    const flash = (pane) => {
+        pane.classList.remove('is-flashing');
+        void pane.offsetWidth; // restart the animation without stacking
+        pane.classList.add('is-flashing');
+    };
+
+    heroPanes.forEach(pane => {
+        const video = pane.querySelector('.hero-video');
+        if (!video) return;
+
+        pane.addEventListener('animationend', (e) => {
+            if (e.animationName === 'heroFlash') pane.classList.remove('is-flashing');
+        });
+
+        pane.addEventListener('mouseenter', () => {
+            if (activePane === pane) return; // already active: no restart, no new flash
+            activePane = pane;
+
+            // Only one video plays at a time; the other one freezes on its current frame
+            heroPanes.forEach(other => {
+                const otherVideo = other.querySelector('.hero-video');
+                if (other !== pane && otherVideo) otherVideo.pause();
+            });
+
+            const playing = video.play(); // resumes from the stored currentTime
+            if (!playing || !playing.then) return;
+            playing.then(() => {
+                if (activePane !== pane) { video.pause(); return; } // user already moved on
+                flash(pane);
+                // Reveal the video at the peak of the flash; it stays visible afterwards
+                setTimeout(() => {
+                    if (activePane === pane) video.classList.add('is-activated');
+                }, 60);
+            }).catch(() => {
+                if (activePane === pane) activePane = null;
+            });
+        });
+    });
+});

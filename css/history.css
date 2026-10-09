@@ -346,14 +346,14 @@ body {
 .first-years-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 70px;
+    gap: 130px;
     align-items: center;
     margin-bottom: 180px;
 }
 
 .first-years-image {
-    width: 100%;
-    aspect-ratio: 4 / 3;
+    max-width: 1800px;
+    width: 110%;
     overflow: hidden;
     background-color: #d8d8d8;
 }
@@ -547,7 +547,7 @@ body {
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: #000000;
-    margin-bottom: 25px;
+    margin-bottom: 45px;
 }
 
 .next-chapter-subtitle {

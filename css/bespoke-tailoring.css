@@ -650,10 +650,7 @@ body {
     background-color: #222222;
     transform: translateY(-2px);
 }
-
-@media (max-width: 600px) {
-    .form-row {
-        flex-direction: column;
-        gap: 22px;
-    }
+#card-gallery a {
+    text-decoration: none;
+    color: inherit;
 }
