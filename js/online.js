@@ -109,6 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- KRAJ SECTION SCROLL ANIMATION ---
 document.addEventListener('scroll', () => {
+    // Disabled: with the normal page scrollbar this listener now fires and would
+    // shift the columns a second time. The original kraj scroll (sticky right side) is untouched.
+    return;
+
     const krajSection = document.getElementById('krajSection');
     if (!krajSection) return;
 
@@ -213,12 +217,16 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       gsap.to(track, {
         x: target,
-        duration: 0.9,
-        ease: "power3.inOut",
+        duration: 1.2,
+        ease: "power2.inOut",
         overwrite: true,
+        force3D: true,
         onUpdate: () => {
-          draggable && draggable.update();
           setProgress(gsap.getProperty(track, "x"));
+        },
+        onComplete: () => {
+          draggable && draggable.update();
+          setProgress(target);
         }
       });
     }
@@ -229,6 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   draggable = Draggable.create(track, {
     type: "x",
+    trigger: section,           // touch/drag anywhere in the section, incl. the right side
     bounds: { minX: -maxX, maxX: 0 },
     edgeResistance: 1,          // hard stop: no overscroll past first/last page
     dragResistance: 0,

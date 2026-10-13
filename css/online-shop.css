@@ -6,12 +6,16 @@
 
 html, body {
     width: 100%;
-    height: 100%;
     background-color: #111;
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    overflow-y: auto;
+}
+
+/* clip (not hidden) keeps the body from becoming its own scroll container,
+   so the sticky right picture in the kraj section pins against the normal page scroll */
+body {
+    overflow-x: clip;
 }
 
 .hero-section {
@@ -993,6 +997,20 @@ footer {
   background-color: #ffffff;
   overflow: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  container-type: inline-size;
+  /* whole section (incl. right side) is a drag/swipe area */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.signori-edit-section:active {
+  cursor: grabbing;
+}
+
+.signori-text-content {
+  will-change: transform, opacity;
 }
 
 .signori-pattern-bg {
@@ -1070,10 +1088,18 @@ footer {
 
 .signori-slide {
   position: relative;
-  width: 350px;
-  height: 500px;
+  /* 3 slides + 2 gaps fill exactly from the carousel start to the right edge of the section */
+  width: max(420px, calc(23cqw - 13.34px));
+  aspect-ratio: 7 / 10;
+  flex-shrink: 0;
   overflow: hidden;
   transition: transform 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .signori-slide {
+    width: 340px;
+  }
 }
 
 .signori-slide img {
