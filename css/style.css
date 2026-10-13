@@ -387,3 +387,126 @@ body {
     outline: 1px solid #fff;
     outline-offset: 4px;
 }
+
+/* =========================================================
+   MOBILE & TABLET ONLY (DESKTOP IS 100% UNTOUCHED & LOCKED)
+========================================================= */
+
+@media (max-width: 1024px) {
+    /* 1. Вертикален распоред - страниците една под друга */
+    .split-screen-section {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        position: relative;
+    }
+
+    /* 2. Логото SIGNORI - Најгоре, помало, за да не преклопува ништо */
+    .center-brand {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+        font-size: 1.8rem;
+        letter-spacing: 0.18em;
+        text-align: center;
+        width: 100%;
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        pointer-events: none;
+    }
+
+    /* 3. Панелите за Bespoke и Ready to Wear */
+    .split-pane {
+        width: 100%;
+        height: 80vh;
+        min-height: 480px;
+        padding-bottom: 45px;
+        position: relative;
+    }
+
+    /* 4. Помали и посразмерни текстови */
+    .content h2 {
+        font-size: 1.2rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 4px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .link-btn {
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding-bottom: 2px;
+    }
+
+    /* 5. Видеото се појавува и се пушта на мобилен кога е активирано */
+    .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Пуштање на видеото при допир/клик на целиот панел на мобилен */
+    .split-pane:active .hero-video,
+    .split-pane:focus .hero-video,
+    .split-pane .hero-video.is-activated {
+        opacity: 1;
+    }
+
+    /* Копчето за Pause/Play */
+    .hero-video-toggle {
+        left: 16px;
+        bottom: 16px;
+        width: 38px;
+        height: 38px;
+    }
+
+    /* 6. Респонзивен футер */
+    .luxury-footer {
+        padding: 50px 20px 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 35px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .footer-legal {
+        gap: 20px;
+    }
+}
+
+/* Прилагодување за екстремно мали телефони (под 480px) */
+@media (max-width: 480px) {
+    .center-brand {
+        font-size: 1.5rem;
+        top: 16px;
+        letter-spacing: 0.15em;
+    }
+
+    .split-pane {
+        height: 75vh;
+        min-height: 420px;
+    }
+
+    .content h2 {
+        font-size: 1.1rem;
+    }
+
+    .link-btn {
+        font-size: 0.75rem;
+    }
+}
