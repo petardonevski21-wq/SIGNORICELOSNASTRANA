@@ -10,132 +10,195 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../navbar/navbar.css">
 </head>
 
-<body style="background:#111;">
-
-    <!-- =========================
-         SIGNORI NAVIGATION
-    ========================== -->
-    <header>
-        <!-- LEFT - MENU -->
-        <div class="nav-left">
-            <div
-                class="menu-container"
-                id="menuButton"
-                role="button"
-                tabindex="0"
-                aria-label="Open menu"
-            >
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                </div>
-                <span class="menu-text">
-                    Menu
-                </span>
+<header>
+    <!-- LEFT - MENU -->
+    <div class="nav-left">
+        <div
+            class="menu-container"
+            id="menuButton"
+            role="button"
+            tabindex="0"
+            aria-label="Open menu"
+        >
+            <div class="hamburger">
+                <span></span>
+                <span></span>
             </div>
+            <span class="menu-text">
+                Menu
+            </span>
+        </div>
+    </div>
+
+    <!-- CENTER - LOGO -->
+    <div class="nav-center">
+        <a href="SIGNORI.html" class="logo">
+            SIGNORI
+        </a>
+    </div>
+
+    <!-- RIGHT - CONTACT + SEARCH -->
+    <div class="nav-right">
+        <!-- CONTACT US -->
+        <a href="#contact" class="contact-text hover-target">
+            + Contact us
+        </a>
+
+        <!-- SEARCH -->
+        <button class="search-btn" id="searchButton" aria-label="Search">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<!-- =========================
+     SIDE DRAWER MENU
+========================== -->
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- SIDE DRAWER -->
+<div class="side-drawer" id="sideDrawer">
+    
+    <!-- Drawer Header -->
+    <div class="drawer-header">
+        <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="drawer-icons">
+            <!-- Map Pin -->
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <!-- User -->
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <!-- Bag -->
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+        </div>
+    </div>
+    
+    <hr class="drawer-divider">
+    
+    <!-- Menu Content Wrapper -->
+    <div class="menu-content-wrapper">
+        
+        <!-- Online Shop Panel -->
+        <div class="menu-panel active" id="panel-online">
+            <ul class="drawer-main-links">
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Accessories <span class="arrow">&gt;</span></a></li>
+                <li><a href="#">Men's Wear <span class="arrow">&gt;</span></a></li>
+                <li><a href="#">Outerwear <span class="arrow">&gt;</span></a></li>
+                <li><a href="#">Formalwear <span class="arrow">&gt;</span></a></li>
+            </ul>
         </div>
 
-        <!-- CENTER - LOGO -->
-        <div class="nav-center">
-            <a href="../SIGNORI.html" class="logo">
-                SIGNORI
-            </a>
-        </div>
-
-        <!-- RIGHT - CONTACT + SEARCH -->
-        <div class="nav-right">
-            <!-- CONTACT US -->
-            <a href="#contact" class="contact-text hover-target">
-                + Contact us
-            </a>
-
-            <!-- SEARCH -->
-            <button class="search-btn" id="searchButton" aria-label="Search">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-        </div>
-    </header>
-
-    <!-- =========================
-         NEW DRAWER MENU
-    ========================== -->
-    <!-- DRAWER OVERLAY -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-
-    <!-- SIDE DRAWER -->
-    <div class="side-drawer" id="sideDrawer">
-        
-        <!-- Drawer Header -->
-        <div class="drawer-header">
-            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            <div class="drawer-icons">
-                <!-- Map Pin -->
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <!-- User -->
-                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <!-- Bag -->
-                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
-            </div>
-        </div>
-        
-        <hr class="drawer-divider">
-        
-        <!-- Menu Content Wrapper -->
-        <div class="menu-content-wrapper">
-            
-            <!-- Online Shop Panel -->
-            <div class="menu-panel active" id="panel-online">
-                <ul class="drawer-main-links">
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Accessories <span class="arrow">&gt;</span></a></li>
-                    <li><a href="#">Men's Wear <span class="arrow">&gt;</span></a></li>
-                    <li><a href="#">Outerwear <span class="arrow">&gt;</span></a></li>
-                    <li><a href="#">Formalwear <span class="arrow">&gt;</span></a></li>
-                </ul>
-            </div>
-
-            <!-- Bespoke Tailoring Panel -->
-            <div class="menu-panel" id="panel-bespoke">
-                <ul class="drawer-main-links">
-                    <li><a href="../pages/the-house.html">The House of Signori</a></li>
-                    <li><a href="../pages/history.html">The History</a></li>
-                    <li><a href="../pages/process-bespoke.html">Bespoke Tailoring Process</a></li>
-                    <li><a href="#">Fabrics</a></li>
-                    <li><a href="../pages/gallery.html">Gallery</a></li>
-                    <li><a href="#">Journal</a></li>
-                </ul>
-            </div>
-
-        </div>
-        
-        <hr class="drawer-divider">
-        
-        <!-- Sub Links (Vechte fiksirani otgore pod menyuto, ne slizat na dolu) -->
-        <ul class="drawer-sub-links">
-            <li><a href="#">Contact us</a></li>
-            <li><a href="../pages/faq.html">FAQ</a></li>
-        </ul>
-        
-        <!-- New Sliding Toggle Footer Buttons (Zalepeni ot dolu) -->
-        <div class="drawer-footer-toggle right-active" id="drawer-toggle-container">
-            <div class="toggle-bg"></div>
-            <a href="#" class="toggle-btn" id="btn-bespoke">Bespoke Tailoring</a>
-            <a href="#" class="toggle-btn active" id="btn-online">Online Shop</a>
+        <!-- Bespoke Tailoring Panel -->
+        <div class="menu-panel" id="panel-bespoke">
+            <ul class="drawer-main-links">
+                <li><a href="pages/the-house.html">The House of Signori</a></li>
+                <li><a href="pages/history.html">The History</a></li>
+                <li><a href="pages/process-bespoke.html">Bespoke Tailoring Process</a></li>
+                <li><a href="#">Fabrics</a></li>
+                <li><a href="pages/gallery.html">Gallery</a></li>
+                <li><a href="#">Journal</a></li>
+            </ul>
         </div>
 
     </div>
+    
+    <hr class="drawer-divider">
+    
+    <!-- Sub Links -->
+    <ul class="drawer-sub-links">
+        <li><a href="#">Contact us</a></li>
+        <li><a href="pages/faq.html">FAQ</a></li>
+    </ul>
+    
+    <!-- Sliding Toggle Footer Buttons -->
+    <div class="drawer-footer-toggle right-active" id="drawer-toggle-container">
+        <div class="toggle-bg"></div>
+        <a href="#" class="toggle-btn" id="btn-bespoke">Bespoke Tailoring</a>
+        <a href="#" class="toggle-btn active" id="btn-online">Online Shop</a>
+    </div>
 
+</div>
+
+<!-- =========================
+     FULLSCREEN LUXURY SEARCH OVERLAY (LOUIS VUITTON STYLE)
+========================== -->
+<div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-label="Search Signori">
+    
+    <!-- Header Vo Search Modal-ot so centrirano SIGNORI -->
+    <div class="search-top-bar">
+        <span class="search-brand-logo">SIGNORI</span>
+        <button class="search-close" id="searchClose" aria-label="Close search">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Sredisen del so input pole -->
+    <div class="search-content-inner">
+        <div class="search-input-wrapper">
+            <input type="text" id="searchInputField" placeholder="Search SIGNORI Bespoke & Collections..." autocomplete="off" spellcheck="false">
+            <button class="search-clear" id="searchClear" aria-label="Clear search">Clear</button>
+        </div>
+
+        <!-- Trending & Categorized Quick Links -->
+        <div class="search-editorial-section">
+            <div class="suggestions-group">
+                <span class="suggestions-label">Trending Searches</span>
+                <div class="suggestion-tags">
+                    <a href="#" class="suggestion-tag">Bespoke Tuxedo</a>
+                    <a href="#" class="suggestion-tag">Cashmere Overcoat</a>
+                    <a href="#" class="suggestion-tag">Silk Ties</a>
+                    <a href="#" class="suggestion-tag">Double Breasted Suit</a>
+                    <a href="#" class="suggestion-tag">Handcrafted Loafers</a>
+                </div>
+            </div>
+
+            <div class="search-categories-grid">
+                <div class="search-cat-col">
+                    <span class="cat-col-title">Bespoke Tailoring</span>
+                    <ul>
+                        <li><a href="pages/process-bespoke.html">The Bespoke Process</a></li>
+                        <li><a href="#">Made-to-Measure Suits</a></li>
+                        <li><a href="#">Loro Piana Fabrics</a></li>
+                        <li><a href="#">Custom Shirts</a></li>
+                    </ul>
+                </div>
+                <div class="search-cat-col">
+                    <span class="cat-col-title">Ready To Wear</span>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Formal Suit Collection</a></li>
+                        <li><a href="#">Blazers & Jackets</a></li>
+                        <li><a href="#">Luxury Knitwear</a></li>
+                    </ul>
+                </div>
+                <div class="search-cat-col">
+                    <span class="cat-col-title">Accessories</span>
+                    <ul>
+                        <li><a href="#">Silk Pocket Squares</a></li>
+                        <li><a href="#">Leather Belts</a></li>
+                        <li><a href="#">Cufflinks</a></li>
+                        <li><a href="#">Footwear</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

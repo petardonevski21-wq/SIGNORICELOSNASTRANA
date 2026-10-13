@@ -12,8 +12,6 @@ html, body {
     overflow-x: hidden;
 }
 
-/* clip (not hidden) keeps the body from becoming its own scroll container,
-   so the sticky right picture in the kraj section pins against the normal page scroll */
 body {
     overflow-x: clip;
 }
@@ -26,8 +24,10 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     padding: 30px 55px; 
+    overflow: hidden;
 }
 
+/* Slikata stoi 1 sekunda, pa zapocnuva smooth odzumiranje */
 .bg-video {
     position: absolute;
     top: 0;
@@ -37,6 +37,20 @@ body {
     object-fit: cover;
     z-index: 1;
     filter: brightness(0.85); 
+    transform: scale(1.06);
+    animation: cinematicHeroZoom 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes cinematicHeroZoom {
+    0% {
+        transform: scale(1.06);
+    }
+    16.66% { /* Prvata 1 sekunda odvkupno 6 sekundi stoi mirno */
+        transform: scale(1.06);
+    }
+    100% {
+        transform: scale(1.00);
+    }
 }
 
 footer {
@@ -59,7 +73,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 30px;
 }
 
 .collection-title {
@@ -72,42 +86,36 @@ footer {
     text-align: center;
 }
 
-.discover-btn {
+/* Prvoto kopce (Discover) so blur efekt i ramka */
+.hero-section .discover-btn {
     display: inline-block;
     position: relative;
     z-index: 20;
-    font-family: Arial, sans-serif;
+    font-family: 'Jost', Arial, sans-serif;
     font-size: 13px;
     line-height: 1.2;
     font-weight: 400;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     color: #ffffff;
     -webkit-text-fill-color: #ffffff;
     text-decoration: none;
-    padding: 0 0 4px 0;
-    opacity: 1;
-    visibility: visible;
+    padding: 12px 35px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
 }
 
-.discover-btn::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ffffff;
-    transform-origin: right; 
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease;
+.hero-section .discover-btn::after {
+    display: none;
 }
 
-.discover-btn:hover {
-    color: #8c8c8c;
-}
-
-.discover-btn:hover::after {
-    transform: scaleX(0); 
-    background-color: #8c8c8c;
+.hero-section .discover-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.5) 100%);
+    border-color: #ffffff;
+    transform: translateY(-2px);
 }
 
 .footer-right {
@@ -139,7 +147,7 @@ footer {
 /* ACCESSORIES */
 .accessories-section {
     background-color: #ffffff;
-    padding: 200px 55px 60px 55px; /* Poveke bel prostor na vrhot pred accessories */
+    padding: 200px 55px 60px 55px;
     font-family: 'Jost', sans-serif;
     display: flex;
     flex-direction: column;
@@ -168,7 +176,7 @@ footer {
 .accessories-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr; 
-    grid-template-rows: 280px 280px auto; /* Zgolemena visina na redovite */
+    grid-template-rows: 280px 280px auto;
     gap: 15px; 
     width: 100%;
     max-width: 1200px;
@@ -241,7 +249,7 @@ footer {
 .item-shoes {
     grid-column: 1 / 4; 
     grid-row: 3 / 4;
-    height: 200px; /* Zgolemena visina za cevlite */
+    height: 200px;
 }
 
 /* NEW ARRIVALS */
@@ -311,19 +319,16 @@ footer {
     will-change: transform, opacity;
 }
 
-/* Osnovna slika v normalno sateynil */
 .arrival-img-wrapper .main-img {
     opacity: 1;
     transform: scale(1);
 }
 
-/* Vtora slika (skrita po podrazbirane) */
 .arrival-img-wrapper .hover-img {
     opacity: 0;
     transform: scale(1.03);
 }
 
-/* Hover efekti */
 .arrival-item:hover .main-img {
     opacity: 0;
     transform: scale(1.03);
@@ -774,7 +779,6 @@ footer {
     object-fit: cover;
 }
 
-/* Progress linija gore */
 .kraj-progress-container {
     position: absolute;
     top: 25px;
@@ -804,7 +808,6 @@ footer {
     background: #ffffff;
 }
 
-/* Luksuzni strelki levo/desno */
 .kraj-arrow {
     position: absolute;
     top: 50%;
@@ -919,13 +922,13 @@ footer {
 .iconic-signatures-section {
     position: relative;
     width: 100vw;
-    height: 130vh; /* Celosna visina na ekranot */
+    height: 130vh;
     min-height: 100vh;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-    background-image: url('../assets/sliki/ONLINE/edits/cevli.png'); /* Pateka do tvojata slika */
+    background-image: url('../assets/sliki/ONLINE/edits/cevli.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -933,7 +936,6 @@ footer {
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 80px;
-
     font-family: 'Jost', sans-serif;
     overflow: hidden;
 }
@@ -998,7 +1000,6 @@ footer {
   overflow: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   container-type: inline-size;
-  /* whole section (incl. right side) is a drag/swipe area */
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
@@ -1088,7 +1089,6 @@ footer {
 
 .signori-slide {
   position: relative;
-  /* 3 slides + 2 gaps fill exactly from the carousel start to the right edge of the section */
   width: max(420px, calc(23cqw - 13.34px));
   aspect-ratio: 7 / 10;
   flex-shrink: 0;
@@ -1168,4 +1168,549 @@ footer {
 .nav-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYER — TABLET & MOBILE ONLY
+   --------------------------------------------------------------------------
+   Everything below sits inside a max-width (or touch-only) media query, so
+   nothing here can apply above 1024px. Desktop rules above are untouched.
+
+   Breakpoints
+     <= 1024px   tablet + mobile ("compact")
+     <= 767px    phones
+     <= 559px    narrow phones (2-up product grids)
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   COMPACT (<= 1024px): shared tablet + phone adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /* ---- Hero ---- */
+    .hero-section {
+        width: 100%;                                  /* 100vw can exceed the visible width on mobile */
+        height: 93vh;                                 /* fallback */
+        height: 93svh;                                /* stable against the dynamic address bar */
+        padding: 30px clamp(20px, 5vw, 40px);
+    }
+
+    .bg-video {
+        object-position: var(--hero-focus, 50% 50%);  /* single knob for hero focal point */
+    }
+
+    .collection-title {
+        /* Century Gothic is not installed on iOS/Android, so phones would each fall back
+           to a different system font. Jost (already loaded) is the closest geometric match. */
+        font-family: 'Century Gothic', 'Jost', 'Montserrat', sans-serif;
+    }
+
+    .hero-section .discover-btn {
+        padding: 14px 36px;
+        min-height: 44px;
+    }
+
+    /* ---- Text links: enlarge the tap area without changing how they look ---- */
+    .discover-link,
+    .discover-link-white,
+    .iconic-discover-link {
+        position: relative;
+    }
+
+    .discover-link::after,
+    .discover-link-white::after,
+    .iconic-discover-link::after {
+        content: '';
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        bottom: -10px;
+        left: -14px;
+    }
+
+    /* ---- Accessories ---- */
+    .accessories-section {
+        padding: clamp(72px, 14vw, 140px) clamp(16px, 4vw, 32px) 40px;
+    }
+
+    .accessories-grid {
+        gap: 12px;
+    }
+
+    /* Bow Ties is the only tile without the legibility overlay in the markup */
+    .item-bow-ties::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+        z-index: 2;
+    }
+
+    /* ---- New arrivals ---- */
+    .new-arrivals-section {
+        padding: 0 clamp(16px, 4vw, 32px) 64px;
+    }
+
+    .new-arrivals-header {
+        margin-bottom: 40px;
+    }
+
+    .new-arrivals-grid {
+        margin-bottom: 44px;
+    }
+
+    /* ---- Signori Sets slider ---- */
+    .sets-slider-section {
+        padding-bottom: 56px;
+    }
+
+    .sets-slider-container {
+        height: 520px;                                /* fallback */
+        height: clamp(520px, 100vw, 82svh);
+        touch-action: pan-y;
+    }
+
+    .slider-progress-container {
+        width: min(400px, calc(100% - 64px));
+    }
+
+    .slider-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* ---- Here Today: stack image over copy ---- */
+    .here-today-section {
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .ht-left {
+        flex: none;
+        width: 100%;
+    }
+
+    .ht-main-img {
+        height: 480px;                                /* fallback */
+        height: clamp(480px, 90vw, 78svh);
+    }
+
+    .ht-right {
+        flex: none;
+        padding: 72px 40px 80px;
+    }
+
+    .ht-content {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .ht-title {
+        font-size: clamp(1.375rem, 5.6vw, 1.75rem);
+        margin-bottom: 36px;
+    }
+
+    .ht-products {
+        width: 100%;
+        justify-content: center;
+        gap: clamp(14px, 4vw, 35px);
+    }
+
+    .ht-product {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 240px;
+        text-align: center;
+    }
+
+    .ht-product img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 2 / 3;                          /* same 200x300 proportion as desktop */
+    }
+
+    /* ---- Product section headings ---- */
+    .bottom-products-section {
+        padding: 56px 15px 72px;
+    }
+
+    .detail-endure-section {
+        padding: 56px 15px 72px;
+    }
+
+    .detail-header {
+        margin-bottom: 40px;
+    }
+
+    .detail-header h2 {
+        font-size: clamp(1.25rem, 5vw, 1.375rem);
+        padding: 0 8px;
+        text-wrap: balance;
+    }
+
+    /* ---- Kraj: slider becomes a full-width band between the product grids ---- */
+    .kraj-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .kraj-right {
+        order: -1;
+        flex: none;
+        position: relative;                           /* sticky only makes sense side-by-side */
+        width: 100%;
+        height: 440px;                                /* fallback */
+        height: clamp(440px, 100vw, 80svh);
+    }
+
+    .kraj-slider-container {
+        touch-action: pan-y;
+    }
+
+    .kraj-left {
+        flex: none;
+        width: 100%;
+        padding: 48px clamp(16px, 4vw, 40px) 56px;
+    }
+
+    .kraj-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px clamp(10px, 2vw, 20px);
+    }
+
+    .kraj-img-wrapper {
+        height: auto;
+        aspect-ratio: 5 / 8;                          /* close to the desktop 520px-tall tile */
+    }
+
+    /* ---- Iconic signatures ---- */
+    .iconic-signatures-section {
+        width: 100%;
+        left: 0;
+        margin-left: 0;
+        margin-right: 0;
+        min-height: 0;
+        height: 520px;                                /* fallback */
+        height: clamp(520px, 150vw, 100svh);
+        padding-bottom: clamp(40px, 10vw, 80px);
+    }
+
+    .iconic-content {
+        padding: 0 20px;
+    }
+
+    /* ---- The Signori Edit: title above, cards below ---- */
+    .signori-edit-section {
+        padding: clamp(72px, 12vw, 110px) 0 clamp(56px, 9vw, 80px);
+    }
+
+    .signori-container {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .signori-text-content {
+        flex: none;
+        padding: 0 clamp(20px, 5vw, 40px) 36px;
+        max-width: 640px;
+    }
+
+    .signori-text-content h2 {
+        font-size: clamp(1.75rem, 7.5vw, 2.5rem);
+        text-wrap: balance;
+    }
+
+    .signori-text-content p {
+        font-size: clamp(1rem, 2.6vw, 1.1rem);
+    }
+
+    .signori-slider-wrapper {
+        flex: none;
+        width: 100%;
+    }
+
+    .signori-slider-track {
+        gap: clamp(12px, 3vw, 20px);
+        padding-left: clamp(20px, 5vw, 40px);
+        padding-right: clamp(20px, 5vw, 40px);        /* lets the last card clear the edge */
+    }
+
+    .signori-slide {
+        width: 340px;                                 /* fallback */
+        width: clamp(300px, 44cqw, 400px);
+    }
+
+    .signori-controls {
+        padding-right: clamp(20px, 5vw, 40px);
+        margin-top: 28px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   PHONES (<= 767px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+    /* ---- Hero ---- */
+    .hero-section {
+        padding: 24px 20px 36px;
+    }
+
+    .hero-section footer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-center {
+        gap: 24px;
+    }
+
+    .collection-title {
+        font-size: clamp(1.25rem, 6.2vw, 1.875rem);
+    }
+
+    /* ---- Accessories: 2-column mosaic that keeps the tall Blazers tile ---- */
+    .accessories-grid {
+        --acc-row: clamp(150px, 44vw, 280px);
+        --acc-wide: clamp(120px, 38vw, 200px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, var(--acc-row)) var(--acc-wide);
+        gap: 10px;
+    }
+
+    .item-cufflinks { grid-column: 1 / 2; grid-row: 1 / 2; }
+    .item-blazers   { grid-column: 2 / 3; grid-row: 1 / 3; }
+    .item-wallets   { grid-column: 1 / 2; grid-row: 2 / 3; }
+    .item-ties      { grid-column: 1 / 2; grid-row: 3 / 4; }
+    .item-bow-ties  { grid-column: 2 / 3; grid-row: 3 / 4; }
+    .item-shoes     { grid-column: 1 / 3; grid-row: 4 / 5; height: auto; }
+
+    .grid-item {
+        padding-bottom: 16px;
+    }
+
+    .item-title {
+        padding: 0 10px;
+        text-align: center;
+        font-size: clamp(0.875rem, 3.9vw, 1rem);
+    }
+
+    /* ---- New arrivals ---- */
+    .new-arrivals-section {
+        padding: 0 16px 56px;
+    }
+
+    .new-arrivals-desc {
+        font-size: 14px;
+    }
+
+    .new-arrivals-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    /* ---- Signori Sets slider ---- */
+    .sets-slider-container {
+        height: 460px;                                /* fallback */
+        height: clamp(460px, 125vw, 82svh);
+    }
+
+    .slider-text-overlay h2 {
+        font-size: clamp(1.25rem, 6.2vw, 1.75rem);
+    }
+
+    .slider-controls {
+        bottom: 52px;
+        gap: 8px;
+    }
+
+    .slider-progress-container {
+        bottom: 28px;
+        gap: 10px;
+    }
+
+    /* ---- Here Today ---- */
+    .ht-main-img {
+        height: 400px;                                /* fallback */
+        height: clamp(400px, 120vw, 78svh);
+    }
+
+    .ht-right {
+        padding: 56px 20px 64px;
+    }
+
+    .ht-subtitle {
+        font-size: 11px;
+    }
+
+    .ht-title {
+        margin-bottom: 32px;
+    }
+
+    /* ---- Bottom products: 5 items wrap and the last row stays centred ---- */
+    .bottom-products-grid {
+        --cols: 3;
+        --g: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px var(--g);
+    }
+
+    .bottom-product-item {
+        flex: 0 0 calc((100% - (var(--cols) - 1) * var(--g)) / var(--cols));
+        min-width: 0;
+    }
+
+    .bottom-img-wrapper {
+        margin-bottom: 14px;
+    }
+
+    .bottom-product-name,
+    .bottom-product-price {
+        font-size: 12px;
+    }
+
+    /* ---- Detail: merge the two 5-up rows into one flowing set of 10 ---- */
+    .detail-endure-section {
+        --cols: 4;
+        --g: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        column-gap: var(--g);
+    }
+
+    .detail-endure-section .detail-header {
+        flex: 0 0 100%;
+    }
+
+    .detail-grid {
+        display: contents;
+    }
+
+    .detail-product {
+        flex: 0 0 calc((100% - (var(--cols) - 1) * var(--g)) / var(--cols));
+        min-width: 0;
+        margin-bottom: 24px;
+    }
+
+    .detail-img-wrapper {
+        margin-bottom: 14px;
+    }
+
+    .detail-name,
+    .detail-price {
+        font-size: 12px;
+    }
+
+    /* ---- Kraj ---- */
+    .kraj-right {
+        height: 420px;                                /* fallback */
+        height: clamp(420px, 125vw, 82svh);
+    }
+
+    .kraj-progress-container {
+        top: 16px;
+        left: 16px;
+        right: 16px;
+    }
+
+    .kraj-prev { left: 12px; }
+    .kraj-next { right: 12px; }
+
+    .kraj-left {
+        padding: 40px 16px 48px;
+    }
+
+    .kraj-name,
+    .kraj-price {
+        font-size: 12px;
+    }
+
+    /* ---- Iconic ---- */
+    .iconic-title {
+        font-size: clamp(1.375rem, 6.5vw, 1.75rem);
+    }
+
+    /* ---- The Signori Edit ---- */
+    .signori-slide {
+        width: 240px;                                 /* fallback */
+        width: clamp(240px, 76cqw, 340px);
+    }
+
+    .slide-caption {
+        bottom: 16px;
+        left: 16px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   NARROW PHONES (<= 559px): 2-up product grids
+   -------------------------------------------------------------------------- */
+@media (max-width: 559px) {
+
+    .bottom-products-grid,
+    .detail-endure-section {
+        --cols: 2;
+    }
+
+    .kraj-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 10px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   TOUCH-ONLY: stop hover transforms from sticking after a tap
+   (primary-pointer touch devices only; mouse/trackpad desktops never match)
+   -------------------------------------------------------------------------- */
+@media (hover: none) {
+
+    .hero-section .discover-btn:hover {
+        transform: none;
+    }
+
+    .kraj-arrow:hover {
+        transform: translateY(-50%);
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION (tablet/mobile layouts): keep the content, drop the movement
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) and (prefers-reduced-motion: reduce) {
+
+    .bg-video {
+        animation: none;
+        transform: none;
+    }
+
+    .kraj-slide.active {
+        animation: none;
+    }
+
+    .ht-content {
+        transform: none;
+        transition: opacity 0.6s ease 0.2s;
+    }
 }

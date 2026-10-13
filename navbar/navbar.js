@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const siteMenu = document.getElementById("site-menu");
 
-    // Osnovna funktsiya za initsializirane na menyuto i animatziite
     const initNavbar = () => {
         const header = document.querySelector("header");
         const menuButton = document.getElementById("menuButton");
@@ -9,25 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const drawerOverlay = document.getElementById("drawerOverlay");
         const drawerClose = document.getElementById("drawerClose");
 
-        // ---------------------------------------------
-        // Nastrojki za skrolirane
-        // ---------------------------------------------
-        const ALWAYS_SHOW_BELOW = 80; // px ot gora: menyuto vinagi e vidimo
-        const DELTA_THRESHOLD = 8;    // px: ignorira malki dvizheniya
-        const HOVER_PROXIMITY = 40;   // px: nevidima zona nad/pod hero menyuto
-        const FADE_OUT_MS = 400;      // = prodalzhitelnostta na nav-hidden fade-a v CSS
+        const ALWAYS_SHOW_BELOW = 80;
+        const DELTA_THRESHOLD = 8;
+        const HOVER_PROXIMITY = 40;
+        const FADE_OUT_MS = 400;
 
         let isDrawerOpen = false;
         let lastScrollY = 0;
         let ticking = false;
 
-        // Systoyanie na hedera: "hero" | "scrolled" | "leaving"
         let mode = "hero";
         let leaveTimer = null;
         let heroNavHeight = 0;
         let mouseY = null;
-
-        // Hover vo hero: dali e prikazano belo meni (heroShown)
         let heroShown = false;
 
         const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -47,16 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const showHeader = () => header && header.classList.remove("nav-hidden");
         const hideHeader = () => header && header.classList.add("nav-hidden");
 
-        // ---------------------------------------------
-        // Side drawer (Otvariane / Zatvariane)
-        // ---------------------------------------------
         const openDrawer = () => {
             if (isDrawerOpen) return;
             isDrawerOpen = true;
             if (sideDrawer) sideDrawer.classList.add("open");
             if (drawerOverlay) drawerOverlay.classList.add("active");
             if (menuButton) menuButton.setAttribute("aria-expanded", "true");
-            document.body.style.overflow = "hidden"; // Spirame skrola na stranitsata
+            document.body.style.overflow = "hidden";
             if (header) showHeader();
         };
 
@@ -66,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sideDrawer) sideDrawer.classList.remove("open");
             if (drawerOverlay) drawerOverlay.classList.remove("active");
             if (menuButton) menuButton.setAttribute("aria-expanded", "false");
-            document.body.style.overflow = ""; // Vrashtame skrola
+            document.body.style.overflow = "";
             lastScrollY = getScrollY();
         };
 
@@ -89,9 +79,50 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // ---------------------------------------------
+        // Fullscreen White Search Overlay Handling
+        const searchButton = document.getElementById("searchButton");
+        const searchOverlay = document.getElementById("searchOverlay");
+        const searchClose = document.getElementById("searchClose");
+        const searchInputField = document.getElementById("searchInputField");
+        const searchClear = document.getElementById("searchClear");
+
+        const openSearch = () => {
+            if (!searchOverlay) return;
+            searchOverlay.classList.add("active");
+            searchOverlay.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            if (searchInputField) {
+                setTimeout(() => searchInputField.focus(), 300);
+            }
+        };
+
+        const closeSearch = () => {
+            if (!searchOverlay) return;
+            searchOverlay.classList.remove("active");
+            searchOverlay.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+            if (searchInputField) searchInputField.value = "";
+            lastScrollY = getScrollY();
+        };
+
+        if (searchButton && searchOverlay) {
+            searchButton.addEventListener("click", openSearch);
+
+            if (searchClose) searchClose.addEventListener("click", closeSearch);
+            
+            if (searchClear && searchInputField) {
+                searchClear.addEventListener("click", () => {
+                    searchInputField.value = "";
+                    searchInputField.focus();
+                });
+            }
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") closeSearch();
+            });
+        }
+
         // Sliding Toggle (Bespoke vs Online Shop)
-        // ---------------------------------------------
         const btnBespoke = document.getElementById("btn-bespoke");
         const btnOnline = document.getElementById("btn-online");
         const panelBespoke = document.getElementById("panel-bespoke");
@@ -120,27 +151,22 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // ---------------------------------------------
-        // Skrolirane na hedera (Hide on scroll down)
-        // ---------------------------------------------
+        // Header Scroll behavior
         if (header) {
             lastScrollY = getScrollY();
 
-            // Izpylnyava promyana na klasove bez nikakva animatsiya (za edin kadar)
             const withoutTransitions = (fn) => {
                 header.classList.add("nav-instant");
                 fn();
-                void header.offsetHeight; // forsira reflow, za da se "zapechata" novoto systoyanie
+                void header.offsetHeight;
                 header.classList.remove("nav-instant");
             };
 
-            // Hero: menito se dvizhi nagore tochno kolku skrolot -> ostanuva zalepeno za vrvot na stranata
             const applyHeroShift = () => {
                 const shift = Math.min(getScrollY(), heroNavHeight + 60);
                 header.style.setProperty("--hero-shift", `${-shift}px`);
             };
 
-            // Izmervane na visochinata na hero menyuto (bez nav-scrolled)
             const measureHeroNavHeight = () => {
                 const hadScrolled = header.classList.contains("nav-scrolled");
                 if (hadScrolled) header.classList.remove("nav-scrolled");
@@ -148,14 +174,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (hadScrolled) header.classList.add("nav-scrolled");
             };
 
-            // Stabilna nevidima zona vyrhu originalnata visochina na hero menyuto
             const computeHeroHover = () => {
                 if (mouseY === null || !canHover.matches) return false;
                 const headerTop = header.getBoundingClientRect().top;
                 return mouseY <= headerTop + heroNavHeight + HOVER_PROXIMITY;
             };
 
-            // Direkten toggle na noviya klas `nav-hovered` za cvetove bez otskachane
             const setHeroHover = (value) => {
                 if (mode !== "hero") return;
                 if (value === heroShown) return;
@@ -163,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 header.classList.toggle("nav-hovered", heroShown);
             };
 
-            // Hero -> byalo menyu (sled kato minem hero sekciyata nadolu)
             const enterScrolledMode = (currentScrollY) => {
                 clearTimeout(leaveTimer);
                 leaveTimer = null;
@@ -174,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 withoutTransitions(() => {
                     header.classList.remove("nav-hero", "nav-hovered");
                     header.classList.add("nav-scrolled");
-                    // Idvame ot skrolirane nadolu -> skrito, kakto i dosega
                     if (wasHero && document.readyState === "complete") {
                         header.classList.add("nav-hidden");
                     }
@@ -183,7 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 lastScrollY = currentScrollY;
             };
 
-            // Byalo menyu -> hero: purvo fade-out s sashtiya nav-hidden efekt
             const startLeavingHero = () => {
                 mode = "leaving";
                 heroShown = false;
@@ -207,11 +228,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     header.classList.toggle("nav-hovered", heroShown);
                 });
 
-                showHeader(); // fade-in na hero menyuto s sashtata animatsiya
+                showHeader();
                 lastScrollY = getScrollY();
             };
 
-            // Nachalno systoyanie (vklyuchitelno pri refresh na skrolnata poziciya)
             if (lastScrollY >= getHeroThreshold()) {
                 mode = "scrolled";
                 header.classList.add("nav-scrolled");
@@ -273,7 +293,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // Vo hero sekciyata pomestuvame menito vednash (bez cekanje na rAF), za da nema zakasnuvanje
                 if (mode === "hero") applyHeroShift();
 
                 if (!ticking) {
@@ -284,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.addEventListener("scroll", onScroll, { passive: true, capture: true });
 
-            // Hover / proximity - samo v hero sekciyata
             document.addEventListener("mousemove", (event) => {
                 mouseY = event.clientY;
                 if (mode === "hero") setHeroHover(computeHeroHover());
@@ -307,26 +325,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Ako na stranitsata ima <div id="site-menu"></div>, go zarezhdame chrez fetch
     if (siteMenu) {
-        fetch("../navbar/navbar.html")
-            .then(response => {
-                if (!response.ok) {
-                    // Fallback ako pъtyat e otnositelno razlichen
-                    return fetch("navbar.html");
-                }
-                return response;
-            })
+        const isInPages = window.location.pathname.includes('/pages/');
+        const fetchPath = isInPages ? "../navbar/navbar.html" : "navbar/navbar.html";
+
+        fetch(fetchPath)
             .then(response => response.text())
             .then(data => {
                 siteMenu.innerHTML = data;
+
+                if (isInPages) {
+                    siteMenu.querySelectorAll('a').forEach(link => {
+                        let href = link.getAttribute('href');
+                        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+                            if (href === 'SIGNORI.html') {
+                                link.setAttribute('href', '../SIGNORI.html');
+                            } else if (href.startsWith('pages/')) {
+                                link.setAttribute('href', href.replace('pages/', ''));
+                            }
+                        }
+                    });
+                }
+
                 initNavbar();
             })
             .catch(error => {
                 console.error("Greshka pri zarezhdane na menyuto:", error);
             });
     } else {
-        // Ako HTML koda e vlozhen direktno v stranitsata
         initNavbar();
     }
 });
