@@ -1,0 +1,164 @@
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Reserved space for top menu / header */
+.header-placeholder {
+    width: 100%;
+    height: 80px; /* Standard navigation height */
+    background-color: #000000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+/* Main Section */
+.location-section {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 80px); /* Height deducting top header space */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Left Side: Map */
+.map-container {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    background-color: #000000;
+}
+
+/* Google Map grayscale / luxury dark theme filter */
+.google-map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(100%) invert(92%) contrast(120%);
+}
+
+.map-overlay-notice {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 0px;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    z-index: 10;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+}
+
+/* Right Side: Info Panel (Pure Black & White Luxury) */
+.info-container {
+    width: 480px;
+    background: #000000;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.info-header h2 {
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.info-header .subtitle {
+    font-size: 13px;
+    color: #888888;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.location-details {
+    margin: 40px 0;
+}
+
+.detail-item {
+    margin-bottom: 32px;
+}
+
+.detail-item .label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.detail-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ffffff;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.info-actions {
+    margin-top: 20px;
+}
+
+.luxury-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    text-align: center;
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.luxury-btn:hover {
+    background: transparent;
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .location-section {
+        flex-direction: column;
+        height: auto;
+    }
+    .info-container {
+        width: 100%;
+        padding: 40px 30px;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .map-container {
+        height: 50vh;
+    }
+}

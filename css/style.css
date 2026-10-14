@@ -387,7 +387,16 @@ body {
     outline: 1px solid #fff;
     outline-offset: 4px;
 }
-
+.right-pane .bg-image {
+    position: absolute;
+    top: -10%;
+    left: -15%;
+    width: 130%;
+    height: 150%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 /* =========================================================
    MOBILE & TABLET ONLY (DESKTOP IS 100% UNTOUCHED & LOCKED)
 ========================================================= */

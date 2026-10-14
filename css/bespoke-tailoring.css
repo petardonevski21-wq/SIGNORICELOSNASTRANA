@@ -654,3 +654,462 @@ body {
     text-decoration: none;
     color: inherit;
 }
+
+/* =====================================================================
+   MOBILE ONLY (<= 767px)
+   Everything below is scoped to this media query. At 768px and wider
+   none of these rules apply, so desktop and tablet are untouched.
+   ===================================================================== */
+@media (max-width: 767px) {
+
+    :root {
+        --m-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --m-nav-room: 72px;                 /* room kept clear for the fixed navbar */
+        --m-stack-peek: 10px;               /* visible strip of each covered card */
+        --m-stack-top: calc(env(safe-area-inset-top, 0px) + var(--m-nav-room));
+        --m-card-h: calc(100vh - var(--m-stack-top) - 28px);
+        --m-gap: 80px;
+    }
+
+    @supports (height: 100svh) {
+        :root {
+            --m-stack-top: max(calc(env(safe-area-inset-top, 0px) + var(--m-nav-room)), 10svh);
+            --m-card-h: calc(100svh - var(--m-stack-top) - 28px);
+            --m-gap: 10svh;
+        }
+    }
+
+    body {
+        overflow-x: clip;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    a, button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+        outline: 1px solid #111;
+        outline-offset: 4px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+        height: 100vh;
+        height: 100svh;
+        min-height: 520px;
+    }
+
+    .hero-image {
+        object-position: center 35%;
+        animation: mHeroIn 1.6s var(--m-ease) both;
+    }
+
+    @keyframes mHeroIn {
+        from { opacity: 0; transform: scale(1.05); }
+        to   { opacity: 0.85; transform: scale(1); }
+    }
+
+    /* ---------- Gallery -> Fabrics -> Bespoke : sticky stacking cards ---------- */
+    .cards-section {
+        display: block;
+        padding: 64px 16px 88px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+        max-width: none;
+        gap: 80px;
+        gap: var(--m-gap);
+        padding-bottom: 80px;
+        padding-bottom: var(--m-gap);   /* keeps the finished stack pinned a little longer before release */
+    }
+
+    .cards-container .card,
+    .cards-container .card.active {
+        --p: 0;                                 /* scroll progress, set by JS (0 -> 1) */
+        flex: 0 0 auto;
+        position: sticky;
+        height: var(--m-card-h);
+        border-radius: 2px;
+        cursor: auto;
+        transform-origin: 50% 0;
+        transform: scale(calc(1 - var(--p) * 0.04));
+        transition: none;
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+
+    #card-gallery { order: 1; z-index: 1; top: var(--m-stack-top); }
+    #card-fabrics { order: 2; z-index: 2; top: calc(var(--m-stack-top) + var(--m-stack-peek)); }
+    #card-bespoke { order: 3; z-index: 3; top: calc(var(--m-stack-top) + var(--m-stack-peek) * 2); }
+
+    .cards-container .card-bg,
+    .cards-container .card.active .card-bg,
+    .cards-container .card:hover .card-bg {
+        transform: none;
+        transition: none;
+        opacity: calc(0.95 - var(--p) * 0.5);
+    }
+
+    /* restrained overlay for text contrast */
+    .cards-container .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 45%);
+    }
+
+    /* editorial index */
+    .cards-container .card::before {
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        z-index: 2;
+        font-size: 0.72rem;
+        font-weight: 300;
+        letter-spacing: 0.28em;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    #card-gallery::before { content: "01 / 03"; }
+    #card-fabrics::before { content: "02 / 03"; }
+    #card-bespoke::before { content: "03 / 03"; }
+
+    .cards-container .vertical-text {
+        display: none;
+    }
+
+    .cards-container .card .card-content-center,
+    .cards-container .card.active .card-content-center {
+        bottom: 9%;
+        opacity: 1;
+        transform: none;
+        transition: none;
+        pointer-events: auto;
+        gap: 22px;
+        padding: 0 16px;
+    }
+
+    .cards-container .card-content-center h2 {
+        font-size: clamp(1.3rem, 6vw, 1.75rem);
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        line-height: 1.3;
+    }
+
+    .discover-btn,
+    .showcase-discover-btn,
+    .discover-more-btn {
+        position: relative;
+        letter-spacing: 0.12em;
+    }
+
+    /* enlarge touch area without changing the visual size */
+    .discover-btn::before,
+    .showcase-discover-btn::before,
+    .discover-more-btn::before {
+        content: "";
+        position: absolute;
+        inset: -14px -18px;
+    }
+
+    .discover-btn:hover,
+    .showcase-discover-btn:hover,
+    .discover-more-btn:hover {
+        opacity: 1;
+    }
+
+    .discover-btn:active,
+    .showcase-discover-btn:active,
+    .discover-more-btn:active {
+        opacity: 0.55;
+    }
+
+    /* ---------- Intro ---------- */
+    .bespoke-intro-section {
+        padding: 56px 28px 80px;
+    }
+
+    .intro-content p {
+        font-size: 1rem;
+        line-height: 1.85;
+        margin-bottom: 36px;
+    }
+
+    .appointment-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 34px;
+        letter-spacing: 0.14em;
+    }
+
+    .appointment-btn:hover {
+        transform: none;
+    }
+
+    .appointment-btn:active {
+        background-color: #333;
+    }
+
+    /* ---------- Details ---------- */
+    .bespoke-details-section {
+        padding: 0 24px 80px;
+        gap: 72px;
+    }
+
+    .detail-row,
+    .detail-row.reverse {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .detail-image {
+        flex: none;
+        order: -1;
+        width: calc(100% + 48px);
+        margin: 0 -24px;
+    }
+
+    .detail-text,
+    .detail-text.padding-left {
+        flex: none;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .detail-text h3 {
+        font-size: clamp(1.35rem, 5.8vw, 1.6rem);
+        letter-spacing: 0.04em;
+    }
+
+    .detail-text p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+    .detail-text p + p {
+        margin-top: 14px;
+    }
+
+    /* ---------- Showcase ---------- */
+    .showcase-top-section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .showcase-top-img {
+        width: 100%;
+        height: 62vh;
+        height: 62svh;
+    }
+
+    .showcase-bottom-section {
+        height: 85vh;
+        height: 85svh;
+    }
+
+    .showcase-overlay-content {
+        padding: 0 24px;
+    }
+
+    .showcase-overlay-content h2 {
+        font-size: clamp(1.4rem, 6.4vw, 1.8rem);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    /* ---------- How Bespoke works ---------- */
+    .how-bespoke-section {
+        padding: 80px 24px;
+    }
+
+    .how-bespoke-title {
+        font-size: clamp(1.2rem, 5.4vw, 1.5rem);
+        letter-spacing: 0.22em;
+        margin-bottom: 48px;
+    }
+
+    .how-bespoke-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 64px;
+    }
+
+    .step-card {
+        flex: none;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .step-image {
+        height: 260px;
+    }
+
+    .step-text {
+        font-size: 0.9rem;
+        max-width: 340px;
+    }
+
+    .how-bespoke-footer {
+        margin-top: 56px;
+    }
+
+    /* ---------- Latest creations slider ---------- */
+    .latest-creations-section {
+        padding: 72px 16px 64px;
+    }
+
+    .latest-title {
+        font-size: clamp(1.4rem, 6vw, 1.7rem);
+        margin-bottom: 36px;
+    }
+
+    .slider-container {
+        margin: 0;
+    }
+
+    .slide {
+        flex: 0 0 100%;                          /* matches getVisibleSlides() = 1 */
+    }
+
+    @media (min-width: 481px) {
+        .slide {
+            flex: 0 0 calc((100% - 20px) / 2);   /* matches getVisibleSlides() = 2 */
+        }
+    }
+
+    .slider-btn,
+    .slider-btn:hover {
+        position: absolute;
+        top: 50%;
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: 300;
+        background: rgba(255, 255, 255, 0.78);
+        transform: translateY(-50%);
+        opacity: 1;
+    }
+
+    .slider-btn:active {
+        opacity: 0.6;
+    }
+
+    .prev-btn { left: 8px; }
+    .next-btn { right: 8px; }
+
+    .slider-dots {
+        margin-top: 28px;
+        flex-wrap: wrap;
+        padding: 0 24px;
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-section {
+        padding: 72px 24px calc(88px + env(safe-area-inset-bottom, 0px));
+        background-size: 640px auto;
+    }
+
+    .contact-brand {
+        font-size: clamp(1.7rem, 8vw, 2.1rem);
+        letter-spacing: 0.22em;
+    }
+
+    .contact-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.22em;
+        margin-bottom: 36px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;                         /* prevents iOS Safari focus-zoom */
+        border-radius: 6px;
+        padding: 14px 16px;
+    }
+
+    .form-submit {
+        margin-top: 8px;
+    }
+
+    .contact-submit-btn {
+        width: 100%;
+        min-height: 50px;
+        border-radius: 6px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .contact-submit-btn:hover {
+        transform: none;
+    }
+
+    .contact-submit-btn:active {
+        background-color: #333;
+    }
+
+    /* ---------- Scroll reveals (classes added by JS on mobile only) ---------- */
+    html.m-js .m-reveal {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0);
+        transition: opacity 0.8s var(--m-ease), transform 0.8s var(--m-ease);
+    }
+
+    html.m-js .m-reveal-img {
+        opacity: 0;
+        transform: scale(1.05);
+        transition: opacity 1s var(--m-ease), transform 1.4s var(--m-ease);
+    }
+
+    html.m-js .m-reveal.is-in,
+    html.m-js .m-reveal-img.is-in {
+        opacity: 1;
+        transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-image {
+            animation: none;
+            opacity: 0.85;
+        }
+
+        .cards-container .card,
+        .cards-container .card.active {
+            transform: none;
+            will-change: auto;
+        }
+
+        .cards-container .card-bg,
+        .cards-container .card.active .card-bg,
+        .cards-container .card:hover .card-bg {
+            opacity: 0.95;
+        }
+
+        html.m-js .m-reveal,
+        html.m-js .m-reveal-img {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+    }
+}

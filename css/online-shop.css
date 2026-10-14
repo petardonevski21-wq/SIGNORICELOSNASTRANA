@@ -27,7 +27,7 @@ body {
     overflow: hidden;
 }
 
-/* Slikata stoi 1 sekunda, pa zapocnuva smooth odzumiranje */
+
 .bg-video {
     position: absolute;
     top: 0;
@@ -77,7 +77,7 @@ footer {
 }
 
 .collection-title {
-    font-family: 'Century Gothic', sans-serif;
+    font-family: 'Jost', sans-serif;
     font-size: 30px;
     font-weight: 400;
     letter-spacing: 0.12em;
@@ -1338,7 +1338,7 @@ footer {
     .ht-product img {
         width: 100%;
         height: auto;
-        aspect-ratio: 2 / 3;                          /* same 200x300 proportion as desktop */
+        aspect-ratio: 2 / 3;             
     }
 
     /* ---- Product section headings ---- */
