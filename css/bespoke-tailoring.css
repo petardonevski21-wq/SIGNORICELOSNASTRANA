@@ -1096,7 +1096,7 @@ body {
         .cards-container .card,
         .cards-container .card.active {
             transform: none;
-            will-change: auto;
+            will-change: auto;                                                                                                                          
         }
 
         .cards-container .card-bg,
