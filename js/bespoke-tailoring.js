@@ -129,9 +129,7 @@ if (contactForm) {
     });
 }
 
-// =====================================================================
-// MOBILE ONLY (<= 767px). Nothing here runs at 768px and wider.
-// =====================================================================
+
 (() => {
     const mobileQuery = window.matchMedia('(max-width: 767px)');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
