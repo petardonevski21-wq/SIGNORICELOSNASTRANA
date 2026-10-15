@@ -38,18 +38,45 @@ body {
     z-index: 1;
     filter: brightness(0.85); 
     transform: scale(1.06);
-    animation: cinematicHeroZoom 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: cinematicHeroZoom 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 @keyframes cinematicHeroZoom {
     0% {
         transform: scale(1.06);
     }
-    16.66% { /* Prvata 1 sekunda odvkupno 6 sekundi stoi mirno */
+    75% { /* Prvite 1.5 sekundi stoi mirno */
         transform: scale(1.06);
     }
     100% {
         transform: scale(1.00);
+    }
+}
+
+/* Luksuzna i gladka animacija za Hero tekstovite (Gucci / Loro Piana stil) */
+.hero-animated {
+    opacity: 0;
+    transform: translateY(35px);
+    will-change: transform, opacity;
+    animation: luxurySlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.collection-title.hero-animated {
+    animation-delay: 1.5s;
+}
+
+.hero-section .discover-btn.hero-animated {
+    animation-delay: 1.65s;
+}
+
+@keyframes luxurySlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -1712,5 +1739,11 @@ footer {
     .ht-content {
         transform: none;
         transition: opacity 0.6s ease 0.2s;
+    }
+
+    .hero-animated {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }

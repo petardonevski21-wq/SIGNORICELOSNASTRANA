@@ -323,6 +323,118 @@ document.addEventListener("DOMContentLoaded", () => {
 
             updateHeader();
         }
+
+        // =====================================================
+        // MOBILE-ONLY ENHANCEMENTS
+        // Every handler below returns immediately on desktop, so
+        // desktop behaviour is unchanged.
+        // =====================================================
+        const mobileQuery = window.matchMedia("(max-width: 768px), (pointer: coarse) and (max-height: 500px)");
+        const isMobile = () => mobileQuery.matches;
+        const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+        const focusableIn = (root) =>
+            Array.from(root.querySelectorAll(FOCUSABLE)).filter(
+                (el) => !el.closest(".menu-panel:not(.active)")
+            );
+
+        // Dialog semantics for assistive tech
+        if (isMobile()) {
+            if (menuButton && sideDrawer) {
+                menuButton.setAttribute("aria-controls", "sideDrawer");
+                menuButton.setAttribute("aria-haspopup", "dialog");
+                sideDrawer.setAttribute("role", "dialog");
+                sideDrawer.setAttribute("aria-modal", "true");
+                sideDrawer.setAttribute("aria-label", "Menu");
+            }
+            if (searchOverlay) searchOverlay.setAttribute("aria-modal", "true");
+        }
+
+        // Focus management: move focus in on open, restore it on close
+        const watchOpenState = (el, isOpenFn, onOpen, onClose) => {
+            if (!el) return;
+            let wasOpen = false;
+            new MutationObserver(() => {
+                if (!isMobile()) { wasOpen = isOpenFn(); return; }
+                const open = isOpenFn();
+                if (open && !wasOpen) onOpen();
+                if (!open && wasOpen) onClose();
+                wasOpen = open;
+            }).observe(el, { attributes: true, attributeFilter: ["class"] });
+        };
+
+        watchOpenState(
+            sideDrawer,
+            () => sideDrawer.classList.contains("open"),
+            () => { if (drawerClose) drawerClose.focus({ preventScroll: true }); },
+            () => { if (menuButton) menuButton.focus({ preventScroll: true }); }
+        );
+
+        watchOpenState(
+            searchOverlay,
+            () => searchOverlay.classList.contains("active"),
+            () => {},
+            () => { if (searchButton) searchButton.focus({ preventScroll: true }); }
+        );
+
+        // Keep Tab inside whichever layer is open
+        document.addEventListener("keydown", (event) => {
+            if (event.key !== "Tab" || !isMobile()) return;
+
+            const layer = isDrawerOpen
+                ? sideDrawer
+                : (searchOverlay && searchOverlay.classList.contains("active") ? searchOverlay : null);
+            if (!layer) return;
+
+            const items = focusableIn(layer);
+            if (!items.length) return;
+
+            const first = items[0];
+            const last = items[items.length - 1];
+            const outside = !layer.contains(document.activeElement);
+
+            if (event.shiftKey && (document.activeElement === first || outside)) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && (document.activeElement === last || outside)) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
+
+        // Close the drawer when a destination link is chosen
+        if (sideDrawer) {
+            sideDrawer.addEventListener("click", (event) => {
+                if (!isMobile()) return;
+                const link = event.target.closest("a");
+                if (!link || link.classList.contains("toggle-btn")) return;
+
+                const href = link.getAttribute("href");
+                const headerContact = document.querySelector("header .contact-text");
+
+                if (href === "#") {
+                    event.preventDefault();
+                    closeDrawer();
+                    // "Contact us" in the drawer goes where the header link goes
+                    if (headerContact && link.closest(".drawer-sub-links") && /contact/i.test(link.textContent)) {
+                        window.location.hash = headerContact.getAttribute("href");
+                    }
+                    return;
+                }
+                closeDrawer();
+            });
+        }
+
+        // Close the search overlay when a suggestion / category link is chosen
+        if (searchOverlay) {
+            searchOverlay.addEventListener("click", (event) => {
+                if (!isMobile()) return;
+                const link = event.target.closest("a");
+                if (!link) return;
+                if (link.getAttribute("href") === "#") event.preventDefault();
+                closeSearch();
+            });
+        }
     };
 
     if (siteMenu) {
