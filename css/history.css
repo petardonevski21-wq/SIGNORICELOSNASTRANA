@@ -1,4 +1,4 @@
-/* Osnovni stili i tsentrirane */
+/* --- Osnovni stili i tsentrirane --- */
 * {
     margin: 0;
     padding: 0;
@@ -474,12 +474,33 @@ body {
     margin-top: 40px;
 }
 
+/* Otstranuvanje na bilo kakvi linii, ramki ili outline pri klik/fokus */
+.anniversary-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.anniversary-link:focus,
+.anniversary-link:active {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
 .anniversary-hero img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center center;
     display: block;
+    border: none;
+    outline: none;
 }
 
 .anniversary-overlay {
@@ -492,6 +513,7 @@ body {
     z-index: 2;
     width: 90%;
     max-width: 800px;
+    pointer-events: none; /* Sprečuva selektiranje ili outline na celoto overlay */
 }
 
 .anniversary-title {
@@ -517,13 +539,21 @@ body {
     text-decoration: none;
     padding: 0 0 4px 0;
     border-bottom: 1px solid #ffffff;
+    outline: none;
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s ease;
+    pointer-events: auto; /* Dozvoluva klik na kopčeto */
 }
 
 .discover-btn:hover {
     opacity: 0.7;
+}
+
+.discover-btn:focus,
+.discover-btn:active {
+    outline: none;
+    border-bottom: 1px solid #ffffff;
 }
 
 /* --- Sektsiya: The Next Chapter - House of Signori --- */
@@ -614,4 +644,3 @@ body {
     object-position: center center;
     display: block;
 }
-
