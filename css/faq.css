@@ -44,6 +44,12 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.05); 
 }
 
+/* Slikata ostanuva 100% ista, samo menito se belee na hover */
+.hero-header:hover #site-menu {
+  background-color: rgba(255, 255, 255, 0.85);
+  transition: background-color 0.3s ease;
+}
+
 .hero-overlay {
   position: absolute;
   top: 0;

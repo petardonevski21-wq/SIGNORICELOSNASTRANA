@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Отстранета е логиката за табови за "Contact Us",
+  // Отстранета е логиката za табови za "Contact Us",
   // бидејќи тоа сега е директен линк во HTML.
 
 });
