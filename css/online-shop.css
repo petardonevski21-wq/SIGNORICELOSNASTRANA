@@ -556,7 +556,7 @@ footer {
 }
 
 .ht-main-img {
-    width: 100%;
+    width: 90%;
     height: 80%;
     object-fit: cover;
     display: block;
@@ -635,7 +635,7 @@ footer {
     font-size: 28px;
     font-weight: 300;
     letter-spacing: 0.05em;
-    color: #000;
+    color: #272424;
     margin-bottom: 45px;
 }
 
@@ -740,13 +740,13 @@ footer {
 
 .kraj-left {
     flex: 1;
-    padding: 40px 20px 60px 40px;
+    padding: 200px 60px 100px 60px;
 }
 
 .kraj-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 55px;
+    gap: 40px;
     width: 100%;
 }
 

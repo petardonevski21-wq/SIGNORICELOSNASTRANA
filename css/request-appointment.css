@@ -1,0 +1,168 @@
+/* --- CONTACT FORM SEKCIJA --- */
+.contact-section {
+    position: relative;
+    padding: 100px 20px 120px;
+    background-color: #ffffff;
+    background-image: url('../assets/sliki/BESPOKE-TAILORING/pozadina-signori-logo/1.png');
+    opacity: 5.50; 
+    background-repeat: repeat;
+    background-size: 1200px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container {
+    max-width: 720px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-brand {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #000000;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.contact-title {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: #333333;
+    margin-bottom: 45px;
+    text-transform: uppercase;
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row {
+    display: flex;
+    gap: 22px;
+    width: 100%;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #222222;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background-color: #e3e3e3;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    font-family: 'Jost', sans-serif;
+    color: #111111;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background-color: #d6d6d6;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.contact-submit-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 36px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-submit-btn:hover {
+    background-color: #222222;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 767px) {
+    .contact-section {
+        padding: 72px 24px calc(88px + env(safe-area-inset-bottom, 0px));
+        background-size: 640px auto;
+    }
+
+    .contact-brand {
+        font-size: clamp(1.7rem, 8vw, 2.1rem);
+        letter-spacing: 0.22em;
+    }
+
+    .contact-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.22em;
+        margin-bottom: 36px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+        border-radius: 6px;
+        padding: 14px 16px;
+    }
+
+    .form-submit {
+        margin-top: 8px;
+    }
+
+    .contact-submit-btn {
+        width: 100%;
+        min-height: 50px;
+        border-radius: 6px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .contact-submit-btn:hover {
+        transform: none;
+    }
+
+    .contact-submit-btn:active {
+        background-color: #333;
+    }
+}

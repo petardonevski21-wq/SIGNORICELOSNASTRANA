@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 3. ANIMACIJA ZA "HERE TODAY" SEKCIJU (Intersection Observer)
+// 3. ANIMACIJA ZA "HERE TODAY" SEKCIJU (Intersection Observer za animacije i auto-play videa)
 document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         threshold: 0.2
@@ -104,6 +104,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (htLabel) sectionObserver.observe(htLabel);
     if (htContent) sectionObserver.observe(htContent);
+
+    // Auto-play/pause video kad dođe u vidokrug
+    const htVideo = document.querySelector('.ht-main-img');
+    if (htVideo && htVideo.tagName === 'VIDEO') {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    htVideo.play().catch(() => {});
+                } else {
+                    htVideo.pause();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        videoObserver.observe(htVideo);
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
