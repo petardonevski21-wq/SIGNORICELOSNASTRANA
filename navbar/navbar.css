@@ -136,10 +136,6 @@ header.nav-instant::after {
     color: #8c8c8c;
 }
 
-/* =========================
-   LEFT SIDE - MENU
-========================= */
-
 .nav-left {
     display: flex;
     align-items: center;
@@ -168,7 +164,7 @@ header.nav-instant::after {
 
 .hamburger span {
     display: block;
-    width: 16px;
+    width: 18px;
     height: 1px;
     background-color: #ffffff;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -453,7 +449,6 @@ header.nav-hovered::before {
 
 .drawer-main-links li a:hover {
     color: #111111 !important;
-    transform: translateX(3px);
 }
 
 .drawer-main-links .arrow {

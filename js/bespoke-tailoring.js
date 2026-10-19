@@ -2,36 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
-        // Kada miš pređe preko kartice, ona postaje aktivna
         card.addEventListener('mouseenter', () => {
             cards.forEach(c => c.classList.remove('active'));
             card.classList.add('active');
         });
-    });
-
-    // --- Scroll animacija za sekcije ---
-    const fadeElements = document.querySelectorAll('.intro-content, .detail-row, .step-card');
-    
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    fadeElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(40px)';
-        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(el);
     });
 });
 
@@ -104,7 +78,6 @@ if (track) {
         startAutoSlide();
     });
 
-    // Kreiranje točkica za navigaciju
     dotsContainer.innerHTML = '';
     slides.forEach((_, index) => {
         const dot = document.createElement('span');
@@ -121,7 +94,7 @@ if (track) {
     window.addEventListener('resize', updateSlider);
     startAutoSlide();
 }
-// Predotvratyava prezarazhdane na stranitsata pri izprashtane na formata
+
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -129,13 +102,11 @@ if (contactForm) {
     });
 }
 
-
 (() => {
     const mobileQuery = window.matchMedia('(max-width: 767px)');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
-    /* ---------- Sticky stack: scroll-linked progress (--p) ---------- */
     const stack = (() => {
         const cards = ['card-gallery', 'card-fabrics', 'card-bespoke']
             .map((id) => document.getElementById(id))
@@ -153,12 +124,12 @@ if (contactForm) {
 
         const update = () => {
             ticking = false;
-            const tops = cards.map((c) => c.getBoundingClientRect().top);   // reads first
+            const tops = cards.map((c) => c.getBoundingClientRect().top);
             for (let i = 0; i < cards.length - 1; i++) {
                 const span = viewportH - stickyTops[i + 1];
                 const p = span > 0 ? clamp((viewportH - tops[i + 1]) / span, 0, 1) : 0;
                 const v = p.toFixed(3);
-                if (last[i] !== v) {                                         // writes after
+                if (last[i] !== v) {
                     last[i] = v;
                     cards[i].style.setProperty('--p', v);
                 }
@@ -199,7 +170,6 @@ if (contactForm) {
         };
     })();
 
-    /* ---------- Hero video: play inline on mobile, pause when off-screen ---------- */
     const hero = (() => {
         const video = document.querySelector('.hero-image');
         const isVideo = video && video.tagName === 'VIDEO';
@@ -235,39 +205,10 @@ if (contactForm) {
         };
     })();
 
-    /* ---------- Editorial reveals ---------- */
-    let revealObserver = null;
-    const revealSetup = () => {
-        if (revealObserver || reduceMotion.matches || !('IntersectionObserver' in window)) return;
-
-        revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-in');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-
-        const targets = [
-            ['.how-bespoke-title, .latest-title, .contact-brand, .contact-title, .how-bespoke-footer, .slider-wrapper, .contact-form, .showcase-overlay-content', 'm-reveal'],
-            ['.showcase-top-img, .showcase-full-img', 'm-reveal-img']
-        ];
-
-        document.documentElement.classList.add('m-js');
-        targets.forEach(([selector, cls]) => {
-            document.querySelectorAll(selector).forEach((el) => {
-                el.classList.add(cls);
-                revealObserver.observe(el);
-            });
-        });
-    };
-
     const apply = () => {
         if (mobileQuery.matches) {
             stack.start();
             hero.start();
-            revealSetup();
         } else {
             stack.stop();
             hero.stop();

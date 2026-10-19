@@ -213,11 +213,12 @@ body {
 /* --- Bespoke Details Sekcija --- */
 .bespoke-details-section {
     background-color: #ffffff;
-    padding: 0 20px 120px;
+    padding: 0 0 120px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 120px;
+    overflow: hidden;
 }
 
 .detail-row {
@@ -227,6 +228,21 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 50px;
+    padding: 0 20px;
+}
+
+.detail-row.full-right {
+    max-width: 100%;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+}
+
+.detail-row.full-right .detail-text {
+    padding-left: 8%;
+    flex: 1;
+    max-width: 650px;
 }
 
 .detail-row.reverse {
@@ -269,6 +285,19 @@ body {
 .detail-image img {
     width: 100%;
     height: auto;
+    display: block;
+}
+
+.detail-video-container {
+    flex: 0 0 950px;
+    height: 1200px;
+}
+
+.detail-video {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
     display: block;
 }
 
@@ -328,7 +357,6 @@ body {
     margin-bottom: 5px;
 }
 
-
 .showcase-discover-btn {
     color: #ffffff;
     text-decoration: none;
@@ -344,7 +372,7 @@ body {
     opacity: 0.6;
 }
 
-/* --- HOW BESPOKE WORKS SEKCIJA (NOVI RASPORED) --- */
+/* --- HOW BESPOKE WORKS SEKCIJA --- */
 .how-bespoke-section {
     background-color: #ffffff;
     padding: 100px 20px 100px;
@@ -462,7 +490,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1500px; /* Зголемено од 1200px на 1500px */
+    max-width: 1500px;
     width: 100%;
 }
 
@@ -494,14 +522,14 @@ body {
 .slider-btn {
     background: transparent;
     border: none;
-    font-size: 4rem; /* Многу поголеми стрелки */
-    font-weight: 200; /* Тенки линии за елеганција */
+    font-size: 4rem;
+    font-weight: 200;
     color: #111;
     cursor: pointer;
     padding: 10px 30px;
     user-select: none;
     transition: transform 0.4s ease, opacity 0.4s ease;
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* Чист фонт за симболите */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .slider-btn:hover {
@@ -535,14 +563,13 @@ body {
     position: relative;
     padding: 100px 20px 120px;
     background-color: #ffffff;
-    /* Zameni s petya do tvoyata slika za pozadina */
-    background-image: url('../assets/sliki/BESPOKE-TAILORING/pozadina-signori-logo/1.png')     ;opacity: 5.50; 
+    background-image: url('../assets/sliki/BESPOKE-TAILORING/pozadina-signori-logo/1.png');
+    opacity: 5.50; 
     background-repeat: repeat;
     background-size: 1200px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .contact-container {
@@ -654,17 +681,11 @@ body {
     color: inherit;
 }
 
-/* =====================================================================
-   MOBILE ONLY (<= 767px)
-   Everything below is scoped to this media query. At 768px and wider
-   none of these rules apply, so desktop and tablet are untouched.
-   ===================================================================== */
 @media (max-width: 767px) {
-
     :root {
         --m-ease: cubic-bezier(0.22, 1, 0.36, 1);
-        --m-nav-room: 72px;                 /* room kept clear for the fixed navbar */
-        --m-stack-peek: 10px;               /* visible strip of each covered card */
+        --m-nav-room: 72px;
+        --m-stack-peek: 10px;
         --m-stack-top: calc(env(safe-area-inset-top, 0px) + var(--m-nav-room));
         --m-card-h: calc(100vh - var(--m-stack-top) - 28px);
         --m-gap: 80px;
@@ -695,7 +716,6 @@ body {
         outline-offset: 4px;
     }
 
-    /* ---------- Hero ---------- */
     .hero {
         height: 100vh;
         height: 100svh;
@@ -712,7 +732,6 @@ body {
         to   { opacity: 0.85; transform: scale(1); }
     }
 
-    /* ---------- Gallery -> Fabrics -> Bespoke : sticky stacking cards ---------- */
     .cards-section {
         display: block;
         padding: 64px 16px 88px;
@@ -726,12 +745,12 @@ body {
         gap: 80px;
         gap: var(--m-gap);
         padding-bottom: 80px;
-        padding-bottom: var(--m-gap);   /* keeps the finished stack pinned a little longer before release */
+        padding-bottom: var(--m-gap);
     }
 
     .cards-container .card,
     .cards-container .card.active {
-        --p: 0;                                 /* scroll progress, set by JS (0 -> 1) */
+        --p: 0;
         flex: 0 0 auto;
         position: sticky;
         height: var(--m-card-h);
@@ -756,7 +775,6 @@ body {
         opacity: calc(0.95 - var(--p) * 0.5);
     }
 
-    /* restrained overlay for text contrast */
     .cards-container .card::after {
         content: "";
         position: absolute;
@@ -766,7 +784,6 @@ body {
         background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 45%);
     }
 
-    /* editorial index */
     .cards-container .card::before {
         position: absolute;
         top: 22px;
@@ -811,7 +828,6 @@ body {
         letter-spacing: 0.12em;
     }
 
-    /* enlarge touch area without changing the visual size */
     .discover-btn::before,
     .showcase-discover-btn::before,
     .discover-more-btn::before {
@@ -832,7 +848,6 @@ body {
         opacity: 0.55;
     }
 
-    /* ---------- Intro ---------- */
     .bespoke-intro-section {
         padding: 56px 28px 80px;
     }
@@ -860,23 +875,30 @@ body {
         background-color: #333;
     }
 
-    /* ---------- Details ---------- */
     .bespoke-details-section {
-        padding: 0 24px 80px;
+        padding: 0 0 80px 0;
         gap: 72px;
     }
 
     .detail-row,
+    .detail-row.full-right,
     .detail-row.reverse {
         flex-direction: column;
         gap: 30px;
+        padding: 0 24px;
     }
 
-    .detail-image {
+    .detail-image,
+    .detail-video-container {
         flex: none;
         order: -1;
         width: calc(100% + 48px);
         margin: 0 -24px;
+    }
+
+    .detail-video {
+        height: 60vh;
+        min-height: auto;
     }
 
     .detail-text,
@@ -900,7 +922,6 @@ body {
         margin-top: 14px;
     }
 
-    /* ---------- Showcase ---------- */
     .showcase-top-section {
         flex-direction: column;
         height: auto;
@@ -927,7 +948,6 @@ body {
         text-transform: uppercase;
     }
 
-    /* ---------- How Bespoke works ---------- */
     .how-bespoke-section {
         padding: 80px 24px;
     }
@@ -963,7 +983,6 @@ body {
         margin-top: 56px;
     }
 
-    /* ---------- Latest creations slider ---------- */
     .latest-creations-section {
         padding: 72px 16px 64px;
     }
@@ -978,12 +997,12 @@ body {
     }
 
     .slide {
-        flex: 0 0 100%;                          /* matches getVisibleSlides() = 1 */
+        flex: 0 0 100%;
     }
 
     @media (min-width: 481px) {
         .slide {
-            flex: 0 0 calc((100% - 20px) / 2);   /* matches getVisibleSlides() = 2 */
+            flex: 0 0 calc((100% - 20px) / 2);
         }
     }
 
@@ -1018,7 +1037,6 @@ body {
         padding: 0 24px;
     }
 
-    /* ---------- Contact ---------- */
     .contact-section {
         padding: 72px 24px calc(88px + env(safe-area-inset-bottom, 0px));
         background-size: 640px auto;
@@ -1042,7 +1060,7 @@ body {
 
     .form-group input,
     .form-group textarea {
-        font-size: 16px;                         /* prevents iOS Safari focus-zoom */
+        font-size: 16px;
         border-radius: 6px;
         padding: 14px 16px;
     }
@@ -1067,25 +1085,6 @@ body {
         background-color: #333;
     }
 
-    /* ---------- Scroll reveals (classes added by JS on mobile only) ---------- */
-    html.m-js .m-reveal {
-        opacity: 0;
-        transform: translate3d(0, 24px, 0);
-        transition: opacity 0.8s var(--m-ease), transform 0.8s var(--m-ease);
-    }
-
-    html.m-js .m-reveal-img {
-        opacity: 0;
-        transform: scale(1.05);
-        transition: opacity 1s var(--m-ease), transform 1.4s var(--m-ease);
-    }
-
-    html.m-js .m-reveal.is-in,
-    html.m-js .m-reveal-img.is-in {
-        opacity: 1;
-        transform: none;
-    }
-
     @media (prefers-reduced-motion: reduce) {
         .hero-image {
             animation: none;
@@ -1102,13 +1101,6 @@ body {
         .cards-container .card.active .card-bg,
         .cards-container .card:hover .card-bg {
             opacity: 0.95;
-        }
-
-        html.m-js .m-reveal,
-        html.m-js .m-reveal-img {
-            opacity: 1;
-            transform: none;
-            transition: none;
         }
     }
 }

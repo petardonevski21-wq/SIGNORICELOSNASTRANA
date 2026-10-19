@@ -139,8 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const T = wrapper.getBoundingClientRect().left - container.getBoundingClientRect().left;
     const d = slides[FIRST_PAGE_COUNT].getBoundingClientRect().left - slides[0].getBoundingClientRect().left;
     if (compact) {
-      // Stacked layout: slides span the full width, so page through them one card at a time
-      // and stop when the last card reaches the right edge.
       const wrapW  = wrapper.getBoundingClientRect().width;
       const trackW = track.getBoundingClientRect().width;
       const left0  = slides[0].getBoundingClientRect().left;
@@ -162,20 +160,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setProgress(x) {
-    if (compact) {                // title sits above the cards here, so it never shifts or fades
-      titleBlock.style.transform = "";
-      titleBlock.style.opacity = "";
-      titleBlock.style.pointerEvents = "";
+    if (compact) {                
+      gsap.set(titleBlock, { clearProps: "transform,opacity,pointerEvents" });
       return;
     }
     const p = maxX ? Math.min(1, Math.max(0, -x / maxX)) : 0;
     if (p < 0.0005) {
-      titleBlock.style.transform = "";
-      titleBlock.style.opacity = "";
-      titleBlock.style.pointerEvents = "";
+      gsap.set(titleBlock, { clearProps: "transform,opacity,pointerEvents" });
     } else {
-      titleBlock.style.transform = "translate3d(" + (-p * TITLE_SHIFT) + "px,0,0)";
-      titleBlock.style.opacity = String(1 - p);
+      gsap.set(titleBlock, {
+        x: -p * TITLE_SHIFT,
+        opacity: 1 - p,
+        force3D: true,
+        overwrite: "auto"
+      });
       titleBlock.style.pointerEvents = p > 0.5 ? "none" : "";
     }
   }
@@ -199,8 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       gsap.to(track, {
         x: target,
-        duration: 1.2,
-        ease: "power2.inOut",
+        duration: 0.8,
+        ease: "power2.out",
         overwrite: true,
         force3D: true,
         onUpdate: () => {
@@ -221,9 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
     type: "x",
     trigger: section,           
     bounds: { minX: -maxX, maxX: 0 },
-    edgeResistance: 1,          
+    edgeResistance: 0.85,          
     dragResistance: 0,
-    minimumMovement: 6,         
+    minimumMovement: 3,         
     cursor: "grab",
     activeCursor: "grabbing",
     onPressInit: function () { gsap.killTweensOf(track); },
@@ -239,7 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     onDragEnd: function () {
       if (compact) {
-        // Snap to the nearest card, projecting a little ahead of the finger for flicks.
         const stale = performance.now() - lastT > 80;
         const v = stale ? 0 : velocity;
         const projected = -this.x - v * 200;
@@ -254,10 +251,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const dist = this.x - startX;
       const stale = performance.now() - lastT > 80;    
       const v = stale ? 0 : velocity;
-      const threshold = Math.min(maxX * 0.2, 140);
+      const threshold = Math.min(maxX * 0.15, 100);
       let next = page;
-      if (page === 0 && (dist < -threshold || (v < -0.4 && dist < -24))) next = 1;
-      else if (page === 1 && (dist > threshold || (v > 0.4 && dist > 24))) next = 0;
+      if (page === 0 && (dist < -threshold || (v < -0.3 && dist < -15))) next = 1;
+      else if (page === 1 && (dist > threshold || (v > 0.3 && dist > 15))) next = 0;
       goTo(next);                                      
     }
   })[0];
