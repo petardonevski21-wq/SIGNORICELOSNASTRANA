@@ -153,16 +153,20 @@ header.nav-instant::after {
     transition: color 0.3s ease;
 }
 
+/* DIOR-EXACT MENU ICON (HAMBURGER) - EPTEN MALCE PODEBELI */
 .hamburger {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    justify-content: center;
+    gap: 4px;
+    width: 14px;
+    height: 12px;
 }
 
 .hamburger span {
     display: block;
-    width: 18px;
-    height: 1.4px;
+    width: 14px;
+    height: 1.3px;
     background-color: #ffffff;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
