@@ -45,7 +45,7 @@ body {
     0% {
         transform: scale(1.06);
     }
-    75% { /* Prvite 1.5 sekundi stoi mirno */
+    75% { 
         transform: scale(1.06);
     }
     100% {
@@ -53,7 +53,6 @@ body {
     }
 }
 
-/* Luksuzna i gladka animacija za Hero tekstovite (Gucci / Loro Piana stil) */
 .hero-animated {
     opacity: 0;
     transform: translateY(35px);
@@ -113,7 +112,6 @@ footer {
     text-align: center;
 }
 
-/* Prvoto kopce (Discover) so blur efekt i ramka */
 .hero-section .discover-btn {
     display: inline-block;
     position: relative;
@@ -300,7 +298,6 @@ footer {
 .item-bow-ties {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
-    
 }
 
 .item-shoes {
@@ -553,6 +550,8 @@ footer {
 .ht-left {
     flex: 1.1;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .ht-main-img {
@@ -569,14 +568,6 @@ footer {
     display: flex;
     align-items: center;
     z-index: 10;
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: all 1s ease 0.5s;
-}
-
-.ht-label.visible {
-    opacity: 1;
-    transform: translateX(0);
 }
 
 .ht-line {
@@ -608,14 +599,6 @@ footer {
     align-items: center;
     text-align: center;
     max-width: 500px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s ease 0.2s;
-}
-
-.ht-content.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .ht-logo {
@@ -1095,18 +1078,21 @@ footer {
 .signori-container {
   display: flex;
   align-items: center;
-  max-width: 95%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 55px;
   position: relative;
   z-index: 1;
 }
 
 .signori-text-content {
+  font-family: 'Jost', sans-serif;
   flex: 0 0 30%;
   padding-right: 50px;
 }
 
 .signori-text-content h2 {
+  font-family: 'Jost' sans-serif;
   font-size: 2.5rem;
   font-weight: 400;
   letter-spacing: 2px;
@@ -1122,7 +1108,7 @@ footer {
 }
 
 .signori-slider-wrapper {
-  flex: 0 0 70%;
+  flex: 1;
   min-width: 0;
   overflow: visible;
   clip-path: inset(0 0 0 calc(-1 * var(--sig-left, 0px)));
@@ -1159,6 +1145,9 @@ footer {
   flex-shrink: 0;
   overflow: hidden;
   transition: transform 0.4s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -1175,6 +1164,7 @@ footer {
 }
 
 .slide-caption {
+  font-family: 'Jost', sans-serif;
   position: absolute;
   bottom: 20px;
   left: 20px;
@@ -1460,6 +1450,7 @@ footer {
         align-items: stretch;
         width: 100%;
         max-width: 100%;
+        padding-left: 0;
     }
 
     .signori-text-content {
@@ -1497,6 +1488,12 @@ footer {
         padding-right: clamp(20px, 5vw, 40px);
         margin-top: 28px;
     }
+}
+
+@media (max-width: 768px) {
+  .signori-slide {
+    width: 340px;
+  }
 }
 
 @media (max-width: 767px) {

@@ -424,7 +424,7 @@ header.nav-hovered::before {
     transition: opacity 0.4s ease;
 }
 
-/* Hover rule: when hovering on the list, others become lighter (#b0b0b0), hovered item becomes black (#111111) */
+
 .drawer-main-links:hover li a {
     color: #b0b0b0;
     transition: color 0.3s ease;
@@ -445,19 +445,18 @@ header.nav-hovered::before {
     color: #111111 !important;
 }
 
-.drawer-main-links .arrow {
+.drawer-main-links .arrow {   
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 16px;
     height: 16px;
     color: #888888;
-    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .drawer-main-links li a:hover .arrow {
     color: #111111;
-    transform: translateX(4px);
+
 }
 
 .drawer-main-links .arrow svg {
@@ -487,9 +486,7 @@ header.nav-hovered::before {
     color: #666;
 }
 
-/* =========================
-   SLIDING TOGGLE FOOTER
-========================= */
+
 .drawer-footer-toggle {
     margin-top: auto;
     position: relative;

@@ -85,26 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 3. ANIMACIJA ZA "HERE TODAY" SEKCIJU (Intersection Observer za animacije i auto-play videa)
+// 3. AUTO-PLAY VIDEO ZA "HERE TODAY" SEKCIJU
 document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        threshold: 0.2
-    };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    const htLabel = document.querySelector('.ht-label');
-    const htContent = document.querySelector('.ht-content');
-
-    if (htLabel) sectionObserver.observe(htLabel);
-    if (htContent) sectionObserver.observe(htContent);
-
     // Auto-play/pause video kad dođe u vidokrug
     const htVideo = document.querySelector('.ht-main-img');
     if (htVideo && htVideo.tagName === 'VIDEO') {
@@ -279,8 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (prevBtn) prevBtn.addEventListener("click", () => goTo(page - 1));
 
   wrapper.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") { e.preventDefault(); goTo(page + 1); }
-    else if (e.key === "ArrowLeft") { e.preventDefault(); goTo(page - 1); }
+    e.key === "ArrowRight" ? (e.preventDefault(), goTo(page + 1)) : e.key === "ArrowLeft" && (e.preventDefault(), goTo(page - 1));
   });
 
   let resizeRaf;

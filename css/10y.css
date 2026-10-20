@@ -70,6 +70,7 @@ body {
 }
 
 .intro-section h2 {
+    font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 400;
     margin-bottom: 30px;
