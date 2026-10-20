@@ -90,7 +90,7 @@ body {
     }
 }
 
-/* MOBILEN DIZAJN: Bez beli linii (gap: 0), pogolemi golemi sliki na cel ekran */
+/* MOBILEN DIZAJN: Golemite sliki sega se tocno kolku celiot ekran (celosna visocina i shirina) */
 @media (max-width: 767px) {
     .signori-section {
         padding: 36px 0;
@@ -111,7 +111,7 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: auto;
-        gap: 0; /* Otstraneti se site beli linii */
+        gap: 0; 
         width: 100%;
         padding: 0;
     }
@@ -124,12 +124,13 @@ body {
         max-height: unset;
     }
 
-    /* Golemite sliki sega se ušte pogolemi, posiroki i na cel ekran (preku dvete koloni) */
+    /* Golemite sliki zemaat cel ekran i vo shirina i vo visina na telefonot */
     .span-2x2,
     .span-3x2 {
         grid-column: span 2;
         grid-row: auto;
-        aspect-ratio: 16 / 9; /* Luksuzen širok format na cel ekran */
         width: 100%;
+        height: 100vh;
+        height: 100svh;
     }
 }
