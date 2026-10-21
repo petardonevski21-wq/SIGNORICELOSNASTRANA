@@ -131,26 +131,29 @@
 
 </div>
 
-
+<!-- =========================
+     DESKTOP ONLINE SHOP FLYOUT
+========================== -->
 <div class="shop-flyout" id="shopFlyout" aria-hidden="true" inert>
     <div class="shop-flyout__panel">
         <nav class="shop-flyout__grid" aria-label="Online Shop categories">
             <a class="shop-flyout__card" href="#">
-                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/1-golema.png"></span>
+                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/1-golema.png" alt="New Arrivals" loading="lazy"></span>
                 <span class="shop-flyout__label">New Arrivals</span>
             </a>
-            <a class="shop-flyout__card">
-                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories" loading="lazy"> <!-- add your image: src="path/to/image.jpg" --></span>
+            <a class="shop-flyout__card" href="#">
+                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories" loading="lazy"></span>
                 <span class="shop-flyout__label">Accessories</span>
             </a>
         </nav>
     </div>
 </div>
 
-
+<!-- =========================
+     FULLSCREEN LUXURY SEARCH OVERLAY
+========================== -->
 <div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-label="Search Signori">
     
-    <!-- Header Vo Search Modal-ot so centrirano SIGNORI -->
     <div class="search-top-bar">
         <span class="search-brand-logo">SIGNORI</span>
         <button class="search-close" id="searchClose" aria-label="Close search">
@@ -161,14 +164,12 @@
         </button>
     </div>
 
-    <!-- Sredisen del so input pole -->
     <div class="search-content-inner">
         <div class="search-input-wrapper">
             <input type="text" id="searchInputField" placeholder="Search SIGNORI Bespoke & Collections..." autocomplete="off" spellcheck="false">
             <button class="search-clear" id="searchClear" aria-label="Clear search">Clear</button>
         </div>
 
-        <!-- Trending & Categorized Quick Links -->
         <div class="search-editorial-section">
             <div class="suggestions-group">
                 <span class="suggestions-label">Trending Searches</span>

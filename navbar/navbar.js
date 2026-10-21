@@ -156,12 +156,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // ---------------------------------------------------------
         const shopFlyout = document.getElementById("shopFlyout");
         const flyoutDesktop = window.matchMedia("(min-width: 1024px) and (min-height: 501px)");
-        const FLYOUT_OPEN_DELAY_MS = 450; // lets the drawer glide in first
+        const FLYOUT_OPEN_DELAY_MS = 450;
 
         if (shopFlyout && btnOnline && btnBespoke && sideDrawer) {
             let isFlyoutOpen = false;
             let openTimer = null;
-            const flyoutVideo = shopFlyout.querySelector("video");
 
             const setFlyout = (open) => {
                 clearTimeout(openTimer);
@@ -173,14 +172,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 if (open) {
                     shopFlyout.removeAttribute("inert");
-                    if (flyoutVideo) {
-                        flyoutVideo.play().catch(() => {});
-                    }
                 } else {
                     shopFlyout.setAttribute("inert", "");
-                    if (flyoutVideo) {
-                        flyoutVideo.pause();
-                    }
                 }
                 btnOnline.setAttribute("aria-expanded", open ? "true" : "false");
             };
@@ -199,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 setFlyout(false);
             });
 
-            // Follow the drawer: open with it (Online Shop tab active), close with it
             let drawerWasOpen = sideDrawer.classList.contains("open");
             new MutationObserver(() => {
                 const drawerOpen = sideDrawer.classList.contains("open");
@@ -216,12 +208,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }).observe(sideDrawer, { attributes: true, attributeFilter: ["class"] });
 
-            // Escape closes the flyout (the existing handler closes the drawer too)
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape") setFlyout(false);
             });
 
-            // Leaving the desktop range while open
             const onFlyoutRangeChange = () => { if (!flyoutDesktop.matches) setFlyout(false); };
             if (flyoutDesktop.addEventListener) {
                 flyoutDesktop.addEventListener("change", onFlyoutRangeChange);
