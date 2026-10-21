@@ -993,3 +993,227 @@ header.nav-hovered::before {
         transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s, visibility 0.4s;
     }
 }
+
+/* =========================================================
+   DESKTOP ONLY — ONLINE SHOP FLYOUT (additive)
+   ========================================================= */
+.shop-flyout {
+    display: none;
+}
+
+@media (min-width: 1024px) and (min-height: 501px) {
+    .shop-flyout {
+        display: block;
+        position: fixed;
+        top: 12px;
+        left: 364px;
+        width: calc(50vw - 364px);
+        height: calc(100vh - 24px);
+        z-index: 1002;
+        pointer-events: none;
+        visibility: hidden;
+        filter: drop-shadow(14px 0 28px rgba(0, 0, 0, 0.12));
+        clip-path: inset(-60px -90px -60px 0);
+        -webkit-clip-path: inset(-60px -90px -60px 0);
+        transition: visibility 0s linear 1400ms,
+                    transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+
+    .side-drawer {
+        transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+
+    .drawer-overlay {
+        transition: opacity 1.4s cubic-bezier(0.7, 0, 0.2, 1), visibility 1.4s;
+    }
+
+    .side-drawer:not(.open) ~ .shop-flyout {
+        transform: translateX(-396px);
+    }
+
+    .shop-flyout.is-open {
+        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    .shop-flyout__panel {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 12px 12px 12px 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #f4f4f4;
+        border-radius: 0 8px 8px 0;
+        clip-path: inset(0 100% 0 0 round 0 8px 8px 0);
+        -webkit-clip-path: inset(0 100% 0 0 round 0 8px 8px 0);
+        transition: clip-path 1.4s cubic-bezier(0.7, 0, 0.2, 1),
+                    -webkit-clip-path 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+        will-change: clip-path;
+        scrollbar-width: thin;
+        scrollbar-color: #d2d2d2 transparent;
+    }
+
+    .shop-flyout__panel::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .shop-flyout__panel::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .shop-flyout__panel::-webkit-scrollbar-thumb {
+        background-color: #d2d2d2;
+        border-radius: 3px;
+    }
+
+    .shop-flyout__panel::-webkit-scrollbar-thumb:hover {
+        background-color: #b8b8b8;
+    }
+
+    .shop-flyout.is-open .shop-flyout__panel {
+        clip-path: inset(0 0 0 0 round 0 8px 8px 0);
+        -webkit-clip-path: inset(0 0 0 0 round 0 8px 8px 0);
+    }
+
+    .shop-flyout__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: repeat(2, minmax(200px, 1fr));
+        gap: 8px;
+        width: 100%;
+        min-height: 100%;
+    }
+
+    .shop-flyout__card {
+        position: relative;
+        display: block;
+        min-height: 0;
+        overflow: hidden;
+        border-radius: 4px;
+        background-color: #e5e5e5;
+        color: #ffffff;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .shop-flyout__card[href] {
+        cursor: pointer;
+    }
+
+    .shop-flyout__media {
+        position: absolute;
+        inset: 0;
+        display: block;
+        overflow: hidden;
+    }
+
+    .shop-flyout__media img,
+    .shop-flyout__media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        transform: scale(1);
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .shop-flyout__media img:not([src]) {
+        display: none;
+    }
+
+    .shop-flyout__card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 34%;
+        pointer-events: none;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0));
+    }
+
+    .shop-flyout__label {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 20px;
+        z-index: 1;
+        text-align: center;
+        font-family: 'Jost', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        line-height: 1.2;
+        color: #ffffff;
+        pointer-events: none;
+    }
+
+    .shop-flyout__label::after {
+        content: "";
+        display: block;
+        width: 100%;
+        max-width: 0;
+        height: 1px;
+        margin: 6px auto 0;
+        background-color: currentColor;
+        transition: max-width 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .shop-flyout__card[href]:hover .shop-flyout__media img,
+    .shop-flyout__card[href]:hover .shop-flyout__media video,
+    .shop-flyout__card[href]:focus-visible .shop-flyout__media img,
+    .shop-flyout__card[href]:focus-visible .shop-flyout__media video {
+        transform: scale(1.03);
+    }
+
+    .shop-flyout__card[href]:hover .shop-flyout__label::after,
+    .shop-flyout__card[href]:focus-visible .shop-flyout__label::after {
+        max-width: 48px;
+    }
+
+    .shop-flyout__card:focus-visible {
+        outline: 2px solid #111111;
+        outline-offset: -4px;
+    }
+
+    .shop-flyout__card:focus-visible .shop-flyout__label {
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.45);
+    }
+}
+
+@media (min-width: 1024px) and (min-height: 501px) and (prefers-reduced-motion: reduce) {
+    .shop-flyout,
+    .shop-flyout__panel,
+    .shop-flyout__card,
+    .shop-flyout__media img,
+    .shop-flyout__media video,
+    .shop-flyout__label::after {
+        transition-duration: 1ms !important;
+        transition-delay: 0s !important;
+    }
+}
+
+/* =========================================================
+   DESKTOP ONLY — REFINED MENU ARROWS
+   ========================================================= */
+@media (min-width: 769px) {
+    .drawer-main-links .arrow {
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .drawer-main-links .arrow::before {
+        content: "";
+        display: block;
+        width: 6px;
+        height: 6px;
+        box-sizing: border-box;
+        border-top: 1px solid currentColor;
+        border-right: 1px solid currentColor;
+        transform: translateX(-1.5px) rotate(45deg);
+    }
+}

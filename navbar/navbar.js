@@ -151,6 +151,85 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // ---------------------------------------------------------
+        // DESKTOP ONLINE SHOP FLYOUT (additive, isolated state)
+        // ---------------------------------------------------------
+        const shopFlyout = document.getElementById("shopFlyout");
+        const flyoutDesktop = window.matchMedia("(min-width: 1024px) and (min-height: 501px)");
+        const FLYOUT_OPEN_DELAY_MS = 450; // lets the drawer glide in first
+
+        if (shopFlyout && btnOnline && btnBespoke && sideDrawer) {
+            let isFlyoutOpen = false;
+            let openTimer = null;
+            const flyoutVideo = shopFlyout.querySelector("video");
+
+            const setFlyout = (open) => {
+                clearTimeout(openTimer);
+                openTimer = null;
+                if (open === isFlyoutOpen) return;
+                isFlyoutOpen = open;
+                shopFlyout.classList.toggle("is-open", open);
+                shopFlyout.setAttribute("aria-hidden", open ? "false" : "true");
+                
+                if (open) {
+                    shopFlyout.removeAttribute("inert");
+                    if (flyoutVideo) {
+                        flyoutVideo.play().catch(() => {});
+                    }
+                } else {
+                    shopFlyout.setAttribute("inert", "");
+                    if (flyoutVideo) {
+                        flyoutVideo.pause();
+                    }
+                }
+                btnOnline.setAttribute("aria-expanded", open ? "true" : "false");
+            };
+
+            if (flyoutDesktop.matches) {
+                btnOnline.setAttribute("aria-controls", "shopFlyout");
+                btnOnline.setAttribute("aria-expanded", "false");
+            }
+
+            btnOnline.addEventListener("click", () => {
+                if (!flyoutDesktop.matches) return;
+                setFlyout(true);
+            });
+
+            btnBespoke.addEventListener("click", () => {
+                setFlyout(false);
+            });
+
+            // Follow the drawer: open with it (Online Shop tab active), close with it
+            let drawerWasOpen = sideDrawer.classList.contains("open");
+            new MutationObserver(() => {
+                const drawerOpen = sideDrawer.classList.contains("open");
+                if (drawerOpen === drawerWasOpen) return;
+                drawerWasOpen = drawerOpen;
+
+                if (!drawerOpen) {
+                    setFlyout(false);
+                    return;
+                }
+                if (flyoutDesktop.matches && btnOnline.classList.contains("active")) {
+                    clearTimeout(openTimer);
+                    openTimer = setTimeout(() => setFlyout(true), FLYOUT_OPEN_DELAY_MS);
+                }
+            }).observe(sideDrawer, { attributes: true, attributeFilter: ["class"] });
+
+            // Escape closes the flyout (the existing handler closes the drawer too)
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") setFlyout(false);
+            });
+
+            // Leaving the desktop range while open
+            const onFlyoutRangeChange = () => { if (!flyoutDesktop.matches) setFlyout(false); };
+            if (flyoutDesktop.addEventListener) {
+                flyoutDesktop.addEventListener("change", onFlyoutRangeChange);
+            } else if (flyoutDesktop.addListener) {
+                flyoutDesktop.addListener(onFlyoutRangeChange);
+            }
+        }
+
         // Header Scroll behavior
         if (header) {
             lastScrollY = getScrollY();
@@ -326,8 +405,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // =====================================================
         // MOBILE-ONLY ENHANCEMENTS
-        // Every handler below returns immediately on desktop, so
-        // desktop behaviour is unchanged.
         // =====================================================
         const mobileQuery = window.matchMedia("(max-width: 768px), (pointer: coarse) and (max-height: 500px)");
         const isMobile = () => mobileQuery.matches;
@@ -338,7 +415,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 (el) => !el.closest(".menu-panel:not(.active)")
             );
 
-        // Dialog semantics for assistive tech
         if (isMobile()) {
             if (menuButton && sideDrawer) {
                 menuButton.setAttribute("aria-controls", "sideDrawer");
@@ -350,7 +426,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (searchOverlay) searchOverlay.setAttribute("aria-modal", "true");
         }
 
-        // Focus management: move focus in on open, restore it on close
         const watchOpenState = (el, isOpenFn, onOpen, onClose) => {
             if (!el) return;
             let wasOpen = false;
@@ -377,7 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
             () => { if (searchButton) searchButton.focus({ preventScroll: true }); }
         );
 
-        // Keep Tab inside whichever layer is open
         document.addEventListener("keydown", (event) => {
             if (event.key !== "Tab" || !isMobile()) return;
 
@@ -402,7 +476,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Close the drawer when a destination link is chosen
         if (sideDrawer) {
             sideDrawer.addEventListener("click", (event) => {
                 if (!isMobile()) return;
@@ -415,7 +488,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (href === "#") {
                     event.preventDefault();
                     closeDrawer();
-                    // "Contact us" in the drawer goes where the header link goes
                     if (headerContact && link.closest(".drawer-sub-links") && /contact/i.test(link.textContent)) {
                         window.location.hash = headerContact.getAttribute("href");
                     }
@@ -425,7 +497,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Close the search overlay when a suggestion / category link is chosen
         if (searchOverlay) {
             searchOverlay.addEventListener("click", (event) => {
                 if (!isMobile()) return;
