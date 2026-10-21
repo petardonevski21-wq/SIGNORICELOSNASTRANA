@@ -416,9 +416,6 @@ header.nav-hovered::before {
     transform: translateY(0);
 }
 
-/* =========================================================
-   ONLINE SHOP PANEL — LUXURY STAGGERED REVEAL ANIMATION FOR LINKS
-   ========================================================= */
 #panel-online .drawer-main-links li {
     opacity: 0;
     transform: translateY(16px);
@@ -496,7 +493,6 @@ header.nav-hovered::before {
 
 .drawer-main-links li a:hover .arrow {
     color: #111111;
-    transform: translateX(3px);
 }
 
 .drawer-sub-links {
