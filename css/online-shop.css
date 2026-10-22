@@ -1785,7 +1785,7 @@ footer {
         animation: none;
     }
 
-    .ht-content {
+    .ht-content {   
         transform: none;
         transition: opacity 0.6s ease 0.2s;
     }
