@@ -40,6 +40,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const showHeader = () => header && header.classList.remove("nav-hidden");
         const hideHeader = () => header && header.classList.add("nav-hidden");
 
+        const shopFlyout = document.getElementById("shopFlyout");
+        const flyoutDesktop = window.matchMedia("(min-width: 1024px) and (min-height: 501px)");
+        const btnBespoke = document.getElementById("btn-bespoke");
+        const btnOnline = document.getElementById("btn-online");
+
+        const setFlyout = (open) => {
+            if (!shopFlyout) return;
+            shopFlyout.classList.toggle("is-open", open);
+            shopFlyout.setAttribute("aria-hidden", open ? "false" : "true");
+            if (open) {
+                shopFlyout.removeAttribute("inert");
+            } else {
+                shopFlyout.setAttribute("inert", "");
+            }
+            if (btnOnline) btnOnline.setAttribute("aria-expanded", open ? "true" : "false");
+        };
+
         const openDrawer = () => {
             if (isDrawerOpen) return;
             isDrawerOpen = true;
@@ -48,6 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (menuButton) menuButton.setAttribute("aria-expanded", "true");
             document.body.style.overflow = "hidden";
             if (header) showHeader();
+
+            if (flyoutDesktop.matches && btnOnline && btnOnline.classList.contains("active")) {
+                requestAnimationFrame(() => {
+                    setFlyout(true);
+                });
+            }
         };
 
         const closeDrawer = () => {
@@ -58,6 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (menuButton) menuButton.setAttribute("aria-expanded", "false");
             document.body.style.overflow = "";
             lastScrollY = getScrollY();
+
+            setFlyout(false);
         };
 
         if (menuButton && sideDrawer && drawerOverlay) {
@@ -123,8 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Sliding Toggle (Bespoke vs Online Shop)
-        const btnBespoke = document.getElementById("btn-bespoke");
-        const btnOnline = document.getElementById("btn-online");
         const panelBespoke = document.getElementById("panel-bespoke");
         const panelOnline = document.getElementById("panel-online");
         const toggleContainer = document.getElementById("drawer-toggle-container");
@@ -138,6 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 toggleContainer.classList.remove("right-active");
                 btnBespoke.classList.add("active");
                 btnOnline.classList.remove("active");
+
+                setFlyout(false);
             });
 
             btnOnline.addEventListener("click", (e) => {
@@ -148,65 +173,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 toggleContainer.classList.add("right-active");
                 btnOnline.classList.add("active");
                 btnBespoke.classList.remove("active");
+
+                if (flyoutDesktop.matches && sideDrawer.classList.contains("open")) {
+                    setFlyout(true);
+                }
             });
         }
 
         // ---------------------------------------------------------
-        // DESKTOP ONLINE SHOP FLYOUT (additive, isolated state)
+        // DESKTOP ONLINE SHOP FLYOUT
         // ---------------------------------------------------------
-        const shopFlyout = document.getElementById("shopFlyout");
-        const flyoutDesktop = window.matchMedia("(min-width: 1024px) and (min-height: 501px)");
-        const FLYOUT_OPEN_DELAY_MS = 450;
-
-        if (shopFlyout && btnOnline && btnBespoke && sideDrawer) {
-            let isFlyoutOpen = false;
-            let openTimer = null;
-
-            const setFlyout = (open) => {
-                clearTimeout(openTimer);
-                openTimer = null;
-                if (open === isFlyoutOpen) return;
-                isFlyoutOpen = open;
-                shopFlyout.classList.toggle("is-open", open);
-                shopFlyout.setAttribute("aria-hidden", open ? "false" : "true");
-                
-                if (open) {
-                    shopFlyout.removeAttribute("inert");
-                } else {
-                    shopFlyout.setAttribute("inert", "");
-                }
-                btnOnline.setAttribute("aria-expanded", open ? "true" : "false");
-            };
-
-            if (flyoutDesktop.matches) {
+        if (shopFlyout && flyoutDesktop) {
+            if (flyoutDesktop.matches && btnOnline) {
                 btnOnline.setAttribute("aria-controls", "shopFlyout");
                 btnOnline.setAttribute("aria-expanded", "false");
             }
-
-            btnOnline.addEventListener("click", () => {
-                if (!flyoutDesktop.matches) return;
-                setFlyout(true);
-            });
-
-            btnBespoke.addEventListener("click", () => {
-                setFlyout(false);
-            });
-
-            let drawerWasOpen = sideDrawer.classList.contains("open");
-            new MutationObserver(() => {
-                const drawerOpen = sideDrawer.classList.contains("open");
-                if (drawerOpen === drawerWasOpen) return;
-                drawerWasOpen = drawerOpen;
-
-                if (!drawerOpen) {
-                    setFlyout(false);
-                    return;
-                }
-                if (flyoutDesktop.matches && btnOnline.classList.contains("active")) {
-                    clearTimeout(openTimer);
-                    openTimer = setTimeout(() => setFlyout(true), FLYOUT_OPEN_DELAY_MS);
-                }
-            }).observe(sideDrawer, { attributes: true, attributeFilter: ["class"] });
 
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape") setFlyout(false);
