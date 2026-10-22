@@ -1142,7 +1142,7 @@ footer {
 }
 
 .signori-text-content h2 {
-  font-family: 'Jost' sans-serif;
+  font-family: 'Jost', sans-serif;
   font-size: 2.5rem;
   font-weight: 400;
   letter-spacing: 2px;
@@ -1200,6 +1200,18 @@ footer {
   display: block;
 }
 
+.signori-slide::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   .signori-slide {
     width: 340px;
@@ -1213,15 +1225,41 @@ footer {
   pointer-events: none;
 }
 
-.slide-caption {
+.slide-caption-container {
   font-family: 'Jost', sans-serif;
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 300;
-  letter-spacing: 1px;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.slide-caption {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.discover-link-card {
+  font-size: 13px;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #ffffff;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s ease;
+}
+
+.discover-link-card:hover {
+  opacity: 0.7;
 }
 
 .pause-icon {
@@ -1382,12 +1420,15 @@ footer {
 
     .ht-left {
         flex: none;
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
+        height: 100svh;
     }
 
     .ht-main-img {
-        height: 480px;
-        height: clamp(480px, 90vw, 78svh);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .ht-right {
@@ -1638,11 +1679,6 @@ footer {
         gap: 10px;
     }
 
-    .ht-main-img {
-        height: 400px;
-        height: clamp(400px, 120vw, 78svh);
-    }
-
     .ht-right {
         padding: 56px 0 64px 0;
     }
@@ -1743,9 +1779,8 @@ footer {
         width: clamp(240px, 76cqw, 340px);
     }
 
-    .slide-caption {
-        bottom: 16px;
-        left: 16px;
+    .slide-caption-container {
+        bottom: 20px;
     }
 }
 

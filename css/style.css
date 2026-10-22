@@ -11,10 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-/* =========================
-   SPLIT SCREEN
-========================= */
-
 .split-screen-section {
     display: flex;
     width: 100vw;
