@@ -1392,29 +1392,45 @@ footer {
 
     .ht-right {
         flex: none;
-        padding: 72px 40px 80px;
+        padding: 72px 0 80px 0;
     }
 
     .ht-content {
         width: 100%;
-        max-width: 520px;
+        max-width: 100%;
     }
 
     .ht-title {
         font-size: clamp(1.375rem, 5.6vw, 1.75rem);
         margin-bottom: 36px;
+        padding: 0 20px;
     }
 
+    /* HERE TODAY PRODUCTS - PERFECTLY CENTERED FIRST IMAGE & SECOND EDGE TOUCHING MOBILE */
     .ht-products {
-        width: 100%;
-        justify-content: center;
-        gap: clamp(14px, 4vw, 35px);
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding-left: 10vw;
+        padding-right: 0;
+        gap: 14px;
+        justify-content: flex-start;
+        scrollbar-width: none;
+        margin-bottom: 30px;
+    }
+
+    .ht-products::-webkit-scrollbar {
+        display: none;
     }
 
     .ht-product {
-        flex: 1 1 0;
-        min-width: 0;
-        max-width: 240px;
+        flex: 0 0 80vw;
+        max-width: none;
+        scroll-snap-align: center;
         text-align: center;
     }
 
@@ -1628,7 +1644,7 @@ footer {
     }
 
     .ht-right {
-        padding: 56px 20px 64px;
+        padding: 56px 0 64px 0;
     }
 
     .ht-subtitle {
