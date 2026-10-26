@@ -559,7 +559,7 @@ body {
 /* --- Sektsiya: The Next Chapter - House of Signori --- */
 .next-chapter-section {
     background-color: #ffffff;
-    padding: 120px 0 100px 0;
+    padding: 120px 0 0 0;
     font-family: 'Jost', sans-serif;
     text-align: center;
 }
@@ -567,7 +567,7 @@ body {
 .next-chapter-container {
     max-width: 1500px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0px;
 }
 
 .next-chapter-title {

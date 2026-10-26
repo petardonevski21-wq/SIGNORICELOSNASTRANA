@@ -1812,7 +1812,7 @@ footer {
 
 @media (max-width: 1024px) and (prefers-reduced-motion: reduce) {
     .bg-video {
-        animation: none;
+        animation: none;    
         transform: none;
     }
 
