@@ -55,7 +55,6 @@ body {
     background-size: cover;
     background-position: center;
     z-index: 1;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .bg-overlay {
@@ -127,10 +126,6 @@ body {
 .split-pane:hover .link-btn::after {
     transform: scaleX(0);
     transform-origin: right;
-}
-
-.split-pane:hover .bg-image {
-    transform: scale(1.05);
 }
 
 /* =========================
@@ -398,7 +393,7 @@ body {
 ========================================================= */
 
 @media (max-width: 1024px) {
-    /* 1. Вертикален распоред - страниците една под друга */
+    /* 1. Verikalen raspored - stranici edna pod druga */
     .split-screen-section {
         flex-direction: column;
         height: auto;
@@ -406,7 +401,7 @@ body {
         position: relative;
     }
 
-    /* 2. Логото SIGNORI - Најгоре, помало, за да не преклопува ништо */
+    /* 2. Logoto SIGNORI - Najgore, pomalo, za da ne preklopuva nisto */
     .center-brand {
         position: absolute;
         top: 20px;
@@ -422,7 +417,7 @@ body {
         pointer-events: none;
     }
 
-    /* 3. Панелите за Bespoke и Ready to Wear (зголемени умерено и рамномерно центрирани едно под друго) */
+    /* 3. Panelite za Bespoke i Ready to Wear (zgolemeni umereno i ramnomerno centrirani edno pod druga) */
     .split-pane {
         width: 100%;
         height: 72vh;
@@ -431,7 +426,7 @@ body {
         position: relative;
     }
 
-    /* Унифицирање и совршено центрирање на двете слики на мобилен */
+    /* Unificiranje i sovrseno centriranje na dvete sliki na mobilen */
     .split-pane .bg-image,
     .right-pane .bg-image {
         position: absolute;
@@ -444,7 +439,7 @@ body {
         background-repeat: no-repeat;
     }
 
-    /* 4. Помали и посразмерни текстови */
+    /* 4. Pomali i posrazmerni tekstovi */
     .content h2 {
         font-size: 1.2rem;
         letter-spacing: 0.1em;
@@ -459,21 +454,21 @@ body {
         padding-bottom: 2px;
     }
 
-    /* 5. Видеото се појавува и се пушта на мобилен кога е активирано */
+    /* 5. Videoto se pojavuva i se pusta na mobilen koga e aktivirano */
     .hero-video {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    /* Пуштање на видеото при допир/клик на целиот панел на мобилен */
+    /* Pustanje na videoto pri dopir/klik na celiot panel na mobilen */
     .split-pane:active .hero-video,
     .split-pane:focus .hero-video,
     .split-pane .hero-video.is-activated {
         opacity: 1;
     }
 
-    /* Копчето за Pause/Play */
+    /* Kopceto za Pause/Play */
     .hero-video-toggle {
         left: 16px;
         bottom: 16px;
@@ -481,7 +476,7 @@ body {
         height: 38px;
     }
 
-    /* 6. Респонзивен футер */
+    /* 6. Responden futer */
     .luxury-footer {
         padding: 50px 20px 30px;
     }
@@ -507,7 +502,7 @@ body {
     }
 }
 
-/* Прилагодување за екстремно мали телефони (под 480px) */
+/* Prilagoduvanje za ekstremno mali telefoni (pod 480px) */
 @media (max-width: 480px) {
     .center-brand {
         font-size: 1.5rem;

@@ -4,29 +4,45 @@
 
 /* Variables */
 :root {
-    --signori-bg: #f2f2ef; /* Svetlo siva / prljava bela pozadina */
-    --signori-text-primary: #1a1a1a; /* Crna boja za bukvite */
-    --signori-text-secondary: #555555; /* Sekundaren tekst */
-    --signori-border: rgba(0, 0, 0, 0.12);
+    --signori-bg: #ffffff; /* Bela pozadina na kartickata */
+    --signori-outer-bg: #e6e6e6; /* Siva pozadina okolu kartickata */
+    --signori-text-primary: #1a1a1a;
+    --signori-text-secondary: #555555;
+    --signori-border: rgba(0, 0, 0, 0.08);
     --signori-font-main: 'Jost', sans-serif;
     --signori-transition: color 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
 }
 
-/* Footer Container Base */
+/* Base Body Background for Footer Wrapper */
+body {
+    background-color: var(--signori-outer-bg);
+}
+
+/* Footer Container Base - Floating Rounded Card */
 .signori-site-footer {
     background-color: var(--signori-bg);
     color: var(--signori-text-primary);
     font-family: var(--signori-font-main);
     padding: 80px 5% 40px 5%;
-    width: 100%;
+    
+    /* Rounded Card Layout (Dior Style) */
+    width: calc(100% - 30px);
+    max-width: 1850px;
+    margin: 30px auto 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    z-index: 10;
 }
 
 /* Grid Layout */
 .footer-main-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
@@ -50,7 +66,7 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 8px;
-    height: 16px; /* Fiksna visina za da se osigura poramnuvanje bez da begaat */
+    height: 16px;
 }
 
 .footer-icon {
@@ -104,7 +120,7 @@
 }
 
 .atelier-block .column-title {
-    margin-bottom: 20px; /* Pravilen razmak za naslovot bez ikonka */
+    margin-bottom: 20px;
 }
 
 .atelier-address,
@@ -220,12 +236,12 @@
     height: 1px;
     background-color: var(--signori-border);
     margin: 60px auto 32px auto;
-    max-width: 1400px;
+    max-width: 1600px;
 }
 
 /* Bottom Footer Bar */
 .footer-bottom-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -268,18 +284,27 @@
     color: var(--signori-text-secondary);
 }
 
-/* Bottom Right Larger Image / Logo without Background[cite: 1] */
+/* Bottom Right Logo */
 .footer-bottom-right {
     display: flex;
     align-items: flex-end;
 }
 
 .signori-footer-logo {
-    width: 120px; /* Pogolema slika */
+    width: 120px;
     height: auto;
     object-fit: contain;
-    background: transparent; /* Bez nikakva pozadina */
+    background: transparent;
     border: none;
     border-radius: 0;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .signori-site-footer {
+        width: calc(100% - 16px);
+        margin: 15px auto 15px auto;
+        padding: 50px 20px 30px 20px;
+        border-radius: 16px;
+    }
+}
