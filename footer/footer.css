@@ -1,0 +1,285 @@
+/* ==========================================
+   SIGNORI LUXURY FOOTER STYLES
+   ========================================== */
+
+/* Variables */
+:root {
+    --signori-bg: #f2f2ef; /* Svetlo siva / prljava bela pozadina */
+    --signori-text-primary: #1a1a1a; /* Crna boja za bukvite */
+    --signori-text-secondary: #555555; /* Sekundaren tekst */
+    --signori-border: rgba(0, 0, 0, 0.12);
+    --signori-font-main: 'Jost', sans-serif;
+    --signori-transition: color 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
+}
+
+/* Footer Container Base */
+.signori-site-footer {
+    background-color: var(--signori-bg);
+    color: var(--signori-text-primary);
+    font-family: var(--signori-font-main);
+    padding: 80px 5% 40px 5%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grid Layout */
+.footer-main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
+    gap: 48px;
+}
+
+/* Headings & Labels */
+.column-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--signori-text-primary);
+    margin: 0;
+    display: block;
+    line-height: 1.2;
+}
+
+.column-title-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    height: 16px; /* Fiksna visina za da se osigura poramnuvanje bez da begaat */
+}
+
+.footer-icon {
+    font-size: 11px;
+    color: var(--signori-text-secondary);
+    width: 14px;
+    text-align: center;
+}
+
+/* Contact Section Details */
+.contact-block {
+    margin-bottom: 28px;
+}
+
+.contact-block:last-child {
+    margin-bottom: 0;
+}
+
+.footer-contact-link {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--signori-text-secondary);
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 2px;
+    transition: var(--signori-transition);
+}
+
+.footer-contact-link::after,
+.directions-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--signori-text-primary);
+    transition: width 0.25s ease;
+}
+
+.footer-contact-link:hover,
+.directions-link:hover {
+    color: var(--signori-text-primary);
+}
+
+.footer-contact-link:hover::after,
+.directions-link:hover::after {
+    width: 100%;
+}
+
+.atelier-block .column-title {
+    margin-bottom: 20px; /* Pravilen razmak za naslovot bez ikonka */
+}
+
+.atelier-address,
+.atelier-hours,
+.atelier-note {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--signori-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 4px 0;
+}
+
+.atelier-note {
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
+.directions-link {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--signori-text-secondary);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    display: inline-block;
+    transition: var(--signori-transition);
+}
+
+/* Navigation Lists */
+.footer-column > .column-title {
+    margin-bottom: 20px;
+}
+
+.footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-link {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--signori-text-secondary);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: var(--signori-transition);
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--signori-text-primary);
+    transition: width 0.25s ease;
+}
+
+.footer-link:hover {
+    color: var(--signori-text-primary);
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+/* Social Media Icons */
+.social-col .column-title {
+    margin-bottom: 20px;
+}
+
+.footer-social-icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-icon-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--signori-border);
+    color: var(--signori-text-primary);
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.social-icon-link:hover {
+    background-color: var(--signori-text-primary);
+    color: var(--signori-bg);
+    border-color: var(--signori-text-primary);
+}
+
+/* Divider */
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--signori-border);
+    margin: 60px auto 32px auto;
+    max-width: 1400px;
+}
+
+/* Bottom Footer Bar */
+.footer-bottom-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer-bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.copyright-text,
+.location-text {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--signori-text-secondary);
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.bottom-legal-links {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--signori-text-secondary);
+}
+
+.bottom-legal-links a {
+    color: var(--signori-text-secondary);
+    text-decoration: underline;
+    transition: var(--signori-transition);
+}
+
+.bottom-legal-links a:hover {
+    color: var(--signori-text-primary);
+}
+
+.dot-separator {
+    margin: 0 4px;
+    color: var(--signori-text-secondary);
+}
+
+/* Bottom Right Larger Image / Logo without Background[cite: 1] */
+.footer-bottom-right {
+    display: flex;
+    align-items: flex-end;
+}
+
+.signori-footer-logo {
+    width: 120px; /* Pogolema slika */
+    height: auto;
+    object-fit: contain;
+    background: transparent; /* Bez nikakva pozadina */
+    border: none;
+    border-radius: 0;
+}
+
