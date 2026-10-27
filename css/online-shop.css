@@ -6,7 +6,7 @@
 
 html, body {
     width: 100%;
-    background-color: #111;
+
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -79,7 +79,7 @@ body {
     }
 }
 
-footer {
+.hero-section footer {
     position: relative;
     z-index: 2;
     display: grid;
