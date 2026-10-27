@@ -282,14 +282,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 lastScrollY = getScrollY();
             };
 
-            if (lastScrollY >= getHeroThreshold()) {
+            if (window.location.pathname.includes('gallery.html')) {
                 mode = "scrolled";
+                header.classList.remove("nav-hero");
                 header.classList.add("nav-scrolled");
             } else {
-                mode = "hero";
-                header.classList.add("nav-hero");
-                measureHeroNavHeight();
-                applyHeroShift();
+                if (lastScrollY >= getHeroThreshold()) {
+                    mode = "scrolled";
+                    header.classList.add("nav-scrolled");
+                } else {
+                    mode = "hero";
+                    header.classList.add("nav-hero");
+                    measureHeroNavHeight();
+                    applyHeroShift();
+                }
             }
 
             const updateHeader = () => {
@@ -297,10 +303,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const currentScrollY = getScrollY();
                 const heroThreshold = getHeroThreshold();
 
-                if (currentScrollY >= heroThreshold) {
-                    if (mode !== "scrolled") enterScrolledMode(currentScrollY);
-                } else if (mode === "scrolled") {
-                    startLeavingHero();
+                if (!window.location.pathname.includes('gallery.html')) {
+                    if (currentScrollY >= heroThreshold) {
+                        if (mode !== "scrolled") enterScrolledMode(currentScrollY);
+                    } else if (mode === "scrolled") {
+                        startLeavingHero();
+                    }
                 }
 
                 if (mode === "hero") {
@@ -486,9 +494,6 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(fetchPath)
             .then(response => response.text())
             .then(data => {
-                // Keep the injected navbar out of rendering until its own
-                // stylesheets are applied, so the drawer and search overlay
-                // never show in their unstyled (visible) state.
                 siteMenu.style.display = "none";
                 siteMenu.innerHTML = data;
 
@@ -505,8 +510,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-                // Wait only for local stylesheets that apply to this viewport
-                // (external font links and non-matching media sheets are skipped).
                 const sheetLoads = Array.from(siteMenu.querySelectorAll('link[rel="stylesheet"]'))
                     .filter(link => {
                         const href = link.getAttribute('href') || '';
@@ -518,7 +521,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         link.addEventListener('error', resolve, { once: true });
                     }));
 
-                // Safety cap so a failed stylesheet can never keep the navbar hidden.
                 const safetyCap = new Promise(resolve => setTimeout(resolve, 3000));
 
                 return Promise.race([Promise.all(sheetLoads), safetyCap]).then(() => {
