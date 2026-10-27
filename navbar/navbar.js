@@ -486,6 +486,10 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(fetchPath)
             .then(response => response.text())
             .then(data => {
+                // Keep the injected navbar out of rendering until its own
+                // stylesheets are applied, so the drawer and search overlay
+                // never show in their unstyled (visible) state.
+                siteMenu.style.display = "none";
                 siteMenu.innerHTML = data;
 
                 if (isInPages) {
@@ -501,9 +505,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                 }
 
-                initNavbar();
+                // Wait only for local stylesheets that apply to this viewport
+                // (external font links and non-matching media sheets are skipped).
+                const sheetLoads = Array.from(siteMenu.querySelectorAll('link[rel="stylesheet"]'))
+                    .filter(link => {
+                        const href = link.getAttribute('href') || '';
+                        if (/^(https?:)?\/\//.test(href)) return false;
+                        return !link.media || window.matchMedia(link.media).matches;
+                    })
+                    .map(link => new Promise(resolve => {
+                        link.addEventListener('load', resolve, { once: true });
+                        link.addEventListener('error', resolve, { once: true });
+                    }));
+
+                // Safety cap so a failed stylesheet can never keep the navbar hidden.
+                const safetyCap = new Promise(resolve => setTimeout(resolve, 3000));
+
+                return Promise.race([Promise.all(sheetLoads), safetyCap]).then(() => {
+                    siteMenu.style.display = "";
+                    initNavbar();
+                });
             })
             .catch(error => {
+                siteMenu.style.display = "";
                 console.error("Greshka pri zarezhdane na menyuto:", error);
             });
     } else {

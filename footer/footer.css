@@ -299,12 +299,91 @@ body {
     border-radius: 0;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ==========================================================================
+   RESPONSIVE LAYER — TABLET & MOBILE ONLY (FOOTER)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .signori-site-footer {
+        width: calc(100% - 24px);
+        margin: 20px auto;
+        padding: 50px 28px 32px 28px;
+        border-radius: 16px;
+    }
+
+    .footer-main-container {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        max-width: 100%;
+    }
+
+    .footer-column {
+        width: 100%;
+    }
+
+    .footer-divider {
+        margin: 36px auto 24px auto;
+        max-width: 100%;
+    }
+
+    .footer-bottom-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        max-width: 100%;
+    }
+
+    .footer-bottom-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .signori-footer-logo {
+        width: 110px;
+    }
+}
+
+@media (max-width: 767px) {
     .signori-site-footer {
         width: calc(100% - 16px);
-        margin: 15px auto 15px auto;
-        padding: 50px 20px 30px 20px;
-        border-radius: 16px;
+        margin: 15px auto;
+        padding: 40px 20px 24px 20px;
+        border-radius: 12px;
+    }
+
+    .footer-main-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-column {
+        width: 100%;
+    }
+
+    .footer-divider {
+        margin: 30px auto 20px auto;
+    }
+
+    .footer-bottom-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .footer-bottom-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .signori-footer-logo {
+        width: 100px;
+    }
+
+    .footer-social-icons {
+        gap: 16px;
+    }
+
+    .social-icon-link {
+        width: 38px;
+        height: 38px;
     }
 }

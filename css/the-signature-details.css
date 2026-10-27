@@ -12,7 +12,6 @@ body, html {
     scroll-behavior: smooth;
 }
 
-/* --- PRVA SEKCIJA (Hero sekcija) --- */
 .signature-section {
     position: relative;
     width: 100%;
@@ -160,7 +159,7 @@ body, html {
 }
 
 
-/* --- ČETVRTA SEKCIJA (Full-screen slika na kraj) --- */
+
 .section-four {
     position: relative;
     width: 100%;
