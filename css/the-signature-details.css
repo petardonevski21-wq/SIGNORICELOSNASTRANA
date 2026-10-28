@@ -232,3 +232,76 @@ body, html {
     margin: 0;
     padding: 0;
 }
+
+/* --- MOBILNA VERZIJA - Pomestuvanje na hero slikata i prvite dve sliki nadesno --- */
+@media (max-width: 768px) {
+    .signature-section {
+        height: 100vh;
+        padding: 40px 6%;
+    }
+    
+    /* Hero slika pomestena nadesno */
+    .hero-image {
+        object-position: 85% center;
+    }
+    
+    .section-two {
+        min-height: 100vh;
+        padding: 60px 6% 0 6%;
+    }
+
+    .top-text-container {
+        margin-bottom: 30px;
+    }
+
+    /* Prvata slika pomestena nadesno */
+    .large-image-wrapper {
+        width: 100%;
+        height: 70vh;
+    }
+    .large-image-wrapper img {
+        object-position: 85% center;
+    }
+
+    .section-three {
+        padding: 80px 6%;
+        gap: 80px;
+    }
+
+    .editorial-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .text-column, 
+    .editorial-row .text-column {
+        max-width: 100%;
+    }
+
+    /* Vtorata slika pomestena nadesno */
+    .image-column {
+        width: 100%;
+        height: 75vh;
+    }
+    .image-column img {
+        object-position: 85% center;
+    }
+
+    .section-text-between {
+        padding: 80px 6%;
+    }
+
+    .section-four, 
+    .section-five {
+        height: 85vh;
+    }
+
+    .dual-images-wrapper {
+        flex-direction: column;
+    }
+
+    .dual-images-wrapper img {
+        width: 100%;
+        height: 80vh;
+    }
+}
