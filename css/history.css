@@ -644,3 +644,207 @@ body {
     object-position: center center;
     display: block;
 }
+
+/* --- MOBILNA VERZIJA ZA HISTORY.CSS (Desktop verzijata ostanuva nepromeneta) --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    /* 1. The Art of Bespoke (Prvata slika pomestena nadesno) */
+    .second-section img {
+        object-position: 80% center;
+    }
+
+    .second-section .text-box-left {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .second-section .bespoke-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .second-section .bespoke-text {
+        font-size: 20px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    /* First Creations Grid */
+    .creations-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .first-creations-section {
+        padding: 60px 0;
+    }
+
+    .creations-title {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    /* 2. Stacked Sticky Scroll (Animacii) */
+    /* Prvata slika (The First Chapter) namestena vo 9:16 format za telefon */
+    .stack-item:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000;
+    }
+
+    .stack-item:nth-child(1) .stack-img {
+        width: 100%;
+        height: 100%;
+        max-height: 82vh;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        object-position: center center;
+        margin: 0 auto;
+    }
+
+    /* Timeless Elegance (Vtora slika) - pomestena nadesno */
+    .stack-item:nth-child(2) .stack-img {
+        object-position: 85% center;
+    }
+
+    /* Refined Craftsmanship (Treta slika) - pomestena nadesno */
+    .stack-item:nth-child(3) .stack-img {
+        object-position: 85% center;
+    }
+
+    .stack-content {
+        bottom: 12%;
+        left: 6%;
+        max-width: 90%;
+        padding-right: 15px;
+    }
+
+    .stack-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .stack-desc {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* 3. The First Years & Expanding The Idea - Redosled: Prvo tekstot, pa slikata */
+    .history-expansion-section {
+        padding-top: 60px;
+    }
+
+    .expansion-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .first-years-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .first-years-content {
+        order: 1;
+        text-align: left;
+    }
+
+    .first-years-image {
+        order: 2;
+        width: 100%;
+        height: 75vh;
+    }
+
+    .expanding-idea-box {
+        order: 3;
+        margin-bottom: 40px;
+        padding: 0 20px;
+        text-align: left;
+    }
+
+    /* Slika pod Expanding the idea - cel telefon na ekranot (100svh) */
+    .tucker-hero-image {
+        order: 4;
+        width: 100%;
+        height: 100vh;
+        height: 100svh;
+        margin-top: 20px;
+    }
+
+    .expansion-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .expansion-text {
+        font-size: 13px;
+    }
+
+    /* Three Suits Section -> Golemi sliki na cel ekran */
+    .suits-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .suit-item {
+        height: 75vh;
+    }
+
+    .three-suits-section {
+        padding: 40px 0;
+    }
+
+    .suits-description {
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    /* Anniversary Hero */
+    .anniversary-hero {
+        height: 85vh;
+        margin-top: 20px;
+    }
+
+    .anniversary-title {
+        font-size: 17px;
+    }
+
+    /* The Next Chapter Section */
+    .next-chapter-section {
+        padding: 80px 0 0 0;
+    }
+
+    .next-chapter-title {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .next-chapter-subtitle {
+        font-size: 20px;
+    }
+
+    .next-chapter-text {
+        font-size: 13px;
+        padding: 0 20px;
+        margin-bottom: 20px;
+    }
+
+    .next-chapter-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .next-chapter-card {
+        height: 75vh;
+    }
+}
