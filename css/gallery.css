@@ -34,7 +34,7 @@ body {
     margin-bottom: 0;
 }
 
-/* Grid Mrezha - Pylen Ekran (bez max-width) i Dvoina Visochina */
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -209,3 +209,26 @@ body, html {
     object-position: center;
     display: block;
 }
+
+.section-dual {
+    width: 100%;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.dual-images-wrapper {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.dual-images-wrapper img {
+    width: 50%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
