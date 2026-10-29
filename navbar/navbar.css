@@ -1712,7 +1712,7 @@ header.nav-hovered::before {
         }
     }
 
-    /* ---------- TOUCH: NO STICKY HOVER COLOURS ---------- */
+ 
 
     @media (hover: none) {
         header:not(.nav-scrolled):not(.nav-hovered) .menu-container:hover .menu-text,
