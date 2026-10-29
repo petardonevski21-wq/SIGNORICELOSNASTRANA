@@ -481,9 +481,10 @@ header.nav-hovered::before {
     align-items: center;
     text-decoration: none;
     color: #333333;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     transition: color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 1px;
 }
 
 .drawer-main-links li a:hover {
