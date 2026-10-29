@@ -491,9 +491,7 @@ header.nav-hovered::before {
     color: #111111 !important;
 }
 
-/* =========================================================
-   HIGH-END LUXURY ARROWS (HAUT COUTURE STYLE)
-   ========================================================= */
+
 .drawer-main-links .arrow {   
     display: inline-flex;
     align-items: center;
@@ -1454,10 +1452,10 @@ header.nav-hovered::before {
     }
 
     .drawer-main-links li a {
-        min-height: 52px;
-        font-size: clamp(16px, 4.6vw, 19px);
+        min-height: 48px;
+        font-size: 13.5px;
         font-weight: 400;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.03em;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
     }
@@ -1476,8 +1474,8 @@ header.nav-hovered::before {
     .drawer-sub-links li a {
         display: flex;
         align-items: center;
-        min-height: 46px;
-        font-size: 14px;
+        min-height: 42px;
+        font-size: 13.5px;
         font-weight: 400;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
@@ -1564,11 +1562,11 @@ header.nav-hovered::before {
     /* Medium-height phones: compact row sizing */
     @media (min-height: 640px) and (max-height: 799px) {
         .drawer-main-links li a {
-            min-height: 42px;
+            min-height: 40px;
         }
 
         .drawer-sub-links li a {
-            min-height: 38px;
+            min-height: 36px;
         }
     }
 
@@ -1698,11 +1696,11 @@ header.nav-hovered::before {
         }
 
         .drawer-main-links li a {
-            min-height: 44px;
+            min-height: 40px;
         }
 
         .drawer-sub-links li a {
-            min-height: 40px;
+            min-height: 36px;
         }
 
         .drawer-sub-links {
