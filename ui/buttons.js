@@ -11,7 +11,7 @@ style.textContent = `
     transition: color 0.4s ease;
 }
 
-/* NORMAL — Thin white line closer under text */
+/* NORMAL — Thin line closer under text */
 
 .signori-line-btn::after {
     content: "";
@@ -20,7 +20,7 @@ style.textContent = `
     bottom: -3px;
     width: 100%;
     height: 1px;
-    background: #fff;
+    background: currentColor;
 
     transform: scaleX(1);
     transform-origin: left center;
@@ -44,6 +44,31 @@ style.textContent = `
 
 .signori-line-btn:not(:hover)::after {
     transform-origin: left center;
+}
+
+/* DARK VARIANT — for buttons on white / light backgrounds */
+
+.signori-line-btn--dark {
+    color: #000;
+}
+
+.signori-line-btn--dark:hover {
+    color: #8c8c8c;
+}
+
+/* TOUCH DEVICES — no sticky hover state */
+
+@media (hover: none) {
+    .signori-line-btn:hover {
+        color: #fff;
+    }
+    .signori-line-btn--dark:hover {
+        color: #000;
+    }
+    .signori-line-btn:hover::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
 }
 
 `;
