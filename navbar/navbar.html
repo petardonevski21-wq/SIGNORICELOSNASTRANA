@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SIGNORI Navigation</title>
 
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../navbar/navbar.css">
-    <link rel="stylesheet" href="../navbar/navbar-mobile.css" media="(max-width: 768px), (pointer: coarse) and (max-height: 500px)">
+    <link rel="stylesheet" href="../navbar/navbar-mobile.css"
+        media="(max-width: 768px), (pointer: coarse) and (max-height: 500px)">
 </head>
-    
+
 <header>
     <!-- LEFT - MENU -->
     <div class="nav-left">
-        <div
-            class="menu-container"
-            id="menuButton"
-            role="button"
-            tabindex="0"
-            aria-label="Open menu"
-        >
+        <div class="menu-container" id="menuButton" role="button" tabindex="0" aria-label="Open menu">
             <div class="hamburger">
-                <span></span>
-                <span></span>
+                <svg class="menu-icon" viewBox="0 0 36 36" focusable="false" aria-hidden="true">
+                    <path class="menu-icon__piece" d="M11 14.2H25V15.4H11Z"></path>
+                    <path class="menu-icon__piece" d="M11 20.6H25V21.8H11Z"></path>
+                </svg>
             </div>
             <span class="menu-text">
                 Menu
@@ -62,7 +62,7 @@
 
 <!-- SIDE DRAWER -->
 <div class="side-drawer" id="sideDrawer">
-    
+
     <!-- Drawer Header -->
     <div class="drawer-header">
         <button class="drawer-close" id="drawerClose" aria-label="Close menu">
@@ -73,21 +73,31 @@
         </button>
         <div class="drawer-icons">
             <!-- Map Pin -->
-             <a href="../pages/location.html">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        </a>
+            <a href="../pages/location.html">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+            </a>
             <!-- User -->
-            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
             <!-- Bag -->
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+            <svg viewBox="0 0 24 24">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 01-8 0"></path>
+            </svg>
         </div>
     </div>
-    
+
     <hr class="drawer-divider">
-    
+
     <!-- Menu Content Wrapper -->
     <div class="menu-content-wrapper">
-        
+
         <!-- Online Shop Panel -->
         <div class="menu-panel active" id="panel-online">
             <ul class="drawer-main-links">
@@ -100,11 +110,13 @@
             </ul>
             <div class="mobile-online-shop-images">
                 <a class="mobile-shop-card" href="#">
-                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/11.png" alt="New Arrivals" loading="lazy"></span>
+                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/11.png" alt="New Arrivals"
+                            loading="lazy"></span>
                     <span class="mobile-shop-label">New Arrivals</span>
                 </a>
                 <a class="mobile-shop-card" href="#">
-                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories" loading="lazy"></span>
+                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories"
+                            loading="lazy"></span>
                     <span class="mobile-shop-label">Wedding Suits</span>
                 </a>
             </div>
@@ -117,22 +129,22 @@
                 <li><a href="pages/process-bespoke.html">Bespoke Tailoring Process</a></li>
                 <li><a href="#">Fabrics</a></li>
                 <li><a href="../pages/the-signature-details.html">The Signature Details</a></li>
-                <li><a href="pages/gallery.html">Gallery</a></li>          
+                <li><a href="pages/gallery.html">Gallery</a></li>
                 <li><a href="pages/history.html">The History</a></li>
                 <li><a href="#">Journal</a></li>
             </ul>
         </div>
 
     </div>
-    
+
     <hr class="drawer-divider">
-    
+
 
     <ul class="drawer-sub-links">
         <li><a href="#">Contact us</a></li>
         <li><a href="pages/faq.html">FAQ</a></li>
     </ul>
-    
+
     <!-- Sliding Toggle Footer Buttons -->
     <div class="drawer-footer-toggle right-active" id="drawer-toggle-container">
         <div class="toggle-bg"></div>
@@ -147,22 +159,22 @@
     <div class="shop-flyout__panel">
         <nav class="shop-flyout__grid" aria-label="Online Shop categories">
             <a class="shop-flyout__card" href="#">
-                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/11.png" alt="New Arrivals" loading="lazy"></span>
+                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/11.png" alt="New Arrivals"
+                        loading="lazy"></span>
                 <span class="shop-flyout__label">New Arrivals</span>
             </a>
             <a class="shop-flyout__card" href="#">
-                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories" loading="lazy"></span>
+                <span class="shop-flyout__media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories"
+                        loading="lazy"></span>
                 <span class="shop-flyout__label">Wedding Suits</span>
             </a>
         </nav>
     </div>
 </div>
 
-<!-- =========================
-     FULLSCREEN LUXURY SEARCH OVERLAY
-========================== -->
+
 <div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-label="Search Signori">
-    
+
     <div class="search-top-bar">
         <span class="search-brand-logo">SIGNORI</span>
         <button class="search-close" id="searchClose" aria-label="Close search">
@@ -175,7 +187,8 @@
 
     <div class="search-content-inner">
         <div class="search-input-wrapper">
-            <input type="text" id="searchInputField" placeholder="Search SIGNORI Bespoke & Collections..." autocomplete="off" spellcheck="false">
+            <input type="text" id="searchInputField" placeholder="Search SIGNORI Bespoke & Collections..."
+                autocomplete="off" spellcheck="false">
             <button class="search-clear" id="searchClear" aria-label="Clear search">Clear</button>
         </div>
 
@@ -224,4 +237,5 @@
     </div>
 </div>
 </body>
+
 </html>

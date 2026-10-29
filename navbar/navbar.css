@@ -154,6 +154,7 @@ header.nav-instant::after {
 }
 
 .hamburger {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -162,12 +163,24 @@ header.nav-instant::after {
     height: 12px;
 }
 
-.hamburger span {
-    display: block;
-    width: 14px;
-    height: 1.3px;
-    background-color: #ffffff;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+/* Menu icon: two lines that morph into the SIGNORI fleur-de-lis (navbar.js).
+   The SVG is centred on the original 14x12 box and never affects layout. */
+.menu-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    overflow: visible;
+    pointer-events: none;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.menu-icon__piece {
+    fill: currentColor;
+    fill-rule: nonzero;
 }
 
 .menu-text {
@@ -182,8 +195,8 @@ header.nav-instant::after {
     color: #8c8c8c;
 }
 
-.menu-container:hover .hamburger span {
-    background-color: #8c8c8c;
+.menu-container:hover .menu-icon {
+    color: #8c8c8c;
 }
 
 .nav-center {
@@ -258,9 +271,9 @@ header.nav-hovered .menu-container {
     color: #000000;
 }
 
-header.nav-scrolled .hamburger span,
-header.nav-hovered .hamburger span {
-    background-color: #000000;
+header.nav-scrolled .menu-icon,
+header.nav-hovered .menu-icon {
+    color: #000000;
 }
 
 header.nav-scrolled .search-btn,
@@ -279,9 +292,9 @@ header.nav-hovered .menu-container:hover .menu-text {
     color: #666666;
 }
 
-header.nav-scrolled .menu-container:hover .hamburger span,
-header.nav-hovered .menu-container:hover .hamburger span {
-    background-color: #666666;
+header.nav-scrolled .menu-container:hover .menu-icon,
+header.nav-hovered .menu-container:hover .menu-icon {
+    color: #666666;
 }
 
 header.nav-hovered::before {
@@ -1305,11 +1318,6 @@ header.nav-hovered::before {
         gap: 5px;
     }
 
-    .hamburger span {
-        width: 18px;
-        height: 1.3px;
-    }
-
     .nav-center {
         min-width: 0;
     }
@@ -1713,8 +1721,8 @@ header.nav-hovered::before {
             color: #ffffff;
         }
 
-        header:not(.nav-scrolled):not(.nav-hovered) .menu-container:hover .hamburger span {
-            background-color: #ffffff;
+        header:not(.nav-scrolled):not(.nav-hovered) .menu-container:hover .menu-icon {
+            color: #ffffff;
         }
 
         header.nav-scrolled .search-btn:hover,
@@ -1722,9 +1730,9 @@ header.nav-hovered::before {
             color: #000000;
         }
 
-        header.nav-scrolled .menu-container:hover .hamburger span,
-        header.nav-hovered .menu-container:hover .hamburger span {
-            background-color: #000000;
+        header.nav-scrolled .menu-container:hover .menu-icon,
+        header.nav-hovered .menu-container:hover .menu-icon {
+            color: #000000;
         }
 
         .drawer-main-links:hover li a {

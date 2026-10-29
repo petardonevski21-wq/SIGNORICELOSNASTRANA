@@ -1,3 +1,7 @@
+const initMenuIconMorph = (hamburger, drawer) => {
+    // Animacijata e celosno trgnata, burger ikonkata ostanuva vo postojaniot izgled.
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     const siteMenu = document.getElementById("site-menu");
 
@@ -485,6 +489,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 closeSearch();
             });
         }
+
+        initMenuIconMorph(menuButton && menuButton.querySelector(".hamburger"), sideDrawer);
     };
 
     if (siteMenu) {

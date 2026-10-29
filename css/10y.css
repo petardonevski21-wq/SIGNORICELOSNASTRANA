@@ -256,7 +256,7 @@ body {
         font-family: 'Jost', sans-serif;
     }
 
-    /* 2. Feature sekcija - PRVATA SLIKA OD KRAJ DO KRAJ I MALCE POLEVO */
+
     .feature-section {
         flex-direction: column;
         min-height: auto;
@@ -272,7 +272,7 @@ body {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: 35% center; /* Pomestena malce polevo */
+        object-position: 25% center; /* Pomestena malce polevo */
     }
     .feature-text {
         width: 100%;

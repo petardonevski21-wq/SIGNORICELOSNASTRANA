@@ -502,7 +502,7 @@ body {
     }
 }
 
-/* Prilagoduvanje za ekstremno mali telefoni (pod 480px) */
+
 @media (max-width: 480px) {
     .center-brand {
         font-size: 1.5rem;
