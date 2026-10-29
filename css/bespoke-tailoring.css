@@ -157,18 +157,79 @@ body {
     letter-spacing: 2px;
 }
 
-.discover-btn {
+/* --- SIGNORI LINE BUTTON STYLES --- */
+.signori-line-btn {
+    position: relative;
+    display: inline-block;
     color: #fff;
     text-decoration: none;
+    cursor: pointer;
     font-size: 0.85rem;
     font-weight: 300;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 3px;
-    transition: opacity 0.3s;
+    transition: color 0.4s ease;
 }
 
-.discover-btn:hover {
-    opacity: 0.6;
+/* HIT AREA — invisible zone covering the text and the line, so hovering the line counts as hover */
+.signori-line-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: -8px;
+}
+
+/* NORMAL — Thin line closer under text */
+.signori-line-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(1);
+    transform-origin: left center;
+    transition: transform 0.5s ease;
+}
+
+/* HOVER — Text turns luxury grey */
+.signori-line-btn:hover {
+    color: #8c8c8c;
+}
+
+/* HOVER — Line disappears to the right */
+.signori-line-btn:hover::after {
+    transform: scaleX(0);
+    transform-origin: right center;
+}
+
+/* MOUSE LEAVE — Line returns left to right */
+.signori-line-btn:not(:hover)::after {
+    transform-origin: left center;
+}
+
+/* DARK VARIANT — for buttons on white / light backgrounds */
+.signori-line-btn--dark {
+    color: #000;
+}
+
+.signori-line-btn--dark:hover {
+    color: #8c8c8c;
+}
+
+/* TOUCH DEVICES — no sticky hover state */
+@media (hover: none) {
+    .signori-line-btn:hover {
+        color: #fff;
+    }
+    .signori-line-btn--dark:hover {
+        color: #000;
+    }
+    .signori-line-btn:hover::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
 }
 
 /* --- Bespoke Intro Sekcija --- */
@@ -355,22 +416,7 @@ font-family: 'Jost', sans-serif;
     font-size: 1.8rem;
     font-weight:  100;
     letter-spacing: 2.5px;
-    margin-bottom: 5px;
-}
-
-.showcase-discover-btn {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 300;
-    border-bottom: 1px solid #ffffff;
-    padding-bottom: 3px;
-    margin-top: 20px;
-    transition: opacity 0.3s ease;
-}
-
-.showcase-discover-btn:hover {
-    opacity: 0.6;
+    margin-bottom: 25px;
 }
 
 /* --- HOW BESPOKE WORKS SEKCIJA --- */
@@ -451,21 +497,6 @@ font-family: 'Jost', sans-serif;
 .how-bespoke-footer {
     margin-top: 70px;
     text-align: center;
-}
-
-.discover-more-btn {
-    color: #111;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 300;
-    border-bottom: 1px solid #111;
-    padding-bottom: 3px;
-    letter-spacing: 1px;
-    transition: opacity 0.3s ease;
-}
-
-.discover-more-btn:hover {
-    opacity: 0.5;
 }
 
 /* --- LATEST CREATIONS SEKCIJA --- */
@@ -822,30 +853,11 @@ font-family: 'Jost', sans-serif;
         line-height: 1.3;
     }
 
-    .discover-btn,
-    .showcase-discover-btn,
-    .discover-more-btn {
-        position: relative;
+    .signori-line-btn {
         letter-spacing: 0.12em;
     }
 
-    .discover-btn::before,
-    .showcase-discover-btn::before,
-    .discover-more-btn::before {
-        content: "";
-        position: absolute;
-        inset: -14px -18px;
-    }
-
-    .discover-btn:hover,
-    .showcase-discover-btn:hover,
-    .discover-more-btn:hover {
-        opacity: 1;
-    }
-
-    .discover-btn:active,
-    .showcase-discover-btn:active,
-    .discover-more-btn:active {
+    .signori-line-btn:active {
         opacity: 0.55;
     }
 

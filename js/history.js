@@ -109,13 +109,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --- 4. Skrol logika: Zamatuvanie i fiksirane na slikata dokato tekstat se skrola ---
-window.addEventListener("scroll", () => {
+// FIX: handler is throttled to one run per animation frame (it reads layout via
+// getBoundingClientRect on every scroll event, which competes with the pinned
+// ScrollTrigger below). The visual logic is unchanged.
+function updateSecondSections() {
     const sections = document.querySelectorAll(".second-section");
-    
+
     sections.forEach((section) => {
         const image = section.querySelector("img");
         const overlay = section.querySelector(".overlay-dark");
-        
+
         if (!image) return;
 
         const rect = section.getBoundingClientRect();
@@ -123,17 +126,17 @@ window.addEventListener("scroll", () => {
 
         if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
             let scrolled = Math.abs(rect.top);
-            
+
             // Zamatyvaneto zapochva pri navlizaneto na teksta
             let startThreshold = window.innerHeight * 0.4;
             let scrollRange = sectionScrollHeight - startThreshold;
-            
+
             let progress = 0;
             if (scrolled > startThreshold && scrollRange > 0) {
                 progress = Math.min(Math.max((scrolled - startThreshold) / scrollRange, 0), 1);
             }
 
-            let blurAmount = progress * 10; 
+            let blurAmount = progress * 10;
             let opacityAmount = progress * 0.6;
 
             image.style.filter = `blur(${blurAmount.toFixed(1)}px)`;
@@ -143,12 +146,27 @@ window.addEventListener("scroll", () => {
             if (overlay) overlay.style.backgroundColor = "rgba(0, 0, 0, 0)";
         }
     });
-});
+}
+
+let secondSectionTicking = false;
+window.addEventListener("scroll", () => {
+    if (secondSectionTicking) return;
+    secondSectionTicking = true;
+    requestAnimationFrame(() => {
+        secondSectionTicking = false;
+        updateSecondSections();
+    });
+}, { passive: true });
 
 // --- 5. Stacked sticky scroll: 4 slici (GSAP + ScrollTrigger) ---
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
+
+    // FIX: on mobile, the address bar showing/hiding changes window.innerHeight and
+    // makes ScrollTrigger refresh mid-scroll (pin start/end move -> visible jump).
+    // This only ignores that address-bar resize; real width changes still refresh.
+    ScrollTrigger.config({ ignoreMobileResize: true });
 
     const stackSection = document.getElementById("stackSection");
     if (!stackSection) return;
@@ -156,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const stackItems = gsap.utils.toArray("#stackSection .stack-item");
     if (stackItems.length < 4) return;
 
+    const stackViewport = stackSection.querySelector(".stack-viewport");
     const stackImgs = stackItems.map(item => item.querySelector(".stack-img"));
     const stackContents = stackItems.map(item => item.querySelector(".stack-content"));
 
@@ -163,6 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.set([stackItems[1], stackItems[2], stackItems[3]], { yPercent: 100, force3D: true });
 
     // Smooth entrance for first image and text
+    // FIX: scrub is now `true` (was 0.5 on the text) so every tween that touches the
+    // pin boundary is exactly tied to the scroll position and finishes AT the boundary.
     gsap.fromTo(stackImgs[0],
         { scale: 1 },
         {
@@ -188,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 trigger: stackSection,
                 start: "top 70%",
                 end: "top top",
-                scrub: 0.5,
+                scrub: true,
                 invalidateOnRefresh: true
             }
         }
@@ -199,9 +220,17 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollTrigger: {
             trigger: stackSection,
             start: "top top",
-            end: () => "+=" + window.innerHeight * 3,
+            // FIX: use the real pinned height (100svh via CSS) instead of window.innerHeight,
+            // which differs from 100svh on mobile and made scroll distance != slide distance.
+            end: () => "+=" + ((stackViewport ? stackViewport.offsetHeight : window.innerHeight) * 3),
             pin: true,
-            scrub: 0.6,
+            // FIX: pre-pins one frame early so the section does not lurch when native
+            // scrolling outruns the fixed-position switch (entry from above / re-entry from below).
+            anticipatePin: 1,
+            // FIX: was 0.6. Smoothed scrub lags behind the scrollbar, so when the pin
+            // released, the last slide was still catching up while the section scrolled
+            // away (and vice-versa on re-entry) - this read as sections "merging".
+            scrub: true,
             invalidateOnRefresh: true
         }
     });
@@ -222,6 +251,39 @@ document.addEventListener("DOMContentLoaded", () => {
         .fromTo(stackContents[1], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 0.2)
         .fromTo(stackContents[2], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 1.2)
         .fromTo(stackContents[3], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 2.2);
+
+    // FIX: re-measure whenever layout ABOVE the pin settles after DOMContentLoaded.
+    // The triggers were measured at DOMContentLoaded, before the injected navbar,
+    // web fonts and media settled; any later height change above the pin leaves the
+    // pin start/end stale and produces a jump when the pin finally engages.
+    let refreshTimer = null;
+    const scheduleRefresh = () => {
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 120);
+    };
+
+    window.addEventListener("load", scheduleRefresh);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleRefresh);
+    // bfcache restore (back/forward button) keeps stale measurements otherwise
+    window.addEventListener("pageshow", (e) => { if (e.persisted) scheduleRefresh(); });
+
+    if (typeof ResizeObserver !== "undefined") {
+        const aboveStack = ["#site-menu", ".section-first", ".section-second", ".second-section", ".first-creations-section"]
+            .map(sel => document.querySelector(sel))
+            .filter(Boolean);
+        const lastHeights = new Map();
+        const ro = new ResizeObserver((entries) => {
+            let changed = false;
+            entries.forEach(entry => {
+                const h = Math.round(entry.contentRect.height);
+                const prev = lastHeights.get(entry.target);
+                lastHeights.set(entry.target, h);
+                if (prev !== undefined && prev !== h) changed = true; // ignore the initial callback
+            });
+            if (changed) scheduleRefresh();
+        });
+        aboveStack.forEach(el => ro.observe(el));
+    }
 });
 
 // --- 6. First Creations: luxury reveal for the two pictures (GSAP + ScrollTrigger) ---

@@ -525,35 +525,84 @@ body {
     color: #ffffff;
 }
 
-.discover-btn {
-    display: inline-block;
+/* --- SIGNORI LINE BUTTON STYLES --- */
+.signori-line-btn {
     position: relative;
-    z-index: 200000;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
     font-family: 'Jost', sans-serif;
     font-size: 13px;
     line-height: 1.2;
     font-weight: 300;
     letter-spacing: 0.05em;
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
-    text-decoration: none;
-    padding: 0 0 4px 0;
-    border-bottom: 1px solid #ffffff;
-    outline: none;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease;
-    pointer-events: auto; /* Dozvoluva klik na kopčeto */
+    z-index: 200000;
+    pointer-events: auto;
+    transition: color 0.4s ease;
 }
 
-.discover-btn:hover {
-    opacity: 0.7;
+/* HIT AREA — invisible zone covering the text and the line, so hovering the line counts as hover */
+.signori-line-btn::before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    right: -18px;
+    top: -14px;
+    bottom: -14px;
 }
 
-.discover-btn:focus,
-.discover-btn:active {
-    outline: none;
-    border-bottom: 1px solid #ffffff;
+/* NORMAL — Thin line closer under text */
+.signori-line-btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(1);
+    transform-origin: left center;
+    transition: transform 0.5s ease;
+}
+
+/* HOVER — Text turns luxury grey */
+.signori-line-btn:hover {
+    color: #8c8c8c;
+}
+
+/* HOVER — Line disappears to the right */
+.signori-line-btn:hover::after {
+    transform: scaleX(0);
+    transform-origin: right center;
+}
+
+/* MOUSE LEAVE — Line returns left to right */
+.signori-line-btn:not(:hover)::after {
+    transform-origin: left center;
+}
+
+/* DARK VARIANT — for buttons on white / light backgrounds */
+.signori-line-btn--dark {
+    color: #000000;
+}
+
+.signori-line-btn--dark:hover {
+    color: #8c8c8c;
+}
+
+/* TOUCH DEVICES — no sticky hover state */
+@media (hover: none) {
+    .signori-line-btn:hover {
+        color: #fff;
+    }
+    .signori-line-btn--dark:hover {
+        color: #000000;
+    }
+    .signori-line-btn:hover::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
 }
 
 /* --- Sektsiya: The Next Chapter - House of Signori --- */
@@ -601,23 +650,6 @@ body {
 
 .next-chapter-link-wrapper {
     margin-bottom: 70px;
-}
-
-.discover-more-btn {
-    display: inline-block;
-    font-family: 'Jost', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    color: #000000;
-    text-decoration: none;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #000000;
-    transition: opacity 0.3s ease;
-}
-
-.discover-more-btn:hover {
-    opacity: 0.6;
 }
 
 .next-chapter-grid {
