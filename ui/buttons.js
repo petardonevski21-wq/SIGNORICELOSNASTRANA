@@ -5,32 +5,32 @@ style.textContent = `
 .signori-line-btn {
     position: relative;
     display: inline-block;
-    color: #242424;
+    color: #fff;
     text-decoration: none;
     cursor: pointer;
     transition: color 0.4s ease;
 }
 
-/* NORMAL — Thin line under text */
+/* NORMAL — Thin white line closer under text */
 
 .signori-line-btn::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -5px;
+    bottom: -3px;
     width: 100%;
     height: 1px;
-    background: currentColor;
+    background: #fff;
 
     transform: scaleX(1);
     transform-origin: left center;
     transition: transform 0.5s ease;
 }
 
-/* HOVER — Text turns grey */
+/* HOVER — Text turns luxury grey */
 
 .signori-line-btn:hover {
-    color: #999999;
+    color: #8c8c8c;
 }
 
 /* HOVER — Line disappears to the right */

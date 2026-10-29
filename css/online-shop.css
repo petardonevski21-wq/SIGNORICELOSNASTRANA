@@ -401,19 +401,6 @@ body {
     transform: scale(1);
 }
 
-.discover-link {
-    font-size: 14px;
-    color: #000;
-    text-decoration: none;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #000;
-    transition: opacity 0.3s ease;
-}
-
-.discover-link:hover {
-    opacity: 0.6;
-}
-
 /* SIGNORI SETS SLIDER */
 .sets-slider-section {
     background-color: #ffffff;
@@ -467,19 +454,6 @@ body {
     letter-spacing: 0.12em;
     margin-bottom: 15px;
     font-weight: 500;
-}
-
-.discover-link-white {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 15px;
-    border-bottom: 1px solid #ffffff;
-    padding-bottom: 3px;
-    transition: opacity 0.3s ease;
-}
-
-.discover-link-white:hover {
-    opacity: 0.7;
 }
 
 .slider-controls {
@@ -1074,21 +1048,6 @@ body {
     margin-bottom: 6px;
 }
 
-.iconic-discover-link {
-    font-size: 13px;
-    font-weight: 300;
-    color: #ffffff;
-    text-decoration: none;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #ffffff;
-    letter-spacing: 0.05em;
-    transition: opacity 0.3s ease;
-}
-
-.iconic-discover-link:hover {
-    opacity: 0.7;
-}
-
 /* --- SIGNORI EDIT SECTION STYLES --- */
 .signori-edit-section {
   position: relative;
@@ -1247,21 +1206,6 @@ body {
   margin-bottom: 8px;
 }
 
-.discover-link-card {
-  font-size: 13px;
-  font-weight: 400;
-  color: #ffffff;
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 1px solid #ffffff;
-  letter-spacing: 0.05em;
-  transition: opacity 0.3s ease;
-}
-
-.discover-link-card:hover {
-  opacity: 0.7;
-}
-
 .pause-icon {
   position: absolute;
   top: 20px;
@@ -1341,23 +1285,6 @@ body {
     .hero-section .discover-btn {
         padding: 14px 36px;
         min-height: 44px;
-    }
-
-    .discover-link,
-    .discover-link-white,
-    .iconic-discover-link {
-        position: relative;
-    }
-
-    .discover-link::after,
-    .discover-link-white::after,
-    .iconic-discover-link::after {
-        content: '';
-        position: absolute;
-        top: -14px;
-        right: -14px;
-        bottom: -10px;
-        left: -14px;
     }
 
     .accessories-section {

@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -45,7 +46,6 @@ body {
 /* =========================
    BACKGROUND IMAGE
 ========================= */
-
 .bg-image {
     position: absolute;
     top: -5%;
@@ -71,7 +71,6 @@ body {
 /* =========================
    CONTENT
 ========================= */
-
 .content {
     position: relative;
     z-index: 3;
@@ -91,18 +90,22 @@ body {
 }
 
 /* =========================
-   LINK BUTTON
+   LINK BUTTON & SIGNORI LINE BTN
 ========================= */
-
 .link-btn {
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     font-size: 1rem;
     position: relative;
     padding-bottom: 5px;
 }
 
-.link-btn::after {
+.signori-line-btn {
+    position: relative;
+    color: #fff !important;
+}
+
+.signori-line-btn::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -110,28 +113,18 @@ body {
     width: 100%;
     height: 1px;
     background-color: #fff;
-    transform: scaleX(1);
-    transform-origin: left;
-    transition: transform 0.4s ease;
 }
 
 /* =========================
    HOVER ANIMATIONS
 ========================= */
-
 .split-pane:hover .bg-overlay {
     background: rgba(255, 255, 255, 0.2);
-}
-
-.split-pane:hover .link-btn::after {
-    transform: scaleX(0);
-    transform-origin: right;
 }
 
 /* =========================
    LUXURY FOOTER
 ========================= */
-
 .luxury-footer {
     background-color: #fff;
     color: #000;
@@ -226,7 +219,6 @@ body {
 /* =========================
    FOOTER BOTTOM
 ========================= */
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -257,7 +249,6 @@ body {
 /* =========================
    BURGER MENU
 ========================= */
-
 .burger-menu {
     position: absolute;
     top: 40px;
@@ -291,7 +282,6 @@ body {
 /* =========================
    HERO HOVER VIDEO
 ========================= */
-
 .hero-video {
     position: absolute;
     top: 0;
@@ -342,6 +332,7 @@ body {
 .split-screen-section:has(.split-pane:hover) .split-pane:not(:hover) .hero-video.is-activated ~ .bg-overlay {
     background: rgba(0, 0, 0, 0.685);
 }
+
 /* Pause / play button, bottom left of each video */
 .hero-video-toggle {
     position: absolute;
@@ -378,6 +369,7 @@ body {
     outline: 1px solid #fff;
     outline-offset: 4px;
 }
+
 .right-pane .bg-image {
     position: absolute;
     top: -10%;
@@ -388,12 +380,11 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 /* =========================================================
    MOBILE & TABLET ONLY (DESKTOP IS 100% UNTOUCHED & LOCKED)
 ========================================================= */
-
 @media (max-width: 1024px) {
-    /* 1. Verikalen raspored - stranici edna pod druga */
     .split-screen-section {
         flex-direction: column;
         height: auto;
@@ -401,7 +392,6 @@ body {
         position: relative;
     }
 
-    /* 2. Logoto SIGNORI - Najgore, pomalo, za da ne preklopuva nisto */
     .center-brand {
         position: absolute;
         top: 20px;
@@ -417,7 +407,6 @@ body {
         pointer-events: none;
     }
 
-    /* 3. Panelite za Bespoke i Ready to Wear (zgolemeni umereno i ramnomerno centrirani edno pod druga) */
     .split-pane {
         width: 100%;
         height: 72vh;
@@ -426,7 +415,6 @@ body {
         position: relative;
     }
 
-    /* Unificiranje i sovrseno centriranje na dvete sliki na mobilen */
     .split-pane .bg-image,
     .right-pane .bg-image {
         position: absolute;
@@ -439,7 +427,6 @@ body {
         background-repeat: no-repeat;
     }
 
-    /* 4. Pomali i posrazmerni tekstovi */
     .content h2 {
         font-size: 1.2rem;
         letter-spacing: 0.1em;
@@ -454,21 +441,18 @@ body {
         padding-bottom: 2px;
     }
 
-    /* 5. Videoto se pojavuva i se pusta na mobilen koga e aktivirano */
     .hero-video {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    /* Pustanje na videoto pri dopir/klik na celiot panel na mobilen */
     .split-pane:active .hero-video,
     .split-pane:focus .hero-video,
     .split-pane .hero-video.is-activated {
         opacity: 1;
     }
 
-    /* Kopceto za Pause/Play */
     .hero-video-toggle {
         left: 16px;
         bottom: 16px;
@@ -476,7 +460,6 @@ body {
         height: 38px;
     }
 
-    /* 6. Responden futer */
     .luxury-footer {
         padding: 50px 20px 30px;
     }
@@ -502,7 +485,6 @@ body {
     }
 }
 
-
 @media (max-width: 480px) {
     .center-brand {
         font-size: 1.5rem;
@@ -522,4 +504,7 @@ body {
     .link-btn {
         font-size: 0.75rem;
     }
+}
+.link-btn.signori-line-btn:hover {
+    color: #8c8c8c !important;
 }
