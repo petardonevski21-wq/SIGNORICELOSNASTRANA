@@ -11,6 +11,17 @@ style.textContent = `
     transition: color 0.4s ease;
 }
 
+/* HIT AREA — invisible zone covering the text and the line, so hovering the line counts as hover */
+
+.signori-line-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: -8px;
+}
+
 /* NORMAL — Thin line closer under text */
 
 .signori-line-btn::after {
