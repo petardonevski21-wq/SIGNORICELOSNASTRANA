@@ -1275,7 +1275,7 @@ body {
     }
 
     .bg-video {
-        object-position: var(--hero-focus, 50% 50%);
+        object-position: var(--hero-focus, 58% 50%);
     }
 
     .collection-title {
