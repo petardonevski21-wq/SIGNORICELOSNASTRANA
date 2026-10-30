@@ -1,5 +1,5 @@
 const initMenuIconMorph = (hamburger, drawer) => {
-    // Burger icon stays static without morph animation.
+    // Static burger icon, morph transition removed.
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Search Overlay Dynamic Positioning & Handling
+        // Search Overlay Attached Directly Below Header
         const searchButton = document.getElementById("searchButton");
         const searchOverlay = document.getElementById("searchOverlay");
         const searchClose = document.getElementById("searchClose");
@@ -116,8 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const updateSearchPosition = () => {
             if (!header || !searchOverlay) return;
-            const headerHeight = header.offsetHeight;
-            searchOverlay.style.top = `${headerHeight}px`;
+            const headerRect = header.getBoundingClientRect();
+            searchOverlay.style.top = `${headerRect.bottom}px`;
         };
 
         const openSearch = () => {
@@ -153,7 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (event.key === "Escape") closeSearch();
             });
 
-            window.addEventListener("resize", updateSearchPosition);
+            window.addEventListener("resize", () => {
+                if (searchOverlay.classList.contains("active")) {
+                    updateSearchPosition();
+                }
+            });
         }
 
         // Sliding Toggle (Bespoke vs Online Shop)
@@ -224,6 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const applyHeroShift = () => {
                 const shift = Math.min(getScrollY(), heroNavHeight + 60);
                 header.style.setProperty("--hero-shift", `${-shift}px`);
+                if (searchOverlay && searchOverlay.classList.contains("active")) {
+                    updateSearchPosition();
+                }
             };
 
             const measureHeroNavHeight = () => {
@@ -346,6 +353,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     closeSearch();
                 } else {
                     showHeader();
+                }
+
+                if (searchOverlay && searchOverlay.classList.contains("active")) {
+                    updateSearchPosition();
                 }
 
                 lastScrollY = currentScrollY;
