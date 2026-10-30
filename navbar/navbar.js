@@ -1,5 +1,5 @@
 const initMenuIconMorph = (hamburger, drawer) => {
-    // Animacijata e celosno trgnata, burger ikonkata ostanuva vo postojaniot izgled.
+    // Burger icon stays static without morph animation.
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -108,18 +108,23 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Fullscreen White Search Overlay Handling
+        // Search Overlay Dynamic Positioning & Handling
         const searchButton = document.getElementById("searchButton");
         const searchOverlay = document.getElementById("searchOverlay");
         const searchClose = document.getElementById("searchClose");
         const searchInputField = document.getElementById("searchInputField");
-        const searchClear = document.getElementById("searchClear");
+
+        const updateSearchPosition = () => {
+            if (!header || !searchOverlay) return;
+            const headerHeight = header.offsetHeight;
+            searchOverlay.style.top = `${headerHeight}px`;
+        };
 
         const openSearch = () => {
             if (!searchOverlay) return;
+            updateSearchPosition();
             searchOverlay.classList.add("active");
             searchOverlay.setAttribute("aria-hidden", "false");
-            document.body.style.overflow = "hidden";
             if (searchInputField) {
                 setTimeout(() => searchInputField.focus(), 300);
             }
@@ -129,26 +134,26 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!searchOverlay) return;
             searchOverlay.classList.remove("active");
             searchOverlay.setAttribute("aria-hidden", "true");
-            document.body.style.overflow = "";
             if (searchInputField) searchInputField.value = "";
             lastScrollY = getScrollY();
         };
 
         if (searchButton && searchOverlay) {
-            searchButton.addEventListener("click", openSearch);
+            searchButton.addEventListener("click", () => {
+                if (searchOverlay.classList.contains("active")) {
+                    closeSearch();
+                } else {
+                    openSearch();
+                }
+            });
 
             if (searchClose) searchClose.addEventListener("click", closeSearch);
-            
-            if (searchClear && searchInputField) {
-                searchClear.addEventListener("click", () => {
-                    searchInputField.value = "";
-                    searchInputField.focus();
-                });
-            }
 
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape") closeSearch();
             });
+
+            window.addEventListener("resize", updateSearchPosition);
         }
 
         // Sliding Toggle (Bespoke vs Online Shop)
@@ -338,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (delta > 0) {
                     hideHeader();
+                    closeSearch();
                 } else {
                     showHeader();
                 }
@@ -477,16 +483,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 closeDrawer();
-            });
-        }
-
-        if (searchOverlay) {
-            searchOverlay.addEventListener("click", (event) => {
-                if (!isMobile()) return;
-                const link = event.target.closest("a");
-                if (!link) return;
-                if (link.getAttribute("href") === "#") event.preventDefault();
-                closeSearch();
             });
         }
 

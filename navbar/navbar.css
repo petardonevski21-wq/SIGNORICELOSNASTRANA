@@ -163,8 +163,6 @@ header.nav-instant::after {
     height: 12px;
 }
 
-/* Menu icon: two lines that morph into the SIGNORI fleur-de-lis (navbar.js).
-   The SVG is centred on the original 14x12 box and never affects layout. */
 .menu-icon {
     position: absolute;
     top: 50%;
@@ -491,7 +489,6 @@ header.nav-hovered::before {
     color: #111111 !important;
 }
 
-
 .drawer-main-links .arrow {   
     display: inline-flex;
     align-items: center;
@@ -584,55 +581,77 @@ header.nav-hovered::before {
     color: #fff;
 }
 
+/* =========================
+   SEARCH OVERLAY (SMOOTH TOP DROP-DOWN)
+========================= */
 .search-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    background-color: #ffffff;
-    z-index: 2000;
+    height: 60px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 999;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    overflow-y: auto;
-    padding: 24px 6% 60px 6%;
+    padding: 0 6%;
     font-family: 'Jost', sans-serif;
-    
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 400ms ease,
-                visibility 600ms;
+    transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 500ms ease,
+                visibility 650ms;
     will-change: transform, opacity;
 }
 
 .search-overlay.active {
-    transform: translateY(0%);
+    transform: translateY(100%);
     opacity: 1;
     visibility: visible;
 }
 
-.search-top-bar {
-    position: relative;
+.search-bar-inner {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 20px;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.search-brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.search-icon {
+    width: 17px;
+    height: 17px;
+    stroke: #111111;
+    fill: none;
+    stroke-width: 1.5;
+    flex-shrink: 0;
+}
+
+.search-bar-inner input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
     font-weight: 400;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    color: #111111;
     text-transform: uppercase;
-    color: #000000;
+}
+
+.search-bar-inner input::placeholder {
+    color: #111111;
+    opacity: 0.8;
 }
 
 .search-close {
@@ -640,8 +659,13 @@ header.nav-hovered::before {
     border: none;
     cursor: pointer;
     padding: 8px;
-    color: #000000;
-    transition: color 0.3s ease;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .search-close:hover {
@@ -649,184 +673,16 @@ header.nav-hovered::before {
 }
 
 .search-close svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.3;
 }
 
-.search-content-inner {
-    width: 100%;
-    max-width: 850px;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 150ms,
-                opacity 400ms ease 150ms;
-}
-
-.search-overlay.active .search-content-inner {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.search-input-wrapper {
-    position: relative;
-    width: 100%;
-    margin-bottom: 35px;
-}
-
-.search-input-wrapper input {
-    width: 100%;
-    padding: 16px 50px 16px 28px;
-    font-family: 'Jost', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    color: #000000;
-    background-color: #ffffff;
-    border: 1px solid #dcdcdc;
-    border-radius: 40px;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.search-input-wrapper input:focus {
-    border-color: #000000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-}
-
-.search-input-wrapper input::placeholder {
-    color: #999999;
-    font-weight: 300;
-}
-
-.search-clear {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    font-family: 'Jost', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #888888;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, color 0.3s ease;
-}
-
-.search-input-wrapper input:not(:placeholder-shown) ~ .search-clear {
-    opacity: 1;
-    visibility: visible;
-}
-
-.search-clear:hover {
-    color: #000000;
-}
-
-.search-editorial-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.suggestions-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-.suggestions-label {
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #888888;
-}
-
-.suggestion-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.suggestion-tag {
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 400;
-    color: #333333;
-    padding: 6px 14px;
-    border-bottom: 1px solid transparent;
-    transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-.suggestion-tag:hover {
-    color: #000000;
-    border-color: #000000;
-}
-
-.search-categories-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 20px;
-    padding-top: 30px;
-    border-top: 1px solid #f0f0f0;
-}
-
-.search-cat-col {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.cat-col-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: #000000;
-    text-transform: uppercase;
-}
-
-.search-cat-col ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.search-cat-col ul li a {
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 300;
-    color: #666666;
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-}
-
-.search-cat-col ul li a:hover {
-    color: #000000;
-    transform: translateX(3px);
-}
-
 .mobile-online-shop-images {
     display: none;
 }
-
 
 @media (min-width: 769px) {
     .side-drawer {
@@ -1251,33 +1107,22 @@ header.nav-hovered::before {
 
 /* =========================================================
    SIGNORI — MOBILE NAVBAR, DRAWER, ONLINE SHOP PICTURES & SEARCH
-   Loaded after navbar.css via:
-   <link rel="stylesheet" href="../navbar/navbar-mobile.css"
-         media="(max-width: 768px), (pointer: coarse) and (max-height: 500px)">
-   Every rule is also wrapped in the same media query, so nothing
-   here can reach the desktop layout.
    ========================================================= */
 
 @media (max-width: 768px), (pointer: coarse) and (max-height: 500px) {
-
-    /* ---------- SHARED SIZES (drawer + shop picture strip) ---------- */
 
     .side-drawer,
     .shop-flyout {
         --sg-pad-y: 22px;
         --sg-toggle-h: 56px;
         --sg-gap: 16px;
-        /* floating-panel geometry: equal margin on every side, panel capped at 480px and centred */
         --sg-side: clamp(10px, 3vw, 14px);
         --sg-left: max(var(--sg-side), env(safe-area-inset-left, 0px), calc((100vw - 480px) / 2));
         --sg-w: min(480px, calc(100vw - 2 * var(--sg-left)));
         --sg-radius: clamp(18px, 5.5vw, 24px);
     }
 
-    /* ---------- HEADER ---------- */
-
     header {
-        /* 1fr auto 1fr keeps the logo centred on the viewport, not in the leftover space */
         grid-template-columns: 1fr auto 1fr;
         padding: calc(14px + env(safe-area-inset-top, 0px))
                  max(5%, env(safe-area-inset-right, 0px))
@@ -1326,7 +1171,6 @@ header.nav-hovered::before {
         font-size: clamp(21px, 6.4vw, 28px);
         letter-spacing: 0.16em;
         white-space: nowrap;
-        /* trailing letter-spacing otherwise nudges the word left of true centre */
         margin-right: -0.16em;
     }
 
@@ -1339,7 +1183,6 @@ header.nav-hovered::before {
         min-width: 0;
     }
 
-    /* Contact us lives in the drawer on mobile */
     .contact-text {
         display: none;
     }
@@ -1365,8 +1208,6 @@ header.nav-hovered::before {
         outline-offset: 4px;
     }
 
-    /* ---------- DRAWER (Flex column for complete button position stability) ---------- */
-
     .drawer-overlay {
         width: 100%;
         height: 100vh;
@@ -1387,7 +1228,6 @@ header.nav-hovered::before {
         padding: var(--sg-pad-y) 26px;
         overscroll-behavior: contain;
         font-family: 'Jost', sans-serif;
-        /* slides fully off-screen, shadow included, whatever the side margin is */
         transform: translateX(calc(-100% - var(--sg-left) - 60px));
         transition: transform 0.7s cubic-bezier(0.65, 0, 0.05, 1);
     }
@@ -1496,8 +1336,6 @@ header.nav-hovered::before {
         letter-spacing: 0.04em;
     }
 
-    /* ---------- ONLINE SHOP EDITORIAL IMAGES (Mobile Vertical Stack) ---------- */
-
     .shop-flyout {
         display: none !important;
     }
@@ -1559,7 +1397,6 @@ header.nav-hovered::before {
         color: #ffffff;
     }
 
-    /* Medium-height phones: compact row sizing */
     @media (min-height: 640px) and (max-height: 799px) {
         .drawer-main-links li a {
             min-height: 40px;
@@ -1570,33 +1407,20 @@ header.nav-hovered::before {
         }
     }
 
-    /* ---------- SEARCH OVERLAY ---------- */
-
     .search-overlay {
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
-        padding: calc(14px + env(safe-area-inset-top, 0px))
-                 max(5%, env(safe-area-inset-right, 0px))
-                 calc(40px + env(safe-area-inset-bottom, 0px))
-                 max(5%, env(safe-area-inset-left, 0px));
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
+        height: 56px;
+        padding: 0 max(5%, env(safe-area-inset-right, 0px)) 0 max(5%, env(safe-area-inset-left, 0px));
     }
 
-    .search-top-bar {
-        min-height: 44px;
-        padding-bottom: 10px;
-    }
-
-    .search-brand-logo {
-        font-size: clamp(20px, 6vw, 24px);
-        letter-spacing: 0.14em;
+    .search-bar-inner input {
+        font-size: 14px;
+        -webkit-appearance: none;
+        appearance: none;
     }
 
     .search-close {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         margin-right: -10px;
         display: flex;
         align-items: center;
@@ -1604,72 +1428,6 @@ header.nav-hovered::before {
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
     }
-
-    .search-content-inner {
-        margin-top: 12px;
-    }
-
-    .search-input-wrapper {
-        margin-bottom: 28px;
-    }
-
-    .search-input-wrapper input {
-        /* 16px minimum stops iOS Safari zooming the page on focus */
-        font-size: 16px;
-        padding: 15px 72px 15px 22px;
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    .search-clear {
-        right: 8px;
-        min-width: 56px;
-        min-height: 44px;
-    }
-
-    .search-editorial-section {
-        gap: 28px;
-    }
-
-    .suggestion-tags {
-        gap: 6px;
-    }
-
-    .suggestion-tag {
-        display: inline-flex;
-        align-items: center;
-        min-height: 40px;
-        font-size: 14px;
-        padding: 6px 12px;
-    }
-
-    .search-categories-grid {
-        grid-template-columns: 1fr;
-        gap: 26px;
-        margin-top: 6px;
-        padding-top: 24px;
-    }
-
-    .search-cat-col {
-        gap: 6px;
-    }
-
-    .cat-col-title {
-        font-size: 17px;
-    }
-
-    .search-cat-col ul {
-        gap: 0;
-    }
-
-    .search-cat-col ul li a {
-        display: flex;
-        align-items: center;
-        min-height: 42px;
-        font-size: 14px;
-    }
-
-    /* ---------- LANDSCAPE PHONES ---------- */
 
     @media (orientation: landscape) and (max-height: 500px) {
         header {
@@ -1706,13 +1464,7 @@ header.nav-hovered::before {
         .drawer-sub-links {
             margin-bottom: 14px;
         }
-
-        .search-categories-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
     }
-
- 
 
     @media (hover: none) {
         header:not(.nav-scrolled):not(.nav-hovered) .menu-container:hover .menu-text,
@@ -1748,7 +1500,6 @@ header.nav-hovered::before {
         .shop-flyout,
         .drawer-overlay,
         .search-overlay,
-        .search-content-inner,
         .menu-panel,
         #panel-online .drawer-main-links li,
         #panel-bespoke .drawer-main-links li {
