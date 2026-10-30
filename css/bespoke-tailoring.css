@@ -157,81 +157,6 @@ body {
     letter-spacing: 2px;
 }
 
-/* --- SIGNORI LINE BUTTON STYLES --- */
-.signori-line-btn {
-    position: relative;
-    display: inline-block;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 300;
-    transition: color 0.4s ease;
-}
-
-/* HIT AREA — invisible zone covering the text and the line, so hovering the line counts as hover */
-.signori-line-btn::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: -8px;
-}
-
-/* NORMAL — Thin line closer under text */
-.signori-line-btn::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(1);
-    transform-origin: left center;
-    transition: transform 0.5s ease;
-}
-
-/* HOVER — Text turns luxury grey */
-.signori-line-btn:hover {
-    color: #8c8c8c;
-}
-
-/* HOVER — Line disappears to the right */
-.signori-line-btn:hover::after {
-    transform: scaleX(0);
-    transform-origin: right center;
-}
-
-/* MOUSE LEAVE — Line returns left to right */
-.signori-line-btn:not(:hover)::after {
-    transform-origin: left center;
-}
-
-/* DARK VARIANT — for buttons on white / light backgrounds */
-.signori-line-btn--dark {
-    color: #000;
-}
-
-.signori-line-btn--dark:hover {
-    color: #8c8c8c;
-}
-
-/* TOUCH DEVICES — no sticky hover state */
-@media (hover: none) {
-    .signori-line-btn:hover {
-        color: #fff;
-    }
-    .signori-line-btn--dark:hover {
-        color: #000;
-    }
-    .signori-line-btn:hover::after {
-        transform: scaleX(1);
-        transform-origin: left center;
-    }
-}
-
 /* --- Bespoke Intro Sekcija --- */
 .bespoke-intro-section {
     background-color: #ffffff;
@@ -412,9 +337,9 @@ body {
 }
 
 .showcase-overlay-content h2 {
-font-family: 'Jost', sans-serif;
+    font-family: 'Jost', sans-serif;
     font-size: 1.8rem;
-    font-weight:  100;
+    font-weight: 100;
     letter-spacing: 2.5px;
     margin-bottom: 25px;
 }
@@ -851,14 +776,6 @@ font-family: 'Jost', sans-serif;
         font-weight: 300;
         letter-spacing: 0.2em;
         line-height: 1.3;
-    }
-
-    .signori-line-btn {
-        letter-spacing: 0.12em;
-    }
-
-    .signori-line-btn:active {
-        opacity: 0.55;
     }
 
     .bespoke-intro-section {

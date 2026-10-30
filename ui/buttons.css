@@ -1,7 +1,3 @@
-const style = document.createElement("style");
-
-style.textContent = `
-
 .signori-line-btn {
     position: relative;
     display: inline-block;
@@ -10,8 +6,6 @@ style.textContent = `
     cursor: pointer;
     transition: color 0.4s ease;
 }
-
-/* HIT AREA — invisible zone covering the text and the line, so hovering the line counts as hover */
 
 .signori-line-btn::before {
     content: "";
@@ -23,7 +17,6 @@ style.textContent = `
 }
 
 /* NORMAL — Thin line closer under text */
-
 .signori-line-btn::after {
     content: "";
     position: absolute;
@@ -32,33 +25,28 @@ style.textContent = `
     width: 100%;
     height: 1px;
     background: currentColor;
-
     transform: scaleX(1);
     transform-origin: left center;
     transition: transform 0.5s ease;
 }
 
 /* HOVER — Text turns luxury grey */
-
 .signori-line-btn:hover {
     color: #8c8c8c;
 }
 
 /* HOVER — Line disappears to the right */
-
 .signori-line-btn:hover::after {
     transform: scaleX(0);
     transform-origin: right center;
 }
 
 /* MOUSE LEAVE — Line returns left to right */
-
 .signori-line-btn:not(:hover)::after {
     transform-origin: left center;
 }
 
 /* DARK VARIANT — for buttons on white / light backgrounds */
-
 .signori-line-btn--dark {
     color: #000;
 }
@@ -68,7 +56,6 @@ style.textContent = `
 }
 
 /* TOUCH DEVICES — no sticky hover state */
-
 @media (hover: none) {
     .signori-line-btn:hover {
         color: #fff;
@@ -81,7 +68,3 @@ style.textContent = `
         transform-origin: left center;
     }
 }
-
-`;
-
-document.head.appendChild(style);

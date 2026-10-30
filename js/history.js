@@ -109,9 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --- 4. Skrol logika: Zamatuvanie i fiksirane na slikata dokato tekstat se skrola ---
-// FIX: handler is throttled to one run per animation frame (it reads layout via
-// getBoundingClientRect on every scroll event, which competes with the pinned
-// ScrollTrigger below). The visual logic is unchanged.
 function updateSecondSections() {
     const sections = document.querySelectorAll(".second-section");
 
@@ -127,7 +124,6 @@ function updateSecondSections() {
         if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
             let scrolled = Math.abs(rect.top);
 
-            // Zamatyvaneto zapochva pri navlizaneto na teksta
             let startThreshold = window.innerHeight * 0.4;
             let scrollRange = sectionScrollHeight - startThreshold;
 
@@ -163,9 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
 
-    // FIX: on mobile, the address bar showing/hiding changes window.innerHeight and
-    // makes ScrollTrigger refresh mid-scroll (pin start/end move -> visible jump).
-    // This only ignores that address-bar resize; real width changes still refresh.
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     const stackSection = document.getElementById("stackSection");
@@ -181,9 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.set(stackItems[0], { yPercent: 0, force3D: true });
     gsap.set([stackItems[1], stackItems[2], stackItems[3]], { yPercent: 100, force3D: true });
 
-    // Smooth entrance for first image and text
-    // FIX: scrub is now `true` (was 0.5 on the text) so every tween that touches the
-    // pin boundary is exactly tied to the scroll position and finishes AT the boundary.
     gsap.fromTo(stackImgs[0],
         { scale: 1 },
         {
@@ -220,16 +210,9 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollTrigger: {
             trigger: stackSection,
             start: "top top",
-            // FIX: use the real pinned height (100svh via CSS) instead of window.innerHeight,
-            // which differs from 100svh on mobile and made scroll distance != slide distance.
             end: () => "+=" + ((stackViewport ? stackViewport.offsetHeight : window.innerHeight) * 3),
             pin: true,
-            // FIX: pre-pins one frame early so the section does not lurch when native
-            // scrolling outruns the fixed-position switch (entry from above / re-entry from below).
             anticipatePin: 1,
-            // FIX: was 0.6. Smoothed scrub lags behind the scrollbar, so when the pin
-            // released, the last slide was still catching up while the section scrolled
-            // away (and vice-versa on re-entry) - this read as sections "merging".
             scrub: true,
             invalidateOnRefresh: true
         }
@@ -240,22 +223,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .to(stackItems[2], { yPercent: 0 }, 1)
         .to(stackItems[3], { yPercent: 0 }, 2);
 
-    // Subtle zoom for images 2-4
     stackTl
         .to(stackImgs[1], { scale: 1.05 }, 0)
         .to(stackImgs[2], { scale: 1.05 }, 1)
         .to(stackImgs[3], { scale: 1.05 }, 2);
 
-    // Smooth luxury text reveals for slides 2, 3, 4
     stackTl
         .fromTo(stackContents[1], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 0.2)
         .fromTo(stackContents[2], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 1.2)
         .fromTo(stackContents[3], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 2.2);
 
-    // FIX: re-measure whenever layout ABOVE the pin settles after DOMContentLoaded.
-    // The triggers were measured at DOMContentLoaded, before the injected navbar,
-    // web fonts and media settled; any later height change above the pin leaves the
-    // pin start/end stale and produces a jump when the pin finally engages.
     let refreshTimer = null;
     const scheduleRefresh = () => {
         clearTimeout(refreshTimer);
@@ -264,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("load", scheduleRefresh);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleRefresh);
-    // bfcache restore (back/forward button) keeps stale measurements otherwise
     window.addEventListener("pageshow", (e) => { if (e.persisted) scheduleRefresh(); });
 
     if (typeof ResizeObserver !== "undefined") {
@@ -278,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const h = Math.round(entry.contentRect.height);
                 const prev = lastHeights.get(entry.target);
                 lastHeights.set(entry.target, h);
-                if (prev !== undefined && prev !== h) changed = true; // ignore the initial callback
+                if (prev !== undefined && prev !== h) changed = true;
             });
             if (changed) scheduleRefresh();
         });
@@ -286,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// --- 6. First Creations: luxury reveal for the two pictures (GSAP + ScrollTrigger) ---
+// --- 6. First Creations ---
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
@@ -312,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- 7. The First Years, Three Suits, Anniversary & Next Chapter reveal ---
+// --- 7. Animations ---
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
