@@ -346,7 +346,7 @@ body {
 .first-years-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 130px;
+    gap: 90px;
     align-items: center;
     margin-bottom: 180px;
 }
