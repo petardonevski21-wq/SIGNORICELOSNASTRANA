@@ -1318,12 +1318,12 @@ header.nav-hovered::before {
 @media (max-width: 768px), (pointer: coarse) and (max-height: 500px) {
     .side-drawer,
     .shop-flyout {
-        --sg-pad-y: 22px;
+        --sg-pad-y: 24px;
         --sg-toggle-h: 56px;
         --sg-gap: 16px;
-        --sg-side: clamp(10px, 3vw, 14px);
-        --sg-left: max(var(--sg-side), env(safe-area-inset-left, 0px), calc((100vw - 480px) / 2));
-        --sg-w: min(480px, calc(100vw - 2 * var(--sg-left)));
+        --sg-side: clamp(8px, 2vw, 12px);
+        --sg-left: max(var(--sg-side), env(safe-area-inset-left, 0px), calc((100vw - 520px) / 2));
+        --sg-w: min(520px, calc(100vw - 2 * var(--sg-left)));
         --sg-radius: clamp(18px, 5.5vw, 24px);
     }
 
@@ -1425,6 +1425,7 @@ header.nav-hovered::before {
         height: 100vh;
         height: 100dvh;
         overscroll-behavior: contain;
+        touch-action: none;
     }
 
     .side-drawer {
@@ -1437,8 +1438,9 @@ header.nav-hovered::before {
         height: calc(100vh - 2 * var(--sg-side) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
         height: calc(100dvh - 2 * var(--sg-side) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
         border-radius: var(--sg-radius);
-        padding: var(--sg-pad-y) 26px;
+        padding: var(--sg-pad-y) 30px;
         overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
         font-family: 'Jost', sans-serif;
         transform: translateX(calc(-100% - var(--sg-left) - 60px));
         transition: transform 0.7s cubic-bezier(0.65, 0, 0.05, 1);
@@ -1594,77 +1596,6 @@ header.nav-hovered::before {
         display: none !important;
     }
 
-    /* ---- Editorial images (Bespoke Tailoring + Online Shop), stacked vertically ---- */
-    .mobile-online-shop-images,
-    .mobile-bespoke-images {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 24px;
-        margin-bottom: 0;
-    }
-
-    .mobile-shop-card {
-        position: relative;
-        display: block;
-        width: 100%;
-        aspect-ratio: 4 / 5;
-        height: auto;
-        border-radius: 4px;
-        overflow: hidden;
-        background-color: #e5e5e5;
-        text-decoration: none;
-        color: #111111;
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-        transition: opacity 0.25s ease;
-    }
-
-    a.mobile-shop-card:active {
-        opacity: 0.85;
-    }
-
-    a.mobile-shop-card:focus-visible {
-        outline: 2px solid #111111;
-        outline-offset: 2px;
-    }
-
-    .mobile-shop-media {
-        position: absolute;
-        inset: 0;
-        display: block;
-    }
-
-    .mobile-shop-media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-        display: block;
-    }
-
-    .mobile-shop-media img:not([src]) {
-        display: none;
-    }
-
-    /* Caption sits on the photograph without a gradient: small, white, with a soft text shadow for legibility */
-    .mobile-shop-label {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 18px;
-        z-index: 1;
-        text-align: center;
-        font-family: 'Jost', sans-serif;
-        font-size: 12px;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #ffffff;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
-        pointer-events: none;
-    }
-
     .search-overlay {
         height: 56px;
         padding: 0 max(5%, env(safe-area-inset-right, 0px)) 0 max(5%, env(safe-area-inset-left, 0px));
@@ -1688,19 +1619,11 @@ header.nav-hovered::before {
     }
 }
 
-/* Mobile menu: short screens (the editorial image blocks are display:none outside the mobile menu) */
-@media (max-height: 560px) {
-    .mobile-shop-card {
-        aspect-ratio: 3 / 2;
-    }
-}
-
 /* Mobile menu: reduced motion (scoped to the mobile menu so desktop is untouched) */
 @media (prefers-reduced-motion: reduce) and (max-width: 768px) {
     .menu-panel,
     #panel-online .drawer-main-links li,
-    #panel-bespoke .drawer-main-links li,
-    .mobile-shop-card {
+    #panel-bespoke .drawer-main-links li {
         transition: none !important;
         transition-delay: 0s !important;
     }
