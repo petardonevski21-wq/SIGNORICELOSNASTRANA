@@ -209,10 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const panelBespoke = document.getElementById("panel-bespoke");
         const panelOnline = document.getElementById("panel-online");
         const toggleContainer = document.getElementById("drawer-toggle-container");
+        const drawerScroll = document.getElementById("drawerScroll");
+        const resetDrawerScroll = () => {
+            if (drawerScroll) drawerScroll.scrollTop = 0;
+        };
 
         if (btnBespoke && btnOnline && panelBespoke && panelOnline && toggleContainer) {
             btnBespoke.addEventListener("click", (e) => {
                 e.preventDefault();
+                resetDrawerScroll();
                 panelOnline.classList.remove("active");
                 panelBespoke.classList.add("active");
 
@@ -225,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             btnOnline.addEventListener("click", (e) => {
                 e.preventDefault();
+                resetDrawerScroll();
                 panelBespoke.classList.remove("active");
                 panelOnline.classList.add("active");
 

@@ -1,7 +1,7 @@
 .signori-line-btn {
     position: relative;
     display: inline-block;
-    color: #ffffff;
+    color: inherit;
     text-decoration: none;
     cursor: pointer;
     transition: color 0.4s ease;
@@ -48,14 +48,14 @@
 
 /* DARK VARIANT — for buttons on white / light backgrounds */
 .signori-line-btn--dark {
-    color: #000;
+    color: inherit;
 }
 
 .signori-line-btn--dark:hover {
     color: #8c8c8c;
 }
 
-/* TOUCH DEVICES — no sticky hover state */
+
 @media (hover: none) {
     .signori-line-btn:hover {
         color: #111111;

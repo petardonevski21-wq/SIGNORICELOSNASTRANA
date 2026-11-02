@@ -53,6 +53,23 @@
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
         </button>
+
+        <!-- USER -->
+        <button class="search-btn header-icon-btn" id="headerUserButton" aria-label="Account">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </button>
+
+        <!-- BAG -->
+        <button class="search-btn header-icon-btn" id="headerBagButton" aria-label="Shopping bag">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 01-8 0"></path>
+            </svg>
+        </button>
     </div>
 </header>
 
@@ -69,29 +86,12 @@
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
-        <div class="drawer-icons">
-            <!-- Map Pin -->
-            <a href="../pages/location.html">
-                <svg viewBox="0 0 24 24">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-            </a>
-            <!-- User -->
-            <svg viewBox="0 0 24 24">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <!-- Bag -->
-            <svg viewBox="0 0 24 24">
-                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 01-8 0"></path>
-            </svg>
-        </div>
     </div>
 
     <hr class="drawer-divider">
+
+    <!-- Scroll region (mobile: single scroller for panels + utility links; desktop: display: contents, no layout effect) -->
+    <div class="drawer-scroll" id="drawerScroll">
 
     <!-- Menu Content Wrapper -->
     <div class="menu-content-wrapper">
@@ -106,15 +106,15 @@
                 <li><a href="#">Formalwear <span class="arrow">&gt;</span></a></li>
                 <li><a href="#">Occasion <span class="arrow">&gt;</span></a></li>
             </ul>
-            <div class="mobile-online-shop-images">
+            <div class="mobile-online-shop-images mobile-editorial">
                 <a class="mobile-shop-card" href="#">
-                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/11.png" alt="New Arrivals"
-                            loading="lazy"></span>
-                    <span class="mobile-shop-label signori-line-btn">New Arrivals</span>
+                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/3.jpg" alt="New Arrivals"
+                            loading="lazy" decoding="async"></span>
+                    <span class="mobile-shop-label">New Arrivals</span>
                 </a>
                 <a class="mobile-shop-card" href="#">
-                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/2-golema.png" alt="Accessories"
-                            loading="lazy"></span>
+                    <span class="mobile-shop-media"><img src="../assets/sliki/MENI/2-golema.png" alt="Wedding Suits"
+                            loading="lazy" decoding="async"></span>
                     <span class="mobile-shop-label">Wedding Suits</span>
                 </a>
             </div>
@@ -131,6 +131,11 @@
                 <li><a href="pages/history.html">The History</a></li>
                 <li><a href="#">Journal</a></li>
             </ul>
+            <a href="../pages/contact.html" class="request-appointment-btn" id="requestAppointmentBtn">Request Appointment</a>
+            <!-- Mobile-only editorial images. No destination exists in the project, so these are not links.
+                 Add the real bespoke image paths to the two src attributes (see delivery notes). -->
+    
+
         </div>
 
     </div>
@@ -138,9 +143,34 @@
     <hr class="drawer-divider">
 
     <ul class="drawer-sub-links">
-        <li><a href="#" id="drawerContactLink">Contact us</a></li>
-        <li><a href="pages/faq.html">FAQ</a></li>
+        <li class="sub-link--mobile-only">
+            <a href="#" id="drawerAccountLink">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                My Account
+            </a>
+        </li>
+        <li>
+            <a href="../pages/location.html">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Visit Our Showroom
+            </a>
+        </li>
+        <li class="sub-link--mobile-only">
+            <a href="#" id="drawerContactLink">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Contact us
+            </a>
+        </li>
+        <li><a href="pages/faq.html" class="sub-link--no-icon">FAQ</a></li>
     </ul>
+
+    </div><!-- /.drawer-scroll -->
 
     <!-- Sliding Toggle Footer Buttons -->
     <div class="drawer-footer-toggle right-active" id="drawer-toggle-container">
@@ -168,7 +198,7 @@
     </div>
 </div>
 
-<!-- SEARCH OVERLAY -->
+
 <div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-label="Search Signori">
     <div class="search-bar-inner">
         <div class="search-input-group">

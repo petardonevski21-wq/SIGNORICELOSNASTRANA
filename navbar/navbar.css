@@ -254,6 +254,15 @@ header.nav-instant::after {
     stroke-width: 1.5;
 }
 
+.header-icon-btn {
+    margin-left: -13px;
+}
+
+.header-icon-btn:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+}
+
 /* =========================
    SCROLLED & HOVERED STATE STYLES
 ========================= */
@@ -526,11 +535,69 @@ header.nav-hovered::before {
 }
 
 .drawer-sub-links li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-decoration: none;
     color: #000000;
     font-size: 14px;
     font-weight: 500;
     transition: color 0.3s ease;
+}
+
+.drawer-sub-links li a svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.drawer-sub-links li a.sub-link--no-icon {
+    padding-left: 30px;
+}
+
+.drawer-sub-links .sub-link--mobile-only {
+    display: none;
+}
+
+.request-appointment-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    padding: 0 16px;
+    border: 1px solid #4a4141;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #4a4141;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.request-appointment-btn:hover,
+.request-appointment-btn:focus-visible {
+    background-color: #4a4141;
+    color: #ffffff;
+}
+
+.request-appointment-btn:focus-visible {
+    outline: 2px solid #111111;
+    outline-offset: 2px;
 }
 
 .drawer-sub-links li a:hover {
@@ -742,8 +809,8 @@ header.nav-hovered::before {
 }
 
 .contact-close svg {
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.3;
@@ -828,8 +895,14 @@ header.nav-hovered::before {
     letter-spacing: 0.04em;
 }
 
-.mobile-online-shop-images {
+.mobile-online-shop-images,
+.mobile-bespoke-images {
     display: none;
+}
+
+/* Layout-neutral wrapper: only becomes a scroll region in the mobile block below */
+.drawer-scroll {
+    display: contents;
 }
 
 @media (min-width: 769px) {
@@ -1320,11 +1393,26 @@ header.nav-hovered::before {
     }
 
     .search-btn {
-        width: 44px;
+        width: 34px;
         height: 44px;
-        margin-right: -13px;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
+    }
+
+    .search-btn:last-child {
+        margin-right: -7px;
+    }
+
+    .header-icon-btn {
+        margin-left: 0;
+    }
+
+    #headerUserButton {
+        display: none;
+    }
+
+    .drawer-sub-links .sub-link--mobile-only {
+        display: block;
     }
 
     .search-btn svg {
@@ -1401,14 +1489,52 @@ header.nav-hovered::before {
         margin: 14px 0;
     }
 
-    .menu-content-wrapper {
+    .drawer-scroll {
+        display: block;
         flex: 1 1 auto;
-        overflow-y: auto;
+        min-height: 0;
         overflow-x: hidden;
+        overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 14px;
+    }
+
+    .drawer-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu-content-wrapper {
+        flex: none;
+        overflow: visible;
         min-height: 0;
     }
+
+    /* Only the active panel takes up height, so the scroll length always matches the visible section */
+    .menu-panel:not(.active) {
+        height: 0;
+        overflow: hidden;
+    }
+
+    #panel-online.active .drawer-main-links li,
+    #panel-bespoke.active .drawer-main-links li {
+        transition-duration: 0.5s;
+    }
+
+    #panel-online.active .drawer-main-links li:nth-child(1),
+    #panel-bespoke.active .drawer-main-links li:nth-child(1) { transition-delay: 0.04s; }
+    #panel-online.active .drawer-main-links li:nth-child(2),
+    #panel-bespoke.active .drawer-main-links li:nth-child(2) { transition-delay: 0.08s; }
+    #panel-online.active .drawer-main-links li:nth-child(3),
+    #panel-bespoke.active .drawer-main-links li:nth-child(3) { transition-delay: 0.12s; }
+    #panel-online.active .drawer-main-links li:nth-child(4),
+    #panel-bespoke.active .drawer-main-links li:nth-child(4) { transition-delay: 0.16s; }
+    #panel-online.active .drawer-main-links li:nth-child(5),
+    #panel-bespoke.active .drawer-main-links li:nth-child(5) { transition-delay: 0.20s; }
+    #panel-online.active .drawer-main-links li:nth-child(6),
+    #panel-bespoke.active .drawer-main-links li:nth-child(6) { transition-delay: 0.24s; }
+    #panel-bespoke.active .drawer-main-links li:nth-child(7) { transition-delay: 0.28s; }
 
     .drawer-main-links {
         gap: 0;
@@ -1431,8 +1557,12 @@ header.nav-hovered::before {
 
     .drawer-sub-links {
         gap: 0;
-        margin: 14px 0;
-        flex-shrink: 0;
+        margin: 14px 0 0;
+    }
+
+    .request-appointment-btn {
+        margin-top: 24px;
+        margin-bottom: 0;
     }
 
     .drawer-sub-links li a {
@@ -1464,24 +1594,39 @@ header.nav-hovered::before {
         display: none !important;
     }
 
-    .mobile-online-shop-images {
+    /* ---- Editorial images (Bespoke Tailoring + Online Shop), stacked vertically ---- */
+    .mobile-online-shop-images,
+    .mobile-bespoke-images {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        margin-top: 28px;
-        margin-bottom: 20px;
+        gap: 8px;
+        margin-top: 24px;
+        margin-bottom: 0;
     }
 
     .mobile-shop-card {
         position: relative;
         display: block;
         width: 100%;
-        height: 380px;
-        border-radius: 6px;
+        aspect-ratio: 4 / 5;
+        height: auto;
+        border-radius: 4px;
         overflow: hidden;
         background-color: #e5e5e5;
         text-decoration: none;
-        color: #ffffff;
+        color: #111111;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        transition: opacity 0.25s ease;
+    }
+
+    a.mobile-shop-card:active {
+        opacity: 0.85;
+    }
+
+    a.mobile-shop-card:focus-visible {
+        outline: 2px solid #111111;
+        outline-offset: 2px;
     }
 
     .mobile-shop-media {
@@ -1494,31 +1639,30 @@ header.nav-hovered::before {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
+        object-position: center top;
         display: block;
     }
 
-    .mobile-shop-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 50%);
+    .mobile-shop-media img:not([src]) {
+        display: none;
     }
 
+    /* Caption sits on the photograph without a gradient: small, white, with a soft text shadow for legibility */
     .mobile-shop-label {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 20px;
+        bottom: 18px;
         z-index: 1;
         text-align: center;
         font-family: 'Jost', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 500;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         color: #ffffff;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+        pointer-events: none;
     }
 
     .search-overlay {
@@ -1541,5 +1685,23 @@ header.nav-hovered::before {
         justify-content: center;
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
+    }
+}
+
+/* Mobile menu: short screens (the editorial image blocks are display:none outside the mobile menu) */
+@media (max-height: 560px) {
+    .mobile-shop-card {
+        aspect-ratio: 3 / 2;
+    }
+}
+
+/* Mobile menu: reduced motion (scoped to the mobile menu so desktop is untouched) */
+@media (prefers-reduced-motion: reduce) and (max-width: 768px) {
+    .menu-panel,
+    #panel-online .drawer-main-links li,
+    #panel-bespoke .drawer-main-links li,
+    .mobile-shop-card {
+        transition: none !important;
+        transition-delay: 0s !important;
     }
 }
