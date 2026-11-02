@@ -1,0 +1,199 @@
+.signori-contact-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 150px 6%;
+    font-family: 'Jost', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #111111;
+}
+
+.contact-section-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.contact-section-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #111111;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.contact-section-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #111111;
+}
+
+.contact-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 80px;
+    row-gap: 70px;
+}
+
+.contact-grid-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #111111;
+    margin-bottom: 12px;
+}
+
+.card-description {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #555555;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contact-icon {
+    width: 18px;
+    height: 18px;
+    stroke: #111111;
+    flex-shrink: 0;
+}
+
+.contact-btn-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111111;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    display: inline-block;
+}
+
+.signori-in-store-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 100px 6%;
+    font-family: 'Jost', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #111111;
+}
+
+.in-store-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.in-store-header {
+    margin-bottom: 45px;
+}
+
+.in-store-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #111111;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.in-store-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: #555555;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.in-store-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    margin-bottom: 45px;
+}
+
+.in-store-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.in-store-content-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    max-width: 680px;
+}
+
+.in-store-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #555555;
+    letter-spacing: 0.02em;
+}
+
+.in-store-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #111111;
+    text-decoration: none;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .signori-in-store-section {
+        padding: 70px 5%;
+    }
+
+    .in-store-title {
+        font-size: 24px;
+    }
+}

@@ -108,6 +108,51 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Contact Us Overlay Functionality with scroll lock
+        const contactButton = document.getElementById("contactButton");
+        const drawerContactLink = document.getElementById("drawerContactLink");
+        const contactOverlay = document.getElementById("contactOverlay");
+        const contactClose = document.getElementById("contactClose");
+
+        const openContact = (e) => {
+            if (e) e.preventDefault();
+            if (isDrawerOpen) closeDrawer();
+            if (contactOverlay) {
+                contactOverlay.classList.add("active");
+                contactOverlay.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+            }
+        };
+
+        const closeContact = () => {
+            if (contactOverlay) {
+                contactOverlay.classList.remove("active");
+                contactOverlay.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+            }
+        };
+
+        if (contactButton) {
+            contactButton.addEventListener("click", openContact);
+        }
+
+        if (drawerContactLink) {
+            drawerContactLink.addEventListener("click", openContact);
+        }
+
+        if (contactClose) {
+            contactClose.addEventListener("click", closeContact);
+        }
+
+        if (contactOverlay) {
+            contactOverlay.addEventListener("click", (e) => {
+                if (e.target === contactOverlay) closeContact();
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") closeContact();
+            });
+        }
+
         // Search Overlay Attached Directly Below Header
         const searchButton = document.getElementById("searchButton");
         const searchOverlay = document.getElementById("searchOverlay");
@@ -298,7 +343,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 lastScrollY = getScrollY();
             };
 
-            if (window.location.pathname.includes('gallery.html')) {
+            const isStaticPage = window.location.pathname.includes('gallery.html') || window.location.pathname.includes('contact.html');
+
+            if (isStaticPage) {
                 mode = "scrolled";
                 header.classList.remove("nav-hero");
                 header.classList.add("nav-scrolled");
@@ -319,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const currentScrollY = getScrollY();
                 const heroThreshold = getHeroThreshold();
 
-                if (!window.location.pathname.includes('gallery.html')) {
+                if (!isStaticPage) {
                     if (currentScrollY >= heroThreshold) {
                         if (mode !== "scrolled") enterScrolledMode(currentScrollY);
                     } else if (mode === "scrolled") {
@@ -408,12 +455,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // =====================================================
         const mobileQuery = window.matchMedia("(max-width: 768px), (pointer: coarse) and (max-height: 500px)");
         const isMobile = () => mobileQuery.matches;
-        const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-        const focusableIn = (root) =>
-            Array.from(root.querySelectorAll(FOCUSABLE)).filter(
-                (el) => !el.closest(".menu-panel:not(.active)")
-            );
 
         if (isMobile()) {
             if (menuButton && sideDrawer) {
@@ -424,77 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 sideDrawer.setAttribute("aria-label", "Menu");
             }
             if (searchOverlay) searchOverlay.setAttribute("aria-modal", "true");
-        }
-
-        const watchOpenState = (el, isOpenFn, onOpen, onClose) => {
-            if (!el) return;
-            let wasOpen = false;
-            new MutationObserver(() => {
-                if (!isMobile()) { wasOpen = isOpenFn(); return; }
-                const open = isOpenFn();
-                if (open && !wasOpen) onOpen();
-                if (!open && wasOpen) onClose();
-                wasOpen = open;
-            }).observe(el, { attributes: true, attributeFilter: ["class"] });
-        };
-
-        watchOpenState(
-            sideDrawer,
-            () => sideDrawer.classList.contains("open"),
-            () => { if (drawerClose) drawerClose.focus({ preventScroll: true }); },
-            () => { if (menuButton) menuButton.focus({ preventScroll: true }); }
-        );
-
-        watchOpenState(
-            searchOverlay,
-            () => searchOverlay.classList.contains("active"),
-            () => {},
-            () => { if (searchButton) searchButton.focus({ preventScroll: true }); }
-        );
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key !== "Tab" || !isMobile()) return;
-
-            const layer = isDrawerOpen
-                ? sideDrawer
-                : (searchOverlay && searchOverlay.classList.contains("active") ? searchOverlay : null);
-            if (!layer) return;
-
-            const items = focusableIn(layer);
-            if (!items.length) return;
-
-            const first = items[0];
-            const last = items[items.length - 1];
-            const outside = !layer.contains(document.activeElement);
-
-            if (event.shiftKey && (document.activeElement === first || outside)) {
-                event.preventDefault();
-                last.focus();
-            } else if (!event.shiftKey && (document.activeElement === last || outside)) {
-                event.preventDefault();
-                first.focus();
-            }
-        });
-
-        if (sideDrawer) {
-            sideDrawer.addEventListener("click", (event) => {
-                if (!isMobile()) return;
-                const link = event.target.closest("a");
-                if (!link || link.classList.contains("toggle-btn")) return;
-
-                const href = link.getAttribute("href");
-                const headerContact = document.querySelector("header .contact-text");
-
-                if (href === "#") {
-                    event.preventDefault();
-                    closeDrawer();
-                    if (headerContact && link.closest(".drawer-sub-links") && /contact/i.test(link.textContent)) {
-                        window.location.hash = headerContact.getAttribute("href");
-                    }
-                    return;
-                }
-                closeDrawer();
-            });
+            if (contactOverlay) contactOverlay.setAttribute("aria-modal", "true");
         }
 
         initMenuIconMorph(menuButton && menuButton.querySelector(".hamburger"), sideDrawer);
