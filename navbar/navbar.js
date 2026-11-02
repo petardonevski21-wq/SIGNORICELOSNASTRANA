@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let isDrawerOpen = false;
         let lastScrollY = 0;
+        let scrollY = 0;
         let ticking = false;
 
         let mode = "hero";
@@ -28,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let heroShown = false;
 
         const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const mobileQuery = window.matchMedia("(max-width: 768px), (pointer: coarse) and (max-height: 500px)");
+        const isMobile = () => mobileQuery.matches;
 
         const getHeroThreshold = () => {
             const heroSection = document.querySelector(".hero, section, .hero-section");
@@ -67,7 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sideDrawer) sideDrawer.classList.add("open");
             if (drawerOverlay) drawerOverlay.classList.add("active");
             if (menuButton) menuButton.setAttribute("aria-expanded", "true");
-            document.body.style.overflow = "hidden";
+            
+            if (mobileQuery.matches) {
+                scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                document.body.style.position = "fixed";
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = "100%";
+            } else {
+                document.body.style.overflow = "hidden";
+            }
+
             if (header) showHeader();
 
             if (flyoutDesktop.matches && btnOnline && btnOnline.classList.contains("active")) {
@@ -83,7 +95,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sideDrawer) sideDrawer.classList.remove("open");
             if (drawerOverlay) drawerOverlay.classList.remove("active");
             if (menuButton) menuButton.setAttribute("aria-expanded", "false");
-            document.body.style.overflow = "";
+            
+            if (mobileQuery.matches) {
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.body.style.width = "";
+                window.scrollTo(0, scrollY);
+            } else {
+                document.body.style.overflow = "";
+            }
+
             lastScrollY = getScrollY();
 
             setFlyout(false);
@@ -459,9 +480,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // =====================================================
         // MOBILE-ONLY ENHANCEMENTS
         // =====================================================
-        const mobileQuery = window.matchMedia("(max-width: 768px), (pointer: coarse) and (max-height: 500px)");
-        const isMobile = () => mobileQuery.matches;
-
         if (isMobile()) {
             if (menuButton && sideDrawer) {
                 menuButton.setAttribute("aria-controls", "sideDrawer");
