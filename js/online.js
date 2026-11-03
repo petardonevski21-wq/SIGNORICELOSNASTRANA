@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 3. AUTO-PLAY VIDEO ZA "HERE TODAY" SEKCIJU
 document.addEventListener('DOMContentLoaded', () => {
-    // Auto-play/pause video kad dođe u vidokrug
     const htVideo = document.querySelector('.ht-main-img');
     if (htVideo && htVideo.tagName === 'VIDEO') {
         const videoObserver = new IntersectionObserver((entries) => {
@@ -121,14 +120,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const slides     = track.querySelectorAll(".signori-slide");
 
   const FIRST_PAGE_COUNT = 3;   
-  let   TOTAL_PAGES      = 2;     // desktop: always 2; tablet/mobile: one page per card
+  let   TOTAL_PAGES      = 2;     
   const TITLE_SHIFT      = 120; 
   const reduceMotion     = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let page = 0;
   let maxX = 0;                 
-  let snaps = [0, 0];           // track offsets (px) for each page
-  let compact = false;          // true when the title is stacked above the cards (<=1024px)
+  let snaps = [0, 0];           
+  let compact = false;          
   let startX = 0, lastX = 0, lastT = 0, velocity = 0;
   let draggable;
 
@@ -179,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateUI() {
     if (!counter) return;
     counter.textContent = (page + 1) + "/" + TOTAL_PAGES;
-    const active = document.activeElement;
     if (prevBtn) prevBtn.disabled = page === 0;
     if (nextBtn) nextBtn.disabled = page === TOTAL_PAGES - 1;
   }
@@ -280,72 +278,23 @@ document.addEventListener("DOMContentLoaded", () => {
   goTo(0, false);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    // === KRAJ SECTION SLIDER LOGIKA ===
-    const krajSlides = document.querySelectorAll('.kraj-slide');
-    const krajPrevBtn = document.getElementById('krajPrev');
-    const krajNextBtn = document.getElementById('krajNext');
-    const krajProgressFills = document.querySelectorAll('.kraj-progress-fill');
+// IntersectionObserver za animacijata na dual-animated-box
+document.addEventListener("DOMContentLoaded", () => {
+    const observerOptions = {
+        root: null,
+        threshold: 0.25
+    };
 
-    if (krajSlides.length > 0) {
-        let currentKrajSlide = 0;
-        let lastKrajSlide = -1;
-        const totalKrajSlides = krajSlides.length;
-        const krajSlideDuration = 5000;
-        let krajSlideInterval;
-
-        function updateKrajSlider() {
-            krajSlides.forEach((slide, index) => {
-                slide.classList.remove('active', 'outgoing');
-                if (index === currentKrajSlide) {
-                    slide.classList.add('active');
-                } else if (index === lastKrajSlide) {
-                    slide.classList.add('outgoing');
-                }
-            });
-
-            krajProgressFills.forEach((fill, index) => {
-                fill.style.transition = 'none';
-                if (index < currentKrajSlide) {
-                    fill.style.width = '100%';
-                } else {
-                    fill.style.width = '0%';
-                }
-            });
-
-            void document.body.offsetWidth;
-
-            const activeFill = krajProgressFills[currentKrajSlide];
-            if (activeFill) {
-                activeFill.style.transition = `width ${krajSlideDuration}ms linear`;
-                activeFill.style.width = '100%';
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-zoom');
+                observer.unobserve(entry.target);
             }
-        }
+        });
+    }, observerOptions);
 
-        function nextKrajSlide() {
-            lastKrajSlide = currentKrajSlide;
-            currentKrajSlide = (currentKrajSlide + 1) % totalKrajSlides;
-            updateKrajSlider();
-            resetKrajInterval();
-        }
-
-        function prevKrajSlide() {
-            lastKrajSlide = currentKrajSlide;
-            currentKrajSlide = (currentKrajSlide - 1 + totalKrajSlides) % totalKrajSlides;
-            updateKrajSlider();
-            resetKrajInterval();
-        }
-
-        function resetKrajInterval() {
-            clearInterval(krajSlideInterval);
-            krajSlideInterval = setInterval(nextKrajSlide, krajSlideDuration);
-        }
-
-        if (krajNextBtn) krajNextBtn.addEventListener('click', nextKrajSlide);
-        if (krajPrevBtn) krajPrevBtn.addEventListener('click', prevKrajSlide);
-        addSwipe(document.querySelector('.kraj-slider-container'), nextKrajSlide, prevKrajSlide);
-
-        updateKrajSlider();
-        resetKrajInterval();
-    }
+    document.querySelectorAll('.dual-animated-box').forEach(box => {
+        observer.observe(box);
+    });
 });
