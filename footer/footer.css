@@ -23,7 +23,7 @@ body {
     background-color: var(--signori-bg);
     color: var(--signori-text-primary);
     font-family: var(--signori-font-main);
-    padding: 80px 5% 40px 5%;
+    padding: 40px 5% 40px 5%;
     
     /* Rounded Card Layout (Dior Style) */
     width: calc(100% - 30px);
