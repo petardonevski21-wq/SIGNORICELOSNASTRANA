@@ -23,9 +23,9 @@ body {
     background-color: var(--signori-bg);
     color: var(--signori-text-primary);
     font-family: var(--signori-font-main);
-    padding: 40px 5% 40px 5%;
+    padding: 120px 5% 40px 5%; /* Namalen gorniot padding za da ne se kačuva visoko siviot prostor */
     
-    /* Rounded Card Layout (Dior Style) */
+
     width: calc(100% - 30px);
     max-width: 1850px;
     margin: 30px auto 30px auto;
