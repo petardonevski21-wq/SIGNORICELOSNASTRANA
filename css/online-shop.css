@@ -186,14 +186,59 @@ body {
     overflow: hidden;
 }
 
-/* Scroll-triggered zoom animation setup */
+/* Scroll-triggered replica of the first hero animation.
+   Same keyframes / duration / easing / delays as the hero; the only difference is
+   that it starts when JS adds .animate-zoom (IntersectionObserver in online.js). */
 .dual-animated-box .trigger-zoom {
     transform: scale(1.06);
-    animation: none !important;
+    animation: none;
 }
 
 .dual-animated-box.animate-zoom .trigger-zoom {
-    animation: cinematicHeroZoom 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: dualZoomOut 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Same 1.06 -> 1.00 zoom-out as the hero, without the hero's 1.5s hold at the start */
+@keyframes dualZoomOut {
+    0% {
+        transform: scale(1.06);
+    }
+    100% {
+        transform: scale(1.00);
+    }
+}
+
+.dual-animated-box .collection-title,
+.dual-animated-box .discover-btn {
+    opacity: 0;
+    transform: translateY(35px);
+    will-change: transform, opacity;
+}
+
+.dual-animated-box.animate-content .collection-title {
+    animation: luxurySlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
+}
+
+.dual-animated-box.animate-content .discover-btn {
+    animation: luxurySlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dual-animated-box .trigger-zoom {
+        transform: none;
+    }
+
+    .dual-animated-box .collection-title,
+    .dual-animated-box .discover-btn {
+        opacity: 1;
+        transform: none;
+    }
+
+    .dual-animated-box.animate-zoom .trigger-zoom,
+    .dual-animated-box.animate-content .collection-title,
+    .dual-animated-box.animate-content .discover-btn {
+        animation: none;
+    }
 }
 
 /* ACCESSORIES */

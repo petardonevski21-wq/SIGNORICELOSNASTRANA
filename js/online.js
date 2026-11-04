@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const observerOptions = {
         root: null,
-        threshold: 0.25
+        threshold: 0.05
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -296,5 +296,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll('.dual-animated-box').forEach(box => {
         observer.observe(box);
+    });
+
+    // Title + SHOP NOW sit at the bottom of the tall box, so they get their own trigger:
+    // the entrance plays when they are actually on screen, wherever the visitor enters the section.
+    const contentObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const box = entry.target.closest('.dual-animated-box');
+                if (box) box.classList.add('animate-content');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { root: null, threshold: 0.5 });
+
+    document.querySelectorAll('.dual-animated-box .footer-center').forEach(content => {
+        contentObserver.observe(content);
     });
 });
