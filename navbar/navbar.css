@@ -309,6 +309,14 @@ header.nav-hovered::before {
     transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Hero state: no hover effects at all (keep original white text, no color change) */
+header.nav-hero .hover-target:hover,
+header.nav-hero .menu-container:hover .menu-text,
+header.nav-hero .menu-container:hover .menu-icon,
+header.nav-hero .search-btn:hover {
+    color: #ffffff;
+}
+
 /* =========================
    SIDE DRAWER (LUXURY MENU)
 ========================= */

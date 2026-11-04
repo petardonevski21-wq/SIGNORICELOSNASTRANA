@@ -235,6 +235,30 @@ document.addEventListener("DOMContentLoaded", () => {
             if (drawerScroll) drawerScroll.scrollTop = 0;
         };
 
+        // Auto-select Bespoke Tailoring on specified pages
+        const bespokePages = [
+            "bespoke-tailoring.html",
+            "fabric.html",
+            "fabrics.html",
+            "gallery.html",
+            "history.html",
+            "process-bespoke.html",
+            "Signori-10th-Anniversary.html",
+            "the-house.html",
+            "the-signature-details"
+        ];
+
+        const currentPath = window.location.pathname.toLowerCase();
+        const isBespokePage = bespokePages.some(page => currentPath.includes(page.toLowerCase()));
+
+        if (isBespokePage && panelBespoke && panelOnline && toggleContainer && btnBespoke && btnOnline) {
+            panelOnline.classList.remove("active");
+            panelBespoke.classList.add("active");
+            toggleContainer.classList.remove("right-active");
+            btnBespoke.classList.add("active");
+            btnOnline.classList.remove("active");
+        }
+
         if (btnBespoke && btnOnline && panelBespoke && panelOnline && toggleContainer) {
             btnBespoke.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -319,10 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             const setHeroHover = (value) => {
-                if (mode !== "hero") return;
-                if (value === heroShown) return;
-                heroShown = value;
-                header.classList.toggle("nav-hovered", heroShown);
+                return;
             };
 
             const enterScrolledMode = (currentScrollY) => {
@@ -362,8 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     header.classList.remove("nav-scrolled", "nav-hovered");
                     measureHeroNavHeight();
                     applyHeroShift();
-                    heroShown = computeHeroHover();
-                    header.classList.toggle("nav-hovered", heroShown);
+                    heroShown = false;
                 });
 
                 showHeader();
