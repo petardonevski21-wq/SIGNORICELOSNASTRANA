@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 3. AUTO-PLAY VIDEO ZA "HERE TODAY" SEKCIJU
+// 3. AUTO-PLAY VIDEO ZA "HERE TODAY" SEKCIJU & MOBILE SCROLL COUNTER ANIMATION
 document.addEventListener('DOMContentLoaded', () => {
     const htVideo = document.querySelector('.ht-main-img');
     if (htVideo && htVideo.tagName === 'VIDEO') {
@@ -100,6 +100,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.1 });
 
         videoObserver.observe(htVideo);
+    }
+
+    // Mobile scroll listener for HERE TODAY products counter animation (instant threshold update)
+    const htProducts = document.getElementById('htProducts');
+    const htPaginationTrack = document.getElementById('ht-pagination-track');
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (htProducts && htPaginationTrack) {
+        htProducts.addEventListener('scroll', () => {
+            if (!compactViewport.matches) return;
+            const scrollLeft = htProducts.scrollLeft;
+            const firstProduct = htProducts.querySelector('.ht-product');
+            if (!firstProduct) return;
+            const itemWidth = firstProduct.offsetWidth + 20; // 20px gap
+            const index = Math.round(scrollLeft / itemWidth);
+            const clampedIndex = Math.min(1, Math.max(0, index));
+            const targetY = `-${(clampedIndex * 100) / 2}%`;
+
+            if (reduceMotion.matches) {
+                gsap.set(htPaginationTrack, { y: targetY });
+            } else {
+                gsap.to(htPaginationTrack, {
+                    y: targetY,
+                    duration: 0.45,
+                    ease: "cubic-bezier(0.76, 0, 0.24, 1)",
+                    overwrite: true,
+                    force3D: true
+                });
+            }
+        }, { passive: true });
     }
 });
 
@@ -175,9 +205,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function updateUI() {
+  function updateUI(animate = true) {
     if (!counter) return;
-    counter.textContent = (page + 1) + "/" + TOTAL_PAGES;
+    const paginationTrack = document.getElementById("pagination-track");
+    const paginationSuffix = document.getElementById("pagination-suffix");
+    
+    if (paginationSuffix) {
+      paginationSuffix.textContent = "/" + TOTAL_PAGES;
+    }
+    
+    if (paginationTrack) {
+      paginationTrack.style.setProperty("--total-pages", TOTAL_PAGES);
+      
+      if (paginationTrack.children.length !== TOTAL_PAGES) {
+        let html = "";
+        for (let i = 1; i <= TOTAL_PAGES; i++) {
+          html += `<span class="pagination-digit">${i}</span>`;
+        }
+        paginationTrack.innerHTML = html;
+      }
+      
+      const targetY = `-${(page * 100) / TOTAL_PAGES}%`;
+      
+      if (animate === false || reduceMotion.matches) {
+        gsap.set(paginationTrack, { y: targetY });
+      } else {
+        gsap.to(paginationTrack, {
+          y: targetY,
+          duration: 0.55,
+          ease: "cubic-bezier(0.76, 0, 0.24, 1)",
+          overwrite: true,
+          force3D: true
+        });
+      }
+    }
+
     if (prevBtn) prevBtn.disabled = page === 0;
     if (nextBtn) nextBtn.disabled = page === TOTAL_PAGES - 1;
   }
@@ -199,6 +261,19 @@ document.addEventListener("DOMContentLoaded", () => {
         force3D: true,
         onUpdate: () => {
           setProgress(gsap.getProperty(track, "x"));
+          // Immediate counter update on halfway progress
+          if (compact && snaps.length > 1) {
+            const currentX = -gsap.getProperty(track, "x");
+            let closestPage = 0, minDist = Infinity;
+            snaps.forEach((s, idx) => {
+              const dist = Math.abs(s - currentX);
+              if (dist < minDist) { minDist = dist; closestPage = idx; }
+            });
+            if (closestPage !== page) {
+              page = closestPage;
+              updateUI(false);
+            }
+          }
         },
         onComplete: () => {
           draggable && draggable.update();
@@ -206,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
-    updateUI();
+    updateUI(animate !== false);
   }
 
   measure();
@@ -230,6 +305,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (dt > 0) velocity = (this.x - lastX) / dt;   
       lastX = this.x; lastT = now;
       setProgress(this.x);
+      
+      // Immediate counter update during drag when passing halfway between snaps
+      if (compact && snaps.length > 1) {
+        const currentX = -this.x;
+        let closestPage = 0, minDist = Infinity;
+        snaps.forEach((s, idx) => {
+          const dist = Math.abs(s - currentX);
+          if (dist < minDist) { minDist = dist; closestPage = idx; }
+        });
+        if (closestPage !== page) {
+          page = closestPage;
+          updateUI(false);
+        }
+      }
     },
     onDragEnd: function () {
       if (compact) {
@@ -298,8 +387,6 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(box);
     });
 
-    // Title + SHOP NOW sit at the bottom of the tall box, so they get their own trigger:
-    // the entrance plays when they are actually on screen, wherever the visitor enters the section.
     const contentObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

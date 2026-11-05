@@ -168,7 +168,7 @@ body {
     fill: currentColor;
 }
 
-/* DUAL HERO SECTION (BIGGER HEIGHT & PADDING/MARGIN SPACE BEFORE NEW ARRIVALS) */
+/* DUAL HERO SECTION */
 .dual-hero-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -186,9 +186,6 @@ body {
     overflow: hidden;
 }
 
-/* Scroll-triggered replica of the first hero animation.
-   Same keyframes / duration / easing / delays as the hero; the only difference is
-   that it starts when JS adds .animate-zoom (IntersectionObserver in online.js). */
 .dual-animated-box .trigger-zoom {
     transform: scale(1.06);
     animation: none;
@@ -198,7 +195,6 @@ body {
     animation: dualZoomOut 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* Same 1.06 -> 1.00 zoom-out as the hero, without the hero's 1.5s hold at the start */
 @keyframes dualZoomOut {
     0% {
         transform: scale(1.06);
@@ -1061,11 +1057,53 @@ body {
   z-index: 1;
 }
 
+/* Luxury Tiny Serif Font & Vertical Number Transition Styles */
 .pagination-text {
-  font-size: 1rem;
-  color: #555;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #4a4a4a;
   margin-bottom: 10px;
   margin-right: 25px;
+}
+
+.pagination-window {
+  display: inline-block;
+  position: relative;
+  width: 0.6em;
+  height: 1.1em;
+  overflow: hidden;
+  vertical-align: -0.1em;
+}
+
+.pagination-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--total-pages, 2) * 100%);
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.pagination-digit {
+  height: calc(100% / var(--total-pages, 2));
+  line-height: 1.1em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-suffix {
+  display: inline-block;
+}
+
+/* Desktop: hide HERE TODAY pagination */
+.ht-pagination {
+  display: none;
 }
 
 .nav-btn {
@@ -1211,16 +1249,25 @@ body {
         -webkit-overflow-scrolling: touch;
         width: 100vw;
         margin-left: calc(-50vw + 50%);
-        padding-left: 10vw;
-        padding-right: 0;
-        gap: 14px;
+        padding-left: calc(50vw - 40vw);  /* Prvata slika strci do pola, vtora doagja do sredina */
+        padding-right: calc(50vw - 40vw);
+        gap: 20px;
         justify-content: flex-start;
         scrollbar-width: none;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
     }
 
     .ht-products::-webkit-scrollbar {
         display: none;
+    }
+
+    /* Mobile: show HERE TODAY pagination */
+    .ht-pagination {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-right: 0;
+        text-align: center;
     }
 
     .ht-product {

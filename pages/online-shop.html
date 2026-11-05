@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Montserrat:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="../css/online-shop.css">
     <link rel="stylesheet" href="../ui/buttons.css">
@@ -65,7 +65,7 @@
         </div>
     </section>
 
-    <!-- DUAL HERO SECTION (BIGGER HEIGHT, CONTROLLED MARGINS, SCROLL-TRIGGERED ANIMATION, THE WEDDING EDIT & SHOP NOW) -->
+    <!-- DUAL HERO SECTION -->
     <div class="dual-hero-section">
         <div class="hero-section dual-animated-box">
             <img class="bg-video trigger-zoom" src="../assets/sliki/two-pic/11.png" alt="Collection">
@@ -147,20 +147,17 @@
                 <div class="slide"><img src="../assets/sliki/ONLINE/sets/5.png" alt="Set 5"></div>
             </div>
 
-            <!-- Text Overlay (SIGNORI SETS) -->
             <div class="slider-text-overlay">
                 <h2>SIGNORI SETS</h2>
                 <a href="#" class="signori-line-btn">Discover</a>
             </div>
 
-            <!-- Slider Controls -->
             <div class="slider-controls">
                 <button id="prevSlide" class="slider-arrow">&lt;</button>
                 <span id="slideCounter">1/5</span>
                 <button id="nextSlide" class="slider-arrow">&gt;</button>
             </div>
 
-            <!-- Progress Bars -->
             <div class="slider-progress-container">
                 <div class="progress-bar"><div class="progress-fill"></div></div>
                 <div class="progress-bar"><div class="progress-fill"></div></div>
@@ -182,7 +179,7 @@
                 
                 <h2 class="ht-title">HERE TODAY. GONE TOMORROW.</h2>
                 
-                <div class="ht-products">
+                <div class="ht-products" id="htProducts">
                     <div class="ht-product">
                         <img src="../assets/sliki/ONLINE/here-today/11.png" alt="Slika 1">
                         <p>Gold Suede Wrap Blazer</p>
@@ -192,13 +189,17 @@
                         <p>Bow Tie</p>
                     </div>
                 </div>
+
+                <div class="ht-pagination pagination-text" aria-live="polite">
+                    <span class="pagination-window"><span class="pagination-track" id="ht-pagination-track" style="--total-pages: 2;"><span class="pagination-digit">1</span><span class="pagination-digit">2</span></span></span><span class="pagination-suffix">/2</span>
+                </div>
                 
                 <a href="#" class="signori-line-btn signori-line-btn--dark">Discover</a>
             </div>
         </div>
     </section>
 
-    <!-- KRAJ SECTION (LOOK OF THE MONTH) -->
+    <!-- KRAJ SECTION -->
     <section class="kraj-section" id="krajSection">
         <div class="kraj-container">
             <div class="kraj-left" id="krajLeft">
@@ -310,7 +311,9 @@
       </div>
 
       <div class="signori-controls">
-        <div class="pagination-text" aria-live="polite">1/2</div>
+        <div class="pagination-text" aria-live="polite">
+          <span class="pagination-window"><span class="pagination-track" id="pagination-track"><span class="pagination-digit">1</span><span class="pagination-digit">2</span></span></span><span id="pagination-suffix">/2</span>
+        </div>
         <div class="buttons">
           <button class="nav-btn prev-btn" type="button" aria-label="Previous" disabled>&lt;</button>
           <button class="nav-btn next-btn" type="button" aria-label="Next">&gt;</button>
