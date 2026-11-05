@@ -1249,9 +1249,9 @@ body {
         -webkit-overflow-scrolling: touch;
         width: 100vw;
         margin-left: calc(-50vw + 50%);
-        padding-left: calc(50vw - 40vw);  /* Prvata slika strci do pola, vtora doagja do sredina */
-        padding-right: calc(50vw - 40vw);
-        gap: 20px;
+        padding-left: calc(50vw - 30vw);
+        padding-right: calc(50vw - 30vw);
+        gap: 16px;
         justify-content: flex-start;
         scrollbar-width: none;
         margin-bottom: 15px;
@@ -1271,7 +1271,7 @@ body {
     }
 
     .ht-product {
-        flex: 0 0 80vw;
+        flex: 0 0 60vw;
         max-width: none;
         scroll-snap-align: center;
         text-align: center;
@@ -1279,8 +1279,13 @@ body {
 
     .ht-product img {
         width: 100%;
-        height: auto;
-        aspect-ratio: 2 / 3;             
+        /* ======================================================================================================================== */
+        /* ======================================================================================================================== */
+        /* == OVDJE SE DIREKTNO ODREĐUJE VISINA SLIKA U HERE TODAY SEKCIJI ZA MOBILNE UREĐAJE (OGROMAN KOMENTAR OD KRAJA DO KRAJA) == */
+        /* ======================================================================================================================== */
+        /* ======================================================================================================================== */
+        height: 300px;
+        object-fit: cover;
     }
 
     .kraj-container {

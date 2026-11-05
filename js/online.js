@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollLeft = htProducts.scrollLeft;
             const firstProduct = htProducts.querySelector('.ht-product');
             if (!firstProduct) return;
-            const itemWidth = firstProduct.offsetWidth + 20; // 20px gap
+            const itemWidth = firstProduct.offsetWidth + 16; // 16px gap
             const index = Math.round(scrollLeft / itemWidth);
             const clampedIndex = Math.min(1, Math.max(0, index));
             const targetY = `-${(clampedIndex * 100) / 2}%`;
