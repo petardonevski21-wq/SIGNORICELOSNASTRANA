@@ -261,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
         force3D: true,
         onUpdate: () => {
           setProgress(gsap.getProperty(track, "x"));
-          // Immediate counter update on halfway progress
           if (compact && snaps.length > 1) {
             const currentX = -gsap.getProperty(track, "x");
             let closestPage = 0, minDist = Infinity;
@@ -306,7 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
       lastX = this.x; lastT = now;
       setProgress(this.x);
       
-      // Immediate counter update during drag when passing halfway between snaps
       if (compact && snaps.length > 1) {
         const currentX = -this.x;
         let closestPage = 0, minDist = Infinity;
@@ -365,39 +363,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", onResize);
 
   goTo(0, false);
-});
-
-// IntersectionObserver za animacijata na dual-animated-box
-document.addEventListener("DOMContentLoaded", () => {
-    const observerOptions = {
-        root: null,
-        threshold: 0.05
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-zoom');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.dual-animated-box').forEach(box => {
-        observer.observe(box);
-    });
-
-    const contentObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const box = entry.target.closest('.dual-animated-box');
-                if (box) box.classList.add('animate-content');
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { root: null, threshold: 0.5 });
-
-    document.querySelectorAll('.dual-animated-box .footer-center').forEach(content => {
-        contentObserver.observe(content);
-    });
 });

@@ -6,7 +6,6 @@
 
 html, body {
     width: 100%;
-
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -26,7 +25,6 @@ body {
     padding: 30px 55px; 
     overflow: hidden;
 }
-
 
 .bg-video {
     position: absolute;
@@ -168,123 +166,33 @@ body {
     fill: currentColor;
 }
 
-/* DUAL HERO SECTION */
-.dual-hero-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+/* THREE COLUMN FEATURED SECTION (Poniski sliki) */
+.three-col-section {
     width: 100%;
     background-color: #ffffff;
     padding: 0 40px 140px 40px;
 }
 
-.dual-hero-section .hero-section {
+.three-col-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
     width: 100%;
-    height: 112vh;
-    padding: 40px 40px;
-    border-radius: 0px;
+}
+
+.three-col-item {
+    position: relative;
+    width: 100%;
+    height: 96vh;
     overflow: hidden;
-}
-
-.dual-animated-box .trigger-zoom {
-    transform: scale(1.06);
-    animation: none;
-}
-
-.dual-animated-box.animate-zoom .trigger-zoom {
-    animation: dualZoomOut 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-@keyframes dualZoomOut {
-    0% {
-        transform: scale(1.06);
-    }
-    100% {
-        transform: scale(1.00);
-    }
-}
-
-.dual-animated-box .collection-title,
-.dual-animated-box .discover-btn {
-    opacity: 0;
-    transform: translateY(35px);
-    will-change: transform, opacity;
-}
-
-.dual-animated-box.animate-content .collection-title {
-    animation: luxurySlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
-}
-
-.dual-animated-box.animate-content .discover-btn {
-    animation: luxurySlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .dual-animated-box .trigger-zoom {
-        transform: none;
-    }
-
-    .dual-animated-box .collection-title,
-    .dual-animated-box .discover-btn {
-        opacity: 1;
-        transform: none;
-    }
-
-    .dual-animated-box.animate-zoom .trigger-zoom,
-    .dual-animated-box.animate-content .collection-title,
-    .dual-animated-box.animate-content .discover-btn {
-        animation: none;
-    }
-}
-
-/* ACCESSORIES */
-.accessories-section {
-    background-color: #ffffff;
-    padding: 200px 55px 300px 55px;
-    font-family: 'Jost', sans-serif;
+    background-color: #000;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-end;
+    padding: 40px;
 }
 
-.accessories-header {
-    text-align: center;
-    max-width: 800px;
-    margin-bottom: 50px;
-}
-
-.accessories-logo {
-    width: 45px;
-    height: auto;
-    margin-bottom: 25px;
-}
-
-.accessories-desc {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: #000;
-}
-
-.accessories-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr; 
-    grid-template-rows: 280px 280px auto;
-    gap: 15px; 
-    width: 100%;
-    max-width: 1200px;
-}
-
-.grid-item {
-    position: relative;
-    overflow: hidden;
-    background-color: #eaeaea; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.grid-item img {
+.three-col-item img {
     position: absolute;
     top: 0;
     left: 0;
@@ -292,100 +200,48 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    transform: scale(1);
-    transition: none;
+    filter: brightness(0.85);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.grid-item:hover img {
-    transform: scale(1);
+.three-col-item:hover img {
+    transform: scale(1.03);
 }
 
-.item-overlay {
+.three-col-item .item-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
     z-index: 2;
-    transition: background 0.4s ease;
 }
 
-.grid-item:hover .item-overlay {
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.item-title {
+.three-col-content {
     position: relative;
     z-index: 3;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 15px;
+    color: #ffffff; /* Ovoj del obezbeduva belo boja za kopcinjata vo tretata sekcija */
 }
 
-.grid-item:hover .item-title {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.item-cufflinks {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
-.item-ties {
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
-}
-
-.item-blazers {
-    grid-column: 2 / 3;
-    grid-row: 1 / 3; 
-}
-.item-blazers img {
-    object-fit: cover;
-    object-position: center 25%;
-    transform: scale(1);
-}
-.grid-item.item-blazers:hover img {
-    transform: scale(1);
-}
-
-.item-wallets {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-}
-
-.item-bow-ties {
-    grid-column: 3 / 4;
-    grid-row: 2 / 3;
-}
-
-.item-shoes {
-    grid-column: 1 / 4; 
-    grid-row: 3 / 4;
-    height: 200px;
-}
-.item-shoes img {
-    object-fit: cover;
-    object-position: center 70%;
-    transform: scale(1);
-}
-.grid-item.item-shoes:hover img {
-    transform: scale(1);
+.three-col-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
 /* NEW ARRIVALS */
 .new-arrivals-section {
     background-color: #ffffff;
-    padding: 0 55px 80px 55px; 
+    padding: 80px 55px 80px 55px; 
     font-family: 'Jost', sans-serif;
     display: flex;
     flex-direction: column;
@@ -1154,27 +1010,8 @@ body {
         min-height: 44px;
     }
 
-    .accessories-section {
-        padding: clamp(72px, 14vw, 140px) clamp(16px, 4vw, 32px) 40px;
-    }
-
-    .accessories-grid {
-        gap: 12px;
-    }
-
-    .item-bow-ties::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 40%;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
-        z-index: 200;
-    }
-
     .new-arrivals-section {
-        padding: 0 clamp(16px, 4vw, 32px) 64px;
+        padding: 40px clamp(16px, 4vw, 32px) 64px;
     }
 
     .new-arrivals-header {
@@ -1279,11 +1116,6 @@ body {
 
     .ht-product img {
         width: 100%;
-        /* ======================================================================================================================== */
-        /* ======================================================================================================================== */
-        /* == OVDJE SE DIREKTNO ODREĐUJE VISINA SLIKA U HERE TODAY SEKCIJI ZA MOBILNE UREĐAJE (OGROMAN KOMENTAR OD KRAJA DO KRAJA) == */
-        /* ======================================================================================================================== */
-        /* ======================================================================================================================== */
         height: 300px;
         object-fit: cover;
     }
@@ -1413,44 +1245,21 @@ body {
         font-size: clamp(1.25rem, 6.2vw, 1.875rem);
     }
 
-    .accessories-grid {
-        --acc-row: clamp(150px, 44vw, 280px);
-        --acc-wide: clamp(120px, 38vw, 200px);
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: repeat(3, var(--acc-row)) var(--acc-wide);
-        gap: 10px;
-    }
-
-    .item-cufflinks { grid-column: 1 / 2; grid-row: 1 / 2; }
-    .item-blazers   { grid-column: 2 / 3; grid-row: 1 / 3; }
-    .item-wallets   { grid-column: 1 / 2; grid-row: 2 / 3; }
-    .item-ties      { grid-column: 1 / 2; grid-row: 3 / 4; }
-    .item-bow-ties  { grid-column: 2 / 3; grid-row: 3 / 4; }
-    .item-shoes     { grid-column: 1 / 3; grid-row: 4 / 5; height: auto; }
-
-    .grid-item {
-        padding-bottom: 0;
-    }
-
-    .item-title {
-        padding: 0 10px;
-        text-align: center;
-        font-size: clamp(0.875rem, 3.9vw, 1rem);
-    }
-
-    /* Dual Hero Section Mobile Styling */
-    .dual-hero-section {
+    /* Three Column Mobile Styling */
+    .three-col-grid {
         grid-template-columns: 1fr;
         gap: 15px;
-        padding: 0 16px 80px 16px;
     }
-    .dual-hero-section .hero-section {
-        height: 75vh;
+    .three-col-item {
+        height: 65vh;
         padding: 24px 16px;
+    }
+    .three-col-section {
+        padding: 0 16px 80px 16px;
     }
 
     .new-arrivals-section {
-        padding: 0 16px 56px;
+        padding: 40px 16px 56px;
     }
 
     .new-arrivals-desc {
