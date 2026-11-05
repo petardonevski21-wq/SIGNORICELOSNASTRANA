@@ -166,7 +166,7 @@ body {
     fill: currentColor;
 }
 
-/* THREE COLUMN FEATURED SECTION (Poniski sliki) */
+/* THREE COLUMN FEATURED SECTION */
 .three-col-section {
     width: 100%;
     background-color: #ffffff;
@@ -183,7 +183,7 @@ body {
 .three-col-item {
     position: relative;
     width: 100%;
-    height: 96vh;
+    height: 90vh;
     overflow: hidden;
     background-color: #000;
     display: flex;
@@ -226,7 +226,7 @@ body {
     align-items: center;
     text-align: center;
     gap: 15px;
-    color: #ffffff; /* Ovoj del obezbeduva belo boja za kopcinjata vo tretata sekcija */
+    color: #ffffff;
 }
 
 .three-col-title {
@@ -236,6 +236,10 @@ body {
     letter-spacing: 0.12em;
     color: #ffffff;
     text-transform: uppercase;
+}
+
+.three-col-dots {
+    display: none;
 }
 
 /* NEW ARRIVALS */
@@ -1010,6 +1014,54 @@ body {
         min-height: 44px;
     }
 
+    /* Three Column Section Mobile Luxury Horizontal Slider */
+    .three-col-section {
+        padding: 0 0 50px 0;
+        width: 100%;
+    }
+
+    .three-col-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding: 0 20px;
+        scrollbar-width: none;
+    }
+
+    .three-col-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .three-col-item {
+        flex: 0 0 82vw;
+        height: 75vh;
+        height: 75svh;
+        border-radius: 10px;
+        scroll-snap-align: center;
+        padding: 30px 20px;
+    }
+
+    .three-col-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .three-col-dots .dot {
+        width: 24px;
+        height: 2px;
+        background-color: rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+    .three-col-dots .dot.active {
+        background-color: #000000;
+    }
+
     .new-arrivals-section {
         padding: 40px clamp(16px, 4vw, 32px) 64px;
     }
@@ -1243,19 +1295,6 @@ body {
 
     .collection-title {
         font-size: clamp(1.25rem, 6.2vw, 1.875rem);
-    }
-
-    /* Three Column Mobile Styling */
-    .three-col-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    .three-col-item {
-        height: 65vh;
-        padding: 24px 16px;
-    }
-    .three-col-section {
-        padding: 0 16px 80px 16px;
     }
 
     .new-arrivals-section {

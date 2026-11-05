@@ -131,6 +131,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
     }
+
+    // Mobile dots synchronization for Three Column Section
+    const threeColGrid = document.getElementById('threeColGrid');
+    const threeColDots = document.querySelectorAll('#threeColDots .dot');
+    if (threeColGrid && threeColDots.length > 0) {
+        threeColGrid.addEventListener('scroll', () => {
+            if (!compactViewport.matches) return;
+            const scrollLeft = threeColGrid.scrollLeft;
+            const itemWidth = threeColGrid.querySelector('.three-col-item').offsetWidth + 12;
+            const index = Math.round(scrollLeft / itemWidth);
+            const clampedIndex = Math.min(threeColDots.length - 1, Math.max(0, index));
+            threeColDots.forEach((dot, idx) => {
+                if (idx === clampedIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }, { passive: true });
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
