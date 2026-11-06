@@ -25,9 +25,8 @@ function addSwipe(el, onNext, onPrev) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 2. SIGNORI SETS SLIDER (Z INDIKATORJI)
+    // 2. SIGNORI SETS SLIDER (Z INDIKATORJI I ANIMIRANI BROJKI)
     const sliderWrapper = document.getElementById('sliderWrapper');
-    const slideCounter = document.getElementById('slideCounter');
     const prevBtn = document.getElementById('prevSlide');
     const nextBtn = document.getElementById('nextSlide');
     const progressFills = document.querySelectorAll('.progress-fill');
@@ -36,12 +35,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSlides = 5;
     const slideDuration = 5000;
     let slideInterval;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     function updateSlider() {
         if (!sliderWrapper) return;
         sliderWrapper.style.transform = `translateX(-${currentSlide * 20}%)`;
-        if (slideCounter) {
-            slideCounter.textContent = `${currentSlide + 1}/${totalSlides}`;
+        
+        const setsPaginationTrack = document.getElementById('sets-pagination-track');
+        if (setsPaginationTrack) {
+            setsPaginationTrack.style.setProperty("--total-pages", totalSlides);
+            const targetY = `-${(currentSlide * 100) / totalSlides}%`;
+            if (reduceMotion.matches) {
+                gsap.set(setsPaginationTrack, { y: targetY });
+            } else {
+                gsap.to(setsPaginationTrack, {
+                    y: targetY,
+                    duration: 0.55,
+                    ease: "cubic-bezier(0.76, 0, 0.24, 1)",
+                    overwrite: true,
+                    force3D: true
+                });
+            }
         }
         
         progressFills.forEach(fill => {
@@ -143,6 +157,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const index = Math.round(scrollLeft / itemWidth);
             const clampedIndex = Math.min(threeColDots.length - 1, Math.max(0, index));
             threeColDots.forEach((dot, idx) => {
+                if (idx === clampedIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }, { passive: true });
+    }
+
+    // Mobile dots synchronization for New Arrivals Section (2 items per swipe)
+    const newArrivalsGrid = document.getElementById('newArrivalsGrid');
+    const newArrivalsDots = document.querySelectorAll('#newArrivalsDots .dot');
+    if (newArrivalsGrid && newArrivalsDots.length > 0) {
+        newArrivalsGrid.addEventListener('scroll', () => {
+            if (!compactViewport.matches) return;
+            const scrollLeft = newArrivalsGrid.scrollLeft;
+            const itemWidth = (newArrivalsGrid.querySelector('.arrival-item').offsetWidth * 2) + 12;
+            const index = Math.round(scrollLeft / itemWidth);
+            const clampedIndex = Math.min(newArrivalsDots.length - 1, Math.max(0, index));
+            newArrivalsDots.forEach((dot, idx) => {
                 if (idx === clampedIndex) {
                     dot.classList.add('active');
                 } else {

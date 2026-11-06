@@ -232,7 +232,7 @@ body {
     text-transform: uppercase;
 }
 
-.three-col-dots {
+.three-col-dots, .new-arrivals-dots {
     display: none;
 }
 
@@ -280,8 +280,19 @@ body {
 .arrival-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
+}
+
+.arrival-item p {
+    font-size: 11px;
+    color: #222;
+    font-weight: 400;
+    margin-top: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .arrival-img-wrapper {
@@ -289,7 +300,7 @@ body {
     width: 100%;
     aspect-ratio: 3/4;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     background-color: #f4f4f4;
 }
 
@@ -552,6 +563,11 @@ body {
     font-weight: 400;
     color: #333;
     letter-spacing: 0.05em;
+}
+
+/* Skrieni na desktop by default */
+.ht-pagination {
+    display: none;
 }
 
 /* --- KRAJ SECTION (LOOK OF THE MONTH) --- */
@@ -912,14 +928,23 @@ body {
   z-index: 1;
 }
 
+/* OSNOVNI STILOVI ZA BROJACI */
 .pagination-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: #4a4a4a;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #111111;
   margin-bottom: 10px;
-  margin-right: 25px;
+  margin-right: 0px;
+}
+
+/* BELI BROJKICI ZA SIGNORI SETS SLIDEROT SHTO E NA CRNA POZADINA */
+.slider-controls .pagination-text,
+.slider-controls .pagination-digit,
+.slider-controls .pagination-suffix {
+  color: #ffffff !important;
+  margin-bottom: 0;
 }
 
 .pagination-window {
@@ -949,14 +974,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: inherit;
 }
 
 .pagination-suffix {
   display: inline-block;
-}
-
-.ht-pagination {
-  display: none;
+  color: inherit;
 }
 
 .nav-btn {
@@ -1058,8 +1081,48 @@ body {
         margin-bottom: 40px;
     }
 
+    /* MOBILE HORIZONTAL SCROLL FOR NEW ARRIVALS GRID (EXACTLY 2 ITEMS PER VIEW) */
     .new-arrivals-grid {
-        margin-bottom: 44px;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 16px;
+        margin-bottom: 16px;
+        scrollbar-width: none;
+    }
+
+    .new-arrivals-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .arrival-item {
+        flex: 0 0 calc(50vw - 22px);
+        scroll-snap-align: start;
+        align-items: flex-start;
+    }
+
+    .new-arrivals-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 15px;
+        margin-bottom: 24px;
+    }
+
+    .new-arrivals-dots .dot {
+        width: 24px;
+        height: 2px;
+        background-color: rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+    .new-arrivals-dots .dot.active {
+        background-color: #000000;
     }
 
     .sets-slider-section {
@@ -1138,12 +1201,20 @@ body {
         display: none;
     }
 
+    /* Prikazuvanje na brojkite SAMO na telefon */
     .ht-pagination {
         display: block;
         margin-top: 10px;
         margin-bottom: 20px;
-        margin-right: 0;
         text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: #111111 !important;
+    }
+    .ht-pagination .pagination-digit, .ht-pagination .pagination-suffix {
+        color: #111111 !important;
     }
 
     .ht-product {
@@ -1289,11 +1360,6 @@ body {
 
     .new-arrivals-desc {
         font-size: 17px;
-    }
-
-    .new-arrivals-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
     }
 
     .sets-slider-container {
