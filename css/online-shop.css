@@ -203,8 +203,6 @@ body {
     filter: brightness(0.85);
 }
 
-
-
 .three-col-item .item-overlay {
     position: absolute;
     top: 0;
@@ -250,7 +248,7 @@ body {
 
 .new-arrivals-header {
     text-align: center;
-    max-width: 700px;
+    max-width: 850px;
     margin-bottom: 50px;
 }
 
@@ -263,10 +261,11 @@ body {
 }
 
 .new-arrivals-desc {
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 300;
-    line-height: 1.7;
+    line-height: 1.5;
     color: #000;
+    letter-spacing: 0.02em;
 }
 
 .new-arrivals-grid {
@@ -913,7 +912,6 @@ body {
   z-index: 1;
 }
 
-/* Luxury Tiny Serif Font & Vertical Number Transition Styles */
 .pagination-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: 15px;
@@ -957,7 +955,6 @@ body {
   display: inline-block;
 }
 
-/* Desktop: hide HERE TODAY pagination */
 .ht-pagination {
   display: none;
 }
@@ -980,11 +977,7 @@ body {
   cursor: not-allowed;
 }
 
-/* ==========================================================================
-   RESPONSIVE LAYER — TABLET & MOBILE ONLY
-   -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-
     html {
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
@@ -1010,7 +1003,6 @@ body {
         min-height: 44px;
     }
 
-    /* Three Column Section Mobile Luxury Horizontal Slider */
     .three-col-section {
         padding: 0 0 50px 0;
         width: 100%;
@@ -1146,7 +1138,6 @@ body {
         display: none;
     }
 
-    /* Mobile: show HERE TODAY pagination */
     .ht-pagination {
         display: block;
         margin-top: 10px;
@@ -1275,7 +1266,6 @@ body {
 }
 
 @media (max-width: 767px) {
-
     .hero-section {
         padding: 24px 20px 36px;
     }
@@ -1298,7 +1288,7 @@ body {
     }
 
     .new-arrivals-desc {
-        font-size: 14px;
+        font-size: 17px;
     }
 
     .new-arrivals-grid {
@@ -1384,4 +1374,40 @@ body {
         opacity: 1;
         transform: none;
     }
+}
+
+/* ==========================================================================
+   LETTER REVEAL (Standard Headings)
+   -------------------------------------------------------------------------- */
+.letter-reveal .lr-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.letter-reveal .lr-char {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    padding: 0.12em 0 0.3em;
+    margin: -0.12em 0 -0.3em;
+}
+
+.letter-reveal.lr-ready .lr-glyph {
+    display: inline-block;
+    transform: translate3d(0, 135%, 0);
+    will-change: transform;
+}
+
+.letter-reveal.lr-ready.is-revealed .lr-glyph {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 22ms);
+}
+
+/* ==========================================================================
+   SUPER-FAST & ULTRA-SMOOTH ANIMATION SPECIFICALLY FOR NEW ARRIVALS DESCRIPTION
+   -------------------------------------------------------------------------- */
+.new-arrivals-desc.letter-reveal.lr-ready.is-revealed .lr-glyph {
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i, 0) * 8ms);
 }

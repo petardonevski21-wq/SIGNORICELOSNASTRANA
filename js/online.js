@@ -384,3 +384,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   goTo(0, false);
 });
+
+// LETTER REVEAL (Dior-style) for .letter-reveal headings
+document.addEventListener('DOMContentLoaded', () => {
+    const targets = document.querySelectorAll('.letter-reveal');
+    if (!targets.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+
+    let index = 0;
+    targets.forEach((el) => {
+        if (el.classList.contains('lr-ready')) return;
+        const text = el.textContent.trim().replace(/\s+/g, ' ');
+        if (!text) return;
+
+        el.setAttribute('aria-label', text);
+        el.textContent = '';
+        index = 0;
+
+        text.split(' ').forEach((word, w, words) => {
+            const wordEl = document.createElement('span');
+            wordEl.className = 'lr-word';
+            wordEl.setAttribute('aria-hidden', 'true');
+            Array.from(word).forEach((ch) => {
+                const mask = document.createElement('span');
+                mask.className = 'lr-char';
+                const glyph = document.createElement('span');
+                glyph.className = 'lr-glyph';
+                glyph.style.setProperty('--i', index++);
+                glyph.textContent = ch;
+                mask.appendChild(glyph);
+                wordEl.appendChild(mask);
+            });
+            el.appendChild(wordEl);
+            if (w < words.length - 1) el.appendChild(document.createTextNode(' '));
+        });
+        el.classList.add('lr-ready');
+    });
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-revealed');
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.3, rootMargin: '0px 0px -5% 0px' });
+
+    document.querySelectorAll('.letter-reveal.lr-ready').forEach((el) => io.observe(el));
+});
