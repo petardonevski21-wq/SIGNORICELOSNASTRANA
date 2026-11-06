@@ -1,32 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
-
     cards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            cards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
+            if (window.innerWidth > 1024) {
+                cards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            }
         });
     });
 });
 
-// --- Latest Creations Slider (Auto-slide svakih 5s) ---
-const track = document.getElementById('latest-track');
-const prevBtn = document.getElementById('latest-prev');
-const nextBtn = document.getElementById('latest-next');
-const dotsContainer = document.getElementById('latest-dots');
+// --- Latest Creations Slider ---
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('latest-track');
+    const prevBtn = document.getElementById('latest-prev');
+    const nextBtn = document.getElementById('latest-next');
+    const dotsContainer = document.getElementById('latest-dots');
 
-if (track) {
+    if (!track) return;
+
     const slides = Array.from(track.children);
     let currentIndex = 0;
     let autoSlideTimer;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
 
     const getVisibleSlides = () => {
-        if (window.innerWidth <= 480) return 1;
-        if (window.innerWidth <= 768) return 2;
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 1024) return 2;
         return 3;
     };
 
-    const updateSlider = () => {
+    const updateSlider = (animate = true) => {
         const visibleSlides = getVisibleSlides();
         const maxIndex = slides.length - visibleSlides;
 
@@ -34,9 +40,10 @@ if (track) {
         if (currentIndex < 0) currentIndex = maxIndex;
 
         const slideWidth = slides[0].getBoundingClientRect().width;
-        const gap = 20; 
+        const gap = window.innerWidth <= 1024 ? 12 : 20;
         const moveAmount = currentIndex * (slideWidth + gap);
 
+        track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
         track.style.transform = `translateX(-${moveAmount}px)`;
 
         const dots = Array.from(dotsContainer.children);
@@ -68,15 +75,45 @@ if (track) {
         if (autoSlideTimer) clearInterval(autoSlideTimer);
     };
 
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        startAutoSlide();
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startAutoSlide();
+        });
+    }
 
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startAutoSlide();
+        });
+    }
+
+    track.addEventListener('touchstart', (e) => {
+        stopAutoSlide();
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        const diffX = startX - currentX;
+        if (Math.abs(diffX) > 40) {
+            if (diffX > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
         startAutoSlide();
-    });
+    }, { passive: true });
 
     dotsContainer.innerHTML = '';
     slides.forEach((_, index) => {
@@ -91,9 +128,9 @@ if (track) {
         dotsContainer.appendChild(dot);
     });
 
-    window.addEventListener('resize', updateSlider);
+    window.addEventListener('resize', () => updateSlider(false));
     startAutoSlide();
-}
+});
 
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
@@ -103,7 +140,7 @@ if (contactForm) {
 }
 
 (() => {
-    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const mobileQuery = window.matchMedia('(max-width: 1024px)');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
 
@@ -171,36 +208,43 @@ if (contactForm) {
     })();
 
     const hero = (() => {
-        const video = document.querySelector('.hero-image');
-        const isVideo = video && video.tagName === 'VIDEO';
+        const videos = document.querySelectorAll('video');
         let io = null;
 
         return {
             start() {
-                if (!isVideo || reduceMotion.matches) return;
-                video.muted = true;
-                video.defaultMuted = true;
-                video.loop = true;
-                video.playsInline = true;
-                video.setAttribute('playsinline', '');
-                video.setAttribute('webkit-playsinline', '');
-                const play = () => {
-                    const p = video.play();
-                    if (p && p.catch) p.catch(() => {});
-                };
-                play();
+                if (reduceMotion.matches) return;
+                videos.forEach(video => {
+                    video.muted = true;
+                    video.defaultMuted = true;
+                    video.loop = true;
+                    video.playsInline = true;
+                    video.setAttribute('playsinline', '');
+                    video.setAttribute('webkit-playsinline', '');
+                    const play = () => {
+                        const p = video.play();
+                        if (p && p.catch) p.catch(() => {});
+                    };
+                    play();
+                });
+
                 if ('IntersectionObserver' in window) {
                     io = new IntersectionObserver((entries) => {
-                        entries.forEach((entry) => (entry.isIntersecting ? play() : video.pause()));
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                const p = entry.target.play();
+                                if (p && p.catch) p.catch(() => {});
+                            } else {
+                                entry.target.pause();
+                            }
+                        });
                     }, { threshold: 0.1 });
-                    io.observe(video);
+                    videos.forEach(v => io.observe(v));
                 }
             },
             stop() {
-                if (!isVideo) return;
                 if (io) { io.disconnect(); io = null; }
-                video.pause();
-                video.loop = false;
+                videos.forEach(v => v.pause());
             }
         };
     })();

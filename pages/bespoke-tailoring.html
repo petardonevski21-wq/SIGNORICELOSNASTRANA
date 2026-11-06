@@ -18,15 +18,15 @@
     <!-- Hero Sekcija -->
     <section class="hero">
         <div class="hero-image-container">
-            <video src="../assets/videa/Luxury is in the Details..mp4" alt="Bespoke Tailoring Hero" class="hero-image">
+            <video src="../assets/videa/Luxury is in the Details..mp4" class="hero-image" autoplay loop muted playsinline webkit-playsinline></video>
         </div>
     </section>
 
-    
+    <!-- Cards Sekcija -->
     <section class="cards-section">
         <div class="cards-container">
             
-            
+            <!-- Kartica 1: Fabrics -->
             <div class="card" id="card-fabrics">
                 <div class="card-bg"></div>
                 <h2 class="vertical-text">FABRICS</h2>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <!-- Kartica 2: Bespoke (PoÄŤetno Aktivna) -->
+            <!-- Kartica 2: Bespoke (Početno Aktivna) -->
             <div class="card active" id="card-bespoke">
                 <div class="card-bg"></div>
                 <h2 class="vertical-text">BESPOKE TAILORING</h2>
@@ -49,19 +49,19 @@
             <!-- Kartica 3: Gallery -->
             <div class="card" id="card-gallery">
                 <a href="./gallery.html" class="gallery-a-href">
-                <div class="card-bg"></div>
-                <h2 class="vertical-text">GALLERY</h2>
-                <div class="card-content-center">
-                    <h2>GALLERY</h2>
-                    <a href="./gallery.html" class="signori-line-btn">Discover</a>
-                </div>
+                    <div class="card-bg"></div>
+                    <h2 class="vertical-text">GALLERY</h2>
+                    <div class="card-content-center">
+                        <h2>GALLERY</h2>
+                        <span class="signori-line-btn">Discover</span>
+                    </div>
                 </a>
             </div>
 
         </div>
     </section>
 
-    
+    <!-- Bespoke Intro Sekcija -->
     <section class="bespoke-intro-section">
         <div class="intro-content">
             <p>Welcome to SIGNORI Bespoke, a private tailoring experience shaped entirely around you. From the first consultation to the final fitting, every detail is carefully considered to create a garment that reflects your individuality, proportions and personal style. Through refined craftsmanship, exceptional fabrics and meticulous attention to detail, each SIGNORI piece is made exclusively for you &mdash; with precision, character and lasting elegance.</p>
@@ -69,18 +69,18 @@
         </div>
     </section>
 
-    <!-- Bespoke Details -->
+    <!-- Bespoke Details Sekcija -->
     <section class="bespoke-details-section">
-        <!-- Red 1: Tekst lijevo, 9:16 Video desno zalepeno do desnata strana -->
+        <!-- Red 1: Tekst lijevo, Video desno (na mobilnom video preko celog ekrana) -->
         <div class="detail-row full-right">
             <div class="detail-text">
                 <img src="../assets/sliki/LOGOTO/1.png" alt="Signori Icon" class="detail-icon">
                 <h3>For the moments that matter</h3>
                 <p>Some moments deserve to be remembered.</p>
-                <p>From life's most important milestones to occasions that leave a lasting impression, SIGNORI accompanies you with an elegance that never needs to be announced.<br><br></p>
+                <p>From life's most important milestones to occasions that leave a lasting impression, SIGNORI accompanies you with an elegance that never needs to be announced.</p>
             </div>
             <div class="detail-video-container">
-                <video src="../assets/videa/scabal-video.mp4" autoplay loop muted playsinline class="detail-video"></video>
+                <video src="../assets/videa/scabal-video.mp4" autoplay loop muted playsinline webkit-playsinline class="detail-video"></video>
             </div>
         </div>
 
@@ -96,7 +96,7 @@
         </div>
     </section>
 
-    <!-- Bespoke Showcase Sekcija -->
+    <!-- Bespoke Showcase Sekcija (Slika pod video na cel ekran) -->
     <section class="bespoke-showcase-section">
         <div class="showcase-bottom-section">
             <img src="../assets/sliki/BESPOKE-TAILORING/bespoke-sredina.png" alt="Signori Bespoke Suit" class="showcase-full-img">
@@ -111,7 +111,7 @@
         </div>
     </section>
 
-    <!-- Nova "How Bespoke Works" Sekcija -->
+    <!-- How Bespoke Works Sekcija -->
     <section class="how-bespoke-section">
         <h2 class="how-bespoke-title">HOW BESPOKE WORKS</h2>
         
@@ -163,7 +163,7 @@
         <h2 class="latest-title">Latest creations</h2>
         
         <div class="slider-wrapper">
-          <button class="slider-btn prev-btn" id="latest-prev" aria-label="Previous">&#10092;</button>
+            <button class="slider-btn prev-btn" id="latest-prev" aria-label="Previous">&#10092;</button>
             
             <div class="slider-container">
                 <div class="slider-track" id="latest-track">
@@ -184,7 +184,7 @@
         <div class="slider-dots" id="latest-dots"></div>
     </section>
 
-    <!-- Contact Form Sektsiya -->
+    <!-- Contact Form Sekcija -->
     <section class="contact-section">
         <div class="contact-container">
             <h1 class="contact-brand">SIGNORI</h1>
@@ -224,9 +224,8 @@
             </form>
         </div>
     </section>
+
     <div id="footer-placeholder"></div>
-
-
 
     <script src="../footer/footer-loader.js" defer></script>
     <script src="../js/bespoke-tailoring.js" defer></script>
