@@ -1277,6 +1277,11 @@ body {
         padding-bottom: clamp(40px, 10vw, 80px);
     }
 
+    .editorial-overlay { 
+        padding: 25px 20px;
+        text-align: left;
+    }
+    
     .iconic-content {
         padding: 0 20px;
     }
@@ -1425,6 +1430,8 @@ body {
 }
 
 @media (max-width: 1024px) and (prefers-reduced-motion: reduce) {
+
+
     .bg-video {
         animation: none;    
         transform: none;
