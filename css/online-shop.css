@@ -565,7 +565,6 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* Skrieni na desktop by default */
 .ht-pagination {
     display: none;
 }
@@ -928,7 +927,6 @@ body {
   z-index: 1;
 }
 
-/* OSNOVNI STILOVI ZA BROJACI */
 .pagination-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
@@ -939,7 +937,6 @@ body {
   margin-right: 0px;
 }
 
-/* BELI BROJKICI ZA SIGNORI SETS SLIDEROT SHTO E NA CRNA POZADINA */
 .slider-controls .pagination-text,
 .slider-controls .pagination-digit,
 .slider-controls .pagination-suffix {
@@ -1081,7 +1078,6 @@ body {
         margin-bottom: 40px;
     }
 
-    /* MOBILE HORIZONTAL SCROLL FOR NEW ARRIVALS GRID (EXACTLY 2 ITEMS PER VIEW) */
     .new-arrivals-grid {
         display: flex;
         overflow-x: auto;
@@ -1201,7 +1197,6 @@ body {
         display: none;
     }
 
-    /* Prikazuvanje na brojkite SAMO na telefon */
     .ht-pagination {
         display: block;
         margin-top: 10px;
@@ -1430,8 +1425,6 @@ body {
 }
 
 @media (max-width: 1024px) and (prefers-reduced-motion: reduce) {
-
-
     .bg-video {
         animation: none;    
         transform: none;
@@ -1449,9 +1442,6 @@ body {
     }
 }
 
-/* ==========================================================================
-   LETTER REVEAL (Standard Headings)
-   -------------------------------------------------------------------------- */
 .letter-reveal .lr-word {
     display: inline-block;
     white-space: nowrap;
@@ -1477,9 +1467,6 @@ body {
     transition-delay: calc(var(--i, 0) * 22ms);
 }
 
-/* ==========================================================================
-   SUPER-FAST & ULTRA-SMOOTH ANIMATION SPECIFICALLY FOR NEW ARRIVALS DESCRIPTION
-   -------------------------------------------------------------------------- */
 .new-arrivals-desc.letter-reveal.lr-ready.is-revealed .lr-glyph {
     transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: calc(var(--i, 0) * 8ms);

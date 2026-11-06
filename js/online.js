@@ -25,76 +25,133 @@ function addSwipe(el, onNext, onPrev) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 2. SIGNORI SETS SLIDER (Z INDIKATORJI I ANIMIRANI BROJKI)
+    // 2. SIGNORI SETS SLIDER (SEAMLESS INFINITE LOOP FOR DESKTOP & MOBILE)
     const sliderWrapper = document.getElementById('sliderWrapper');
     const prevBtn = document.getElementById('prevSlide');
     const nextBtn = document.getElementById('nextSlide');
     const progressFills = document.querySelectorAll('.progress-fill');
     
-    let currentSlide = 0;
-    const totalSlides = 5;
-    const slideDuration = 5000;
-    let slideInterval;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    function updateSlider() {
-        if (!sliderWrapper) return;
-        sliderWrapper.style.transform = `translateX(-${currentSlide * 20}%)`;
+    if (sliderWrapper) {
+        const originalSlides = Array.from(sliderWrapper.children);
+        const totalSlides = originalSlides.length; // 5 slides
+        const slideDuration = 5000;
+        let slideInterval;
+        let isTransitioning = false;
         
-        const setsPaginationTrack = document.getElementById('sets-pagination-track');
-        if (setsPaginationTrack) {
-            setsPaginationTrack.style.setProperty("--total-pages", totalSlides);
-            const targetY = `-${(currentSlide * 100) / totalSlides}%`;
-            if (reduceMotion.matches) {
-                gsap.set(setsPaginationTrack, { y: targetY });
-            } else {
-                gsap.to(setsPaginationTrack, {
-                    y: targetY,
-                    duration: 0.55,
-                    ease: "cubic-bezier(0.76, 0, 0.24, 1)",
-                    overwrite: true,
-                    force3D: true
-                });
-            }
-        }
+        // Setup cloned slides for seamless infinite loop: [Clone Last, Slide 1..5, Clone First]
+        const firstClone = originalSlides[0].cloneNode(true);
+        const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
         
-        progressFills.forEach(fill => {
-            fill.style.transition = 'none';
-            fill.style.width = '0%';
+        sliderWrapper.appendChild(firstClone);
+        sliderWrapper.insertBefore(lastClone, originalSlides[0]);
+        
+        const allSlides = Array.from(sliderWrapper.children);
+        const totalTrackSlides = allSlides.length; // 7 slides total
+        
+        // Track layout sizing (7 slides = 700% width, each slide = 1/7 th of total width)
+        sliderWrapper.style.width = `${totalTrackSlides * 100}%`;
+        allSlides.forEach(slide => {
+            slide.style.width = `${100 / totalTrackSlides}%`;
         });
 
-        void sliderWrapper.offsetWidth;
-
-        const currentFill = progressFills[currentSlide];
-        if (currentFill) {
-            currentFill.style.transition = `width ${slideDuration}ms linear`;
-            currentFill.style.width = '100%';
+        // Track position (currentIndex 1 is original Slide 1)
+        let currentIndex = 1;
+        
+        // Jump to position without CSS animation
+        function setTrackPosition(index) {
+            sliderWrapper.style.transition = 'none';
+            sliderWrapper.style.transform = `translateX(-${(index * 100) / totalTrackSlides}%)`;
         }
-    }
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-        resetInterval();
-    }
+        // Initial setup
+        setTrackPosition(currentIndex);
 
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlider();
-        resetInterval();
-    }
+        function updatePaginationAndFills(displayIndex) {
+            // Update counter digit
+            const setsPaginationTrack = document.getElementById('sets-pagination-track');
+            if (setsPaginationTrack) {
+                setsPaginationTrack.style.setProperty("--total-pages", totalSlides);
+                const targetY = `-${(displayIndex * 100) / totalSlides}%`;
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    gsap.set(setsPaginationTrack, { y: targetY });
+                } else {
+                    gsap.to(setsPaginationTrack, {
+                        y: targetY,
+                        duration: 0.55,
+                        ease: "cubic-bezier(0.76, 0, 0.24, 1)",
+                        overwrite: true,
+                        force3D: true
+                    });
+                }
+            }
+            
+            // Reset and start progress fill bar animation
+            progressFills.forEach(fill => {
+                fill.style.transition = 'none';
+                fill.style.width = '0%';
+            });
 
-    function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, slideDuration);
-    }
+            void sliderWrapper.offsetWidth; // Force reflow
 
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    addSwipe(document.querySelector('.sets-slider-container'), nextSlide, prevSlide);
+            const currentFill = progressFills[displayIndex];
+            if (currentFill) {
+                currentFill.style.transition = `width ${slideDuration}ms linear`;
+                currentFill.style.width = '100%';
+            }
+        }
 
-    if (sliderWrapper) {
-        updateSlider();
+        function goToSlide(targetIndex, direction = 'next') {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            currentIndex = targetIndex;
+            sliderWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+            sliderWrapper.style.transform = `translateX(-${(currentIndex * 100) / totalTrackSlides}%)`;
+
+            // Calculate current real slide index (0 to 4)
+            let realIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updatePaginationAndFills(realIndex);
+        }
+
+        // Silent jump when reaching clones at animation end
+        sliderWrapper.addEventListener('transitionend', (e) => {
+            if (e.target !== sliderWrapper) return;
+            
+            if (currentIndex === totalTrackSlides - 1) {
+                // Transitioned forward to Clone of Slide 1 -> Silent jump to real Slide 1
+                currentIndex = 1;
+                setTrackPosition(currentIndex);
+            } else if (currentIndex === 0) {
+                // Transitioned backward to Clone of Slide 5 -> Silent jump to real Slide 5
+                currentIndex = totalSlides;
+                setTrackPosition(currentIndex);
+            }
+            
+            isTransitioning = false;
+        });
+
+        function nextSlide() {
+            if (isTransitioning) return;
+            goToSlide(currentIndex + 1, 'next');
+            resetInterval();
+        }
+
+        function prevSlide() {
+            if (isTransitioning) return;
+            goToSlide(currentIndex - 1, 'prev');
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, slideDuration);
+        }
+
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        addSwipe(document.querySelector('.sets-slider-container'), nextSlide, prevSlide);
+
+        updatePaginationAndFills(0);
         resetInterval();
     }
 });
@@ -116,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
         videoObserver.observe(htVideo);
     }
 
-    // Mobile scroll listener for HERE TODAY products counter animation (instant threshold update)
     const htProducts = document.getElementById('htProducts');
     const htPaginationTrack = document.getElementById('ht-pagination-track');
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -127,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollLeft = htProducts.scrollLeft;
             const firstProduct = htProducts.querySelector('.ht-product');
             if (!firstProduct) return;
-            const itemWidth = firstProduct.offsetWidth + 16; // 16px gap
+            const itemWidth = firstProduct.offsetWidth + 16;
             const index = Math.round(scrollLeft / itemWidth);
             const clampedIndex = Math.min(1, Math.max(0, index));
             const targetY = `-${(clampedIndex * 100) / 2}%`;
@@ -146,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    // Mobile dots synchronization for Three Column Section
     const threeColGrid = document.getElementById('threeColGrid');
     const threeColDots = document.querySelectorAll('#threeColDots .dot');
     if (threeColGrid && threeColDots.length > 0) {
@@ -166,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    // Mobile dots synchronization for New Arrivals Section (2 items per swipe)
     const newArrivalsGrid = document.getElementById('newArrivalsGrid');
     const newArrivalsDots = document.querySelectorAll('#newArrivalsDots .dot');
     if (newArrivalsGrid && newArrivalsDots.length > 0) {
