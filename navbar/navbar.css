@@ -21,7 +21,7 @@ header {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 26px 6%;
+    padding: 26px 10%;
     min-height: 0;
     background-color: transparent;
     will-change: transform, padding;

@@ -252,11 +252,10 @@ if (contactForm) {
     const apply = () => {
         if (mobileQuery.matches) {
             stack.start();
-            hero.start();
         } else {
             stack.stop();
-            hero.stop();
         }
+        hero.start();
     };
 
     apply();

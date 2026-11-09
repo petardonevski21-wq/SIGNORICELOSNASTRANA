@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lastScrollY = getScrollY();
             };
 
-            const isStaticPage = window.location.pathname.includes('gallery.html') || window.location.pathname.includes('contact.html');
+            const isStaticPage = window.location.pathname.includes('gallery.html') || window.location.pathname.includes('contact.html') || window.location.pathname.includes('request-appointment.html');
 
             if (isStaticPage) {
                 mode = "scrolled";
