@@ -26,7 +26,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Zgornja slika (Full Bleed pozadi menito без бели линии) */
+/* Zgornja slika (Full Bleed pozadi menito brez beli linii) */
 .hero-wrap {
     position: relative;
     width: 100vw;
@@ -287,4 +287,59 @@ body {
   font-weight: 300;
   line-height: 1.75;
   color: #4a4742;
+}
+
+/* --- MOBILE STYLES (Респонзивен дизајн за сите мобилни екрани) --- */
+@media (max-width: 768px) {
+  .hero-wrap {
+    /* Сликата започнува од врвот под менито без дополнителен padding-top */
+  }
+
+  .hero-img {
+    height: 38vh; /* Оптимизирана висина за мобилни екрани */
+  }
+
+  .concierge-section {
+    padding: 40px 20px 60px 20px;
+  }
+
+  .concierge-container {
+    grid-template-columns: 1fr; /* Редење во една колона */
+    gap: 40px;
+  }
+
+  .sidebar {
+    gap: 32px;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 12px;
+    width: 100%;
+  }
+
+  .atelier-card {
+    padding: 24px 18px;
+  }
+
+  .faq-label-wrap {
+    gap: 16px;
+  }
+
+  .faq-num {
+    font-size: 0.78rem;
+  }
+
+  .faq-text {
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .faq-panel p {
+    padding: 0 0 16px 32px;
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
 }

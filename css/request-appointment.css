@@ -56,6 +56,7 @@ body.signori-appointment-body {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 60px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    border-radius: 12px;
 }
 
 .form-top-header {
@@ -285,7 +286,7 @@ body.signori-appointment-body {
     cursor: pointer;
     font-weight: 500;
     transition: background-color 0.25s ease, color 0.25s ease;
-    width: 100%;
+    width: 80%;
     max-width: 480px;
 }
 
@@ -350,14 +351,24 @@ body.signori-appointment-body {
 @media (max-width: 768px) {
     .form-row-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
     }
     
     .appointment-clean-section {
-        padding: 40px 12px 80px 12px;
+        padding: 110px 16px 80px 16px;
     }
 
     .appointment-container {
         padding: 30px 20px;
+        border-radius: 12px;
+    }
+
+    .main-heading {
+        font-size: 1.65rem;
+    }
+
+    .brioni-submit-btn {
+        width: 100%;
+        padding: 16px 20px;
     }
 }
