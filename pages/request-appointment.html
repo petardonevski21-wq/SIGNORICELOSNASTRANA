@@ -1,53 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Appointment</title>
+    <title>SIGNORI — Request a Private Appointment</title>
+    <meta name="description" content="Request a private appointment with SIGNORI.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/request-appointment.css">
+    <link rel="stylesheet" href="../navbar/navbar.css">
 </head>
-<body>
-      <section class="contact-section">
-        <div class="contact-container">
-            <h1 class="contact-brand">SIGNORI</h1>                                                                                                       
-            <h2 class="contact-title">CONTACT US</h2>
 
-            <form class="contact-form" action="#" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="first-name">Your First Name</label>
-                        <input type="text" id="first-name" name="first-name" required>
+<body class="signori-appointment-body">
+    <div id="site-menu"></div>
+
+    <div class="page-bg-overlay">
+        <img src="../assets/sliki/BESPOKE-TAILORING/pozadina-signori-logo/2.png" alt="SIGNORI Background Atelier" class="bg-image">
+    </div>
+
+    <main id="main-content">
+        <section class="appointment-clean-section">
+            <div class="appointment-container">
+
+                <div class="form-top-header" id="formHeaderArea">
+                    <h1 class="main-heading">Book your SIGNORI Experience</h1>
+                </div>
+
+                <form id="signoriAppointmentForm" class="brioni-form-layout" novalidate>
+
+                    <div class="form-row-grid">
+                        <div class="field-container">
+                            <label for="firstName">First name <span class="req">*</span></label>
+                            <input type="text" id="firstName" name="firstName" placeholder="William" required
+                                autocomplete="given-name">
+                            <span class="error-text">Please enter your first name.</span>
+                        </div>
+                        <div class="field-container">
+                            <label for="lastName">Last name <span class="req">*</span></label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Anderson" required
+                                autocomplete="family-name">
+                            <span class="error-text">Please enter your last name.</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="last-name">Your Last Name</label>
-                        <input type="text" id="last-name" name="last-name" required>
+
+                    <div class="form-row-grid">
+                        <div class="field-container">
+                            <label for="email">Email <span class="req">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="william.anderson@example.com" required
+                                autocomplete="email">
+                            <span class="error-text">Please enter a valid email address.</span>
+                        </div>
+                        <div class="field-container">
+                            <label for="phone">Phone number <span class="req">*</span></label>
+                            <div class="phone-input-group">
+                                <select id="countryCode" name="countryCode" class="prefix-select">
+                                    <option value="+389">+389</option>
+                                    <option value="+381">+381</option>
+                                    <option value="+1">+1</option>
+                                    <option value="+44">+44</option>
+                                </select>
+                                <input type="tel" id="phone" name="phone" placeholder="Your phone number" required
+                                    autocomplete="tel">
+                            </div>
+                            <span class="error-text">Please enter your phone number.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row-single">
+                        <div class="field-container">
+                            <label for="appointmentType">Type of Appointment <span class="req">*</span></label>
+                            <div class="custom-select-wrap">
+                                <select id="appointmentType" name="appointmentType" required>
+                                    <option value="" disabled selected>Select appointment type</option>
+                                    <option value="In-Person">In-Person</option>
+                                    <option value="Zoom">Zoom</option>
+                                </select>
+                            </div>
+                            <span class="error-text">Please select a type of appointment.</span>
+                        </div>
+                    </div>
+
+                    <div class="privacy-consent-block">
+                        <div class="mandatory-label">Mandatory fields <span class="req">*</span></div>
+                        <label class="custom-checkbox-row">
+                            <input type="checkbox" id="privacyCheck" name="privacyCheck" required>
+                            <span class="box-check"></span>
+                            <span class="privacy-legal-text">
+                                Information entered above will only be used to give an accurate response to your
+                                inquiry. SIGNORI will never release personal data. For more details, please read our <a
+                                    href="privacy.html" target="_blank">Privacy Policy</a>.<span class="req">*</span>
+                            </span>
+                        </label>
+                        <span class="error-text privacy-err">You must agree to the privacy policy to proceed.</span>
+                    </div>
+
+                    <div class="form-submit-container">
+                        <button type="submit" id="submitBtn" class="brioni-submit-btn">
+                            REQUEST AN APPOINTMENT
+                        </button>
+                    </div>
+
+                </form>
+
+                <div id="successStateBox" class="success-box-hidden" style="display: none;">
+                    <div class="success-content">
+                        <span class="success-eyebrow">REQUEST RECEIVED</span>
+                        <h3 class="success-title">THANK YOU FOR YOUR INTEREST.</h3>
+                        <p class="success-desc">
+                            "Your appointment request has been received. Our team will be in touch to discuss the
+                            details and confirm your appointment."
+                        </p>
+                        <a href="../index.html" class="brioni-back-btn">BACK TO SIGNORI</a>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5"></textarea>
-                </div>
-
-                <div class="form-submit">
-                    <button type="submit" class="contact-submit-btn">Request Appointment</button>
-                </div>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+    </main>
+    <div id="footer-placeholder"></div>
 
     <script src="../js/request-appointment.js" defer></script>
+    <script src="../navbar/navbar.js" defer></script>
+    <script src="../footer/footer-loader.js" defer></script>
+
+
+
+
 </body>
+
 </html>
-  
