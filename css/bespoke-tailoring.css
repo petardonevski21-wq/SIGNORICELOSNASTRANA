@@ -208,13 +208,8 @@ body {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.appointment-btn:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-}
 
 /* --- Bespoke Details Sekcija --- */
 .bespoke-details-section {
