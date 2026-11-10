@@ -67,6 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setTrackPosition(currentIndex);
 
         function updatePaginationAndFills(displayIndex) {
+            // Update slide title dynamically based on active slide index
+            const setTitles = ["WINTER COATS", "BOMBER SETS"];
+            const sliderTitleEl = document.querySelector('.slider-text-overlay h2');
+            if (sliderTitleEl) {
+                sliderTitleEl.textContent = setTitles[displayIndex] || "WINTER COATS";
+            }
+
             // Update counter digit
             const setsPaginationTrack = document.getElementById('sets-pagination-track');
             if (setsPaginationTrack) {
