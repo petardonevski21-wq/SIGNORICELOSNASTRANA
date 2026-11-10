@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (sliderWrapper) {
         const originalSlides = Array.from(sliderWrapper.children);
-        const totalSlides = originalSlides.length; // 5 slides
+        const totalSlides = originalSlides.length; // 2 slides
         const slideDuration = 5000;
         let slideInterval;
         let isTransitioning = false;
         
-        // Setup cloned slides for seamless infinite loop: [Clone Last, Slide 1..5, Clone First]
+        // Setup cloned slides for seamless infinite loop: [Clone Last, Slide 1..2, Clone First]
         const firstClone = originalSlides[0].cloneNode(true);
         const lastClone = originalSlides[totalSlides - 1].cloneNode(true);
         
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderWrapper.insertBefore(lastClone, originalSlides[0]);
         
         const allSlides = Array.from(sliderWrapper.children);
-        const totalTrackSlides = allSlides.length; // 7 slides total
+        const totalTrackSlides = allSlides.length; // 4 slides total
         
-        // Track layout sizing (7 slides = 700% width, each slide = 1/7 th of total width)
+        // Track layout sizing (4 slides = 400% width, each slide = 1/4 th of total width)
         sliderWrapper.style.width = `${totalTrackSlides * 100}%`;
         allSlides.forEach(slide => {
             slide.style.width = `${100 / totalTrackSlides}%`;
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sliderWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
             sliderWrapper.style.transform = `translateX(-${(currentIndex * 100) / totalTrackSlides}%)`;
 
-            // Calculate current real slide index (0 to 4)
+            // Calculate current real slide index (0 to 1)
             let realIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updatePaginationAndFills(realIndex);
         }
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentIndex = 1;
                 setTrackPosition(currentIndex);
             } else if (currentIndex === 0) {
-                // Transitioned backward to Clone of Slide 5 -> Silent jump to real Slide 5
+                // Transitioned backward to Clone of Slide 2 -> Silent jump to real Slide 2
                 currentIndex = totalSlides;
                 setTrackPosition(currentIndex);
             }
