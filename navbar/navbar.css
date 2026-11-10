@@ -1321,6 +1321,35 @@ header.nav-hero .search-btn:hover {
     .shop-flyout__card:focus-visible .shop-flyout__label {
         text-shadow: 0 0 6px rgba(0, 0, 0, 0.45);
     }
+
+    /* ---- Desktop-only bottom-to-top image reveal (cards clip as one unit: image + gradient + label) ---- */
+    .shop-flyout__card {
+        background-color: transparent; /* no grey block while the card is clipped */
+        clip-path: inset(100% 0 0 0);
+        -webkit-clip-path: inset(100% 0 0 0);
+        /* reset only after the flyout has finished closing, so the closing look is unchanged */
+        transition: clip-path 0s linear 1400ms, -webkit-clip-path 0s linear 1400ms;
+    }
+
+    .shop-flyout.is-open .shop-flyout__card {
+        clip-path: inset(0 0 0 0);
+        -webkit-clip-path: inset(0 0 0 0);
+        transition: clip-path 2000ms cubic-bezier(0.22, 1, 0.36, 1) 450ms,
+                    -webkit-clip-path 2000ms cubic-bezier(0.22, 1, 0.36, 1) 450ms;
+    }
+
+    .shop-flyout.is-open .shop-flyout__card:nth-child(2) {
+        transition-delay: 590ms;
+    }
+}
+
+@media (min-width: 1024px) and (min-height: 501px) and (prefers-reduced-motion: reduce) {
+    .shop-flyout__card,
+    .shop-flyout.is-open .shop-flyout__card {
+        clip-path: none;
+        -webkit-clip-path: none;
+        transition: none;
+    }
 }
 
 @media (max-width: 768px), (pointer: coarse) and (max-height: 500px) {

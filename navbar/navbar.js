@@ -77,7 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.body.style.top = `-${scrollY}px`;
                 document.body.style.width = "100%";
             } else {
-                document.body.style.overflow = "hidden";
+                // "clip" (not "hidden"): hidden would turn <body> into a scroll container
+                // (html already has overflow-x: hidden), which breaks the sticky .kraj-right
+                document.body.style.overflow = "clip";
             }
 
             if (header) showHeader();
@@ -296,6 +298,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (flyoutDesktop.matches && btnOnline) {
                 btnOnline.setAttribute("aria-controls", "shopFlyout");
                 btnOnline.setAttribute("aria-expanded", "false");
+            }
+
+            // Desktop only: preload + decode flyout images so the reveal never shows an unready frame
+            if (flyoutDesktop.matches) {
+                shopFlyout.querySelectorAll(".shop-flyout__media img").forEach((img) => {
+                    img.loading = "eager";
+                    if (img.decode) img.decode().catch(() => {});
+                });
             }
 
             document.addEventListener("keydown", (event) => {
