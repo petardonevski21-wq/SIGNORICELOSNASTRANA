@@ -212,26 +212,22 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "top top",
             end: () => "+=" + ((stackViewport ? stackViewport.offsetHeight : window.innerHeight) * 3),
             pin: true,
-            anticipatePin: 1,
             scrub: true,
             invalidateOnRefresh: true
         }
     });
 
-    stackTl
-        .to(stackItems[1], { yPercent: 0 }, 0)
-        .to(stackItems[2], { yPercent: 0 }, 1)
-        .to(stackItems[3], { yPercent: 0 }, 2);
-
-    stackTl
-        .to(stackImgs[1], { scale: 1.05 }, 0)
-        .to(stackImgs[2], { scale: 1.05 }, 1)
-        .to(stackImgs[3], { scale: 1.05 }, 2);
-
-    stackTl
-        .fromTo(stackContents[1], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 0.2)
-        .fromTo(stackContents[2], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 1.2)
-        .fromTo(stackContents[3], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out" }, 2.2);
+    // Each image owns exactly one segment of the timeline: [0,1], [1,2], [2,3].
+    // fromTo (explicit start AND end values) keeps every segment independent, so a
+    // ScrollTrigger refresh/invalidate can never re-read a mid-scroll value as the "start".
+    // Nothing runs past t = 3, so the three segments split the scroll distance evenly.
+    [1, 2, 3].forEach((n) => {
+        const t = n - 1;
+        stackTl
+            .fromTo(stackItems[n], { yPercent: 100 }, { yPercent: 0, duration: 1 }, t)
+            .fromTo(stackImgs[n], { scale: 1 }, { scale: 1.05, duration: 1 }, t)
+            .fromTo(stackContents[n], { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: "power2.out", duration: 0.8 }, t + 0.2);
+    });
 
     let refreshTimer = null;
     const scheduleRefresh = () => {
