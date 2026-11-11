@@ -1316,9 +1316,12 @@ body {
         margin-left: auto;
         margin-right: auto;
         min-height: 0;
-        height: 520px;
+        height: 620px;
         height: clamp(520px, 150vw, 100svh);
         padding-bottom: clamp(40px, 10vw, 80px);
+        background-size: 290%;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .editorial-overlay { 
