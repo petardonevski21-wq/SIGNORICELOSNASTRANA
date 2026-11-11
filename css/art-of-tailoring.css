@@ -61,28 +61,62 @@ a {
   padding-bottom: 4px;
 }
 
+/* Underline animation removed — class kept as a hook for an external stylesheet */
+.signori-line-btn::before,
+.signori-line-btn::after,
+.signori-line-btn:hover::before,
+.signori-line-btn:hover::after,
+.signori-line-btn:focus::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
 /* ================================================================= *
- * 1. FULL-SCREEN HERO SECTION (Matching Last Reference Composition)
+ * 1. FULL-SCREEN HERO SECTION
  * ================================================================= */
+
+/* Navbar injected into #site-menu: fixed on top of the hero, always interactive */
+#site-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
 .hero {
   position: relative;
+  z-index: 0;
+  isolation: isolate;
+  display: block;
   width: 100%;
-  height: 100vh;
+  height: 100vh;   /* fallback */
   height: 100svh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background-color: #000;
 }
 
 .hero__media-container {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 
 .hero__image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center; 
+  object-position: center center;
 }
 
 /* ================================================================= *
