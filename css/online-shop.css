@@ -6,7 +6,7 @@
 
 html, body {
     width: 100%;
-    font-family: 'Montserrat', sans-serif;
+
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 }
@@ -1165,7 +1165,7 @@ body {
 
     .mobile-slide-link {
         font-family: 'Jost', sans-serif;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 300;
         letter-spacing: 0.12em;
         color: #ffffff;
@@ -1174,7 +1174,7 @@ body {
         text-transform: uppercase;
     }
 
-    /* Controls (arrows + 1/2) positioned right above progress bars */
+
     .slider-controls {
         bottom: 52px;
         gap: 12px;
