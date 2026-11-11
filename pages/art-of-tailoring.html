@@ -1,264 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Tailoring | SIGNORI Bespoke</title>
-    <meta name="description" content="Discover the art of bespoke tailoring at SIGNORI. Explore our craftsmanship, exceptional fabrics, personal patterns, and the journey behind every custom-made suit.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../css/art-of-tailoring.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNORI — Luxury Bespoke Tailoring</title>
+  <!-- Google Fonts: Jost -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../navbar/navbar.css">
+  <link rel="stylesheet" href="../css/art-of-tailoring.css">
+
 </head>
-<body>
+<body class="signori-page">
+    <div id="site-menu"></div>
+  <!-- HERO SECTION -->
+  <header class="hero">
 
-  
+    <div class="hero__media-container">
+      <img src="../assets/sliki/10y/petta.png" alt="SIGNORI luxury tailoring campaign" class="hero__image">
+    </div>
+  </header>
 
+  <main>
+    <!-- SECTION 1: INTRO & BRAND HERITAGE (Ref: 1.png) -->
+    <section class="editorial-section brand-intro">
+      <div class="container brand-intro__content">
+        <p class="brand-intro__text-primary">
+          SIGNORI is a bespoke tailoring company that prides itself on a fervent pursuit of perfection. It was established in 2014 by Nenad Pantovic and Kristijan Popovski. Our craftsmen use only the highest quality materials available in the market to meticulously create tailor-made suits. Our company's core lies in the cutting table, where skilled hands bring to life "The Tailored Suit," followed by the production of complementary accessories. Our team of expert stylists is dedicated to helping you choose the perfect ensemble for any occasion, custom-designed to your specifications and requirements.
+        </p>
+        <p class="brand-intro__text-secondary">
+          At SIGNORI, we are committed to our founding principle of making bespoke tailoring accessible and affordable for discerning men and women who understand the importance of making a powerful first impression.
+        </p>
+        <div class="brand-intro__action">
+          <a href="#" class="signori-line-btn">Discover the story</a>
+        </div>
+      </div>
+    </section>
 
-    <main>
-        <!-- SECTION 01: CINEMATIC EDITORIAL HERO -->
-        <section class="hero-section">
-            <div class="hero-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=2000&auto=format&fit=crop" alt="Tailor working on bespoke garment construction" loading="eager">
-                <div class="hero-overlay"></div>
+    <!-- SECTION 2: THREE-COLUMN EDITORIAL & FULL-WIDTH IMAGE (Ref: 2.png) -->
+    <section class="editorial-section triptych-showcase">
+      <div class="container">
+        <div class="triptych-grid">
+          <div class="triptych-item">
+            <img src="images/editorial-triptych-01.jpg" alt="SIGNORI bespoke suit detail" class="editorial-img">
+          </div>
+          <div class="triptych-item">
+            <img src="images/editorial-triptych-02.jpg" alt="SIGNORI craftsmanship" class="editorial-img">
+          </div>
+          <div class="triptych-item">
+            <img src="images/editorial-triptych-03.jpg" alt="SIGNORI fabric texture" class="editorial-img">
+          </div>
+        </div>
+        <div class="full-width-media">
+          <img src="images/editorial-full-width.jpg" alt="SIGNORI luxury tailoring atmosphere" class="editorial-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CRAFTSMANSHIP & 40 HOURS (Ref: 3.png) -->
+    <section class="editorial-section craftsmanship">
+      <div class="container">
+        <div class="craftsmanship__header">
+          <h2 class="section-title">BESPOKE TAILORING IS MORE THAN CLOTHES,<br>IT’S A WAY OF LIFE:</h2>
+          <p class="section-subtitle">
+            Each garment we produce at SIGNORI requires a considerable amount of time and attention to detail, akin to the creation of a painting on canvas. Every stitch, every pass of the steam iron, and every treatment of the lapels and their curvature must be executed with utmost precision. The result is a puzzle-like assembly of lines, squares, and stitches that come together seamlessly to bring our clients' designs to life.
+          </p>
+        </div>
+
+        <div class="craftsmanship__split-images">
+          <div class="split-img-item"><img src="images/craft-detail-01.jpg" alt="Stitching detail"></div>
+          <div class="split-img-item"><img src="images/craft-detail-02.jpg" alt="Lapel shaping"></div>
+          <div class="split-img-item"><img src="images/craft-detail-03.jpg" alt="Fitting detail"></div>
+          <div class="split-img-item"><img src="images/craft-detail-04.jpg" alt="Finished garment"></div>
+        </div>
+
+        <div class="craftsmanship__feature-grid">
+          <div class="craftsmanship__text-block">
+            <h3 class="stat-title">40 HRS</h3>
+            <p class="stat-description">
+              Every garment is a masterpiece crafted with meticulous attention to detail. Each stitch, line, and square falls into place like a puzzle to create the customer's unique design. The tailors archive all details in the customer's personal dossier for future orders, and each suit requires around 40 hours of finishing and packaging, featuring about 30,000 stitches.
+            </p>
+          </div>
+          <div class="craftsmanship__image-block">
+            <img src="images/craft-atelier.jpg" alt="SIGNORI atelier craftsmanship" class="editorial-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: DESIGN, CREATE, ENJOY & FABRIC HOUSES (Ref: 4.png) -->
+    <section class="editorial-section process-showcase">
+      <div class="container">
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-media">
+              <img src="images/process-design.jpg" alt="Design phase" class="editorial-img">
             </div>
-            <div class="hero-content container">
-                <span class="section-label">SIGNORI BESPOKE</span>
-                <h1 class="hero-title">THE ART OF TAILORING</h1>
-                <p class="hero-subtitle">An Art Measured in Details.</p>
-                <p class="hero-desc">Behind every SIGNORI creation lies a dedication to craftsmanship, precision, and individuality. Discover the artistry that transforms exceptional fabrics into garments created exclusively for you.</p>
-                <a href="#heritage" class="text-cta">DISCOVER THE CRAFT <span class="arrow">&darr;</span></a>
+            <h3 class="process-heading">Design</h3>
+            <p class="process-text">
+              Our bespoke suits are meticulously crafted with the finest materials to meet your specific needs and preferences. Our team of professional style consultants will work closely with you to design a unique suit that reflects your personality and style.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-media">
+              <img src="images/process-create.jpg" alt="Create phase" class="editorial-img">
             </div>
-        </section>
+            <h3 class="process-heading">Create</h3>
+            <p class="process-text">
+              Our master tailors possess over four decades of experience in Neapolitan tailoring. Each garment is carefully handmade, taking a minimum of 40 hours to create. We use only the finest materials to ensure that your suit is durable and long-lasting, allowing you to enjoy it for a lifetime.
+            </p>
+          </div>
 
-        <!-- SECTION 02: OUR HERITAGE & PHILOSOPHY -->
-        <section id="heritage" class="heritage-section">
-            <div class="container grid-2-col">
-                <div class="heritage-image">
-                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop" alt="SIGNORI Atelier and cutting table" loading="lazy">
-                </div>
-                <div class="heritage-text">
-                    <span class="section-label">EST. 2014</span>
-                    <h2 class="section-heading">A TRADITION OF INDIVIDUALITY</h2>
-                    <p>SIGNORI was established in 2014 by Nenad Pantovic and Kristijan Popovski, united by a vision to bring exceptional bespoke tailoring to individuals who understand the importance of a lasting first impression.</p>
-                    <p>At the heart of SIGNORI is the cutting table — where skilled hands, carefully selected materials, and traditional craftsmanship come together to give every garment its character.</p>
-                    <p>Our philosophy is built on the belief that bespoke tailoring should be a personal and attainable experience, without compromising on quality, precision, or individuality.</p>
-                    <p>From carefully considered suits to complementary accessories, every creation begins with an understanding of the person who will wear it.</p>
-                    <p>Our experienced style consultants guide each client in selecting a garment that reflects their lifestyle, preferences, personality, and the occasion for which it is intended.</p>
-                </div>
+          <div class="process-card">
+            <div class="process-media">
+              <img src="images/process-enjoy.jpg" alt="Enjoy phase" class="editorial-img">
             </div>
-        </section>
+            <h3 class="process-heading">Enjoy</h3>
+            <p class="process-text">
+              Our goal is for every customer to experience the satisfaction of wearing a suit that feels like a second skin.
+            </p>
+          </div>
+        </div>
 
-        <!-- SECTION 03: THE CRAFT BEHIND EVERY CREATION -->
-        <section class="craft-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-label">THE CRAFT</span>
-                    <h2 class="section-heading">THE MAKING OF A SIGNORI SUIT</h2>
-                    <p class="section-intro">True bespoke tailoring is an art of patience and precision.</p>
-                </div>
-                <div class="craft-intro-text">
-                    <p>Every SIGNORI garment begins with an individual pattern, carefully developed around the client's proportions and personal requirements. From the first cut of the fabric to the final pressing, each stage demands an exceptional level of attention.</p>
-                    <p>The construction of the jacket, the shaping of its lapels, the careful positioning of every seam, and the finishing of its smallest details contribute to the balance and character of the finished garment.</p>
-                    <p>Traditional canvas construction incorporates carefully selected materials such as horsehair, cotton, and camel hair, helping to shape the garment's structure, comfort, and natural silhouette.</p>
-                    <p>Our tailoring expertise draws on more than four decades of experience in Neapolitan tailoring. Every stitch, curve, and finishing touch plays a role in bringing the original design to life.</p>
-                </div>
+        <div class="process-action">
+          <a href="#" class="signori-line-btn">Discover the process</a>
+        </div>
 
-                <div class="craft-grid">
-                    <div class="craft-card">
-                        <div class="craft-card-img">
-                            <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop" alt="Precision fabric cutting" loading="lazy">
-                        </div>
-                        <span class="craft-number">01</span>
-                        <h3>THE CUT</h3>
-                        <p>Close-up preparation and precise cutting of individual patterns tailored exactly to your proportions.</p>
-                    </div>
-                    <div class="craft-card">
-                        <div class="craft-card-img">
-                            <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=800&auto=format&fit=crop" alt="Jacket construction and canvas" loading="lazy">
-                        </div>
-                        <span class="craft-number">02</span>
-                        <h3>THE CONSTRUCTION</h3>
-                        <p>Careful assembly incorporating traditional canvas layers, hand-shaped lapels, and structural balance.</p>
-                    </div>
-                    <div class="craft-card">
-                        <div class="craft-card-img">
-                            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop" alt="Hand finishing and pressing" loading="lazy">
-                        </div>
-                        <span class="craft-number">03</span>
-                        <h3>THE FINISHING</h3>
-                        <p>Meticulous hand-finishing details and steam pressing that refine every curve and seam.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- FABRIC HOUSES PARTNERSHIP LOGOS -->
+        <div class="fabric-houses">
+          <div class="fabric-houses__logo-wrap">
+            <img src="images/loro-piana-logo.png" alt="Loro Piana" class="fabric-logo">
+          </div>
+          <div class="fabric-houses__logo-wrap">
+            <img src="images/scabal-logo.png" alt="Scabal" class="fabric-logo">
+          </div>
+          <div class="fabric-houses__logo-wrap">
+            <img src="images/zegna-logo.png" alt="Zegna" class="fabric-logo">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <!-- SECTION 04: TIME, PRECISION & CRAFTSMANSHIP -->
-        <section class="time-section">
-            <div class="container text-center">
-                <span class="section-label">TIME & DEDICATION</span>
-                <h2 class="section-heading">GOOD THINGS TAKE TIME.</h2>
-                <p class="section-intro">A SIGNORI bespoke suit is never the result of a rushed process.</p>
-
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-number">40 HOURS</span>
-                        <span class="stat-label">OF DEDICATED CRAFTSMANSHIP</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">30,000</span>
-                        <span class="stat-label">APPROXIMATE STITCHES</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">3–5 WEEKS</span>
-                        <span class="stat-label">TYPICAL PRODUCTION TIME</span>
-                    </div>
-                </div>
-
-                <div class="time-explanation">
-                    <p>Around 30,000 stitches bring the individual components together, transforming the chosen fabric into a suit defined by precision, structure, and character. The process demands patience, experience, and attention to the smallest details — from the initial pattern to the final pressing.</p>
-                    <p class="note-text">While the hands-on craftsmanship of a suit requires many hours of dedicated work, the complete bespoke journey typically takes approximately three to five weeks, allowing time for measurements, construction, fittings, adjustments, and final finishing.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 05: THE FINEST FABRICS -->
-        <section class="fabrics-section">
-            <div class="container grid-2-col reverse-mobile">
-                <div class="fabrics-text">
-                    <span class="section-label">THE MATERIALS</span>
-                    <h2 class="section-heading">THE FOUNDATION OF EVERY CREATION</h2>
-                    <p>The character of an exceptional suit begins with the fabric. At SIGNORI, every selection is guided by quality, texture, comfort, and the individual preferences of the client.</p>
-                    <p>Our collection features carefully selected fabrics from leading European textile houses, including Scabal, Loro Piana, and Zegna.</p>
-                    <p>From breathable natural fibers and lightweight seasonal cloths to refined, soft textures and elegant structured fabrics, each material is considered for its appearance, performance, and suitability.</p>
-                    <p>During a private consultation, our specialists introduce the characteristics of different fabrics, allowing clients to experience their texture, weight, and quality firsthand. The selection is not simply about choosing a color. It is about finding a fabric that complements the individual's lifestyle, desired silhouette, and sense of style. A truly exceptional suit should feel as natural as a second skin.</p>
-                    <div class="mt-4">
-                        <a href="process-bespoke.html" class="text-cta">EXPLORE THE BESPOKE PROCESS <span class="arrow">&rarr;</span></a>
-                    </div>
-                </div>
-                <div class="fabrics-image">
-                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop" alt="Exquisite wool and fabric textures" loading="lazy">
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 06: MADE EXCLUSIVELY FOR YOU -->
-        <section class="pattern-section">
-            <div class="container grid-2-col">
-                <div class="pattern-image">
-                    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200&auto=format&fit=crop" alt="Tailor taking measurements and fitting bespoke jacket" loading="lazy">
-                </div>
-                <div class="pattern-text">
-                    <span class="section-label">THE PERSONAL PATTERN</span>
-                    <h2 class="section-heading">A PATTERN THAT REMAINS YOURS</h2>
-                    <p>Every SIGNORI bespoke creation begins with the individual. Measurements, proportions, posture, design choices, and personal preferences are carefully considered when developing the garment.</p>
-                    <p>Each client receives an individual custom pattern, with essential details documented and preserved in their personal tailoring record.</p>
-                    <p>This allows future commissions to build upon an established understanding of the client's fit, style, and preferred details.</p>
-                    <p>Returning clients can explore new fabrics, silhouettes, and design possibilities with greater ease, while reducing the need to repeat unnecessary stages of the original fitting process.</p>
-                    <p>The result is not simply a garment created for a single occasion, but an ongoing relationship between the client and the craft.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 07: THE BESPOKE EXPERIENCE -->
-        <section class="experience-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-label">THE EXPERIENCE</span>
-                    <h2 class="section-heading">DESIGNED. CREATED. EXPERIENCED.</h2>
-                </div>
-
-                <div class="experience-grid">
-                    <div class="experience-card">
-                        <span class="exp-num">01</span>
-                        <h3>DESIGN</h3>
-                        <p>Your bespoke journey begins with a personal conversation. Our experienced style consultants take time to understand your preferences, proportions, and the occasion for which your garment is being created. Together, we explore exceptional fabrics, silhouettes, and individual details to develop a design that is distinctly yours.</p>
-                    </div>
-                    <div class="experience-card">
-                        <span class="exp-num">02</span>
-                        <h3>CREATE</h3>
-                        <p>Your vision is brought to life through the experience and dedication of skilled tailors. From the individual pattern and careful construction to the fitting and finishing stages, every element is approached with precision. The garment is gradually refined until its proportions, comfort, and character come together.</p>
-                    </div>
-                    <div class="experience-card">
-                        <span class="exp-num">03</span>
-                        <h3>ENJOY</h3>
-                        <p>The final creation is designed not simply to fit your body, but to reflect your individuality. A carefully tailored garment brings together comfort, confidence, and understated elegance. The result is a personal expression of style, created to be worn and appreciated for years to come.</p>
-                    </div>
-                </div>
-
-                <div class="text-center mt-5">
-                    <a href="process-bespoke.html" class="text-cta">DISCOVER OUR BESPOKE PROCESS <span class="arrow">&rarr;</span></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 08: BEFORE YOUR FIRST APPOINTMENT -->
-        <section class="faq-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-label">GOOD TO KNOW</span>
-                    <h2 class="section-heading">THE DETAILS OF YOUR JOURNEY</h2>
-                </div>
-
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>How long does it take to create a SIGNORI bespoke suit?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A SIGNORI bespoke suit typically takes approximately 3–5 weeks from the initial consultation to completion. Production time may vary according to the selected materials, design, and adjustments required.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>How many fittings are required?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>The bespoke process generally involves approximately three fittings, allowing our team to refine the garment's proportions, comfort, and finishing details.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Can I select my own fabric and design?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Absolutely. Each garment is developed around your preferences. During your private consultation, our specialists will guide you through fabrics, silhouettes, linings, lapels, buttons, and other personal design details.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Do I need an appointment?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Yes. SIGNORI consultations are arranged by appointment to ensure a personal and carefully considered tailoring experience. Our team will guide you through every stage, from the initial consultation to the completed garment.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 09: FINAL PRIVATE APPOINTMENT CTA -->
-        <section class="cta-section">
-            <div class="container text-center">
-                <h2 class="cta-heading">YOUR STORY. OUR CRAFT.</h2>
-                <p class="cta-sub">Every exceptional garment begins with a conversation. Experience the personal attention, craftsmanship, and individuality of SIGNORI bespoke tailoring.</p>
-                <div class="mt-4">
-                    <a href="request-appointment.html" class="btn-primary">REQUEST A PRIVATE APPOINTMENT</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-<script src="../js/art-of-tailoring.js" defer></script>
-
-
+  <!-- Vanilla JavaScript -->
+  <script src="../js/art-of-tailoring.js" defer></script>
+  <script src="../navbar/navbar.js" defer></script>
 </body>
 </html>

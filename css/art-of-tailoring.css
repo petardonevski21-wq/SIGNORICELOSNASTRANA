@@ -1,756 +1,394 @@
-/* -------------------------------------------------------------------------- */
-/* SIGNORI BESPOKE — THE ART OF TAILORING STYLES                              */
-/* Quiet Luxury & Editorial Minimalism                                        */
-/* -------------------------------------------------------------------------- */
-
-:root {
-    --bg-primary: #FBFBFA;
-    --bg-charcoal: #1A1A1A;
-    --bg-card: #F4F3EE;
-    --text-primary: #1C1C1C;
-    --text-secondary: #6B6863;
-    --text-light: #F7F6F2;
-    --border-color: #E2E0D8;
-    --border-dark: #333333;
-    --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* CSS RESET & VARIABLES */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root {
+  --bg-color: #fbfbfb;
+  --text-main: #111111;
+  --text-muted: #555555;
+  --border-color: #e5e5e5;
+  --font-family: 'Jost', sans-serif;
+  --transition-smooth: all 0.3s ease;
 }
 
 html {
-    scroll-behavior: smooth;
-    font-size: 16px;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-body {
-    font-family: 'Jost', sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-weight: 300;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-ul {
-    list-style: none;
+body.signori-page {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* CONTAINER & LAYOUT */
 .container {
-    width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* SIGNORI LINE BUTTON (Existing Design System Class) */
+.signori-line-btn {
+  display: inline-block;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+/* ================================================================= *
+ * 1. FULL-SCREEN HERO SECTION (Matching Last Reference Composition)
+ * ================================================================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.hero__media-container {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center; 
+}
+
+/* ================================================================= *
+ * 2. SECTION 1: BRAND INTRO (Ref: 1.png)
+ * ================================================================= */
+.brand-intro {
+  padding: 8rem 0 7rem 0;
+  background-color: var(--bg-color);
+  text-align: center;
+}
+
+.brand-intro__content {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.brand-intro__text-primary {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-main);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-intro__text-secondary {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 3.5rem;
+}
+
+.brand-intro__action {
+  display: flex;
+  justify-content: center;
+}
+
+/* ================================================================= *
+ * 3. SECTION 2: TRIPTYCH & FULL-WIDTH IMAGE (Ref: 2.png)
+ * ================================================================= */
+.triptych-showcase {
+  padding: 2rem 0 7rem 0;
+}
+
+.triptych-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.triptych-item {
+  width: 100%;
+  aspect-ratio: 3 / 4.5;
+}
+
+.triptych-item img,
+.full-width-media img,
+.editorial-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.full-width-media {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  margin-top: 2rem;
+}
+
+/* ================================================================= *
+ * 4. SECTION 3: CRAFTSMANSHIP & 40 HOURS (Ref: 3.png)
+ * ================================================================= */
+.craftsmanship {
+  padding: 6rem 0 8rem 0;
+}
+
+.craftsmanship__header {
+  max-width: 900px;
+  margin: 0 auto 6rem auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-bottom: 2.5rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.craftsmanship__split-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 7rem;
+  position: relative;
+}
+
+/* Vertical dividing lines as seen in reference 3.png */
+.craftsmanship__split-images .split-img-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  right: calc(-0.75rem - 1px);
+  width: 1px;
+  background-color: #dcdcdc;
+}
+
+.split-img-item {
+  position: relative;
+  aspect-ratio: 1 / 1.4;
+}
+
+.craftsmanship__feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.stat-title {
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
+.stat-description {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+
+.craftsmanship__image-block {
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+}
+
+/* ================================================================= *
+ * 5. SECTION 4: PROCESS & FABRIC HOUSES (Ref: 4.png)
+ * ================================================================= */
+.process-showcase {
+  padding: 6rem 0 8rem 0;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.process-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.process-media {
+  width: 100%;
+  aspect-ratio: 1 / 1.45;
+  margin-bottom: 2rem;
+}
+
+.process-heading {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.process-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.process-action {
+  display: flex;
+  justify-content: center;
+  margin: 5rem 0 7rem 0;
+}
+
+/* FABRIC HOUSES LOGOS */
+.fabric-houses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.fabric-houses__logo-wrap {
+  max-width: 160px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fabric-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: var(--transition-smooth);
+}
+
+.fabric-logo:hover {
+  opacity: 1;
+}
+
+/* ================================================================= *
+ * RESPONSIVE MEDIA QUERIES
+ * ================================================================= */
+
+@media screen and (max-width: 1200px) {
+  .container {
+    padding: 0 3rem;
+  }
+  .craftsmanship__feature-grid {
+    gap: 4rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
     padding: 0 2rem;
-}
-
-/* Typography Helpers */
-.section-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-}
-
-.section-heading {
-    font-size: clamp(2.25rem, 4vw, 3.25rem);
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    line-height: 1.2;
-    margin-bottom: 2rem;
-    color: var(--text-primary);
-    text-transform: uppercase;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.mt-4 { margin-top: 2rem; }
-.mt-5 { margin-top: 3rem; }
-
-/* Header & Navigation */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(251, 251, 250, 0.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    transition: var(--transition-smooth);
-}
-
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1.5rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.site-logo {
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    color: var(--text-primary);
-}
-
-.desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-}
-
-.desktop-nav a {
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    transition: var(--transition-smooth);
-}
-
-.desktop-nav a:hover,
-.desktop-nav a.active {
-    color: var(--text-primary);
-}
-
-.desktop-nav .nav-cta {
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--text-primary);
-    color: var(--text-primary);
-    transition: var(--transition-smooth);
-}
-
-.desktop-nav .nav-cta:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
-}
-
-.mobile-menu-toggle {
+  }
+  .triptych-grid {
+    gap: 1.5rem;
+  }
+  .craftsmanship__split-images {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2rem;
+  }
+  .craftsmanship__split-images .split-img-item:nth-child(2)::after {
     display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    width: 30px;
-    height: 20px;
-    position: relative;
-    z-index: 1001;
-}
-
-.mobile-menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: var(--text-primary);
-    position: absolute;
-    transition: var(--transition-smooth);
-}
-
-.mobile-menu-toggle span:first-child { top: 0; }
-.mobile-menu-toggle span:last-child { bottom: 0; }
-
-.mobile-menu-toggle.active span:first-child {
-    transform: translateY(9.5px) rotate(45deg);
-}
-.mobile-menu-toggle.active span:last-child {
-    transform: translateY(-9.5px) rotate(-45deg);
-}
-
-.mobile-menu-drawer {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--bg-primary);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-smooth);
-}
-
-.mobile-menu-drawer.open {
-    right: 0;
-}
-
-.mobile-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  }
+  .craftsmanship__feature-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .process-grid {
     gap: 2rem;
-}
-
-.mobile-nav a {
-    font-size: 1.25rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-primary);
-}
-
-/* SECTION 01: HERO */
-.hero-section {
-    position: relative;
-    height: 100vh;
-    min-height: 700px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.hero-image-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.hero-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1.03);
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
-    z-index: 2;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    color: var(--text-light);
-    max-width: 900px;
-    text-align: center;
-    padding-top: 4rem;
-}
-
-.hero-content .section-label {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.hero-title {
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.hero-subtitle {
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.hero-desc {
-    font-size: 1.1rem;
-    max-width: 650px;
-    margin: 0 auto 3rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.8;
-}
-
-.text-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding-bottom: 4px;
-    transition: var(--transition-smooth);
-}
-
-.text-cta:hover {
-    border-color: var(--text-light);
-    gap: 1rem;
-}
-
-/* SECTION COMMON PADDING */
-section {
-    padding: 140px 0;
-}
-
-.grid-2-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-}
-
-/* SECTION 02: HERITAGE */
-.heritage-image {
-    height: 650px;
-}
-
-.heritage-image img {
-    width: 100%;
-    height: 100%;
-}
-
-.heritage-text p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-}
-
-.heritage-text p:first-of-type {
-    color: var(--text-primary);
-    font-size: 1.15rem;
-}
-
-/* SECTION 03: THE CRAFT */
-.craft-section {
-    background-color: var(--bg-card);
-}
-
-.section-intro {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 4rem;
-}
-
-.craft-intro-text {
-    max-width: 800px;
-    margin: 0 auto 5rem;
-    text-align: center;
-}
-
-.craft-intro-text p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-}
-
-.craft-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-}
-
-.craft-card-img {
-    height: 400px;
-    margin-bottom: 2rem;
-}
-
-.craft-card-img img {
-    width: 100%;
-    height: 100%;
-}
-
-.craft-number {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-}
-
-.craft-card h3 {
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.craft-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-/* SECTION 04: TIME & DEDICATION */
-.time-section {
-    background-color: var(--bg-charcoal);
-    color: var(--text-light);
-}
-
-.time-section .section-label {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.time-section .section-heading {
-    color: var(--text-light);
-}
-
-.time-section .section-intro {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  }
+  .fabric-houses {
     gap: 4rem;
-    margin: 5rem 0 4rem;
-    border-top: 1px solid var(--border-dark);
-    border-bottom: 1px solid var(--border-dark);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  .brand-intro {
+    padding: 5rem 0;
+  }
+  .triptych-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .triptych-item {
+    aspect-ratio: 1 / 1.25;
+  }
+  .full-width-media {
+    aspect-ratio: 4 / 3;
+  }
+  .craftsmanship {
     padding: 4rem 0;
-}
-
-.stat-item .stat-number {
-    display: block;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-}
-
-.stat-item .stat-label {
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.time-explanation {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.time-explanation p {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
-}
-
-.time-explanation .note-text {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-style: italic;
-}
-
-/* SECTION 05: FABRICS */
-.fabrics-image {
-    height: 600px;
-}
-
-.fabrics-image img {
-    width: 100%;
-    height: 100%;
-}
-
-.fabrics-text p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-}
-
-.fabrics-text .text-cta {
-    color: var(--text-primary);
-    border-color: rgba(0,0,0,0.3);
-}
-
-.fabrics-text .text-cta:hover {
-    border-color: var(--text-primary);
-}
-
-/* SECTION 06: PERSONAL PATTERN */
-.pattern-section {
-    background-color: var(--bg-card);
-}
-
-.pattern-image {
-    height: 600px;
-}
-
-.pattern-image img {
-    width: 100%;
-    height: 100%;
-}
-
-.pattern-text p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-}
-
-/* SECTION 07: EXPERIENCE */
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 4rem;
-}
-
-.experience-card {
-    padding: 2.5rem;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-}
-
-.exp-num {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.experience-card h3 {
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    margin-bottom: 1.25rem;
-    text-transform: uppercase;
-}
-
-.experience-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-/* SECTION 08: FAQ */
-.faq-section {
-    background-color: var(--bg-card);
-}
-
-.faq-container {
-    max-width: 900px;
-    margin: 4rem auto 0;
-    border-top: 1px solid var(--border-color);
-}
-
-.faq-item {
-    border-bottom: 1px solid var(--border-color);
-}
-
-.faq-question {
-    width: 100%;
-    padding: 2rem 0;
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: left;
-    font-family: 'Jost', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    color: var(--text-primary);
-    transition: var(--transition-smooth);
-}
-
-.faq-question:hover {
-    color: var(--text-secondary);
-}
-
-.faq-icon {
-    font-size: 1.5rem;
-    font-weight: 300;
-    transition: transform 0.3s ease;
-}
-
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.faq-answer p {
-    padding-bottom: 2rem;
-    color: var(--text-secondary);
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-/* SECTION 09: CTA */
-.cta-section {
-    background-color: var(--bg-charcoal);
-    color: var(--text-light);
-    padding: 160px 0;
-}
-
-.cta-heading {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-}
-
-.cta-sub {
-    font-size: 1.15rem;
-    max-width: 650px;
-    margin: 0 auto 3rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.8;
-}
-
-.btn-primary {
-    display: inline-block;
-    padding: 1.25rem 2.5rem;
-    background-color: var(--text-light);
-    color: var(--text-primary);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: var(--transition-smooth);
-}
-
-.btn-primary:hover {
-    background-color: transparent;
-    color: var(--text-light);
-    border: 1px solid var(--text-light);
-}
-
-/* Footer */
-.site-footer {
-    background-color: #111111;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 100px 0 40px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+  .craftsmanship__split-images {
+    grid-template-columns: 1fr;
+  }
+  .craftsmanship__split-images .split-img-item::after {
+    display: none;
+  }
+  .split-img-item {
+    aspect-ratio: 1 / 1.25;
+  }
+  .process-grid {
+    grid-template-columns: 1fr;
     gap: 4rem;
-    margin-bottom: 5rem;
-}
-
-.footer-logo {
-    display: inline-block;
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-}
-
-.footer-desc {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    max-width: 350px;
-}
-
-.footer-col h4 {
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-}
-
-.footer-col p {
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
-}
-
-.footer-links {
-    display: flex;
+  }
+  .process-media {
+    aspect-ratio: 1 / 1.25;
+  }
+  .fabric-houses {
     flex-direction: column;
-    gap: 0.75rem;
-}
-
-.footer-links a {
-    font-size: 0.95rem;
-    transition: var(--transition-smooth);
-}
-
-.footer-links a:hover {
-    color: var(--text-light);
-}
-
-.footer-bottom {
-    border-top: 1px solid #222222;
-    padding-top: 2rem;
-    font-size: 0.85rem;
-    text-align: center;
-}
-
-/* Responsive Media Queries */
-@media (max-width: 1024px) {
-    .grid-2-col {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .reverse-mobile {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-
-    .craft-grid,
-    .stats-grid,
-    .experience-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-    }
-
-    .heritage-image,
-    .fabrics-image,
-    .pattern-image,
-    .craft-card-img {
-        height: 450px;
-    }
-}
-
-@media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    section {
-        padding: 90px 0;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
+    gap: 2.5rem;
+  }
 }
