@@ -11,55 +11,57 @@
   <link rel="stylesheet" href="../navbar/navbar.css">
   <link rel="stylesheet" href="../css/art-of-tailoring.css">
   <link rel="stylesheet" href="../ui/buttons.css">
-
 </head>
 <body class="signori-page">
-    <div id="site-menu"></div>
-  <!-- HERO SECTION -->
-  <header class="hero">
+  <div id="site-menu"></div>
 
+  <!-- HERO SECTION WITH OVERLAY TEXT & PLAY BUTTON -->
+  <header class="hero">
     <div class="hero__media-container">
       <img src="../assets/sliki/10y/petta.png" alt="SIGNORI luxury tailoring campaign" class="hero__image">
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content">
+      <span class="hero__subtitle">A Signori Bespoke</span>
+      <h1 class="hero__title">The Art of Tailoring</h1>
     </div>
   </header>
 
   <main>
-    <!-- SECTION 1: INTRO & BRAND HERITAGE (Ref: 1.png) -->
+    <!-- SECTION 1: BRAND INTRO & DISCOVER THE STORY -->
     <section class="editorial-section brand-intro">
       <div class="container brand-intro__content">
         <p class="brand-intro__text-primary">
           SIGNORI is a bespoke tailoring company that prides itself on a fervent pursuit of perfection. It was established in 2014 by Nenad Pantovic and Kristijan Popovski. Our craftsmen use only the highest quality materials available in the market to meticulously create tailor-made suits. Our company's core lies in the cutting table, where skilled hands bring to life "The Tailored Suit," followed by the production of complementary accessories. Our team of expert stylists is dedicated to helping you choose the perfect ensemble for any occasion, custom-designed to your specifications and requirements.
         </p>
-        <p class="brand-intro__text-secondary">
-          At SIGNORI, we are committed to our founding principle of making bespoke tailoring accessible and affordable for discerning men and women who understand the importance of making a powerful first impression.
-        </p>
+
         <div class="brand-intro__action">
-          <a href="#" class="signori-line-btn">Discover the story</a>
+          <a href="./history.html" class="signori-line-btn">Discover the story</a>
         </div>
       </div>
-    </section>
 
-    <!-- SECTION 2: THREE-COLUMN EDITORIAL & FULL-WIDTH IMAGE (Ref: 2.png) -->
-    <section class="editorial-section triptych-showcase">
-      <div class="container">
+      <!-- THREE LARGE VERTICAL IMAGES -->
+      <div class="triptych-wrapper">
         <div class="triptych-grid">
           <div class="triptych-item">
             <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="SIGNORI bespoke suit detail" class="editorial-img">
           </div>
           <div class="triptych-item">
-            <img src="images/editorial-triptych-02.jpg" alt="SIGNORI craftsmanship" class="editorial-img">
+            <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="SIGNORI craftsmanship" class="editorial-img">
           </div>
           <div class="triptych-item">
-            <img src="images/editorial-triptych-03.jpg" alt="SIGNORI fabric texture" class="editorial-img">
+            <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="SIGNORI fabric texture" class="editorial-img">
           </div>
         </div>
-        <div class="full-width-media">
-          <img src="images/editorial-full-width.jpg" alt="SIGNORI luxury tailoring atmosphere" class="editorial-img">
-        </div>
+      </div>
+
+      <!-- FULL-SCREEN IMAGE -->
+      <div class="full-screen-media">
+        <img src="../assets/sliki/10y/petta.png" alt="SIGNORI luxury tailoring atmosphere" class="editorial-img">
       </div>
     </section>
 
-    <!-- SECTION 3: CRAFTSMANSHIP & 40 HOURS (Ref: 3.png) -->
+    <!-- SECTION 2: CRAFTSMANSHIP & 40 HOURS -->
     <section class="editorial-section craftsmanship">
       <div class="container">
         <div class="craftsmanship__header">
@@ -69,36 +71,48 @@
           </p>
         </div>
 
+        <!-- FOUR EQUAL-DIMENSION IMAGES WITH VERTICAL DIVIDERS -->
         <div class="craftsmanship__split-images">
-          <div class="split-img-item"><img src="../assets/sliki/ART-OF-TAILORING/scabal.png" alt="Stitching detail"></div>
-          <div class="split-img-item"><img src="../assets/sliki/ART-OF-TAILORING/zegna.png" alt="Lapel shaping"></div>
-          <div class="split-img-item"><img src="../assets/sliki/ART-OF-TAILORING/loro-piana-logo-2021.png" alt="Fitting detail"></div>
-          <div class="split-img-item"><img src="../assets/sliki/ART-OF-TAILORING/holland.png" alt="Finished garment"></div>
+          <div class="split-img-item">
+            <img src="../assets/sliki/ART-OF-TAILORING/scabal.png" alt="Stitching detail" class="editorial-img">
+          </div>
+          <div class="split-img-item">
+            <img src="../assets/sliki/ART-OF-TAILORING/zegna.png" alt="Lapel shaping" class="editorial-img">
+          </div>
+          <div class="split-img-item">
+            <img src="../assets/sliki/ART-OF-TAILORING/loro-piana-logo-2021.png" alt="Fitting detail" class="editorial-img">
+          </div>
+          <div class="split-img-item">
+            <img src="../assets/sliki/ART-OF-TAILORING/holland.png" alt="Finished garment" class="editorial-img">
+          </div>
         </div>
+      </div>
 
-        <div class="craftsmanship__feature-grid">
-          <div class="craftsmanship__text-block">
+      <!-- 40 HRS LEFT + RIGHT EDGE-TO-EDGE IMAGE -->
+      <div class="craftsmanship__feature-bleed">
+        <div class="craftsmanship__feature-left">
+          <div class="craftsmanship__feature-left-inner">
             <h3 class="stat-title">40 HRS</h3>
             <p class="stat-description">
               Every garment is a masterpiece crafted with meticulous attention to detail. Each stitch, line, and square falls into place like a puzzle to create the customer's unique design. The tailors archive all details in the customer's personal dossier for future orders, and each suit requires around 40 hours of finishing and packaging, featuring about 30,000 stitches.
             </p>
           </div>
-          <div class="craftsmanship__image-block">
-            <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="SIGNORI atelier craftsmanship" class="editorial-img">
-          </div>
+        </div>
+        <div class="craftsmanship__feature-right">
+          <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="SIGNORI atelier craftsmanship" class="editorial-img">
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: DESIGN, CREATE, ENJOY & FABRIC HOUSES (Ref: 4.png) -->
+    <!-- SECTION 3: DESIGN, CREATE, ENJOY -->
     <section class="editorial-section process-showcase">
-      <div class="container">
+      <div class="process-wrapper">
         <div class="process-grid">
           <div class="process-card">
             <div class="process-media">
-              <img src="images/process-design.jpg" alt="Design phase" class="editorial-img">
+              <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="Design phase" class="editorial-img">
+              <h3 class="process-heading">Design</h3>
             </div>
-            <h3 class="process-heading">Design</h3>
             <p class="process-text">
               Our bespoke suits are meticulously crafted with the finest materials to meet your specific needs and preferences. Our team of professional style consultants will work closely with you to design a unique suit that reflects your personality and style.
             </p>
@@ -106,9 +120,9 @@
 
           <div class="process-card">
             <div class="process-media">
-              <img src="images/process-create.jpg" alt="Create phase" class="editorial-img">
+              <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="Create phase" class="editorial-img">
+              <h3 class="process-heading">Create</h3>
             </div>
-            <h3 class="process-heading">Create</h3>
             <p class="process-text">
               Our master tailors possess over four decades of experience in Neapolitan tailoring. Each garment is carefully handmade, taking a minimum of 40 hours to create. We use only the finest materials to ensure that your suit is durable and long-lasting, allowing you to enjoy it for a lifetime.
             </p>
@@ -116,9 +130,9 @@
 
           <div class="process-card">
             <div class="process-media">
-              <img src="images/process-enjoy.jpg" alt="Enjoy phase" class="editorial-img">
+              <img src="../assets/sliki/BESPOKE-TAILORING-PROCESS/1.png" alt="Enjoy phase" class="editorial-img">
+              <h3 class="process-heading">Enjoy</h3>
             </div>
-            <h3 class="process-heading">Enjoy</h3>
             <p class="process-text">
               Our goal is for every customer to experience the satisfaction of wearing a suit that feels like a second skin.
             </p>
@@ -126,26 +140,16 @@
         </div>
 
         <div class="process-action">
-          <a href="#" class="signori-line-btn">Discover the process</a>
-        </div>
-
-        <!-- FABRIC HOUSES PARTNERSHIP LOGOS -->
-        <div class="fabric-houses">
-          <div class="fabric-houses__logo-wrap">
-            <img src="images/loro-piana-logo.png" alt="Loro Piana" class="fabric-logo">
-          </div>
-          <div class="fabric-houses__logo-wrap">
-            <img src="images/scabal-logo.png" alt="Scabal" class="fabric-logo">
-          </div>
-          <div class="fabric-houses__logo-wrap">
-            <img src="images/zegna-logo.png" alt="Zegna" class="fabric-logo">
-          </div>
+          <a href="./process-bespoke.html" class="signori-line-btn">Discover the process</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Vanilla JavaScript -->
+
+
+  <div id="footer-placeholder"></div>
+  <script src="../footer/footer-loader.js" defer></script>
   <script src="../js/art-of-tailoring.js" defer></script>
   <script src="../navbar/navbar.js" defer></script>
 </body>

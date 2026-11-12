@@ -9,9 +9,7 @@
   --bg-color: #fbfbfb;
   --text-main: #111111;
   --text-muted: #555555;
-  --border-color: #e5e5e5;
   --font-family: 'Jost', sans-serif;
-  --transition-smooth: all 0.3s ease;
 }
 
 html {
@@ -40,7 +38,7 @@ a {
   color: inherit;
 }
 
-/* CONTAINER & LAYOUT */
+/* CONTAINER */
 .container {
   width: 100%;
   max-width: 1440px;
@@ -48,39 +46,10 @@ a {
   padding: 0 4rem;
 }
 
-/* SIGNORI LINE BUTTON (Existing Design System Class) */
-.signori-line-btn {
-  display: inline-block;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 0.95rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-main);
-  position: relative;
-  padding-bottom: 4px;
-}
-
-/* Underline animation removed — class kept as a hook for an external stylesheet */
-.signori-line-btn::before,
-.signori-line-btn::after,
-.signori-line-btn:hover::before,
-.signori-line-btn:hover::after,
-.signori-line-btn:focus::after {
-  content: none !important;
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: none !important;
-  animation: none !important;
-  transition: none !important;
-}
 
 /* ================================================================= *
- * 1. FULL-SCREEN HERO SECTION
+ * 1. NAVBAR & FULL-SCREEN HERO SECTION
  * ================================================================= */
-
-/* Navbar injected into #site-menu: fixed on top of the hero, always interactive */
 #site-menu {
   position: fixed;
   top: 0;
@@ -93,14 +62,17 @@ a {
   position: relative;
   z-index: 0;
   isolation: isolate;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100vh;   /* fallback */
+  height: 100vh;
   height: 100svh;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #000;
+  text-align: center;
 }
 
 .hero__media-container {
@@ -119,18 +91,51 @@ a {
   object-position: center center;
 }
 
-/* ================================================================= *
- * 2. SECTION 1: BRAND INTRO (Ref: 1.png)
- * ================================================================= */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  padding: 0 1.5rem;
+}
+
+
+.hero__subtitle {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+
 .brand-intro {
-  padding: 8rem 0 7rem 0;
+  padding: 8rem 0 0 0;
   background-color: var(--bg-color);
   text-align: center;
 }
 
 .brand-intro__content {
   max-width: 820px;
-  margin: 0 auto;
+  margin: 0 auto 7rem auto;
 }
 
 .brand-intro__text-primary {
@@ -142,117 +147,136 @@ a {
   letter-spacing: 0.01em;
 }
 
-.brand-intro__text-secondary {
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 3.5rem;
-}
+
 
 .brand-intro__action {
   display: flex;
   justify-content: center;
 }
 
-/* ================================================================= *
- * 3. SECTION 2: TRIPTYCH & FULL-WIDTH IMAGE (Ref: 2.png)
- * ================================================================= */
-.triptych-showcase {
-  padding: 2rem 0 7rem 0;
+/* THREE LARGE VERTICAL IMAGES */
+.triptych-wrapper {
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto 5.5rem auto;
+  padding: 0 2.5rem;
 }
 
 .triptych-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  margin-bottom: 3.5rem;
+  gap: 1.75rem;
 }
 
 .triptych-item {
   width: 100%;
-  aspect-ratio: 3 / 4.5;
+  aspect-ratio: 3 / 4.6;
+  overflow: hidden;
 }
 
-.triptych-item img,
-.full-width-media img,
 .editorial-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
-.full-width-media {
+/* FULL-SCREEN IMAGE */
+.full-screen-media {
   width: 100%;
-  aspect-ratio: 16 / 7;
-  margin-top: 2rem;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
 }
 
 /* ================================================================= *
- * 4. SECTION 3: CRAFTSMANSHIP & 40 HOURS (Ref: 3.png)
+ * 3. SECTION 2: CRAFTSMANSHIP & 40 HOURS
  * ================================================================= */
 .craftsmanship {
-  padding: 6rem 0 8rem 0;
+  padding: 8rem 0 0 0;
+  background-color: var(--bg-color);
 }
 
 .craftsmanship__header {
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto 6rem auto;
   text-align: center;
 }
 
 .section-title {
-  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  line-height: 1.4;
-  margin-bottom: 2.5rem;
+  line-height: 1.45;
+  color: var(--text-main);
+  margin-bottom: 2.25rem;
 }
 
 .section-subtitle {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--text-muted);
 }
 
+/* FOUR EQUAL-DIMENSION IMAGES WITH VERTICAL LINES */
 .craftsmanship__split-images {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 7rem;
+  gap: 2.5rem;
+  margin-bottom: 8rem;
   position: relative;
-}
-
-/* Vertical dividing lines as seen in reference 3.png */
-.craftsmanship__split-images .split-img-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 15%;
-  bottom: 15%;
-  right: calc(-0.75rem - 1px);
-  width: 1px;
-  background-color: #dcdcdc;
 }
 
 .split-img-item {
   position: relative;
-  aspect-ratio: 1 / 1.4;
+  width: 100%;
+  aspect-ratio: 1 / 1.35;
 }
 
-.craftsmanship__feature-grid {
+.split-img-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.craftsmanship__split-images .split-img-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  right: calc(-1.25rem - 0.5px);
+  width: 1px;
+  background-color: #222222;
+}
+
+/* 40 HRS LEFT (SHIFTED FURTHER LEFT) + RIGHT EDGE-TO-EDGE IMAGE */
+.craftsmanship__feature-bleed {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 6rem;
+  grid-template-columns: 0.9fr 1.15fr;
   align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+.craftsmanship__feature-left {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: max(4rem, calc((100vw - 1680px) / 2 + 4rem));
+}
+
+.craftsmanship__feature-left-inner {
+  width: 100%;
+  max-width: 520px;
 }
 
 .stat-title {
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-size: clamp(3.5rem, 5.5vw, 5.25rem);
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   line-height: 1;
+  color: var(--text-main);
   margin-bottom: 2rem;
 }
 
@@ -263,23 +287,37 @@ a {
   color: var(--text-muted);
 }
 
-.craftsmanship__image-block {
+.craftsmanship__feature-right {
   width: 100%;
-  aspect-ratio: 1 / 1.25;
+  height: 100%;
+  min-height: 680px;
+}
+
+.craftsmanship__feature-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ================================================================= *
- * 5. SECTION 4: PROCESS & FABRIC HOUSES (Ref: 4.png)
+ * 4. SECTION 3: DESIGN, CREATE, ENJOY
  * ================================================================= */
 .process-showcase {
-  padding: 6rem 0 8rem 0;
+  padding: 9rem 0 8rem 0;
+  background-color: var(--bg-color);
+}
+
+.process-wrapper {
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
 }
 
 .process-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  margin-bottom: 4rem;
+  gap: 2.25rem;
 }
 
 .process-card {
@@ -288,17 +326,32 @@ a {
 }
 
 .process-media {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1.45;
+  aspect-ratio: 3 / 4.5;
+  overflow: hidden;
   margin-bottom: 2rem;
 }
 
+.process-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0) 35%);
+  pointer-events: none;
+}
+
 .process-heading {
-  font-size: 1.4rem;
+  position: absolute;
+  bottom: 2.25rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  font-size: 1.65rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-align: center;
-  margin-bottom: 1.25rem;
+  color: #ffffff;
 }
 
 .process-text {
@@ -307,55 +360,39 @@ a {
   line-height: 1.75;
   color: var(--text-muted);
   text-align: center;
-  padding: 0 1rem;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 0 0.75rem;
 }
 
 .process-action {
   display: flex;
   justify-content: center;
-  margin: 5rem 0 7rem 0;
-}
-
-/* FABRIC HOUSES LOGOS */
-.fabric-houses {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--border-color);
-}
-
-.fabric-houses__logo-wrap {
-  max-width: 160px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fabric-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  opacity: 0.75;
-  transition: var(--transition-smooth);
-}
-
-.fabric-logo:hover {
-  opacity: 1;
+  margin-top: 5rem;
 }
 
 /* ================================================================= *
  * RESPONSIVE MEDIA QUERIES
  * ================================================================= */
-
 @media screen and (max-width: 1200px) {
   .container {
     padding: 0 3rem;
   }
-  .craftsmanship__feature-grid {
-    gap: 4rem;
+  .triptych-wrapper,
+  .process-wrapper {
+    padding: 0 2rem;
+  }
+  .triptych-wrapper {
+    margin-bottom: 4.5rem;
+  }
+  .craftsmanship__feature-bleed {
+    gap: 3rem;
+  }
+  .craftsmanship__feature-left {
+    padding-left: 3rem;
+  }
+  .craftsmanship__feature-right {
+    min-height: 580px;
   }
 }
 
@@ -363,25 +400,36 @@ a {
   .container {
     padding: 0 2rem;
   }
+  .triptych-wrapper,
+  .process-wrapper {
+    padding: 0 1.5rem;
+  }
   .triptych-grid {
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
   .craftsmanship__split-images {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 2rem;
+    gap: 2.5rem;
+    margin-bottom: 5.5rem;
   }
   .craftsmanship__split-images .split-img-item:nth-child(2)::after {
     display: none;
   }
-  .craftsmanship__feature-grid {
+  .craftsmanship__feature-bleed {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .process-grid {
-    gap: 2rem;
+  .craftsmanship__feature-left {
+    padding: 0 2rem;
   }
-  .fabric-houses {
-    gap: 4rem;
+  .craftsmanship__feature-left-inner {
+    max-width: 100%;
+  }
+  .craftsmanship__feature-right {
+    min-height: 480px;
+  }
+  .process-grid {
+    gap: 1.5rem;
   }
 }
 
@@ -390,39 +438,51 @@ a {
     padding: 0 1.5rem;
   }
   .brand-intro {
-    padding: 5rem 0;
+    padding: 5rem 0 0 0;
   }
-  .triptych-grid {
+  .brand-intro__content {
+    margin-bottom: 4.5rem;
+  }
+  .triptych-wrapper,
+  .process-wrapper {
+    padding: 0 1.5rem;
+  }
+  .triptych-wrapper {
+    margin-bottom: 3.5rem;
+  }
+  .triptych-grid,
+  .process-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
-  .triptych-item {
-    aspect-ratio: 1 / 1.25;
-  }
-  .full-width-media {
-    aspect-ratio: 4 / 3;
+  .triptych-item,
+  .process-media {
+    aspect-ratio: 3 / 4;
   }
   .craftsmanship {
-    padding: 4rem 0;
+    padding: 5rem 0 0 0;
+  }
+  .craftsmanship__header {
+    margin-bottom: 4rem;
   }
   .craftsmanship__split-images {
     grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
   }
   .craftsmanship__split-images .split-img-item::after {
     display: none;
   }
-  .split-img-item {
-    aspect-ratio: 1 / 1.25;
+  .craftsmanship__feature-left {
+    padding: 0 1.5rem;
   }
-  .process-grid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
+  .craftsmanship__feature-right {
+    min-height: 380px;
   }
-  .process-media {
-    aspect-ratio: 1 / 1.25;
+  .process-showcase {
+    padding: 6rem 0 5rem 0;
   }
-  .fabric-houses {
-    flex-direction: column;
-    gap: 2.5rem;
+  .process-action {
+    margin-top: 3.5rem;
   }
 }
