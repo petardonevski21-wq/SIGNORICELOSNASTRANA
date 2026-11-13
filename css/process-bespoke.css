@@ -11,7 +11,6 @@ body {
     font-family: 'Jost', sans-serif;
 }
 
-
 .heading-jost {
     font-family: 'Jost', sans-serif;
     color: #111;
@@ -32,11 +31,10 @@ body {
 .hero-section {
     position: relative;
     width: 100vw;
-    height: 93vh;
+    height: 70vh;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding: 0 10%;
+    justify-content: center;
     overflow: hidden;
 }
 
@@ -45,7 +43,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 90%;
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -56,19 +54,12 @@ body {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
 }
 
-.hero-title {
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 2.5rem;
-    z-index: 1;
-}
-
-
+/* --- 2. Uvodna Sekcija --- */
 .intro-section {
-    padding: 120px 20px;
+    padding: 30px 20px 80px;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -85,8 +76,15 @@ body {
 .signori-icon {
     width: 45px;
     height: auto;
-    margin-bottom: 35px;
+    margin-bottom: 0px;
     object-fit: contain;
+}
+
+.intro-heading {
+    font-weight: 400;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    letter-spacing: -0.01em;
 }
 
 .intro-text {
@@ -96,6 +94,29 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 35px;
+}
+
+/* Копче Request Appointment под параграфот со нова hover анимација */
+.appointment-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #111111;
+    border: 1px solid #111111;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.appointment-btn:hover {
+    background: #ffffff;
+    color: #111111;
+    border-color: #111111;
 }
 
 /* --- 3. Process Sekcije --- */
@@ -142,19 +163,27 @@ body {
     justify-content: center;
 }
 
+/* Подобрени, јасни и луксузни бројки во позадина */
 .text-column::before {
     content: attr(data-number);
     position: absolute;
-    left: 5%;
-    bottom: -25px;
+    left: 6%;
+    top: 48%;
+    transform: translateY(-50%);
     font-family: 'Jost', sans-serif;
     font-weight: 300;
-    font-size: 14rem;
-    color: #f3f3f3;
-    z-index: -1;
+    font-size: 8rem;
+    color: #dfdfdf;
+    z-index: 0;
     line-height: 1;
     user-select: none;
     pointer-events: none;
+}
+
+.text-column h2, 
+.text-column p {
+    position: relative;
+    z-index: 1;
 }
 
 .text-column h2 {
@@ -209,19 +238,27 @@ body {
     position: relative;
 }
 
+/* Подобрена бројка за последната секција */
 .text-overlay-right::before {
     content: attr(data-number);
     position: absolute;
-    left: -40px;
-    top: -20px;
+    left: -70px;
+    top: 50%;
+    transform: translateY(-50%);
     font-family: 'Jost', sans-serif;
     font-weight: 300;
-    font-size: 16rem;
-    color: rgba(255, 255, 255, 0.12);
-    z-index: -1;
+    font-size: 8.5rem;
+    color: rgba(255, 255, 255, 0.22);
+    z-index: 0;
     line-height: 1;
     user-select: none;
     pointer-events: none;
+}
+
+.text-overlay-right h2,
+.text-overlay-right p {
+    position: relative;
+    z-index: 1;
 }
 
 .text-overlay-right h2 {
@@ -250,22 +287,18 @@ body {
     }
 
     .text-column {
-        padding: 40px 20px;
+        padding: 50px 20px;
     }
     
     .text-column::before {
-        font-size: 9rem;
-        left: 0;
-        bottom: -10px;
+        font-size: 5.5rem;
+        left: 20px;
+        top: 30px;
+        transform: none;
     }
 
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
     .hero-section {
-        justify-content: center;
-        text-align: center;
+        height: 50vh;
     }
 
     .process-img {
@@ -280,6 +313,8 @@ body {
 
     .text-overlay-right::before {
         left: 50%;
+        top: -45px;
         transform: translateX(-50%);
+        font-size: 6.5rem;
     }
 }
