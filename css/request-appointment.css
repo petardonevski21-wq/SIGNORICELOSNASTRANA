@@ -349,6 +349,10 @@ body.signori-appointment-body {
 }
 
 @media (max-width: 768px) {
+    body.signori-appointment-body {
+        background-color: #ffffff; /* Нема повеќе црна позадина на дното на мобилна */
+    }
+
     .form-row-grid {
         grid-template-columns: 1fr;
         gap: 20px;

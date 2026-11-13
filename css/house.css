@@ -206,3 +206,10 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* --- Mobilna Verzija: Site 6 sliki edna pod druga --- */
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
