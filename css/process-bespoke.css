@@ -286,35 +286,99 @@ body {
         order: 1;
     }
 
+    /* Намалување на сликите (освен првата) на мобилна */
+    .image-column {
+        padding: 0 24px;
+        text-align: center;
+    }
+
+    .process-img {
+        min-height: auto;
+        height: auto;
+        max-height: 420px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+        margin: 0 auto;
+    }
+
+    /* Текстот во центар за мобилна */
     .text-column {
-        padding: 50px 20px;
+        padding: 40px 24px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .text-column p {
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .text-column::before {
         font-size: 5.5rem;
-        left: 20px;
-        top: 30px;
-        transform: none;
+        left: 50%;
+        top: 25px;
+        transform: translateX(-50%);
     }
 
     .hero-section {
         height: 50vh;
     }
 
-    .process-img {
-        min-height: 380px;
+    /* 5-тата секција (последна) - цел екран на телефон, со слика поместена понадесно */
+    .full-screen-process {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0 24px 50px 24px;
+        text-align: center;
+        overflow: hidden;
     }
 
-    .full-screen-process {
-        justify-content: center;
-        padding: 0 20px;
+    .full-screen-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        background-position: 25% center !important; /* Поместено понадесно за мобилна */
+    }
+
+    .full-screen-bg::after {
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+    }
+
+    .full-screen-content {
+        position: relative;
+        z-index: 1;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .text-overlay-right {
         text-align: center;
     }
 
     .text-overlay-right::before {
         left: 50%;
-        top: -45px;
+        top: -25px;
         transform: translateX(-50%);
-        font-size: 6.5rem;
+        font-size: 4.8rem;
+        color: rgba(255, 255, 255, 0.18);
+    }
+
+    .text-overlay-right h2 {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+    }
+
+    .text-overlay-right p {
+        font-size: 0.92rem;
+        max-width: 420px;
+        margin: 0 auto;
     }
 }
