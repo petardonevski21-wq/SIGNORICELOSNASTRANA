@@ -305,3 +305,128 @@ body, html {
         height: 80vh;
     }
 }
+
+/* ================================================================= *
+ * NEXT BANNER SECTION (ROLEX STYLE)
+ * ================================================================= */
+.next-banner-section {
+  position: relative;
+  width: 100%;
+  height: 56vh;
+  min-height: 440px;
+  max-height: 620px;
+  overflow: hidden;
+  background-color: #000000;
+  margin-bottom: 80px;
+  margin-top: 250px;
+}
+
+.next-banner-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.next-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  z-index: 0;
+}
+
+.next-banner-dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.next-banner-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  padding: 0 1.5rem;
+}
+
+.next-banner-label {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 6px;
+}
+
+.next-banner-title {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+
+.next-banner-section .discover-btn {
+  display: inline-block;
+  position: relative;
+  z-index: 20;
+  font-family: 'Jost', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  text-decoration: none;
+  padding: 12px 35px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.3s ease;
+}
+
+.next-banner-section .discover-btn::after {
+  display: none;
+}
+
+.next-banner-section .discover-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.5) 100%);
+  border-color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .next-banner-section {
+    height: 60vh;
+    min-height: 380px;
+    margin-bottom: 60px;
+  }
+  .next-banner-title {
+    font-size: 1.85rem;
+    margin-bottom: 18px;
+  }
+  .next-banner-section .discover-btn {
+    padding: 12px 32px;
+  }
+}
