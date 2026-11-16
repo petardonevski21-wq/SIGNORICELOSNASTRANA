@@ -249,7 +249,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 0%; /* Тука сменив од center center во center 20% за да се спушти сликата надолу и да се видат главите */
   display: block;
   z-index: 0;
 }
