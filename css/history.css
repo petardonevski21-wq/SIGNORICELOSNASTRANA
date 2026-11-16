@@ -513,24 +513,34 @@ body {
 
 .anniversary-overlay {
     position: absolute;
-    bottom: 8%;
-    left: 50%;
+    bottom: 18%;
+    left: 48.5%;
     transform: translateX(-50%);
     text-align: center;
     color: #ffffff;
     z-index: 2;
     width: 90%;
-    max-width: 800px;
+    max-width: 900px;
     pointer-events: auto;
 }
 
 .anniversary-title {
-    font-family: 'Jost', Georgia, serif;
-    font-size: 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.anniversary-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
     font-weight: 300;
     letter-spacing: 1px;
-    margin-bottom: 15px;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 26px;
 }
 
 /* --- Sektsiya: The Next Chapter - House of Signori --- */

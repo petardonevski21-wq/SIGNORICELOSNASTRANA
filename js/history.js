@@ -324,6 +324,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    gsap.from(".anniversary-overlay > *", {
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".anniversary-hero",
+            start: "top 60%",
+            once: true
+        }
+    });
+
     gsap.from(".next-chapter-section", {
         opacity: 0,
         y: 40,
