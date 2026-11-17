@@ -217,10 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Each image owns exactly one segment of the timeline: [0,1], [1,2], [2,3].
-    // fromTo (explicit start AND end values) keeps every segment independent, so a
-    // ScrollTrigger refresh/invalidate can never re-read a mid-scroll value as the "start".
-    // Nothing runs past t = 3, so the three segments split the scroll distance evenly.
     [1, 2, 3].forEach((n) => {
         const t = n - 1;
         stackTl
