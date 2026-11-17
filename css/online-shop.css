@@ -6,7 +6,6 @@
 
 html, body {
     width: 100%;
-
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 }
@@ -36,7 +35,8 @@ body {
     z-index: 1;
     filter: brightness(0.85); 
     transform: scale(1.06);
-    animation: cinematicHeroZoom 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: cinematicHeroZoom 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    will-change: transform;
 }
 
 @keyframes cinematicHeroZoom {
@@ -391,7 +391,6 @@ body {
     font-weight: 500;
 }
 
-/* Default hidden on desktop */
 .mobile-slide-overlay {
     display: none;
 }
@@ -1134,12 +1133,10 @@ body {
         touch-action: pan-y;
     }
 
-    /* Hide desktop text overlay on mobile */
     .slider-text-overlay {
         display: none !important;
     }
 
-    /* Show mobile text overlay positioned identically to reference image */
     .mobile-slide-overlay {
         display: flex;
         flex-direction: column;
@@ -1173,7 +1170,6 @@ body {
         text-underline-offset: 4px;
         text-transform: uppercase;
     }
-
 
     .slider-controls {
         bottom: 52px;
