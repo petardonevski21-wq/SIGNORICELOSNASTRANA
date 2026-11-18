@@ -192,7 +192,7 @@ a {
 
 .full-screen-media.extra-space-above {
   margin-top: 2rem;
-  margin-bottom: 8rem; /* Простор помеѓу сликата и Next Bespoke Tailoring секцијата */
+  margin-bottom: 8rem;
 }
 
 .full-screen-media-overlay {
@@ -294,7 +294,7 @@ a {
   background-color: #9e9d9d;
 }
 
-/* 40 HRS LEFT (SHIFTED FURTHER LEFT) + RIGHT EDGE-TO-EDGE IMAGE */
+/* 40 HRS LEFT + RIGHT EDGE-TO-EDGE IMAGE */
 .craftsmanship__feature-bleed {
   display: grid;
   grid-template-columns: 0.9fr 1.15fr;
@@ -415,7 +415,7 @@ a {
 }
 
 /* ================================================================= *
- * 5. NEXT BANNER SECTION (ROLEX STYLE - DOUBLE HEIGHT + FOOTER SPACE)
+ * 5. NEXT BANNER SECTION (ROLEX STYLE)
  * ================================================================= */
 .next-banner-section {
   position: relative;
@@ -524,141 +524,203 @@ a {
 }
 
 /* ================================================================= *
- * RESPONSIVE MEDIA QUERIES
+ * UNIFIED PROFESSIONAL MOBILE VERSION (SAME ON ALL MOBILE SCREENS)
  * ================================================================= */
-@media screen and (max-width: 1200px) {
-  .container {
-    padding: 0 3rem;
-  }
-  .triptych-wrapper,
-  .process-wrapper {
-    padding: 0 2rem;
-  }
-  .triptych-wrapper {
-    margin-bottom: 4.5rem;
-  }
-  .craftsmanship__feature-bleed {
-    gap: 3rem;
-  }
-  .craftsmanship__feature-left {
-    padding-left: 3rem;
-  }
-  .craftsmanship__feature-right {
-    min-height: 580px;
-  }
-  .full-screen-media-content {
-    bottom: 3rem;
-    left: 3rem;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .container {
-    padding: 0 2rem;
-  }
-  .triptych-wrapper,
-  .process-wrapper {
-    padding: 0 1.5rem;
-  }
-  .triptych-grid {
-    gap: 1.25rem;
-  }
-  .craftsmanship__split-images {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
-    margin-bottom: 5.5rem;
-  }
-  .craftsmanship__split-images .split-img-item:nth-child(2)::after {
-    display: none;
-  }
-  .craftsmanship__feature-bleed {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .craftsmanship__feature-left {
-    padding: 0 2rem;
-  }
-  .craftsmanship__feature-left-inner {
-    max-width: 100%;
-  }
-  .craftsmanship__feature-right {
-    min-height: 480px;
-  }
-  .process-grid {
-    gap: 1.5rem;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
+
   .brand-intro {
-    padding: 5rem 0 0 0;
+    padding: 4.5rem 0 0 0;
   }
+
   .brand-intro__content {
-    margin-bottom: 4.5rem;
+    margin: 0 auto 4rem auto;
+    padding: 0 1rem;
   }
-  .triptych-wrapper,
-  .process-wrapper {
-    padding: 0 1.5rem;
+
+  .brand-intro__text-primary {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
   }
+
+  /* Triptych images: large immersive full-width look on mobile */
   .triptych-wrapper {
-    margin-bottom: 3.5rem;
-  }
-  .triptych-grid,
-  .process-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .triptych-item,
-  .process-media {
-    aspect-ratio: 3 / 4;
-  }
-  .craftsmanship {
-    padding: 5rem 0 0 0;
-  }
-  .craftsmanship__header {
+    width: 100%;
+    padding: 0;
     margin-bottom: 4rem;
   }
+
+  .triptych-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .triptych-item {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+  }
+
+  /* Full screen media sections */
+  .full-screen-media {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+  }
+
+  .full-screen-media.extra-space-above {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .full-screen-media-content {
+    bottom: 2.5rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    max-width: 100%;
+  }
+
+  .full-screen-media-title {
+    font-size: 1.35rem;
+  }
+
+  .full-screen-media-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Craftsmanship section */
+  .craftsmanship {
+    padding: 4.5rem 0 0 0;
+  }
+
+  .craftsmanship__header {
+    margin: 0 auto 3.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  /* 4-те логоа пред 40 hrs — доближени и без вишок празен простор */
   .craftsmanship__split-images {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    gap: 2.75rem;
+    margin-bottom: 3.5rem;
+    padding: 0 1.25rem;
   }
+
+  .split-img-item {
+    aspect-ratio: auto;
+    height: auto;
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .split-img-item img {
+    max-height: 75px;
+    width: auto;
+    object-fit: contain;
+  }
+
   .craftsmanship__split-images .split-img-item::after {
     display: none;
   }
+
+  .craftsmanship__feature-bleed {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
   .craftsmanship__feature-left {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
+
+  .craftsmanship__feature-left-inner {
+    max-width: 100%;
+  }
+
+  .stat-title {
+    font-size: 3.2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .stat-description {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
   .craftsmanship__feature-right {
-    min-height: 380px;
+    width: 100%;
+    min-height: 420px;
+    height: 60vh;
   }
+
+  /* Process showcase: Design, Create, Enjoy (clean and uniform structure) */
   .process-showcase {
-    padding: 6rem 0 5rem 0;
+    padding: 5rem 0 4rem 0;
   }
+
+  .process-wrapper {
+    width: 100%;
+    padding: 0 1.25rem;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .process-media {
+    aspect-ratio: 4 / 5;
+    margin-bottom: 1.5rem;
+  }
+
+  .process-heading {
+    font-size: 1.45rem;
+    bottom: 1.75rem;
+  }
+
+  .process-text {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    max-width: 100%;
+    padding: 0;
+  }
+
   .process-action {
     margin-top: 3.5rem;
   }
-  .full-screen-media.extra-space-above {
-    margin-top: 6rem;
-    margin-bottom: 5rem;
-  }
-  .full-screen-media-content {
-    bottom: 2rem;
-    left: 1.5rem;
-  }
+
+  /* Next banner section */
   .next-banner-section {
-    height: 60vh;
-    min-height: 380px;
-    margin-bottom: 60px;
+    height: 50vh;
+    min-height: 360px;
+    margin-bottom: 50px;
   }
+
+  .next-banner-label {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+
   .next-banner-title {
-    font-size: 1.85rem;
-    margin-bottom: 18px;
+    font-size: 1.75rem;
+    margin-bottom: 16px;
   }
+
   .next-banner-section .discover-btn {
-    padding: 12px 32px;
+    padding: 10px 28px;
+    font-size: 12px;
   }
 }

@@ -581,6 +581,12 @@ body {
         animation: mHeroIn 1.6s var(--m-ease) both;
     }
 
+    /* Корекција за првата реченица на телефон да е повисока и видлива над search bar-от */
+    .hero-bottom-caption {
+        bottom: 75px; 
+        padding: 0 16px;
+    }
+
     @keyframes mHeroIn {
         from { opacity: 0; transform: scale(1.05); }
         to   { opacity: 0.85; transform: scale(1); }
