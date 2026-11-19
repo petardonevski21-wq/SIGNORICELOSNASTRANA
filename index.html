@@ -7,7 +7,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/sliki/LOGOTO/1.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Mobile only: hero images are CSS backgrounds, so the browser would find them late. Preload them. -->
+    <link rel="preload" as="image" type="image/webp" href="./assets/sliki/HERO/besp.webp" fetchpriority="high" media="(max-width: 1024px)">
+    <link rel="preload" as="image" type="image/webp" href="./assets/sliki/HERO/neno.webp" media="(max-width: 1024px)">
+
+    <!-- Fonts: desktop keeps the original render-blocking stylesheet; mobile loads it without blocking first paint -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" media="(min-width: 1025px)">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" media="print" onload="this.media='(max-width: 1024px)'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></noscript>
+
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./ui/buttons.css">
 </head>
