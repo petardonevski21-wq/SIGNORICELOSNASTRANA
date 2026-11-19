@@ -1,176 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIGNORI in Belgrade — The Art of Bespoke, Beyond Borders</title>
-<meta name="description" content="A photographic journey through Belgrade, seen through SIGNORI, a house of bespoke tailoring.">
-<meta property="og:title" content="SIGNORI in Belgrade">
-<meta property="og:description" content="The art of bespoke, beyond borders.">
-<meta property="og:type" content="article">
-<meta property="og:image" content="assets/images/belgrade-hero.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/journal.css">
-<!-- All images are TEMPORARY SLOTS: replace files in assets/images/ (see data-slot on each figure). -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNORI — Journal | Belgrade Trunk Show</title>
+
+    <!-- Google Fonts: Jost (примарен) & Cormorant Garamond (за логото во менито) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/journal.css">
+    <link rel="stylesheet" href="../navbar/navbar.css">
 </head>
-<body class="sj-page">
+<body>
 
-<header class="sj-header" id="sjHeader">
-  <a class="sj-wordmark" href="#top" aria-label="SIGNORI">SIGNORI</a>
-  <nav class="sj-nav" id="sjNav" aria-label="Primary">
-    <a href="#journal">Journal</a>
-    <a href="#bespoke">Bespoke</a>
-    <a class="sj-btn" href="#appointment" data-sj-booking>REQUEST APPOINTMENT</a>
-  </nav>
-  <button class="sj-menu" id="sjMenu" aria-expanded="false" aria-controls="sjNav">MENU</button>
-</header>
+    <div id="site-menu"></div>
+    <!-- Контејнер каде со fetch ќе се вчита менито -->
+    <div id="header-placeholder"></div>
 
-<main id="top">
-  <section class="sj-hero" aria-label="Introduction">
-    <figure class="sj-fig sj-hero__fig" data-slot="belgrade-hero.webp">
-      <img src="assets/images/belgrade-hero.webp" alt="Belgrade and the Kalemegdan Fortress in warm late light" width="2400" height="1400" fetchpriority="high" data-sj-parallax>
-    </figure>
-    <div class="sj-hero__text">
-      <p class="sj-label">SIGNORI Journal / Destinations</p>
-      <h1>SIGNORI IN BELGRADE</h1>
-      <p class="sj-sub">A Journey in Bespoke Elegance</p>
-      <p class="sj-label" data-sj="dates">[INSERT CONFIRMED VISIT DATES]</p>
-    </div>
-  </section>
+    <main class="jrn-page">
+        <!-- FULL-SCREEN HERO SECTION -->
+        <section class="jrn-hero" id="jrn-hero" aria-label="Belgrade Trunk Show">
+            <img 
+                src="../assets/sliki/journal/belg.png" 
+                alt="SIGNORI Bespoke Tailoring — Belgrade Trunk Show" 
+                class="jrn-hero__image"
+            >
+            <div class="jrn-hero__overlay"></div>
 
-  <section class="sj-intro sj-reveal" id="journal">
-    <p class="sj-label">The Journey</p>
-    <h2>A Meeting of Craft and City</h2>
-    <p>Some destinations are more than places. They are encounters with culture, character and timeless elegance.</p>
-    <p>Belgrade welcomes SIGNORI for an intimate experience of bespoke tailoring, where personal style meets exceptional craftsmanship.</p>
-  </section>
+            <div class="jrn-hero__center">
+                <p class="jrn-hero__city">BELGRADE</p>
+                <time class="jrn-hero__dates" datetime="2026-04-23">APRIL 23 - APRIL 25</time>
+            </div>
 
-  <!-- I. Arrival -->
-  <section class="sj-block" aria-labelledby="h-arrival">
-    <div class="sj-head sj-reveal">
-      <p class="sj-label">01 / The Arrival</p>
-      <h2 id="h-arrival">THE CITY OF CONTRASTS</h2>
-      <p>Where historic grandeur meets the rhythm of modern Europe.</p>
-    </div>
-    <figure class="sj-fig sj-full sj-reveal" data-slot="belgrade-city-detail.webp">
-      <img src="assets/images/belgrade-city-detail.webp" alt="Belgrade rooftops and the river at dusk" width="2400" height="1000" loading="lazy">
-    </figure>
-    <div class="sj-offset sj-reveal">
-      <figure class="sj-fig sj-fig--hover" data-slot="belgrade-architecture.webp">
-        <img src="assets/images/belgrade-architecture.webp" alt="Ornate façade in central Belgrade" width="1200" height="1500" loading="lazy">
-      </figure>
-      <p class="sj-cap">Façades of the old town, late afternoon.</p>
-    </div>
-  </section>
+            <div class="jrn-hero__brand" aria-label="SIGNORI TM">
+                <span class="jrn-hero__brand-name">SIGNORI</span><sup class="jrn-hero__tm">TM</sup>
+            </div>
+        </section>
 
-  <!-- II. Character -->
-  <section class="sj-block" aria-labelledby="h-character">
-    <div class="sj-head sj-reveal">
-      <h2 id="h-character">A CITY WITH CHARACTER</h2>
-    </div>
-    <div class="sj-pair sj-reveal">
-      <figure class="sj-fig sj-fig--hover" data-slot="belgrade-streets.webp">
-        <img src="assets/images/belgrade-streets.webp" alt="Knez Mihailova Street in soft afternoon light" width="1400" height="1750" loading="lazy">
-      </figure>
-      <figure class="sj-fig sj-fig--hover" data-slot="belgrade-kalemegdan.webp">
-        <img src="assets/images/belgrade-kalemegdan.webp" alt="Kalemegdan Fortress ramparts and park" width="1000" height="1333" loading="lazy">
-      </figure>
-    </div>
-    <p class="sj-cap sj-cap--pad">Knez Mihailova and Kalemegdan.</p>
-  </section>
+        <!-- EDITORIAL JOURNAL CONTENT -->
+        <article class="jrn-article">
+            <div class="jrn-container">
+                <header class="jrn-header">
+                    <h1 class="jrn-city">BELGRADE</h1>
+                    <time class="jrn-dates" datetime="2026-04-23">APRIL 23 - APRIL 25</time>
+                </header>
 
-  <!-- III. Setting -->
-  <section class="sj-block" aria-labelledby="h-setting">
-    <figure class="sj-fig sj-full sj-reveal" data-slot="belgrade-luxury-hotel.webp">
-      <img src="assets/images/belgrade-luxury-hotel.webp" alt="A wide hotel interior with marble and warm wood" width="2400" height="1000" loading="lazy">
-    </figure>
-    <div class="sj-split sj-reveal">
-      <figure class="sj-fig sj-fig--hover" data-slot="belgrade-lounge.webp">
-        <img src="assets/images/belgrade-lounge.webp" alt="A quiet lounge with natural window light" width="1600" height="1200" loading="lazy">
-      </figure>
-      <div class="sj-split__text">
-        <h2 id="h-setting">AN INTIMATE SETTING</h2>
-        <p>An atmosphere of quiet sophistication, created for personal encounters and considered details.</p>
-      </div>
-    </div>
-  </section>
+                <p class="jrn-lead">
+                    Bringing the SIGNORI experience closer to you.
+                </p>
 
-  <!-- IV. Bespoke -->
-  <section class="sj-block" id="bespoke" aria-labelledby="h-bespoke">
-    <figure class="sj-fig sj-full sj-reveal" data-slot="signori-tailoring-consultation.webp">
-      <img src="assets/images/signori-tailoring-consultation.webp" alt="A tailor and client reviewing fabric during a consultation" width="2400" height="1000" loading="lazy">
-    </figure>
-    <div class="sj-split sj-split--rev sj-reveal">
-      <figure class="sj-fig sj-fig--hover" data-slot="signori-bespoke-suit.webp">
-        <img src="assets/images/signori-bespoke-suit.webp" alt="A bespoke suit in a refined interior" width="1200" height="1500" loading="lazy">
-      </figure>
-      <div class="sj-split__text">
-        <h2 id="h-bespoke">THE ART OF BESPOKE</h2>
-        <p>Every detail begins with a conversation. Every garment is shaped around the individual.</p>
-      </div>
-    </div>
-  </section>
+                <blockquote class="jrn-quote">
+                    “Our home is in Skopje, but the relationships we build extend far beyond it.
 
-  <!-- V. Details -->
-  <section class="sj-block" aria-labelledby="h-detail">
-    <div class="sj-head sj-reveal">
-      <h2 id="h-detail">THE BEAUTY IS IN THE DETAIL</h2>
-    </div>
-    <div class="sj-details sj-reveal">
-      <figure class="sj-fig sj-fig--hover" data-slot="signori-fabric-detail.webp">
-        <img src="assets/images/signori-fabric-detail.webp" alt="Close-up of fine wool cloth" width="1200" height="1200" loading="lazy">
-      </figure>
-      <figure class="sj-fig sj-fig--hover" data-slot="signori-jacket-detail.webp">
-        <img src="assets/images/signori-jacket-detail.webp" alt="Jacket lapel and buttons in close-up" width="1200" height="1500" loading="lazy">
-      </figure>
-    </div>
-    <figure class="sj-fig sj-center sj-reveal" data-slot="signori-craftsmanship.webp">
-      <img src="assets/images/signori-craftsmanship.webp" alt="Hands hand-stitching a jacket" width="1200" height="1600" loading="lazy">
-    </figure>
-  </section>
+Through our exclusive trunk shows, we bring the world of SIGNORI to cities around the globe, offering our clients a more personal way to experience bespoke tailoring.
 
-  <!-- VI. Invitation -->
-  <section class="sj-block" aria-labelledby="h-invite">
-    <figure class="sj-fig sj-full sj-full--cine sj-reveal" data-slot="signori-belgrade-closing.webp">
-      <img src="assets/images/signori-belgrade-closing.webp" alt="A bespoke silhouette against an evening Belgrade interior" width="2400" height="1300" loading="lazy">
-    </figure>
-    <div class="sj-head sj-reveal">
-      <h2 id="h-invite">A PERSONAL INVITATION</h2>
-      <p>Discover the SIGNORI bespoke experience in Belgrade.</p>
-    </div>
-  </section>
+From discovering exceptional fabrics to discussing the finest details of a garment made exclusively for you, every appointment reflects the craftsmanship, precision, and personal attention that define our house.
 
-  <!-- Appointment + closing -->
-  <section class="sj-close" id="appointment" aria-labelledby="h-close">
-    <div class="sj-close__in sj-reveal">
-      <p class="sj-label">SIGNORI Private Appointments</p>
-      <h2 id="h-close">SIGNORI IN BELGRADE</h2>
-      <p class="sj-sub">Crafted for the individual. Wherever the journey leads.</p>
-      <dl class="sj-info">
-        <div><dt>City</dt><dd>Belgrade, Serbia</dd></div>
-        <div><dt>Dates</dt><dd data-sj="dates">[INSERT CONFIRMED VISIT DATES]</dd></div>
-        <div><dt>Venue</dt><dd data-sj="venue">[CONFIRMED HOTEL OR VENUE]</dd></div>
-        <div><dt>Address</dt><dd data-sj="address">[CONFIRMED ADDRESS]</dd></div>
-      </dl>
-      <p class="sj-note">By appointment only. A private introduction to SIGNORI bespoke tailoring, arranged around your preferences.</p>
-      <div class="sj-btn-wrap"><a class="sj-btn" href="#appointment" data-sj-booking>REQUEST APPOINTMENT</a></div>
-    </div>
-  </section>
-</main>
+We look forward to reconnecting with familiar faces, welcoming new ones, and sharing the timeless art of bespoke tailoring.
+                </blockquote>
 
-<footer class="sj-footer">
-  <a class="sj-wordmark" href="#top" aria-label="SIGNORI">SIGNORI</a>
-  <nav aria-label="Footer">
-    <a href="#journal">Journal</a>
-    <a href="#bespoke">Bespoke Tailoring</a>
-    <a href="#appointment" data-sj-booking>Contact / Appointment</a>
-    <a href="#" data-sj-instagram hidden>Instagram</a>
-  </nav>
-  <p>© <span id="sjYear">2026</span> SIGNORI. All rights reserved.</p>
-</footer>
+                <div class="jrn-cta-wrap">
+                    <a href="contact.html" class="jrn-cta-btn">REQUEST AN APPOINTMENT</a>
+                    <div class="jrn-slots" aria-label="Only 4 slots left">
+                        <span class="jrn-slots__label">ONLY 4 SLOTS LEFT</span>
+                        <span class="jrn-slots__bars" aria-hidden="true">
+                            <span class="jrn-slots__bar is-active"></span>
+                            <span class="jrn-slots__bar is-active"></span>
+                            <span class="jrn-slots__bar is-active"></span>
+                            <span class="jrn-slots__bar is-active"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-<script src="../js/journal.js"></script>
+        <!-- BOTTOM WIDE FEATURE: IMAGE LEFT + TEXT RIGHT -->
+        <section class="jrn-split" aria-label="Atelier notes">
+            <div class="jrn-split__media">
+                <img 
+                    src="../assets/sliki/journal/1.jpg" 
+                    alt="SIGNORI tailored craftsmanship" 
+                    class="jrn-split__image"
+                >
+            </div>
+            <div class="jrn-split__content">
+                <p class="jrn-split__text">
+                    Each private consultation in Belgrade is conducted by appointment, offering individual fabric selection, cloth architecture guidance, and personal measurements directly with our tailoring team.
+                </p>
+            </div>
+        </section>
+
+        <!-- UPCOMING TRUNK SHOWS SECTION -->
+        <section class="jrn-upcoming" aria-label="Upcoming bespoke trunk shows">
+            <div class="jrn-upcoming__inner">
+                <div class="jrn-upcoming__head">
+                    <span class="jrn-upcoming__eyebrow">COMING SOON</span>
+                    <h2 class="jrn-upcoming__title">NEXT BESPOKE TRUNK SHOWS</h2>
+                </div>
+
+                <div class="jrn-upcoming__grid">
+                    <div class="jrn-card">
+                        <div class="jrn-card__media">
+                            <img 
+                                src="../assets/sliki/journal/2.png" 
+                                alt="SIGNORI Bespoke Trunk Show in Milano" 
+                                class="jrn-card__image"
+                            >
+                            <p class="jrn-card__name">MILANO</p>
+                        </div>
+                    </div>
+
+                    <div class="jrn-card">
+                        <div class="jrn-card__media">
+                            <img 
+                                src="../assets/sliki/journal/4.png" 
+                                alt="SIGNORI Bespoke Trunk Show in Zurich" 
+                                class="jrn-card__image"
+                            >
+                            <p class="jrn-card__name">ZURICH</p>
+                        </div>
+                    </div>
+
+                    <div class="jrn-card">
+                        <div class="jrn-card__media">
+                            <img 
+                                src="../assets/sliki/journal/3.png" 
+                                alt="SIGNORI Bespoke Trunk Show in VIENNA" 
+                                class="jrn-card__image"
+                            >
+                            <p class="jrn-card__name">VIENNA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Контејнер каде со fetch ќе се вчита футерот -->
+
+    <div id="footer-placeholder"></div>
+    <script src="../navbar/navbar.js" defer></script>
+    <script src="../js/journal.js" defer></script>
+    <script src="../footer/footer-loader.js" defer></script>
 </body>
 </html>
