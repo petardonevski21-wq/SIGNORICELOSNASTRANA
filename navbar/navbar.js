@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let lastScrollY = 0;
         let scrollY = 0;
         let ticking = false;
+        let bodyLocked = false; // true only while the mobile page lock is applied
 
         let mode = "hero";
         let leaveTimer = null;
@@ -73,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (mobileQuery.matches) {
                 scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                bodyLocked = true;
                 document.body.style.position = "fixed";
                 document.body.style.top = `-${scrollY}px`;
                 document.body.style.width = "100%";
@@ -98,11 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (drawerOverlay) drawerOverlay.classList.remove("active");
             if (menuButton) menuButton.setAttribute("aria-expanded", "false");
             
-            if (mobileQuery.matches) {
+            if (bodyLocked) {
+                bodyLocked = false;
                 document.body.style.position = "";
                 document.body.style.top = "";
                 document.body.style.width = "";
+                // Restore the exact position instantly, even if the site uses scroll-behavior: smooth
+                const root = document.documentElement;
+                const prevBehavior = root.style.scrollBehavior;
+                root.style.scrollBehavior = "auto";
                 window.scrollTo(0, scrollY);
+                root.style.scrollBehavior = prevBehavior;
             } else {
                 document.body.style.overflow = "";
             }
@@ -129,6 +137,46 @@ document.addEventListener("DOMContentLoaded", () => {
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape") closeDrawer();
             });
+        }
+
+        // Mobile menu: the whole drawer surface scrolls the menu list, and nothing reaches the page behind it.
+        // Swipes inside the list use native scrolling (with momentum); swipes on the header, dividers or the
+        // bottom toggle are forwarded to the list. Taps are never touched, so links and buttons work as before.
+        if (sideDrawer) {
+            const drawerScrollEl = document.getElementById("drawerScroll");
+            let touchLastY = null;
+
+            sideDrawer.addEventListener("touchstart", (event) => {
+                touchLastY = event.touches.length === 1 ? event.touches[0].clientY : null;
+            }, { passive: true });
+
+            sideDrawer.addEventListener("touchmove", (event) => {
+                if (!bodyLocked || !drawerScrollEl || touchLastY === null) return;
+
+                const y = event.touches[0].clientY;
+                const dy = touchLastY - y; // > 0 when swiping up (content moves up)
+                touchLastY = y;
+
+                const canScroll = drawerScrollEl.scrollHeight > drawerScrollEl.clientHeight;
+
+                if (canScroll && drawerScrollEl.contains(event.target)) {
+                    // Native scroll; only stop it from chaining to the page at the top/bottom edge
+                    const atTop = drawerScrollEl.scrollTop <= 0;
+                    const atBottom = drawerScrollEl.scrollTop + drawerScrollEl.clientHeight >= drawerScrollEl.scrollHeight - 1;
+                    if (((atTop && dy < 0) || (atBottom && dy > 0)) && event.cancelable) {
+                        event.preventDefault();
+                    }
+                    return;
+                }
+
+                // Touch started outside the list (or the list does not overflow): never let the page move
+                if (event.cancelable) event.preventDefault();
+                if (canScroll) drawerScrollEl.scrollTop += dy;
+            }, { passive: false });
+
+            const resetTouch = () => { touchLastY = null; };
+            sideDrawer.addEventListener("touchend", resetTouch, { passive: true });
+            sideDrawer.addEventListener("touchcancel", resetTouch, { passive: true });
         }
 
         // Contact Us Overlay Functionality with scroll lock
@@ -420,6 +468,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const updateHeader = () => {
                 ticking = false;
+                // The mobile page lock forces the scroll position to 0; that must not be read as a real scroll
+                if (bodyLocked) return;
                 const currentScrollY = getScrollY();
                 const heroThreshold = getHeroThreshold();
 
@@ -475,6 +525,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 ) {
                     return;
                 }
+
+                if (bodyLocked) return;
 
                 if (mode === "hero") applyHeroShift();
 
