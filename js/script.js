@@ -1,17 +1,40 @@
 /* Hero hover video: flash -> video plays; videos freeze on their last frame and resume */
 document.addEventListener("DOMContentLoaded", () => {
-    if (!window.matchMedia('(hover: hover)').matches) return;
+    // Touch / no-hover devices: static images only.
+    // The video elements are removed (they never get a src), so nothing is requested or initialised.
+    if (!window.matchMedia('(hover: hover)').matches) {
+        document.querySelectorAll('.hero-video').forEach(v => v.remove());
+        return;
+    }
 
     const heroPanes = document.querySelectorAll('.split-pane');
     let activePane = null;
+    let hoverToken = 0; // identifies the latest play request, so stale promises can be ignored
 
-    // Preload after the page has loaded so the first hover is seamless
-    window.addEventListener('load', () => {
+    // The source is attached once per video; the element itself is never recreated or reloaded
+    const attachSource = (video) => {
+        if (video.getAttribute('src') || !video.dataset.src) return;
+        video.preload = 'auto';
+        video.src = video.dataset.src;
+    };
+
+    // Only one video plays at a time; the others freeze on their current frame
+    const pauseOthers = (pane) => {
+        heroPanes.forEach(other => {
+            const otherVideo = other.querySelector('.hero-video');
+            if (other !== pane && otherVideo) otherVideo.pause();
+        });
+    };
+
+    // Start buffering both videos once the page has loaded, so the first hover is seamless
+    const warmUp = () => {
         heroPanes.forEach(pane => {
             const video = pane.querySelector('.hero-video');
-            if (video) { video.preload = 'auto'; video.load(); }
+            if (video) attachSource(video);
         });
-    });
+    };
+    if (document.readyState === 'complete') warmUp();
+    else window.addEventListener('load', warmUp, { once: true });
 
     const flash = (pane) => {
         pane.classList.remove('is-flashing');
@@ -49,10 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
             e.stopPropagation(); // the pane sits next to links: never navigate from this button
             if (video.paused) {
                 activePane = pane; // keep a single playing video
-                heroPanes.forEach(other => {
-                    const otherVideo = other.querySelector('.hero-video');
-                    if (other !== pane && otherVideo) otherVideo.pause();
-                });
+                hoverToken++;      // invalidate any pending hover play() promises
+                attachSource(video);
+                pauseOthers(pane);
                 const resumed = video.play();
                 if (resumed && resumed.catch) resumed.catch(() => {});
             } else {
@@ -67,12 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
         pane.addEventListener('mouseenter', () => {
             if (activePane === pane) return; // already active: no restart, no new flash
             activePane = pane;
+            const myToken = ++hoverToken;
 
-            // Only one video plays at a time; the other one freezes on its current frame
-            heroPanes.forEach(other => {
-                const otherVideo = other.querySelector('.hero-video');
-                if (other !== pane && otherVideo) otherVideo.pause();
-            });
+            attachSource(video); // no-op if already attached; covers a hover before warm-up ran
+            pauseOthers(pane);
 
             const playing = video.play(); // resumes from the stored currentTime
             if (!playing || !playing.then) return;
@@ -89,7 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     toggleBtn.classList.add('is-visible');
                 }, 110);
             }).catch(() => {
-                if (activePane === pane) activePane = null;
+                // Only a failure of the latest request may reset the state.
+                // An AbortError from a newer hover pausing this video must not.
+                if (hoverToken === myToken && activePane === pane) activePane = null;
             });
         });
     });
