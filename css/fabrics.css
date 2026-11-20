@@ -104,7 +104,6 @@ body {
 
 .fabrics-intro-inner h2 {
     font-size: 18px;
-    font-style: italic;
     font-weight: 600;
     letter-spacing: 0.04em;
     color: #111111;
@@ -189,7 +188,6 @@ body {
 
 .fabrics-text-box h3 {
     font-size: 20px;
-    font-style: italic;
     font-weight: 600;
     letter-spacing: 0.03em;
     color: #111111;
@@ -205,6 +203,74 @@ body {
 }
 
 .fabrics-text-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* ================= DOLNA SEKCIJA: 9 MATERIJALI (3x3) + TEKST ================= */
+.fabrics-swatches-section {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto 120px auto;
+    padding: 0 24px;
+}
+
+.fabrics-swatches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 18px;
+}
+
+.fabrics-swatch-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.fabrics-swatch-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1.04;
+    border-radius: 12px;
+    background-color: #d9d9d9;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.fabrics-swatch-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.fabrics-swatch-card figcaption {
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #222222;
+}
+
+.fabrics-closing-note {
+    margin-top: 72px;
+    max-width: 560px;
+    text-align: left;
+}
+
+.fabrics-closing-note h3 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #111111;
+    margin-bottom: 18px;
+}
+
+.fabrics-closing-note p {
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #2b2b2b;
+    margin-bottom: 16px;
+}
+
+.fabrics-closing-note p:last-child {
     margin-bottom: 0;
 }
 
@@ -293,6 +359,23 @@ body {
     }
 
     .fabrics-text-box {
+        max-width: 100%;
+    }
+
+    .fabrics-swatches-section {
+        margin-bottom: 84px;
+    }
+
+    .fabrics-swatches-grid {
+        gap: 24px 12px;
+    }
+
+    .fabrics-swatch-card figcaption {
+        font-size: 12px;
+    }
+
+    .fabrics-closing-note {
+        margin-top: 56px;
         max-width: 100%;
     }
 }
