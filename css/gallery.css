@@ -94,18 +94,21 @@ body {
 /* MOBILEN DIZAJN: Golemite sliki sega se tocno kolku celiot ekran (celosna visocina i shirina) */
 @media (max-width: 767px) {
     .signori-section {
-        padding: 36px 0;
+        padding: 110px 0 36px 0;
     }
 
     .gallery-header {
-        font-size: 15px;
-        line-height: 1.5;
-        margin-bottom: 32px;
-        padding: 0 16px;
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 340px;
+        margin: 0 auto 36px auto;
+        padding: 0 20px;
     }
 
     .gallery-header p {
         margin-bottom: 16px;
+        text-align: center;
     }
 
     .gallery-grid {
@@ -133,5 +136,16 @@ body {
         width: 100%;
         height: 100vh;
         height: 100svh;
+    }
+
+    /* Podesno mestenje samo za 16celaa.png na mobilen */
+    .grid-item:has(img[src*="16celaa.png"]) {
+        height: 100vh;
+        height: 100svh;
+    }
+
+    .grid-item img[src*="16celaa.png"] {
+        object-fit: cover;
+        object-position: center center ;
     }
 }
