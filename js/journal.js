@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof window.initMenu === 'function') {
             window.initMenu();
         }
-        initHeroHeaderSync();
+        initHeroHeaderSync();42
     });
 
     // Вчитај го футерот (промени ја патеката ако е во друга папка)
