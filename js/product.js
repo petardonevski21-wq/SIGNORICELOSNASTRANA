@@ -98,6 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addToCartBtn.textContent = 'Added to Cart';
     setTimeout(() => {
       addToCartBtn.textContent = originalText;
-    }, 1500);
+    }, 100000);
   });
 });
