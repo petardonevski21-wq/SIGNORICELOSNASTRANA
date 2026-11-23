@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Signature Suit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/product.css" />
+</head>
+<body>
+
+  <main class="product-page">
+    <!-- Left Column: 3 Large Scrollable Images -->
+    <section class="product-gallery" id="productGallery">
+      <div class="gallery-item">
+        <img src="../assets/sliki/ONLINE/product-page/1.png" alt="The Signature Suit - Front View" />
+      </div>
+      <div class="gallery-item">
+        <img src="../assets/sliki/ONLINE/product-page/2.png" alt="The Signature Suit - Back View" />
+      </div>
+      <div class="gallery-item">
+        <img src="../assets/sliki/ONLINE/product-page/3.png" alt="The Signature Suit - Detail View" />
+      </div>
+      <div class="gallery-item">
+        <img src="../assets/sliki/ONLINE/product-page/4.png" alt="The Signature Suit - Detail View" />
+      </div>
+    </section>
+
+    <!-- Right Column: Sticky Product Details -->
+    <aside class="product-details">
+      <div class="details-inner">
+        <span class="badge-new">New</span>
+        <h1 class="product-title">The Signature Suit</h1>
+        <p class="product-price">1599€</p>
+
+        <!-- Colors with 3 small thumbnails -->
+        <div class="colors-section">
+          <p class="section-label">Colors</p>
+          <div class="color-swatches">
+            <button class="color-thumb active" data-variant="0" aria-label="Midnight Black Velvet">
+              <img src="../assets/sliki/ONLINE/product-page/1-mala.png" alt="Black Velvet" />
+            </button>
+            <button class="color-thumb" data-variant="1" aria-label="Deep Charcoal">
+              <img src="../assets/sliki/ONLINE/product-page/2-mala.png" alt="Deep Charcoal" />
+            </button>
+            <button class="color-thumb" data-variant="2" aria-label="Obsidian Silk Lapel">
+              <img src="../assets/sliki/ONLINE/product-page/3-mala.png" alt="Obsidian Silk Lapel" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Sizes Dropdown Row -->
+        <div class="size-selector-wrapper">
+          <button class="size-trigger" id="sizeTrigger" type="button">
+            <span>Sizes</span>
+            <span class="selected-size-group">
+              <span id="selectedSize">S-46</span>
+              <svg class="chevron" width="11" height="7" viewBox="0 0 10 6" fill="none">
+                <path d="M1 1L5 5L9 1" stroke="#111111" stroke-width="1" />
+              </svg>
+            </span>
+          </button>
+          <ul class="size-dropdown" id="sizeDropdown">
+            <li data-size="XS-44">XS-44</li>
+            <li data-size="S-46" class="selected">S-46</li>
+            <li data-size="M-48">M-48</li>
+            <li data-size="L-50">L-50</li>
+            <li data-size="XL-52">XL-52</li>
+          </ul>
+        </div>
+
+        <a href="#size-guide" class="size-guide-link" id="sizeGuideBtn">Size Guide</a>
+
+        <!-- Quantity & Add to Cart -->
+        <div class="purchase-row">
+          <div class="quantity-box">
+            <button type="button" class="qty-btn" id="qtyMinus">-</button>
+            <span class="qty-value" id="qtyValue">1</span>
+            <button type="button" class="qty-btn" id="qtyPlus">+</button>
+          </div>
+          <button type="button" class="add-to-cart-btn" id="addToCartBtn">Add to Cart</button>
+        </div>
+
+        <!-- Description with Smooth Read More -->
+        <div class="description-box" id="descriptionBox">
+          <div class="description-collapse" id="descriptionCollapse">
+            <p class="description-text" id="descriptionText">
+              A suit of timeless elegance and refined character, crafted to embody modern sophistication through impeccable tailoring and carefully considered details. Designed with a clean silhouette and precise shoulder construction, it features peak silk-satin lapels, hand-finished buttonholes, and breathable full cupro lining. Tailored from plush Italian cotton velvet for formal evening occasions where understated luxury speaks loudest.
+            </p>
+          </div>
+          <button type="button" class="read-more-btn" id="readMoreBtn">Read more</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="../js/product.js" defer></script>
+</body>
+</html>
