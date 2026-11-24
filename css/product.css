@@ -247,7 +247,7 @@ body {
 .purchase-row {
   display: flex;
   gap: 8px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .quantity-box {
@@ -310,6 +310,24 @@ body {
   color: #000000;
 }
 
+/* 4 Small Static Images Between Add to Cart and Description */
+.between-mini-gallery {
+  max-width: 480px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.between-mini-gallery img {
+  width: 100%;
+  height: 62px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  background-color: #fafafa;
+}
+
 /* Description & Smooth Sliding Read More */
 .description-box {
   max-width: 480px;
@@ -342,6 +360,22 @@ body {
 .description-text {
   font-size: 11.5px;
   line-height: 1.7;
+  color: #555555;
+  font-weight: 300;
+}
+
+.description-specs {
+  list-style: none;
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 18px;
+  row-gap: 4px;
+}
+
+.description-specs li {
+  font-size: 11px;
+  line-height: 1.65;
   color: #555555;
   font-weight: 300;
 }
